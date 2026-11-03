@@ -1,0 +1,151 @@
+========================================================================
+TOGGLER
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/toggler
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Toggle attributes or classes on click using only data attributes and our JavaScript plugin. Works with any attribute except `id`.
+
+CONTENTS
+   1. Examples > Toggle class  (example 1)
+   2. Examples > Remove existing  (example 2)
+   3. Examples > Target element  (example 3)
+   4. Examples > Multiple elements  (example 4)
+   5. Examples > Toggle attribute  (example 5)
+   6. Usage > Via JavaScript  (example 6)
+   7. Usage > Methods  (example 7)
+   8. Usage > Events  (example 8)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+The data API initialises togglers from the attributes below. Manual control is rarely needed.
+
+Automatic (data API):
+
+<button type="button" class="btn-solid theme-primary"
+        data-bs-toggle="toggler"
+        data-bs-value="bg-2"
+        data-bs-attribute="class">
+  Toggle class
+</button>
+
+Manual initialisation:
+
+const toggler = new bootstrap.Toggler('#myToggler')
+
+Reuse an existing instance:
+
+const toggler = bootstrap.Toggler.getOrCreateInstance('#myToggler')
+
+------------------------------------------------------------------------
+EXAMPLES > TOGGLE CLASS
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Toggle the class of an element by adding the `data-bs-toggle="toggler"` attribute to the element and the `data-bs-value` attribute to the value you want to toggle.
+
+<div class="w-100 p-3 rounded border"
+     data-bs-toggle="toggler"
+     data-bs-value="fg-danger"
+     data-bs-attribute="class">
+  Click to toggle `fg-danger`
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > REMOVE EXISTING
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: If the element already has the class specified in `data-bs-value`, toggling will remove it. Clicking again adds it back.
+
+<div class="w-100 p-3 rounded border bg-subtle-info"
+     data-bs-toggle="toggler"
+     data-bs-value="bg-subtle-info"
+     data-bs-attribute="class">
+  Starts with `bg-subtle-info`. Click to remove it.
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > TARGET ELEMENT
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Use `data-bs-toggle` with `data-bs-target` to toggle the class of another element.
+
+<button class="btn-solid theme-primary" data-bs-toggle="toggler" data-bs-target="#togglerExample1">Toggle</button>
+
+<div id="togglerExample1" class="w-100 p-3 rounded border" data-bs-value="bg-2" data-bs-attribute="class">
+  Use button to change `bg-2`
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > MULTIPLE ELEMENTS
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Use `data-bs-toggle` with a class name selector in `data-bs-target` to toggle the class of multiple elements.
+
+<button class="btn-solid theme-primary align-self-start"
+        data-bs-toggle="toggler" data-bs-target=".togglerExampleClass1">Toggle</button>
+
+<div class="w-100 p-3 rounded border togglerExampleClass1"
+     data-bs-value="bg-subtle-info"
+     data-bs-attribute="class">
+  Use button to toggle `bg-subtle-info`
+</div>
+
+<div class="w-100 p-3 rounded border togglerExampleClass1"
+     data-bs-value="bg-subtle-warning"
+     data-bs-attribute="class">
+  Use button to toggle `bg-subtle-warning`
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > TOGGLE ATTRIBUTE
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Toggle attributes by using the `data-bs-toggle` attribute with the `data-bs-attribute` and `data-bs-value` attributes. For example, toggling the `hidden` attribute:
+
+<div class="w-100 p-3 rounded border"
+     data-bs-toggle="toggler"
+     data-bs-value="true"
+     data-bs-attribute="hidden">
+  Click to toggle `hidden` attribute
+</div>
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT
+Example 6  |  JS
+------------------------------------------------------------------------
+Note: We don’t recommend using this component programmatically, as the initial purpose of it is to avoid using JavaScript. However, you can enable manually with:
+
+var togglerElementList = Array.prototype.slice.call(document.querySelectorAll('[data-bs-toggle="toggler"]'))
+var togglerList = togglerElementList.map(function (togglerEl) {
+  return new bootstrap.Toggler(togglerEl)
+})
+
+------------------------------------------------------------------------
+USAGE > METHODS
+Example 7  |  JS
+------------------------------------------------------------------------
+Note: You can create a toggler instance using the constructor, for example:
+
+var myToggler = document.getElementById('myToggler')
+var bsToggler = new bootstrap.Toggler(myToggler)
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 8  |  JS
+------------------------------------------------------------------------
+Note: Bootstrap’s toggler class exposes a few events for hooking into toggler functionality.
+
+var myToggler = document.getElementById('myToggler')
+myToggler.addEventListener('toggle.bs.toggler', function () {
+  // do something...
+})
+
+========================================================================
+END OF FILE
+========================================================================

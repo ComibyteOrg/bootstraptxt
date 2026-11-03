@@ -1,0 +1,217 @@
+========================================================================
+COLLAPSE
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/collapse
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Toggle the visibility of content across your project with a few classes and our JavaScript plugins.
+
+CONTENTS
+   1. Example  (example 1)
+   2. Horizontal  (example 2)
+   3. Multiple toggles and targets  (example 3)
+   4. CSS > Sass variables  (example 4)
+   5. CSS > Classes  (example 5)
+   6. Usage > Via JavaScript  (example 6)
+   7. Usage > Methods  (example 7)
+   8. Usage > Events  (example 8)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+The data API initialises collapsibles from the trigger attributes below.
+
+Automatic (data API):
+
+<button type="button" data-bs-toggle="collapse" data-bs-target="#myCollapse">Toggle</button>
+<div class="collapse" id="myCollapse">...</div>
+
+Manual initialisation:
+
+const collapse = new bootstrap.Collapse('#myCollapse')
+
+Reuse an existing instance:
+
+const collapse = bootstrap.Collapse.getOrCreateInstance('#myCollapse')
+
+------------------------------------------------------------------------
+EXAMPLE
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Click the buttons below to show and hide another element via class changes:
+
+<p class="d-inline-flex gap-1">
+  <a class="btn-solid theme-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn-solid theme-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-bs-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+
+------------------------------------------------------------------------
+HORIZONTAL
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: The collapse plugin supports horizontal collapsing. Add the `.collapse-horizontal` modifier class to transition the inline size instead of the block size, and set a `width` on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use our width utilities.
+
+<p>
+  <button class="btn-solid theme-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    Toggle width collapse
+  </button>
+</p>
+<div style="min-height: 140px;">
+  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+    <div class="card card-body" style="width: 300px;">
+      This is some placeholder content for a horizontal collapse. It’s hidden by default and shown when triggered.
+    </div>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+MULTIPLE TOGGLES AND TARGETS
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: A `<button>` or `<a>` element can show and hide multiple elements by referencing them with a selector in its `data-bs-target` or `href` attribute. Conversely, multiple `<button>` or `<a>` elements can show and hide the same element if they each reference it with their `data-bs-target` or `href` attribute.
+
+<p class="d-inline-flex gap-1">
+  <a class="btn-solid theme-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+  <button class="btn-solid theme-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+  <button class="btn-solid theme-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+</p>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+      </div>
+    </div>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+CSS > SASS VARIABLES
+Example 4  |  SCSS
+------------------------------------------------------------------------
+// stylelint-disable custom-property-no-missing-var-function
+$collapse-tokens: defaults(
+  (
+    --transition-collapse-property: "block-size, display",
+    --transition-collapse-duration: .35s,
+    --transition-collapse-timing: ease,
+  ),
+  $collapse-tokens
+);
+// stylelint-enable custom-property-no-missing-var-function
+
+------------------------------------------------------------------------
+CSS > CLASSES
+Example 5  |  SCSS
+------------------------------------------------------------------------
+Note: Collapse transition classes can be found in `scss/_transitions.scss` as these are shared across multiple components (collapse and accordion).
+
+// The browser animates the size itself. `interpolate-size` lets the `0` of the
+// closed state interpolate to the `auto` of the open one, and `display`
+// transitions discretely, so the element stays laid out until the size reaches
+// `0`. The animated axis is clipped, so the content cannot spill while it moves.
+.collapse {
+  @include tokens($collapse-tokens);
+
+  overflow-y: clip;
+  @include transition-props(
+    var(--transition-collapse-property),
+    var(--transition-collapse-duration),
+    var(--transition-collapse-timing),
+    allow-discrete
+  );
+
+  // Browsers without `interpolate-size` open and close the element at once.
+  @media (prefers-reduced-motion: no-preference) {
+    interpolate-size: allow-keywords;
+  }
+
+  &:not(.show) {
+    display: none;
+    block-size: 0;
+  }
+
+  // A closed collapse is not rendered, so the open side needs a start value of
+  // its own. Without it the element appears at full size at once.
+  &.show {
+    @starting-style {
+      block-size: 0;
+    }
+  }
+
+  // Horizontal collapses animate the inline size instead. The open size is
+  // `fit-content`, so the element is as wide as its content, not as wide as its
+  // container.
+  &.collapse-horizontal {
+    --transition-collapse-property: inline-size, display;
+
+    inline-size: fit-content;
+    overflow-x: clip;
+    overflow-y: visible;
+
+    &:not(.show) {
+      inline-size: 0;
+      block-size: auto;
+    }
+
+    &.show {
+      @starting-style {
+        inline-size: 0;
+      }
+    }
+  }
+}
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT
+Example 6  |  JS
+------------------------------------------------------------------------
+Note: Enable manually with:
+
+const collapseElementList = document.querySelectorAll('.collapse')
+const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl))
+
+------------------------------------------------------------------------
+USAGE > METHODS
+Example 7  |  JS
+------------------------------------------------------------------------
+Note: Methods that show or hide a component return a promise. The promise resolves when the transition ends, so `await` continues at the same moment a `shown.bs.*` or `hidden.bs.*` listener runs. The methods still return immediately and never block the caller. A call on a component that is already transitioning does nothing and resolves right away. Learn more in our JavaScript docs.
+
+const bsCollapse = new bootstrap.Collapse('#myCollapse')
+bsCollapse.show()
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 8  |  JS
+------------------------------------------------------------------------
+Note: Bootstrap’s collapse class exposes a few events for hooking into collapse functionality.
+
+const myCollapsible = document.getElementById('myCollapsible')
+myCollapsible.addEventListener('hidden.bs.collapse', event => {
+  // do something...
+})
+
+========================================================================
+END OF FILE
+========================================================================

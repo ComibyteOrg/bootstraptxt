@@ -1,0 +1,717 @@
+========================================================================
+MENU
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/menu
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Toggle contextual menus and custom overlays for lists of buttons, links, forms, and other custom content.
+
+CONTENTS
+   1. Overview  (example 1)
+   2. Examples  (example 2)
+   3. Examples > Dark menus  (examples 3, 4)
+   4. Examples > Translucent menus  (example 5)
+   5. Placement  (example 6)
+   6. Placement > Responsive  (example 7)
+   7. Menu items  (examples 8, 9)
+   8. Menu items > Active  (example 10)
+   9. Menu items > Disabled  (example 11)
+  10. Menu items > Variants  (example 12)
+  11. Menu items > Icons  (example 13)
+  12. Menu items > Descriptions  (example 14)
+  13. Menu items > Selected  (example 15)
+  14. Menu content > Headers  (example 16)
+  15. Menu content > Dividers  (example 17)
+  16. Menu content > Text  (example 18)
+  17. Menu content > Forms  (example 19)
+  18. Scrollable menus  (example 20)
+  19. Submenus  (example 21)
+  20. Submenus > Nested  (example 22)
+  21. Menu options  (example 23)
+  22. Menu options > Auto close behavior  (example 24)
+  23. CSS > Variables  (example 25)
+  24. Usage > Via data attributes  (example 26)
+  25. Usage > Via JavaScript  (examples 27, 28)
+  26. Usage > Options > Using function with `floatingConfig`  (example 29)
+  27. Usage > Events  (example 30)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+The data API initialises menus from the trigger. `data-bs-toggle="menu"` is required on the trigger whether you use the data API or JavaScript.
+
+Automatic (data API):
+
+<button type="button" data-bs-toggle="menu" aria-expanded="false">Menu</button>
+<div class="menu">
+  <a class="menu-item" href="#">Action</a>
+</div>
+
+Manual initialisation (pass the trigger, not the menu):
+
+const menu = new bootstrap.Menu('#myMenuToggle')
+
+Reuse an existing instance:
+
+const menu = bootstrap.Menu.getOrCreateInstance('#myMenuToggle')
+
+------------------------------------------------------------------------
+OVERVIEW
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Toggle menus with buttons whenever possible. Here’s an example using a Bootstrap button:
+
+<button class="btn-solid theme-primary" type="button" data-bs-toggle="menu" aria-expanded="false">
+  Toggle menu
+</button>
+<div class="menu">
+  <a class="menu-item" href="#">Menu item 1</a>
+  <a class="menu-item" href="#">Menu item 2</a>
+  <a class="menu-item" href="#">Menu item 3</a>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: While `<button>` is the recommended control for a menu toggle, there might be situations where you have to use an `<a>` element. If you do, we recommend adding a `role="button"` attribute to appropriately convey control’s purpose to assistive technologies such as screen readers.
+
+<a class="btn-solid theme-primary" href="#" role="button" data-bs-toggle="menu" aria-expanded="false">
+  Toggle menu
+</a>
+<div class="menu">
+  <a class="menu-item" href="#">Menu item 1</a>
+  <a class="menu-item" href="#">Menu item 2</a>
+  <a class="menu-item" href="#">Menu item 3</a>
+</div>
+
+<div class="btn-group">
+  <button type="button" class="btn-solid theme-secondary">Split</button>
+  <button type="button" class="btn-solid theme-secondary menu-toggle-split" data-bs-toggle="menu" aria-expanded="false">
+    <svg class="bi" width="16" height="16" aria-hidden="true"><use href="#chevron-expand" /></svg>
+    <span class="visually-hidden">Toggle menu</span>
+  </button>
+  <div class="menu">
+    <a class="menu-item" href="#">Action</a>
+    <a class="menu-item" href="#">Another action</a>
+    <a class="menu-item" href="#">Something else here</a>
+    <hr class="menu-divider">
+    <a class="menu-item" href="#">Separated link</a>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > DARK MENUS
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Opt into darker menus to match a dark navbar or custom style by adding `data-bs-theme="dark"` onto the toggle element or a parent.
+
+<div data-bs-theme="dark">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
+    Menu button
+  </button>
+  <div class="menu">
+    <a class="menu-item active" href="#">Action</a>
+    <a class="menu-item" href="#">Another action</a>
+    <a class="menu-item" href="#">Something else here</a>
+    <hr class="menu-divider">
+    <a class="menu-item" href="#">Separated link</a>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > DARK MENUS (cont.)
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: And putting it to use in a navbar:
+
+<nav class="navbar" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <ul class="navbar-nav">
+      <li class="nav-item" data-bs-theme="dark">
+        <button class="btn-solid theme-secondary" data-bs-toggle="menu" aria-expanded="false">
+          Menu
+        </button>
+        <div class="menu">
+          <a class="menu-item" href="#">Action</a>
+          <a class="menu-item" href="#">Another action</a>
+          <a class="menu-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+------------------------------------------------------------------------
+EXAMPLES > TRANSLUCENT MENUS
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Blur and saturate the background of menus to create a translucent effect with `.menu-translucent`.
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
+  Menu button
+</button>
+<div class="menu menu-translucent">
+  <a class="menu-item active" href="#">Active menu item</a>
+  <a class="menu-item" href="#">Menu item</a>
+  <a class="menu-item" href="#">Menu item</a>
+  <a class="menu-item" href="#">Menu item</a>
+  <a class="menu-item" href="#">Menu item</a>
+  <hr class="menu-divider">
+  <a class="menu-item theme-danger" href="#">Danger menu item</a>
+</div>
+
+------------------------------------------------------------------------
+PLACEMENT
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: Use `data-bs-placement` on the toggle element to control where the menu appears.
+
+<button class="btn-solid theme-primary" type="button" data-bs-toggle="menu" data-bs-placement="bottom-start" aria-expanded="false">
+  Toggle menu
+</button>
+<div class="menu">
+  <button class="menu-item" type="button">Action</button>
+  <button class="menu-item" type="button">Another action</button>
+  <button class="menu-item" type="button">Something else here</button>
+</div>
+
+------------------------------------------------------------------------
+PLACEMENT > RESPONSIVE
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: Change placement at different breakpoints using responsive prefixes. The syntax is `breakpoint:placement`, where breakpoint is one of `sm`, `md`, `lg`, `xl`, or `2xl`. Multiple breakpoints can be combined in a single attribute, space-separated.
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-placement="bottom-start md:bottom-end" aria-expanded="false">
+  Bottom start → md:bottom-end
+</button>
+<div class="menu">
+  <a class="menu-item" href="#">Action</a>
+  <a class="menu-item" href="#">Another action</a>
+</div>
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-placement="bottom lg:right" aria-expanded="false">
+  Bottom → lg:right
+</button>
+<div class="menu">
+  <a class="menu-item" href="#">Action</a>
+  <a class="menu-item" href="#">Another action</a>
+</div>
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-placement="top-end md:right-start xl:bottom-start" aria-expanded="false">
+  Multi-breakpoint
+</button>
+<div class="menu">
+  <a class="menu-item" href="#">Action</a>
+  <a class="menu-item" href="#">Another action</a>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS
+Example 8  |  HTML
+------------------------------------------------------------------------
+Note: You can use `<a>` or `<button>` elements as menu items.
+
+<div class="menu show position-static">
+  <button class="menu-item" type="button">Action</button>
+  <button class="menu-item" type="button">Another action</button>
+  <button class="menu-item" type="button">Something else here</button>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS (cont.)
+Example 9  |  HTML
+------------------------------------------------------------------------
+Note: You can also create non-interactive menu items with `.menu-text`. Feel free to style further with custom CSS or text utilities.
+
+<div class="menu show position-static">
+  <span class="menu-text">Menu item text</span>
+  <a class="menu-item" href="#">Action</a>
+  <a class="menu-item" href="#">Another action</a>
+  <a class="menu-item" href="#">Something else here</a>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS > ACTIVE
+Example 10  |  HTML
+------------------------------------------------------------------------
+Note: Add `.active` to items in the menu to style them as the active selection. To convey the active state to assistive technologies, use the `aria-current` attribute — using the `page` value for the current page, or `true` for the current item in a set.
+
+<div class="menu show position-static">
+  <a class="menu-item" href="#">Regular link</a>
+  <a class="menu-item active" href="#" aria-current="true">Active link</a>
+  <a class="menu-item" href="#">Another link</a>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS > DISABLED
+Example 11  |  HTML
+------------------------------------------------------------------------
+Note: Add `.disabled` to items in the menu to style them as disabled.
+
+<div class="menu show position-static">
+  <a class="menu-item" href="#">Regular link</a>
+  <a class="menu-item disabled" aria-disabled="true">Disabled link</a>
+  <a class="menu-item" href="#">Another link</a>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS > VARIANTS
+Example 12  |  HTML
+------------------------------------------------------------------------
+Note: You can use the `theme-` prefix to apply a theme color to a menu item.
+
+<div class="menu show position-static">
+  <a class="menu-item theme-primary" href="#">Primary link</a>
+  <a class="menu-item theme-secondary" href="#">Secondary link</a>
+  <a class="menu-item theme-success" href="#">Success link</a>
+  <a class="menu-item theme-danger" href="#">Danger link</a>
+</div>
+<div class="menu show position-static">
+  <a class="menu-item active theme-primary" href="#">Primary link</a>
+  <a class="menu-item active theme-secondary" href="#">Secondary link</a>
+  <a class="menu-item active theme-success" href="#">Success link</a>
+  <a class="menu-item active theme-danger" href="#">Danger link</a>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS > ICONS
+Example 13  |  HTML
+------------------------------------------------------------------------
+Note: Add `.menu-item-icon` directly to an `<svg>` to add an icon slot to menu items.
+
+<div class="menu show position-static">
+  <button class="menu-item" type="button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="menu-item-icon fg-3" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+    </svg>
+    Copy
+  </button>
+  <button class="menu-item" type="button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="menu-item-icon fg-3" viewBox="0 0 16 16">
+      <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
+    </svg>
+    Cut
+  </button>
+  <hr class="menu-divider">
+  <button class="menu-item theme-danger" type="button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="menu-item-icon" viewBox="0 0 16 16">
+      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+    </svg>
+    Delete
+  </button>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS > DESCRIPTIONS
+Example 14  |  HTML
+------------------------------------------------------------------------
+Note: Use `.menu-item-content` for a flex column layout and `.menu-item-description` for secondary text below the main label.
+
+<div class="menu show position-static">
+  <button class="menu-item" type="button">
+    <span class="menu-item-content">
+      Publish now
+      <small class="menu-item-description">Make this page visible immediately</small>
+    </span>
+  </button>
+  <button class="menu-item" type="button">
+    <span class="menu-item-content">
+      Schedule
+      <small class="menu-item-description">Set a future publish date</small>
+    </span>
+  </button>
+</div>
+
+------------------------------------------------------------------------
+MENU ITEMS > SELECTED
+Example 15  |  HTML
+------------------------------------------------------------------------
+Note: Add `.selected` to a `.menu-item` to indicate the current selection.
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">Select status</button>
+<div class="menu">
+  <button class="menu-item selected" type="button">
+    <div class="menu-item-content">
+      Selected menu item
+      <small class="menu-item-description">Currently visible to users</small>
+    </div>
+    <svg class="menu-item-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 16 16"><path d="m2 7 4 5 8-8"/></svg>
+  </button>
+  <button class="menu-item" type="button">
+    <div class="menu-item-content">
+      Default menu item
+      <small class="menu-item-description">Not yet published</small>
+    </div>
+    <svg class="menu-item-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 16 16"><path d="m2 7 4 5 8-8"/></svg>
+  </button>
+</div>
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">Select status</button>
+<div class="menu">
+  <button class="menu-item" type="button">
+    Default menu item
+    <svg class="menu-item-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 16 16"><path d="m2 7 4 5 8-8"/></svg>
+  </button>
+  <button class="menu-item selected" type="button">
+    Selected menu item
+    <svg class="menu-item-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 16 16"><path d="m2 7 4 5 8-8"/></svg>
+  </button>
+  <button class="menu-item" type="button">
+    Default menu item
+    <svg class="menu-item-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 16 16"><path d="m2 7 4 5 8-8"/></svg>
+  </button>
+</div>
+
+------------------------------------------------------------------------
+MENU CONTENT > HEADERS
+Example 16  |  HTML
+------------------------------------------------------------------------
+Note: Add a header to label sections of actions in any menu.
+
+<div class="menu show position-static">
+  <a class="menu-item" href="#">Action</a>
+  <a class="menu-item" href="#">Action</a>
+  <h6 class="menu-header">Menu header</h6>
+  <a class="menu-item" href="#">Another action</a>
+</div>
+
+------------------------------------------------------------------------
+MENU CONTENT > DIVIDERS
+Example 17  |  HTML
+------------------------------------------------------------------------
+Note: Separate groups of related menu items with a divider.
+
+<div class="menu show position-static">
+  <a class="menu-item" href="#">Action</a>
+  <a class="menu-item" href="#">Another action</a>
+  <a class="menu-item" href="#">Something else here</a>
+  <hr class="menu-divider">
+  <a class="menu-item" href="#">Separated link</a>
+</div>
+
+------------------------------------------------------------------------
+MENU CONTENT > TEXT
+Example 18  |  HTML
+------------------------------------------------------------------------
+Note: Place any freeform text within a menu with text and use margin and padding utilities. Note that you’ll likely need additional sizing styles to constrain the menu width.
+
+<div class="menu show position-static p-3 fg-2"
+     style="--bs-menu-min-width: 240px;">
+  <p>
+    Some example text that’s free-flowing within the menu.
+  </p>
+  <p class="mb-0">
+    And this is more example text.
+  </p>
+</div>
+
+------------------------------------------------------------------------
+MENU CONTENT > FORMS
+Example 19  |  HTML
+------------------------------------------------------------------------
+Note: Put a form within a menu, or make it into a menu, and use margin and padding utilities to give it the negative space you require.
+
+<div class="menu show position-static"
+     style="--bs-menu-min-width: 300px;">
+  <form class="d-flex flex-column gap-3 p-3">
+    <div>
+      <label for="exampleMenuFormEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleMenuFormEmail1" placeholder="email@example.com">
+    </div>
+    <div>
+      <label for="exampleMenuFormPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleMenuFormPassword1" placeholder="Password">
+    </div>
+    <div class="form-field">
+      <input type="checkbox" id="checkLabel" class="check" />
+      <label for="checkLabel">Example new checkbox</label>
+    </div>
+    <div class="vstack gap-2">
+      <button type="submit" class="btn-solid theme-primary">Sign in</button>
+      <a class="theme-secondary" href="#">New around here? Sign up</a>
+      <a class="theme-secondary" href="#">Forgot password?</a>
+    </div>
+  </form>
+</div>
+
+------------------------------------------------------------------------
+SCROLLABLE MENUS
+Example 20  |  HTML
+------------------------------------------------------------------------
+Note: Assign `--bs-menu-max-height` and `--bs-menu-overflow-y` custom properties to constrain the menu height and enable scrolling.
+
+<div class="menu show position-static" style="--bs-menu-max-height: 145px; --bs-menu-overflow-y: auto;">
+  <button class="menu-item" type="button">Item 1</button>
+  <button class="menu-item" type="button">Item 2</button>
+  <button class="menu-item" type="button">Item 3</button>
+  <button class="menu-item" type="button">Item 4</button>
+  <button class="menu-item" type="button">Item 5</button>
+  <button class="menu-item" type="button">Item 6</button>
+  <button class="menu-item" type="button">Item 7</button>
+  <button class="menu-item" type="button">Item 8</button>
+</div>
+
+------------------------------------------------------------------------
+SUBMENUS
+Example 21  |  HTML
+------------------------------------------------------------------------
+Note: Create nested menus with the `.submenu` wrapper class. Submenus support hover and click activation, keyboard navigation, and viewport-aware positioning. On small screens (below `576px`), submenus stack over the parent menu with a back button instead of flying out to the side.
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
+  Submenus
+</button>
+<div class="menu">
+  <div class="submenu">
+    <button class="menu-item" type="button">File</button>
+    <div class="menu">
+      <a class="menu-item" href="#">New</a>
+      <a class="menu-item" href="#">Open</a>
+      <a class="menu-item" href="#">Save</a>
+    </div>
+  </div>
+  <div class="submenu">
+    <button class="menu-item" type="button">Edit</button>
+    <div class="menu">
+      <a class="menu-item" href="#">Cut</a>
+      <a class="menu-item" href="#">Copy</a>
+      <a class="menu-item" href="#">Paste</a>
+    </div>
+  </div>
+  <div class="submenu">
+    <button class="menu-item" type="button">View</button>
+    <div class="menu">
+      <a class="menu-item" href="#">Zoom In</a>
+      <a class="menu-item" href="#">Zoom Out</a>
+    </div>
+  </div>
+  <hr class="menu-divider">
+  <a class="menu-item" href="#">Preferences</a>
+</div>
+
+------------------------------------------------------------------------
+SUBMENUS > NESTED
+Example 22  |  HTML
+------------------------------------------------------------------------
+Note: Submenus can be nested to multiple levels. Each level opens to the side and flips direction when there’s not enough viewport space.
+
+<button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
+  Multi-level menu
+</button>
+<div class="menu">
+  <a class="menu-item" href="#">Level 1 action</a>
+  <div class="submenu">
+    <button class="menu-item" type="button">Level 1 submenu</button>
+    <div class="menu">
+      <a class="menu-item" href="#">Level 2 action</a>
+      <div class="submenu">
+        <button class="menu-item" type="button">Level 2 submenu</button>
+        <div class="menu">
+          <a class="menu-item" href="#">Level 3 action A</a>
+          <a class="menu-item" href="#">Level 3 action B</a>
+        </div>
+      </div>
+      <a class="menu-item" href="#">Another level 2</a>
+    </div>
+  </div>
+  <a class="menu-item" href="#">Another level 1</a>
+</div>
+
+------------------------------------------------------------------------
+MENU OPTIONS
+Example 23  |  HTML
+------------------------------------------------------------------------
+Note: Use `data-bs-offset` or `data-bs-reference` to change the location of the menu. Offset is the distance from the trigger element in pixels. Reference is the element to reference the menu from.
+
+<div class="d-flex">
+  <div class="me-1">
+    <button type="button" class="btn-solid theme-secondary" data-bs-toggle="menu" aria-expanded="false" data-bs-offset="10,20">
+      Offset
+    </button>
+    <div class="menu">
+      <a class="menu-item" href="#">Action</a>
+      <a class="menu-item" href="#">Another action</a>
+      <a class="menu-item" href="#">Something else here</a>
+    </div>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn-solid theme-secondary">Reference</button>
+    <button type="button" class="btn-solid theme-secondary menu-toggle-split" data-bs-toggle="menu" aria-expanded="false" data-bs-reference="parent">
+      <svg class="bi" width="16" height="16" aria-hidden="true"><use href="#chevron-expand" /></svg>
+      <span class="visually-hidden">Toggle Menu</span>
+    </button>
+    <div class="menu">
+      <a class="menu-item" href="#">Action</a>
+      <a class="menu-item" href="#">Another action</a>
+      <a class="menu-item" href="#">Something else here</a>
+      <hr class="menu-divider">
+      <a class="menu-item" href="#">Separated link</a>
+    </div>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+MENU OPTIONS > AUTO CLOSE BEHAVIOR
+Example 24  |  HTML
+------------------------------------------------------------------------
+Note: By default, the menu is closed when clicking inside or outside the menu. You can use the `autoClose` option to change this behavior of the menu.
+
+<div class="btn-group">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-auto-close="true" aria-expanded="false">
+    Default menu
+  </button>
+  <div class="menu">
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+  </div>
+</div>
+
+<div class="btn-group">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-auto-close="inside" aria-expanded="false">
+    Clickable inside
+  </button>
+  <div class="menu">
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+  </div>
+</div>
+
+<div class="btn-group">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-auto-close="outside" aria-expanded="false">
+    Clickable outside
+  </button>
+  <div class="menu">
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+  </div>
+</div>
+
+<div class="btn-group">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-auto-close="false" aria-expanded="false">
+    Manual close
+  </button>
+  <div class="menu">
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+    <a class="menu-item" href="#">Menu item</a>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 25  |  SCSS
+------------------------------------------------------------------------
+Note: Menu use local CSS variables on `.menu` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+$menu-tokens: defaults(
+  (
+    --menu-zindex: var(--z-menu),
+    --menu-gap: .125rem,
+    --menu-min-width: 10rem,
+    --menu-padding-x: .25rem,
+    --menu-padding-y: .25rem,
+    --menu-spacer: .125rem,
+    --menu-font-size: var(--font-size-sm),
+    --menu-color: var(--fg-body),
+    --menu-bg: var(--bg-body),
+    // --menu-border-color: var(--border-color-translucent),
+    // --menu-border-radius: var(--radius-7),
+    // --menu-border-width: var(--border-width),
+    --menu-box-shadow: var(--box-shadow-lg),
+    // --menu-max-height: none,
+    --menu-divider-bg: var(--border-color-translucent),
+    --menu-divider-margin-y: .125rem,
+    --menu-divider-margin-x: .25rem,
+    --menu-item-color: var(--menu-color, var(--fg-body)),
+    --menu-item-hover-color: var(--menu-color, var(--fg-body)),
+    --menu-item-hover-bg: var(--bg-1),
+    --menu-item-active-color: var(--primary-contrast),
+    --menu-item-active-bg: var(--primary-bg),
+    --menu-item-disabled-color: var(--fg-3),
+    --menu-item-gap: .5rem,
+    --menu-item-padding-x: .75rem,
+    --menu-item-padding-y: .25rem,
+    --menu-item-border-radius: var(--radius-5),
+    --menu-icon-size: 1rem,
+    --menu-description-font-size: var(--font-size-xs),
+    --menu-check-color: currentcolor,
+    --menu-header-color: var(--fg-3),
+    --menu-header-padding-x: .75rem,
+    --menu-header-padding-y: .25rem,
+    --menu-transition-property: "opacity, transform, display",
+    --menu-transition-duration: .15s,
+    --menu-transition-timing: var(--transition-timing-overlay),
+  ),
+  $menu-tokens
+);
+
+------------------------------------------------------------------------
+USAGE > VIA DATA ATTRIBUTES
+Example 26  |  HTML
+------------------------------------------------------------------------
+Note: Add `data-bs-toggle="menu"` to a link or button to toggle a menu.
+
+<button type="button" data-bs-toggle="menu" aria-expanded="false">
+  Menu trigger
+</button>
+<div class="menu">
+  ...
+</div>
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT
+Example 27  |  JS
+------------------------------------------------------------------------
+Note: Menus must have `data-bs-toggle="menu"` on their trigger element, regardless of whether you call your menu via JavaScript or use the data-api.
+
+const menuElementList = document.querySelectorAll('[data-bs-toggle="menu"]')
+const menuList = [...menuElementList].map(menuToggleEl => new bootstrap.Menu(menuToggleEl))
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT (cont.)
+Example 28  |  JS
+------------------------------------------------------------------------
+Note: To open, close, or toggle a menu programmatically, get its instance from the trigger element (the one with `data-bs-toggle="menu"`) and call the corresponding method:
+
+const menuToggleEl = document.querySelector('#myMenuToggle')
+const menu = bootstrap.Menu.getOrCreateInstance(menuToggleEl)
+
+menu.show()
+menu.hide()
+menu.toggle()
+
+------------------------------------------------------------------------
+USAGE > OPTIONS > USING FUNCTION WITH `FLOATINGCONFIG`
+Example 29  |  JS
+------------------------------------------------------------------------
+const menu = new bootstrap.Menu(element, {
+  floatingConfig(defaultBsFloatingConfig) {
+    // const newFloatingConfig = {...}
+    // use defaultBsFloatingConfig if needed...
+    // return newFloatingConfig
+  }
+})
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 30  |  JS
+------------------------------------------------------------------------
+Note: All menu events are fired at the toggling element and then bubbled up. So you can also add event listeners on the `.menu`'s parent element. `hide.bs.menu` and `hidden.bs.menu` events have a `clickEvent` property (only when the original Event type is `click`) that contains an Event Object for the click event.
+
+const myMenu = document.getElementById('myMenu')
+myMenu.addEventListener('show.bs.menu', event => {
+  // do something...
+})
+
+========================================================================
+END OF FILE
+========================================================================

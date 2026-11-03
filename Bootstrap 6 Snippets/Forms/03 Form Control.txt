@@ -1,0 +1,533 @@
+========================================================================
+FORM CONTROLS
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/forms/form-control
+========================================================================
+
+Give textual `<input>`, `<textarea>`, and `<select>` elements an upgrade with custom styles, sizing, focus states, and more.
+
+CONTENTS
+   1. Overview  (example 1)
+   2. With form field  (example 2)
+   3. Textarea  (example 3)
+   4. Select  (examples 4, 5, 6)
+   5. Sizes  (examples 7, 8, 9)
+   6. Form text  (examples 10, 11)
+   7. States > Disabled  (example 12)
+   8. States > Readonly  (example 13)
+   9. States > Readonly plain text  (examples 14, 15)
+  10. Types > Date & Time  (example 16)
+  11. Types > Color  (examples 17, 18)
+  12. Types > Datalists  (examples 19, 20)
+  13. Types > File  (example 21)
+  14. Types > Ghost  (example 22)
+  15. CSS > Variables  (examples 23, 24, 25)
+  16. CSS > Root variables  (example 26)
+  17. CSS > Sass maps  (example 27)
+
+------------------------------------------------------------------------
+OVERVIEW
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Give textual `<input>`, `<textarea>`, and `<select>` elements an upgrade with custom styles, sizing, focus states, and more.
+
+<label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+<input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+
+------------------------------------------------------------------------
+WITH FORM FIELD
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Use the form field component to layout and wrap your inputs with a label, description, and validation feedback messages in a vertical stack.
+
+<div class="form-field">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  <div class="form-text">
+    We’ll never share your email with anyone else.
+  </div>
+</div>
+
+------------------------------------------------------------------------
+TEXTAREA
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Textareas use the same `.form-control` class as inputs. Modify their height by using the `rows` attribute or using custom CSS.
+
+<div class="form-field">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
+</div>
+
+<div class="form-field">
+  <label for="exampleFormControlTextarea2" class="form-label">Taller textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea2" rows="4"></textarea>
+</div>
+
+------------------------------------------------------------------------
+SELECT
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Basic select element styles are provided by the `.form-control` class. Styles are limited by the browser—options and popovers cannot be styled.
+
+<div class="form-field">
+  <label for="exampleFormControlSelect2" class="form-label">Example select</label>
+  <select class="form-control" id="exampleFormControlSelect2">
+    <option>Choose one…</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+
+------------------------------------------------------------------------
+SELECT (cont.)
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: The `multiple` attribute is supported on select elements:
+
+<div>
+  <label for="exampleFormControlSelect3" class="form-label">Multiple select</label>
+  <select class="form-control" id="exampleFormControlSelect3" multiple aria-label="Multiple select example">
+    <option selected>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+
+------------------------------------------------------------------------
+SELECT (cont.)
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: As is the `size` attribute:
+
+<div>
+  <label for="exampleFormControlSelect4" class="form-label">Size 3 select</label>
+  <select class="form-control" id="exampleFormControlSelect4" size="3" aria-label="Size 3 select example">
+    <option selected>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+
+------------------------------------------------------------------------
+SIZES
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: Change the size of a form control by using classes like `.form-control-lg` and `.form-control-sm`. This adjusts `height`, `padding`, `font-size`, `line-height`, and `border-radius`.
+
+<div>
+  <label for="sizesInputSmall" class="form-label">Small input</label>
+  <input class="form-control form-control-sm" type="text" id="sizesInputSmall" placeholder="Small input" aria-label="Small input example">
+</div>
+<div>
+  <label for="sizesInputDefault" class="form-label">Default input</label>
+  <input class="form-control" type="text" id="sizesInputDefault" placeholder="Default input" aria-label="Default input example">
+</div>
+<div>
+  <label for="sizesInputLarge" class="form-label">Large input</label>
+  <input class="form-control form-control-lg" type="text" id="sizesInputLarge" placeholder="Large input" aria-label="Large input example">
+</div>
+
+------------------------------------------------------------------------
+SIZES (cont.)
+Example 8  |  HTML
+------------------------------------------------------------------------
+Note: And for textareas:
+
+<div>
+  <label for="sizesTextareaSmall" class="form-label">Small textarea</label>
+  <textarea class="form-control form-control-sm" id="sizesTextareaSmall" placeholder="Small textarea" aria-label="Small textarea example"></textarea>
+</div>
+<div>
+  <label for="sizesTextareaDefault" class="form-label">Default textarea</label>
+  <textarea class="form-control" id="sizesTextareaDefault" placeholder="Default textarea" aria-label="Default textarea example"></textarea>
+</div>
+<div>
+  <label for="sizesTextareaLarge" class="form-label">Large textarea</label>
+  <textarea class="form-control form-control-lg" id="sizesTextareaLarge" placeholder="Large textarea" aria-label="Large textarea example"></textarea>
+</div>
+
+------------------------------------------------------------------------
+SIZES (cont.)
+Example 9  |  HTML
+------------------------------------------------------------------------
+Note: And for selects:
+
+<div>
+  <label for="sizesSelectSmall" class="form-label">Small select</label>
+  <select class="form-control form-control-sm" id="sizesSelectSmall">
+    <option>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+<div>
+  <label for="sizesSelectDefault" class="form-label">Default select</label>
+  <select class="form-control" id="sizesSelectDefault">
+    <option>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+<div>
+  <label for="sizesSelectLarge" class="form-label">Large select</label>
+  <select class="form-control form-control-lg" id="sizesSelectLarge">
+    <option>Open this select menu</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+
+------------------------------------------------------------------------
+FORM TEXT
+Example 10  |  HTML
+------------------------------------------------------------------------
+Note: Block-level or inline-level form text can be created using `.form-text`.
+
+<label for="inputPassword5" class="form-label">Password</label>
+<input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+<div id="passwordHelpBlock" class="form-text">
+  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+</div>
+
+------------------------------------------------------------------------
+FORM TEXT (cont.)
+Example 11  |  HTML
+------------------------------------------------------------------------
+Note: Inline text can use any typical inline HTML element (be it a `<span>`, `<small>`, or something else) with nothing more than the `.form-text` class.
+
+<div class="row g-3 align-items-center">
+  <div class="col-auto">
+    <label for="inputPassword6" class="col-form-label">Password</label>
+  </div>
+  <div class="col-auto">
+    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+  </div>
+  <div class="col-auto">
+    <span id="passwordHelpInline" class="form-text">
+      Must be 8-20 characters long.
+    </span>
+  </div>
+</div>
+
+------------------------------------------------------------------------
+STATES > DISABLED
+Example 12  |  HTML
+------------------------------------------------------------------------
+Note: Add the `disabled` boolean attribute on an input to give it a grayed out appearance, remove pointer events, and prevent focusing.
+
+<input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled>
+<input class="form-control" type="text" value="Disabled readonly input" aria-label="Disabled input example" disabled readonly>
+<select class="form-control" aria-label="Disabled select example" disabled>
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+<textarea class="form-control" rows="3" placeholder="Disabled textarea" aria-label="Disabled textarea example" disabled></textarea>
+
+------------------------------------------------------------------------
+STATES > READONLY
+Example 13  |  HTML
+------------------------------------------------------------------------
+Note: Add the `readonly` boolean attribute on an input to prevent modification of the input’s value. `readonly` inputs can still be focused and selected, while `disabled` inputs cannot.
+
+<input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+
+------------------------------------------------------------------------
+STATES > READONLY PLAIN TEXT
+Example 14  |  HTML
+------------------------------------------------------------------------
+Note: If you want to have `<input readonly>` elements in your form styled as plain text, replace `.form-control` with `.form-control-plaintext` to remove the default form field styling and preserve the correct `margin` and `padding`.
+
+<div class="mb-3 row">
+  <label for="staticEmail" class="sm:col-2 col-form-label">Email</label>
+  <div class="sm:col-10">
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+  </div>
+</div>
+<div class="mb-3 row">
+  <label for="inputPassword" class="sm:col-2 col-form-label">Password</label>
+  <div class="sm:col-10">
+    <input type="password" class="form-control" id="inputPassword">
+  </div>
+</div>
+
+------------------------------------------------------------------------
+STATES > READONLY PLAIN TEXT (cont.)
+Example 15  |  HTML
+------------------------------------------------------------------------
+<form class="row g-3">
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Email</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Password</label>
+    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn-solid theme-primary mb-3">Confirm identity</button>
+  </div>
+</form>
+
+------------------------------------------------------------------------
+TYPES > DATE & TIME
+Example 16  |  HTML
+------------------------------------------------------------------------
+Note: No additional classes are needed for date and time inputs. Exact functionality and appearance are dependent on the browser and operating system. However, you can also use our datepicker component to create a more consistent experience across browsers with JavaScript.
+
+<input type="datetime-local" class="form-control" aria-label="Date and time picker" value="2026-02-24T13:00">
+<input type="datetime-local" class="form-control" aria-label="Date and time picker with seconds" value="2026-02-24T13:00:30" step="1">
+<input type="datetime-local" class="form-control" aria-label="Date and time picker with milliseconds" value="2026-02-24T13:00:30.500" step="0.001">
+<input type="date" class="form-control" aria-label="Date picker" value="2026-02-24">
+<input type="time" class="form-control" aria-label="Time picker" value="13:00">
+<input type="month" class="form-control" aria-label="Month picker" value="2026-02">
+<input type="week" class="form-control" aria-label="Week picker" value="2026-W09">
+
+------------------------------------------------------------------------
+TYPES > COLOR
+Example 17  |  HTML
+------------------------------------------------------------------------
+Note: Set the `type="color"` and add `.form-control-color` to the `<input>` alongside `.form-control`. We use the modifier class to set fixed `height`s and override some inconsistencies between browsers.
+
+<label for="exampleColorInput" class="form-label">Color picker</label>
+<input type="color" class="form-control form-control-color" id="exampleColorInput" value="#631aff" title="Choose your color">
+
+------------------------------------------------------------------------
+TYPES > COLOR (cont.)
+Example 18  |  HTML
+------------------------------------------------------------------------
+Note: Sizes are also supported:
+
+<div>
+  <label for="exampleColorInputLg" class="form-label">Large color picker</label>
+  <input type="color" class="form-control form-control-lg form-control-color" id="exampleColorInputLg" value="#631aff" title="Choose your color">
+</div>
+<div>
+  <label for="exampleColorInputSm" class="form-label">Small color picker</label>
+  <input type="color" class="form-control form-control-sm form-control-color" id="exampleColorInputSm" value="#631aff" title="Choose your color">
+</div>
+
+------------------------------------------------------------------------
+TYPES > DATALISTS
+Example 19  |  HTML
+------------------------------------------------------------------------
+Note: Datalists allow you to create a group of `<option>`s that can be accessed (and autocompleted) from within an `<input>`. These are similar to `<select>` elements, but come with more menu styling limitations and differences. While most browsers and operating systems include some support for `<datalist>` elements, their styling is inconsistent at best.
+
+<label for="exampleDataList" class="form-label">Datalist example</label>
+<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+<datalist id="datalistOptions">
+  <option value="San Francisco">
+  <option value="New York">
+  <option value="Seattle">
+  <option value="Los Angeles">
+  <option value="Chicago">
+</datalist>
+
+------------------------------------------------------------------------
+TYPES > DATALISTS (cont.)
+Example 20  |  HTML
+------------------------------------------------------------------------
+Note: You can also combine with the `.form-control-caret` class to add a caret to inputs without requiring a select element.
+
+<label for="exampleDataListCaret" class="form-label">Datalist example with caret</label>
+<input class="form-control form-control-caret" list="datalistOptionsCaret" id="exampleDataListCaret" placeholder="Type to search...">
+<datalist id="datalistOptionsCaret">
+  <option value="San Francisco">
+  <option value="New York">
+  <option value="Seattle">
+  <option value="Los Angeles">
+  <option value="Chicago">
+</datalist>
+
+------------------------------------------------------------------------
+TYPES > FILE
+Example 21  |  HTML
+------------------------------------------------------------------------
+Note: `input[type="file"]` elements are styled with the `::file-selector-button` pseudo element to add a button to the input. You only need to add the `.form-control` class, plus any size modifiers you need.
+
+<div class="form-field">
+  <label for="formFile" class="form-label">Default file input example</label>
+  <input class="form-control" type="file" id="formFile">
+</div>
+<div class="form-field">
+  <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+  <input class="form-control" type="file" id="formFileMultiple" multiple>
+</div>
+<div class="form-field">
+  <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+  <input class="form-control" type="file" id="formFileDisabled" disabled>
+</div>
+<div class="form-field">
+  <label for="formFileSm" class="form-label">Small file input example</label>
+  <input class="form-control form-control-sm" id="formFileSm" type="file">
+</div>
+<div class="form-field">
+  <label for="formFileLg" class="form-label">Large file input example</label>
+  <input class="form-control form-control-lg" id="formFileLg" type="file">
+</div>
+
+------------------------------------------------------------------------
+TYPES > GHOST
+Example 22  |  HTML
+------------------------------------------------------------------------
+Note: Ghost inputs are a special type of input, not native to the browser, that removes all default input styling when your wrapper handles spacing, border, and focus styles. This is useful for custom composites like search bars and command inputs. Swap the `.form-control` class for `.form-ghost` to remove the default styling.
+
+<div class="form-field">
+  <label for="exampleGhostInput" class="form-label">Search</label>
+  <div class="d-flex align-items-center gap-3 p-3 border rounded-3">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+    </svg>    <input type="search" class="form-ghost" id="exampleGhostInput" placeholder="Search docs" aria-label="Search docs">
+  </div>
+</div>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 23  |  SCSS
+------------------------------------------------------------------------
+Note: Form controls use local CSS variables on `.form-control` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+// stylelint-disable custom-property-no-missing-var-function
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-control-tokens: defaults(
+  (
+    --control-min-height: var(--btn-input-min-height),
+    --control-padding-y: var(--btn-input-padding-y),
+    --control-padding-x: var(--btn-input-padding-x),
+    --control-font-size: var(--btn-input-font-size),
+    --control-line-height: var(--btn-input-line-height),
+    --control-fg: var(--btn-input-fg),
+    --control-bg: var(--btn-input-bg),
+    --control-border-width: var(--border-width),
+    --control-border-color: var(--border-color),
+    --control-border-radius: var(--radius-5),
+    --control-box-shadow: var(--box-shadow-inset),
+    --control-action-bg: var(--bg-1),
+    --control-action-hover-bg: var(--bg-2),
+    --control-transition-property: "border-color, box-shadow",
+    --control-transition-duration: .15s,
+    --control-transition-timing: ease-in-out,
+    --control-placeholder-color: var(--fg-3),
+    --control-disabled-color: var(--control-fg),
+    --control-disabled-bg: var(--bg-2),
+    --control-disabled-border-color: var(--control-border-color),
+    --control-select-bg: #{escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#00000080' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>"))},
+    --control-select-bg-position: right .75rem center,
+    --control-select-bg-size: 16px 12px,
+    --control-select-bg-dark: #{escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#ffffff80' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>"))},
+  ),
+  $form-control-tokens
+);
+
+------------------------------------------------------------------------
+CSS > VARIABLES (cont.)
+Example 24  |  SCSS
+------------------------------------------------------------------------
+Note: And for `.form-label`:
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-label-tokens: defaults(
+  (
+    --label-margin-bottom: calc(var(--spacer) / 2),
+    --label-font-size: null,
+    --label-font-style: null,
+    --label-font-weight: null,
+    --label-color: null,
+  ),
+  $form-label-tokens
+);
+
+------------------------------------------------------------------------
+CSS > VARIABLES (cont.)
+Example 25  |  SCSS
+------------------------------------------------------------------------
+Note: And for `.form-text`:
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-text-tokens: defaults(
+  (
+    --form-text-margin-top: .25rem,
+    --form-text-font-size: var(--font-size-sm),
+    --form-text-font-style: null,
+    --form-text-font-weight: null,
+    --form-text-color: var(--fg-2),
+  ),
+  $form-text-tokens
+);
+
+------------------------------------------------------------------------
+CSS > ROOT VARIABLES
+Example 26  |  SCSS
+------------------------------------------------------------------------
+Note: Some inputs and buttons share some root variables for consistency across all form elements, primarily for sizing.
+
+--control-checked-bg: var(--primary-base),
+--control-checked-border-color: var(--control-checked-bg),
+--control-active-bg: var(--primary-base),
+--control-active-border-color: var(--control-active-bg),
+--control-disabled-bg: var(--bg-3),
+--control-disabled-opacity: .65,
+// Shared motion for checkbox/radio marks; slight overshoot so the mark pops in
+--control-transition-duration: .15s,
+--control-transition-timing: cubic-bezier(.34, 1.56, .64, 1),
+
+--btn-input-fg: var(--fg-body),
+--btn-input-bg: var(--bg-body),
+
+--btn-input-gap: .375rem,
+--btn-input-min-height: 2.375rem,
+--btn-input-padding-y: .375rem,
+--btn-input-padding-x: .75rem,
+--btn-input-font-size: var(--body-font-size),
+--btn-input-font-weight: var(--font-weight-normal),
+--btn-input-line-height: var(--body-line-height),
+--btn-input-border-radius: var(--radius-5),
+
+--btn-input-xs-gap: var(--spacer-1),
+--btn-input-xs-min-height: 1.5rem,
+--btn-input-xs-padding-y: .125rem,
+--btn-input-xs-padding-x: .5rem,
+--btn-input-xs-font-size: var(--font-size-xs),
+--btn-input-xs-line-height: 1.125,
+--btn-input-xs-border-radius: var(--radius-5),
+
+--btn-input-sm-gap: .375rem,
+--btn-input-sm-min-height: 2rem,
+--btn-input-sm-padding-y: .25rem,
+--btn-input-sm-padding-x: .625rem,
+--btn-input-sm-font-size: var(--font-size-sm),
+--btn-input-sm-line-height: var(--line-height-sm),
+--btn-input-sm-border-radius: var(--radius-5),
+
+--btn-input-lg-gap: .375rem,
+--btn-input-lg-min-height: 2.75rem,
+--btn-input-lg-padding-y: .5rem,
+--btn-input-lg-padding-x: 1rem,
+--btn-input-lg-font-size: var(--font-size-md),
+--btn-input-lg-line-height: var(--line-height-md),
+--btn-input-lg-border-radius: var(--radius-7),
+
+------------------------------------------------------------------------
+CSS > SASS MAPS
+Example 27  |  SCSS
+------------------------------------------------------------------------
+Note: We use a Sass map to define the sizes of the form controls, so you can easily add or modify sizes.
+
+$form-control-sizes: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-control-sizes: defaults(
+  ("sm", "lg"),
+  $form-control-sizes
+);
+
+========================================================================
+END OF FILE
+========================================================================

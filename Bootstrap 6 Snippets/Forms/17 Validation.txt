@@ -1,0 +1,1179 @@
+========================================================================
+VALIDATION
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/forms/validation
+========================================================================
+
+Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.
+
+CONTENTS
+   1. Custom styles  (examples 1, 2)
+   2. Browser defaults  (example 3)
+   3. Server-side  (example 4)
+   4. Supported elements  (example 5)
+   5. Tooltips  (example 6)
+   6. CSS > Sass mixins  (examples 7, 8)
+   7. CSS > Sass maps  (example 9)
+   8. CSS > Sass loops  (example 10)
+
+------------------------------------------------------------------------
+CUSTOM STYLES
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: For custom Bootstrap form validation messages, add `data-bs-validate` and the `novalidate` boolean attribute to your `<form>`. The `data-bs-validate` attribute opts in to Bootstrap’s `:user-invalid` styling, while `novalidate` disables the browser default feedback tooltips. Custom feedback styles apply custom colors, borders, and focus styles to better communicate feedback.
+
+<form class="grid grid-cols-1 gap-5" data-bs-validate novalidate>
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationCustom01" class="form-label">Name</label>      <input type="text" class="form-control" id="validationCustom01" value="Mark Otto" required aria-describedby="validationCustom01Feedback">      <div id="validationCustom01Feedback" class="invalid-feedback">Full name is required</div>
+    </div>
+    <div class="form-field md:g-col-6">
+      <label for="validationCustomUsername" class="form-label">Donation amount</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupPrepend">$</span>        <input type="number" class="form-control" value="100" id="validationCustomUsername" aria-describedby="inputGroupPrepend validationCustomUsernameFeedback" required>
+      </div>      <div id="validationCustomUsernameFeedback" class="invalid-feedback">Please enter a donation amount</div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationCustomAddress" class="form-label">Address</label>    <input type="text" class="form-control" id="validationCustomAddress" value="1234 Main St" required aria-describedby="validationCustomAddressFeedback">    <div id="validationCustomAddressFeedback" class="invalid-feedback">Please enter a mailing address</div>
+  </div>
+
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationCustom03" class="form-label">City</label>      <input type="text" class="form-control" id="validationCustom03" required aria-describedby="validationCustom03Feedback">      <div id="validationCustom03Feedback" class="invalid-feedback">Please provide a city</div>
+    </div>
+    <div class="form-field md:g-col-4">
+      <label for="validationCustom04" class="form-label">State</label>      <select class="form-control" id="validationCustom04" required aria-describedby="validationCustom04Feedback">
+        <option selected disabled value="">Choose…</option>
+        <option>...</option>
+      </select>      <div id="validationCustom04Feedback" class="invalid-feedback">Please select a state</div>
+    </div>
+    <div class="form-field md:g-col-2">
+      <label for="validationCustom05" class="form-label">Zip</label>      <input type="text" class="form-control" id="validationCustom05" required aria-describedby="validationCustom05Feedback">      <div id="validationCustom05Feedback" class="invalid-feedback">Required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Shipping method</label>
+    <div class="form-field mb-1">      <input type="radio" id="validationCustomRadio1" class="radio" name="shipping" required>
+      <div class="form-field-content">
+        <label for="validationCustomRadio1">Standard</label>
+        <small class="form-text">Arrives in 5-7 business days.</small>
+      </div>
+    </div>
+    <div class="form-field">      <input type="radio" id="validationCustomRadio2" class="radio" name="shipping" required>
+      <div class="form-field-content">
+        <label for="validationCustomRadio2">Express</label>
+        <small class="form-text">Arrives in 2-3 business days.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="switch">
+      <input type="checkbox" id="validationCustomSwitch" role="switch" switch>
+    </div>
+    <label for="validationCustomSwitch">Subscribe to newsletter</label>
+  </div>
+
+  <button class="btn-solid theme-primary justify-self-start" type="submit">Submit form</button>
+</form>
+
+------------------------------------------------------------------------
+CUSTOM STYLES (cont.)
+Example 2  |  JS
+------------------------------------------------------------------------
+// Example starter JavaScript for preventing form submissions when there are invalid fields
+(() => {
+  'use strict'
+
+  const forms = document.querySelectorAll('form[data-bs-validate]')
+
+  for (const form of forms) {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      for (const control of form.elements) {
+        if (control.willValidate) {
+          control.setAttribute('aria-invalid', String(!control.validity.valid))
+        }
+      }
+    })
+
+    // Clear aria-invalid as users correct individual fields
+    form.addEventListener('input', event => {
+      const control = event.target
+      if (control.willValidate && control.hasAttribute('aria-invalid')) {
+        control.setAttribute('aria-invalid', String(!control.validity.valid))
+      }
+    })
+  }
+})()
+
+------------------------------------------------------------------------
+BROWSER DEFAULTS
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you’ll see a slightly different style of feedback.
+
+<form class="grid grid-cols-1 gap-5">
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationDefault01" class="form-label">Name</label>
+      <input type="text" class="form-control" id="validationDefault01" value="Mark Otto" required>
+    </div>
+    <div class="form-field md:g-col-6">
+      <label for="validationDefaultDonation" class="form-label">Donation amount</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupPrepend2">$</span>
+        <input type="number" class="form-control" value="100" id="validationDefaultDonation" aria-describedby="inputGroupPrepend2" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationDefaultAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="validationDefaultAddress" value="1234 Main St" required>
+  </div>
+
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationDefault03" class="form-label">City</label>
+      <input type="text" class="form-control" id="validationDefault03" required>
+    </div>
+    <div class="form-field md:g-col-4">
+      <label for="validationDefault04" class="form-label">State</label>
+      <select class="form-control" id="validationDefault04" required>
+        <option selected disabled value="">Choose…</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-field md:g-col-2">
+      <label for="validationDefault05" class="form-label">Zip</label>
+      <input type="text" class="form-control" id="validationDefault05" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Shipping method</label>
+    <div class="form-field mb-1">
+      <input type="radio" id="validationDefaultRadio1" class="radio" name="shippingDefault" required>
+      <div class="form-field-content">
+        <label for="validationDefaultRadio1">Standard</label>
+        <small class="form-text">Arrives in 5-7 business days.</small>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="radio" id="validationDefaultRadio2" class="radio" name="shippingDefault" required>
+      <div class="form-field-content">
+        <label for="validationDefaultRadio2">Express</label>
+        <small class="form-text">Arrives in 2-3 business days.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="switch">
+      <input type="checkbox" id="validationDefaultSwitch" role="switch" switch>
+    </div>
+    <label for="validationDefaultSwitch">Subscribe to newsletter</label>
+  </div>
+
+  <button class="btn-solid theme-primary justify-self-start" type="submit">Submit form</button>
+</form>
+
+------------------------------------------------------------------------
+SERVER-SIDE
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: We recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with `.is-invalid` and `.is-valid`. Note that `.invalid-feedback` is also supported with these classes.
+
+<form class="grid grid-cols-1 gap-5">
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationServer01" class="form-label">Name</label>      <input type="text" class="form-control is-valid" id="validationServer01" value="Mark Otto" aria-describedby="validationServer01Valid validationServer01Invalid">      <div id="validationServer01Valid" class="valid-feedback">Looks great!</div>      <div id="validationServer01Invalid" class="invalid-feedback">Full name is required</div>
+    </div>
+    <div class="form-field md:g-col-6">
+      <label for="validationServerDonation" class="form-label">Donation amount</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupPrepend3">$</span>        <input type="number" class="form-control is-invalid" value="" id="validationServerDonation" aria-describedby="inputGroupPrepend3 serverDonateFeedbackValid serverDonateFeedbackInvalid">
+      </div>      <div id="serverDonateFeedbackValid" class="valid-feedback">Looks great!</div>      <div id="serverDonateFeedbackInvalid" class="invalid-feedback">Please enter a donation amount</div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationServerAddress" class="form-label">Address</label>    <input type="text" class="form-control is-valid" id="validationServerAddress" value="1234 Main St" aria-describedby="validationServerAddressValid validationServerAddressInvalid">    <div id="validationServerAddressValid" class="valid-feedback">Looks great!</div>
+    <div id="validationServerAddressInvalid" class="invalid-feedback">Please enter a mailing address</div>
+  </div>
+
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationServer03" class="form-label">City</label>      <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback">
+      <div id="validationServer03Feedback" class="invalid-feedback">Please provide a city</div>
+    </div>
+    <div class="form-field md:g-col-4">
+      <label for="validationServer04" class="form-label">State</label>      <select class="form-control is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback">
+        <option selected disabled value="">Choose…</option>
+        <option>...</option>
+      </select>
+      <div id="validationServer04Feedback" class="invalid-feedback">Please select a state</div>
+    </div>
+    <div class="form-field md:g-col-2">
+      <label for="validationServer05" class="form-label">Zip</label>      <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback">
+      <div id="validationServer05Feedback" class="invalid-feedback">Required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Shipping method</label>
+    <div class="form-field mb-1">      <input type="radio" id="validationServerRadio1" class="radio is-invalid" name="shippingServer">
+      <div class="form-field-content">
+        <label for="validationServerRadio1">Standard</label>
+        <small class="form-text">Arrives in 5-7 business days.</small>
+      </div>
+    </div>
+    <div class="form-field">      <input type="radio" id="validationServerRadio2" class="radio is-invalid" name="shippingServer">
+      <div class="form-field-content">
+        <label for="validationServerRadio2">Express</label>
+        <small class="form-text">Arrives in 2-3 business days.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="switch">
+      <input type="checkbox" id="validationServerSwitch" role="switch" switch>
+    </div>
+    <label for="validationServerSwitch">Subscribe to newsletter</label>
+  </div>
+
+  <button class="btn-solid theme-primary justify-self-start" type="submit">Submit form</button>
+</form>
+
+------------------------------------------------------------------------
+SUPPORTED ELEMENTS
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Validation styles are available for the following form controls and components:
+
+<form class="vstack gap-5">
+  <div class="form-field">
+    <label for="validationTextarea" class="form-label">Textarea</label>
+    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required aria-describedby="validationTextareaFeedback"></textarea>
+    <div id="validationTextareaFeedback" class="invalid-feedback">
+      Please enter a message in the textarea.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Checkbox</label>
+    <div class="form-field">
+      <input type="checkbox" class="check is-invalid" id="validationFormCheck1" required aria-describedby="validationFormCheck1Feedback">
+      <div class="form-field-content">
+        <label for="validationFormCheck1">Check this checkbox</label>
+        <div id="validationFormCheck1Feedback" class="invalid-feedback">Example invalid feedback text</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Radio</label>
+    <div class="form-field">
+      <input type="radio" class="radio is-invalid" id="validationFormCheck2" name="radio-stacked" required aria-describedby="validationFormRadioFeedback">
+      <label for="validationFormCheck2">Toggle this radio</label>
+    </div>
+    <div class="form-field">
+      <input type="radio" class="radio is-invalid" id="validationFormCheck3" name="radio-stacked" required aria-describedby="validationFormRadioFeedback">
+      <div class="form-field-content">
+        <label for="validationFormCheck3">Or toggle this other radio</label>
+        <div id="validationFormRadioFeedback" class="invalid-feedback">More example invalid feedback text</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Switch</label>
+    <div class="form-field">
+      <div class="switch">
+        <input type="checkbox" id="validationFormSwitch" role="switch" switch class="is-invalid" aria-describedby="validationFormSwitchFeedback">
+      </div>
+      <div class="form-field-content">
+        <label for="validationFormSwitch">Toggle this switch</label>
+        <div id="validationFormSwitchFeedback" class="invalid-feedback">Example invalid switch feedback</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationSelect" class="form-label">Select</label>
+    <select class="form-control is-invalid" id="validationSelect" required aria-describedby="validationSelectFeedback">
+      <option value="">Open this select menu</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    <div id="validationSelectFeedback" class="invalid-feedback">Example invalid select feedback</div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationFile" class="form-label">File input</label>
+    <input type="file" class="form-control is-invalid" id="validationFile" required aria-describedby="validationFileFeedback">
+    <div id="validationFileFeedback" class="invalid-feedback">Example invalid form file feedback</div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationRange" class="form-label">Range</label>
+    <div class="form-range">
+      <input type="range" class="form-range-input is-invalid" id="validationRange" min="0" max="5" required aria-describedby="validationRangeFeedback">
+    </div>
+    <div id="validationRangeFeedback" class="invalid-feedback">Example invalid range feedback</div>
+  </div>
+
+  <div class="form-field">
+    <div class="form-floating">
+      <label for="validationFloating">Email address</label>
+      <input type="email" class="form-control is-invalid" id="validationFloating" placeholder="name@example.com" value="test@example.com" aria-describedby="validationFloatingFeedback">
+    </div>
+    <div id="validationFloatingFeedback" class="invalid-feedback d-block">Example invalid floating label feedback</div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationAdorn" class="form-label">Adorned input</label>
+    <label class="form-control form-adorn is-invalid">
+      <div class="form-adorn-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
+      </div>
+      <input type="text" class="form-ghost" id="validationAdorn" placeholder="Search..." aria-describedby="validationAdornFeedback">
+    </label>
+    <div id="validationAdornFeedback" class="invalid-feedback">Example invalid adorned input feedback</div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationInputGroup" class="form-label">Input group</label>
+    <div class="input-group">
+      <span class="input-group-text">@</span>
+      <input type="text" class="form-control is-invalid" id="validationInputGroup" placeholder="Username" aria-describedby="validationInputGroupFeedback">
+    </div>
+    <div id="validationInputGroupFeedback" class="invalid-feedback">Please choose a username</div>
+  </div>
+
+  <div class="form-field">
+    <label class="form-label" for="validationChipInput">Tags</label>
+    <div class="chip-input">
+      <span class="chip">Example</span>
+      <input type="text" class="form-ghost is-invalid" id="validationChipInput" placeholder="Add tag..." aria-describedby="validationChipInputFeedback">
+    </div>
+    <div id="validationChipInputFeedback" class="invalid-feedback">Please add at least one tag</div>
+  </div>
+</form>
+
+------------------------------------------------------------------------
+TOOLTIPS
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: If your form layout allows it, you can swap the `.{valid|invalid}-feedback` classes for `.{valid|invalid}-tooltip` classes to display validation feedback in a styled tooltip. These tooltips build on the base `.tooltip` styles, so you’ll need to have those included in your compiled CSS as well.
+
+<form class="grid grid-cols-1 gap-5" data-bs-validate novalidate>
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationTooltip01" class="form-label">Name</label>
+      <input type="text" class="form-control" id="validationTooltip01" value="Mark Otto" required aria-describedby="validationTooltip01Feedback">      <div id="validationTooltip01Feedback" class="tooltip invalid-tooltip">Full name is required</div>
+    </div>
+    <div class="form-field md:g-col-6">
+      <label for="validationTooltipDonation" class="form-label">Donation amount</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupTooltipPrepend">$</span>
+        <input type="number" class="form-control" value="100" id="validationTooltipDonation" aria-describedby="inputGroupTooltipPrepend validationTooltipDonationFeedback" required>
+      </div>      <div id="validationTooltipDonationFeedback" class="tooltip invalid-tooltip">Please enter a donation amount</div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="validationTooltipAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="validationTooltipAddress" value="1234 Main St" required aria-describedby="validationTooltipAddressFeedback">    <div id="validationTooltipAddressFeedback" class="tooltip invalid-tooltip">Please enter a mailing address</div>
+  </div>
+
+  <div class="grid gap-5">
+    <div class="form-field md:g-col-6">
+      <label for="validationTooltip03" class="form-label">City</label>
+      <input type="text" class="form-control" id="validationTooltip03" required aria-describedby="validationTooltip03Feedback">      <div id="validationTooltip03Feedback" class="tooltip invalid-tooltip">Please provide a city</div>
+    </div>
+    <div class="form-field md:g-col-4">
+      <label for="validationTooltip04" class="form-label">State</label>
+      <select class="form-control" id="validationTooltip04" required aria-describedby="validationTooltip04Feedback">
+        <option selected disabled value="">Choose…</option>
+        <option>...</option>
+      </select>      <div id="validationTooltip04Feedback" class="tooltip invalid-tooltip">Please select a state</div>
+    </div>
+    <div class="form-field md:g-col-2">
+      <label for="validationTooltip05" class="form-label">Zip</label>
+      <input type="text" class="form-control" id="validationTooltip05" required aria-describedby="validationTooltip05Feedback">      <div id="validationTooltip05Feedback" class="tooltip invalid-tooltip">Required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Shipping method</label>
+    <div class="form-field mb-1">
+      <input type="radio" id="validationTooltipRadio1" class="radio" name="shippingTooltip" required>
+      <div class="form-field-content">
+        <label for="validationTooltipRadio1">Standard</label>
+        <small class="form-text">Arrives in 5-7 business days.</small>        <div class="invalid-feedback">Please select a shipping method</div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="radio" id="validationTooltipRadio2" class="radio" name="shippingTooltip" required>
+      <div class="form-field-content">
+        <label for="validationTooltipRadio2">Express</label>
+        <small class="form-text">Arrives in 2-3 business days.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="switch">
+      <input type="checkbox" id="validationTooltipSwitch" role="switch" switch>
+    </div>
+    <label for="validationTooltipSwitch">Subscribe to newsletter</label>
+  </div>
+
+  <button class="btn-solid theme-primary justify-self-start" type="submit">Submit form</button>
+</form>
+
+------------------------------------------------------------------------
+CSS > SASS MIXINS
+Example 7  |  SCSS
+------------------------------------------------------------------------
+Note: We use one large mixin, `form-validation-state`, to generate all validation feedback styles from a state name and theme color. This mixin is called through a Sass loop to compile the CSS.
+
+@mixin form-validation-state($state, $theme) {
+  .#{$state}-feedback {
+    display: none;
+    width: 100%;
+    font-size: var(--font-size-sm);
+    color: var(--#{$theme}-fg);
+  }
+
+  // More specific to override base tooltip styles
+  .tooltip.#{$state}-tooltip {
+    position: absolute;
+    top: 100%;
+    z-index: 5;
+    display: none;
+    max-width: 100%;
+    padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+    margin-top: .1rem;
+    color: var(--#{$theme}-contrast);
+    text-align: center;
+    background-color: var(--#{$theme}-bg);
+    opacity: 1;
+    @include border-radius(var(--tooltip-border-radius));
+  }
+
+  // Generic sibling feedback display — works for .form-control, .form-range,
+  // and any element where feedback is a direct sibling.
+  @include form-validation-state-selector($state) {
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip {
+      display: block;
+    }
+  }
+
+  // Form control
+  .form-control {
+    @include form-validation-state-selector($state) {
+      --control-border-color: var(--#{$theme}-border);
+
+      &:focus-visible {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        --control-border-color: var(--#{$theme}-border);
+      }
+    }
+  }
+
+  // Checkbox — control-level styling (border, checked bg, focus ring).
+  .check {
+    @include form-validation-state-selector($state) {
+      --check-border-color: var(--#{$theme}-border);
+      --check-checked-bg: var(--#{$theme}-bg);
+      --check-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-visible {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+
+  // Checkbox — label color and feedback display via .form-field:has().
+  .form-field:has(.check.is-#{$state}) {
+    label { color: var(--#{$theme}-fg); }
+
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.check:user-invalid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.check:user-valid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  // Radio — control-level styling.
+  .radio {
+    @include form-validation-state-selector($state) {
+      --radio-border-color: var(--#{$theme}-border);
+      --radio-checked-bg: var(--#{$theme}-bg);
+      --radio-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-visible {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+
+  // Radio — label color and feedback display via .form-field:has().
+  .form-field:has(.radio.is-#{$state}) {
+    label { color: var(--#{$theme}-fg); }
+
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.radio:user-invalid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.radio:user-valid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  // Switch — control-level styling. The input is an invisible overlay;
+  // all visuals are on the .switch wrapper.
+  .switch:has(input.is-#{$state}) {
+    --switch-border-color: var(--#{$theme}-border);
+    --switch-checked-bg: var(--#{$theme}-bg);
+    --switch-checked-border-color: var(--#{$theme}-bg);
+
+    &:focus-within {
+      @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+    }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .switch:has(input:user-invalid) {
+      --switch-border-color: var(--#{$theme}-border);
+      --switch-checked-bg: var(--#{$theme}-bg);
+      --switch-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .switch:has(input:user-valid) {
+      --switch-border-color: var(--#{$theme}-border);
+      --switch-checked-bg: var(--#{$theme}-bg);
+      --switch-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+
+  // Switch — label color and feedback display via .form-field:has().
+  .form-field:has(.switch input.is-#{$state}) {
+    label { color: var(--#{$theme}-fg); }
+
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.switch input:user-invalid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.switch input:user-valid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  // Chip input — wrapper has the visible border; the .form-ghost inside
+  // receives the native pseudo-class.
+  .chip-input:has(.form-ghost.is-#{$state}) {
+    border-color: var(--#{$theme}-border);
+
+    &:focus-within {
+      @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      border-color: var(--#{$theme}-border);
+    }
+
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .chip-input:has(.form-ghost:user-invalid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .invalid-feedback,
+      ~ .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .chip-input:has(.form-ghost:user-valid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .valid-feedback,
+      ~ .valid-tooltip { display: block; }
+    }
+  }
+
+  // Form adorn — :user-invalid fires on the inner .form-ghost, so we
+  // propagate it to the visible wrapper with :has().
+  .form-adorn:has(.form-ghost.is-#{$state}) {
+    border-color: var(--#{$theme}-border);
+
+    &:focus-within {
+      @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      border-color: var(--#{$theme}-border);
+    }
+
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-adorn:has(.form-ghost:user-invalid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .invalid-feedback,
+      ~ .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-adorn:has(.form-ghost:user-valid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .valid-feedback,
+      ~ .valid-tooltip { display: block; }
+    }
+  }
+
+  // Range — the validation class lives on .form-range-input, while feedback sits outside
+  // the .form-range wrapper, so we use :has() to toggle it.
+  .form-range-input {
+    @include form-validation-state-selector($state) {
+      &::-webkit-slider-thumb { background: var(--#{$theme}-bg); }
+      &::-moz-range-thumb { background: var(--#{$theme}-bg); }
+
+      &:focus-visible {
+        &::-webkit-slider-thumb {
+          @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        }
+        &::-moz-range-thumb {
+          @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        }
+      }
+    }
+  }
+
+  .form-range:has(.form-range-input.is-#{$state}) {
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip { display: block; }
+  }
+
+  // Input group — feedback lives outside the input-group in the parent
+  // .form-field, so we use :has() to toggle display.
+  .form-field:has(.input-group .form-control.is-#{$state}) {
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.input-group .form-control:user-invalid) {
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.input-group .form-control:user-valid) {
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  .input-group {
+    > .form-control:not(:focus),
+    > .form-floating:not(:focus-within) {
+      @include form-validation-state-selector($state) {
+        @if $state == "valid" {
+          z-index: 3;
+        } @else if $state == "invalid" {
+          z-index: 4;
+        }
+      }
+    }
+  }
+
+  // OTP — validation applies to the wrapper; the visual slots inherit the state.
+  .otp {
+    @include form-validation-state-selector($state) {
+      .otp-slot {
+        --otp-slot-border-color: var(--#{$theme}-border);
+      }
+
+      .otp-slot-active {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+}
+
+------------------------------------------------------------------------
+CSS > SASS MIXINS (cont.)
+Example 8  |  SCSS
+------------------------------------------------------------------------
+Note: The `form-validation-state-selector` mixin handles selector generation for both `.is-*` classes and `:user-*` pseudo-classes.
+
+@mixin form-validation-state-selector($state) {
+  @if & {
+    &.is-#{$state} {
+      @content;
+    }
+
+    @if $state == "invalid" {
+      @at-root [data-bs-validate] #{&}:user-invalid {
+        @content;
+      }
+    } @else if $state == "valid" {
+      @at-root [data-bs-validate~="valid"] #{&}:user-valid {
+        @content;
+      }
+    }
+  } @else {
+    .is-#{$state} {
+      @content;
+    }
+
+    @if $state == "invalid" {
+      [data-bs-validate] :user-invalid {
+        @content;
+      }
+    } @else if $state == "valid" {
+      [data-bs-validate~="valid"] :user-valid {
+        @content;
+      }
+    }
+  }
+}
+
+------------------------------------------------------------------------
+CSS > SASS MAPS
+Example 9  |  SCSS
+------------------------------------------------------------------------
+Note: This is the validation Sass map from `forms/_validation.scss`. Override or extend this to generate different or additional states.
+
+$validation-states: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$validation-states: defaults(
+  (
+    "valid": "success",
+    "invalid": "danger",
+  ),
+  $validation-states
+);
+// scss-docs-end form-validation-states
+
+// scss-docs-start form-validation-state-mixin
+@mixin form-validation-state($state, $theme) {
+  .#{$state}-feedback {
+    display: none;
+    width: 100%;
+    font-size: var(--font-size-sm);
+    color: var(--#{$theme}-fg);
+  }
+
+  // More specific to override base tooltip styles
+  .tooltip.#{$state}-tooltip {
+    position: absolute;
+    top: 100%;
+    z-index: 5;
+    display: none;
+    max-width: 100%;
+    padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+    margin-top: .1rem;
+    color: var(--#{$theme}-contrast);
+    text-align: center;
+    background-color: var(--#{$theme}-bg);
+    opacity: 1;
+    @include border-radius(var(--tooltip-border-radius));
+  }
+
+  // Generic sibling feedback display — works for .form-control, .form-range,
+  // and any element where feedback is a direct sibling.
+  @include form-validation-state-selector($state) {
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip {
+      display: block;
+    }
+  }
+
+  // Form control
+  .form-control {
+    @include form-validation-state-selector($state) {
+      --control-border-color: var(--#{$theme}-border);
+
+      &:focus-visible {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        --control-border-color: var(--#{$theme}-border);
+      }
+    }
+  }
+
+  // Checkbox — control-level styling (border, checked bg, focus ring).
+  .check {
+    @include form-validation-state-selector($state) {
+      --check-border-color: var(--#{$theme}-border);
+      --check-checked-bg: var(--#{$theme}-bg);
+      --check-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-visible {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+
+  // Checkbox — label color and feedback display via .form-field:has().
+  .form-field:has(.check.is-#{$state}) {
+    label { color: var(--#{$theme}-fg); }
+
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.check:user-invalid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.check:user-valid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  // Radio — control-level styling.
+  .radio {
+    @include form-validation-state-selector($state) {
+      --radio-border-color: var(--#{$theme}-border);
+      --radio-checked-bg: var(--#{$theme}-bg);
+      --radio-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-visible {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+
+  // Radio — label color and feedback display via .form-field:has().
+  .form-field:has(.radio.is-#{$state}) {
+    label { color: var(--#{$theme}-fg); }
+
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.radio:user-invalid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.radio:user-valid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  // Switch — control-level styling. The input is an invisible overlay;
+  // all visuals are on the .switch wrapper.
+  .switch:has(input.is-#{$state}) {
+    --switch-border-color: var(--#{$theme}-border);
+    --switch-checked-bg: var(--#{$theme}-bg);
+    --switch-checked-border-color: var(--#{$theme}-bg);
+
+    &:focus-within {
+      @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+    }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .switch:has(input:user-invalid) {
+      --switch-border-color: var(--#{$theme}-border);
+      --switch-checked-bg: var(--#{$theme}-bg);
+      --switch-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .switch:has(input:user-valid) {
+      --switch-border-color: var(--#{$theme}-border);
+      --switch-checked-bg: var(--#{$theme}-bg);
+      --switch-checked-border-color: var(--#{$theme}-bg);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+
+  // Switch — label color and feedback display via .form-field:has().
+  .form-field:has(.switch input.is-#{$state}) {
+    label { color: var(--#{$theme}-fg); }
+
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.switch input:user-invalid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.switch input:user-valid) {
+      label { color: var(--#{$theme}-fg); }
+
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  // Chip input — wrapper has the visible border; the .form-ghost inside
+  // receives the native pseudo-class.
+  .chip-input:has(.form-ghost.is-#{$state}) {
+    border-color: var(--#{$theme}-border);
+
+    &:focus-within {
+      @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      border-color: var(--#{$theme}-border);
+    }
+
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .chip-input:has(.form-ghost:user-invalid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .invalid-feedback,
+      ~ .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .chip-input:has(.form-ghost:user-valid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .valid-feedback,
+      ~ .valid-tooltip { display: block; }
+    }
+  }
+
+  // Form adorn — :user-invalid fires on the inner .form-ghost, so we
+  // propagate it to the visible wrapper with :has().
+  .form-adorn:has(.form-ghost.is-#{$state}) {
+    border-color: var(--#{$theme}-border);
+
+    &:focus-within {
+      @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      border-color: var(--#{$theme}-border);
+    }
+
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-adorn:has(.form-ghost:user-invalid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .invalid-feedback,
+      ~ .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-adorn:has(.form-ghost:user-valid) {
+      border-color: var(--#{$theme}-border);
+
+      &:focus-within {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        border-color: var(--#{$theme}-border);
+      }
+
+      ~ .valid-feedback,
+      ~ .valid-tooltip { display: block; }
+    }
+  }
+
+  // Range — the validation class lives on .form-range-input, while feedback sits outside
+  // the .form-range wrapper, so we use :has() to toggle it.
+  .form-range-input {
+    @include form-validation-state-selector($state) {
+      &::-webkit-slider-thumb { background: var(--#{$theme}-bg); }
+      &::-moz-range-thumb { background: var(--#{$theme}-bg); }
+
+      &:focus-visible {
+        &::-webkit-slider-thumb {
+          @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        }
+        &::-moz-range-thumb {
+          @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+        }
+      }
+    }
+  }
+
+  .form-range:has(.form-range-input.is-#{$state}) {
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip { display: block; }
+  }
+
+  // Input group — feedback lives outside the input-group in the parent
+  // .form-field, so we use :has() to toggle display.
+  .form-field:has(.input-group .form-control.is-#{$state}) {
+    .#{$state}-feedback,
+    .#{$state}-tooltip { display: block; }
+  }
+
+  @if $state == "invalid" {
+    [data-bs-validate] .form-field:has(.input-group .form-control:user-invalid) {
+      .invalid-feedback,
+      .invalid-tooltip { display: block; }
+    }
+  } @else if $state == "valid" {
+    [data-bs-validate~="valid"] .form-field:has(.input-group .form-control:user-valid) {
+      .valid-feedback,
+      .valid-tooltip { display: block; }
+    }
+  }
+
+  .input-group {
+    > .form-control:not(:focus),
+    > .form-floating:not(:focus-within) {
+      @include form-validation-state-selector($state) {
+        @if $state == "valid" {
+          z-index: 3;
+        } @else if $state == "invalid" {
+          z-index: 4;
+        }
+      }
+    }
+  }
+
+  // OTP — validation applies to the wrapper; the visual slots inherit the state.
+  .otp {
+    @include form-validation-state-selector($state) {
+      .otp-slot {
+        --otp-slot-border-color: var(--#{$theme}-border);
+      }
+
+      .otp-slot-active {
+        @include focus-ring(true, $color: var(--#{$theme}-focus-ring));
+      }
+    }
+  }
+}
+// scss-docs-end form-validation-state-mixin
+
+@layer components {
+  // scss-docs-start form-validation-states-loop
+  @each $state, $theme in $validation-states {
+    @include form-validation-state($state, $theme);
+  }
+
+------------------------------------------------------------------------
+CSS > SASS LOOPS
+Example 10  |  SCSS
+------------------------------------------------------------------------
+Note: Used to iterate over `$validation-states` map values to generate our validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop.
+
+@each $state, $theme in $validation-states {
+  @include form-validation-state($state, $theme);
+}
+
+========================================================================
+END OF FILE
+========================================================================

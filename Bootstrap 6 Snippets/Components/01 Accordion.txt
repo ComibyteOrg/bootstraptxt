@@ -1,0 +1,332 @@
+========================================================================
+ACCORDION
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/accordion
+========================================================================
+
+Build vertically collapsing accordions with native HTML `<details>` and `<summary>` elements.
+
+CONTENTS
+   1. Example  (example 1)
+   2. Variants  (example 2)
+   3. Small  (example 3)
+   4. Flush  (example 4)
+   5. Gap  (examples 5, 6)
+   6. Always open  (example 7)
+   7. Expand & Collapse all  (examples 8, 9)
+   8. Nested  (example 10)
+   9. CSS > Variables  (example 11)
+  10. Customize > Custom icons  (example 12)
+  11. Customize > Events  (example 13)
+  12. Customize > Programmatic control  (example 14)
+
+------------------------------------------------------------------------
+EXAMPLE
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Click the accordions below to expand/collapse the accordion content. Each `<details>` element shares the same `name` attribute value, creating an exclusive accordion where opening one item automatically closes the others.
+
+<div class="accordion">
+  <details class="accordion-item" name="accordionExample" open>
+    <summary class="accordion-header">
+      Accordion Item #1
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the first item’s accordion body.</strong> It is shown by default because the <code>open</code> attribute is present. The native <code><details></code> element handles all the show/hide logic without any JavaScript. You can put any HTML content within the <code>.accordion-body</code>.
+    </div>
+  </details>
+  <details class="accordion-item" name="accordionExample">
+    <summary class="accordion-header">
+      Accordion Item #2
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the second item’s accordion body.</strong> The <code>name</code> attribute groups this with other accordion items. When you open this item, any other open item in the same group will close automatically.
+    </div>
+  </details>
+  <details class="accordion-item" name="accordionExample">
+    <summary class="accordion-header">
+      Accordion Item #3
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the third item’s accordion body.</strong> This exclusive accordion behavior is built into the browser—no Bootstrap JavaScript required. Just use matching <code>name</code> attributes on your <code><details></code> elements.
+    </div>
+  </details>
+</div>
+
+------------------------------------------------------------------------
+VARIANTS
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Use the contextual `.theme-{color}` classes to apply a semantic theme color to open accordion items.
+
+<div class="accordion theme-primary">
+  <!-- Accordion items here -->
+</div>
+
+------------------------------------------------------------------------
+SMALL
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Add `.accordion-sm` to the `.accordion` for a more compact accordion with tighter padding, a smaller border radius, and a smaller font size.
+
+<div class="accordion accordion-sm">
+  <!-- Accordion items here -->
+</div>
+
+------------------------------------------------------------------------
+FLUSH
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Add `.accordion-flush` to remove some borders and rounded corners to render accordions edge-to-edge with their parent container.
+
+<div class="accordion accordion-flush">
+  <!-- Accordion items here -->
+</div>
+
+------------------------------------------------------------------------
+GAP
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Add `.accordion-gap` to put space between accordion items. Each item is a separate rounded card.
+
+<div class="accordion accordion-gap">
+  <!-- Accordion items here -->
+</div>
+
+------------------------------------------------------------------------
+GAP (cont.)
+Example 6  |  SCSS
+------------------------------------------------------------------------
+--accordion-gap: var(--spacer-2);
+
+------------------------------------------------------------------------
+ALWAYS OPEN
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: Omit the `name` attribute on each `<details>` element to allow multiple accordion items to be open simultaneously.
+
+<div class="accordion">  <details class="accordion-item" open>
+    <!-- No name attribute, so items open independently -->
+  </details>
+  <!-- More accordion items here -->
+</div>
+
+------------------------------------------------------------------------
+EXPAND & COLLAPSE ALL
+Example 8  |  HTML
+------------------------------------------------------------------------
+Note: To enable expanding and collapsing of all accordion items at once, remove the `name` attribute from each `<details>` element using JavaScript. This allows multiple accordion items to be open simultaneously. Restore the `name` attribute when you collapse the items again if you want exclusive behavior back.
+
+<button type="button" class="btn-subtle btn-sm theme-secondary mb-3" id="btnAccordionToggleAll" aria-expanded="false">Expand all</button>
+
+<div class="accordion accordion-sm" id="accordionExpandCollapse">
+  <details class="accordion-item" name="accordionExpandCollapse" open>
+    <summary class="accordion-header">
+      Accordion Item #1
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the first item’s accordion body.</strong> Use Expand all to open every item, even when they share a <code>name</code>.
+    </div>
+  </details>
+  <details class="accordion-item" name="accordionExpandCollapse">
+    <summary class="accordion-header">
+      Accordion Item #2
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the second item’s accordion body.</strong> Collapse all closes every item and restores exclusive <code>name</code> grouping.
+    </div>
+  </details>
+  <details class="accordion-item" name="accordionExpandCollapse">
+    <summary class="accordion-header">
+      Accordion Item #3
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the third item’s accordion body.</strong> If your accordion has no <code>name</code>, you only need to set <code>open</code> on each item.
+    </div>
+  </details>
+</div>
+
+------------------------------------------------------------------------
+EXPAND & COLLAPSE ALL (cont.)
+Example 9  |  JS
+------------------------------------------------------------------------
+Note: We use the following JavaScript for this demo:
+
+const accordion = document.getElementById('accordionExpandCollapse')
+const toggleBtn = document.getElementById('btnAccordionToggleAll')
+
+if (accordion && toggleBtn) {
+  const items = accordion.querySelectorAll('.accordion-item')
+  const groupName = 'accordionExpandCollapse'
+
+  toggleBtn.addEventListener('click', () => {
+    const expand = toggleBtn.getAttribute('aria-expanded') !== 'true'
+
+    for (const item of items) {
+      if (expand) {
+        item.removeAttribute('name')
+        item.open = true
+      } else {
+        item.open = false
+        item.setAttribute('name', groupName)
+      }
+    }
+
+    toggleBtn.setAttribute('aria-expanded', String(expand))
+    toggleBtn.textContent = expand ? 'Collapse all' : 'Expand all'
+  })
+}
+
+------------------------------------------------------------------------
+NESTED
+Example 10  |  HTML
+------------------------------------------------------------------------
+Note: Accordions can be nested inside each other by placing a full `.accordion` within an `.accordion-body`. Use unique `name` attribute values for each level so the parent and child accordions operate independently.
+
+<div class="accordion">
+  <details class="accordion-item" name="accordionNested" open>
+    <summary class="accordion-header">
+      Accordion Item #1
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the first item’s accordion body.</strong> It contains a nested accordion below.
+      <div class="accordion mt-3">
+        <details class="accordion-item" name="accordionNestedInner" open>
+          <summary class="accordion-header">
+            Nested Item #1
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+          </summary>
+          <div class="accordion-body">
+            This is the body of the first nested accordion item.
+          </div>
+        </details>
+        <details class="accordion-item" name="accordionNestedInner">
+          <summary class="accordion-header">
+            Nested Item #2
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+          </summary>
+          <div class="accordion-body">
+            This is the body of the second nested accordion item.
+          </div>
+        </details>
+        <details class="accordion-item" name="accordionNestedInner">
+          <summary class="accordion-header">
+            Nested Item #3
+            <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+          </summary>
+          <div class="accordion-body">
+            This is the body of the third nested accordion item.
+          </div>
+        </details>
+      </div>
+    </div>
+  </details>
+  <details class="accordion-item" name="accordionNested">
+    <summary class="accordion-header">
+      Accordion Item #2
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the second item’s accordion body.</strong> It does not contain a nested accordion.
+    </div>
+  </details>
+  <details class="accordion-item" name="accordionNested">
+    <summary class="accordion-header">
+      Accordion Item #3
+      <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m2 5 6 6 6-6"/></svg>
+    </summary>
+    <div class="accordion-body">
+      <strong>This is the third item’s accordion body.</strong> It does not contain a nested accordion.
+    </div>
+  </details>
+</div>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 11  |  SCSS
+------------------------------------------------------------------------
+Note: Accordions use local CSS variables on `.accordion` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$accordion-tokens: defaults(
+  (
+    --accordion-padding-x: 1.25rem,
+    --accordion-padding-y: 1rem,
+    --accordion-color: var(--fg-body),
+    --accordion-bg: var(--bg-body),
+    --accordion-transition-property: "color, background-color, border-radius",
+    --accordion-transition-duration: .15s,
+    --accordion-transition-timing: ease-in-out,
+    --accordion-panel-transition-property: "content-visibility, block-size",
+    --accordion-panel-transition-duration: .2s,
+    --accordion-panel-transition-timing: ease,
+    --accordion-border-color: var(--border-color),
+    --accordion-border-width: var(--border-width),
+    --accordion-border-radius: var(--accordion-radius, var(--radius-7)),
+    --accordion-gap: 0,
+    --accordion-btn-color: var(--fg-2),
+    --accordion-btn-bg: var(--bg-body),
+    --accordion-btn-icon-width: 1rem,
+    --accordion-btn-icon-transform: rotate(-180deg),
+    --accordion-btn-icon-transition: transform .2s ease-in-out,
+    --accordion-active-color: var(--fg-body),
+    --accordion-active-bg: var(--bg-2),
+  ),
+  $accordion-tokens
+);
+
+------------------------------------------------------------------------
+CUSTOMIZE > CUSTOM ICONS
+Example 12  |  HTML
+------------------------------------------------------------------------
+Note: The accordion uses an inline SVG for the chevron icon. You can customize this by replacing the SVG within the `.accordion-header`:
+
+<summary class="accordion-header">
+  Accordion Title
+  <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m2 5 6 6 6-6"/>
+  </svg>
+</summary>
+
+------------------------------------------------------------------------
+CUSTOMIZE > EVENTS
+Example 13  |  JS
+------------------------------------------------------------------------
+Note: You can listen for the native `toggle` event on `<details>` elements:
+
+const accordionItem = document.querySelector('.accordion-item')
+accordionItem.addEventListener('toggle', event => {
+  if (event.target.open) {
+    console.log('Accordion opened')
+  } else {
+    console.log('Accordion closed')
+  }
+})
+
+------------------------------------------------------------------------
+CUSTOMIZE > PROGRAMMATIC CONTROL
+Example 14  |  JS
+------------------------------------------------------------------------
+Note: Toggle accordion items programmatically using the `open` property:
+
+const accordionItem = document.querySelector('.accordion-item')
+
+// Open the accordion
+accordionItem.open = true
+
+// Close the accordion
+accordionItem.open = false
+
+// Toggle the accordion
+accordionItem.open = !accordionItem.open
+
+========================================================================
+END OF FILE
+========================================================================

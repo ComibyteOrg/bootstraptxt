@@ -1,0 +1,149 @@
+========================================================================
+FORM ADORN
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/forms/form-adorn
+========================================================================
+
+Decorate inputs with icons, text, and more using a custom wrapper that easily handles styling and positioning.
+
+CONTENTS
+   1. Example  (examples 1, 2)
+   2. With labels  (example 3)
+   3. With form field  (example 4)
+   4. Text adornments  (example 5)
+   5. Sizing  (example 6)
+   6. CSS > Variables  (example 7)
+
+------------------------------------------------------------------------
+EXAMPLE
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Wrap an icon and a `.form-ghost` input inside a `<label>` with `.form-control` and `.form-adorn`. Place the adornment before the input in the DOM for start position (left in LTR).
+
+<label class="form-control form-adorn">
+  <div class="form-adorn-icon" aria-hidden="true">
+    <svg class="bi" width="16" height="16"><use href="#search" /></svg>
+  </div>
+  <input type="search" class="form-ghost" placeholder="Search...">
+</label>
+
+------------------------------------------------------------------------
+EXAMPLE (cont.)
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Use `.form-adorn-end` to position the adornment on the trailing side (keeps DOM order, uses CSS to flip visually):
+
+<label class="form-control form-adorn form-adorn-end">
+  <div class="form-adorn-icon" aria-hidden="true">
+    <svg class="bi" width="16" height="16"><use href="#envelope" /></svg>
+  </div>
+  <input type="email" class="form-ghost" placeholder="you@example.com">
+</label>
+
+------------------------------------------------------------------------
+WITH LABELS
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Add a second label outside the `.form-adorn` wrapper to name the field. Point it at the input with `for`, so the input keeps its name even if you change the wrapper:
+
+<div>
+  <label for="searchInput" class="form-label">Search</label>
+  <label class="form-control form-adorn">
+    <div class="form-adorn-icon" aria-hidden="true">
+      <svg class="bi" width="16" height="16"><use href="#search" /></svg>
+    </div>
+    <input type="search" class="form-ghost" id="searchInput" placeholder="Search...">
+  </label>
+</div>
+<div>
+  <label for="emailInput" class="form-label">Email address</label>
+  <label class="form-control form-adorn form-adorn-end">
+    <div class="form-adorn-icon" aria-hidden="true">
+      <svg class="bi" width="16" height="16"><use href="#envelope" /></svg>
+    </div>
+    <input type="email" class="form-ghost" id="emailInput" placeholder="you@example.com">
+  </label>
+</div>
+
+------------------------------------------------------------------------
+WITH FORM FIELD
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Wrap a `.form-adorn` in a `.form-field` to pair it with a label and description text.
+
+<div class="form-field">
+  <label for="adornField" class="form-label">Search</label>
+  <label class="form-control form-adorn">
+    <div class="form-adorn-icon" aria-hidden="true">
+      <svg class="bi" width="16" height="16"><use href="#search" /></svg>
+    </div>
+    <input type="search" class="form-ghost" id="adornField" placeholder="Search...">
+  </label>
+  <small class="form-text">Search across all pages and posts.</small>
+</div>
+
+------------------------------------------------------------------------
+TEXT ADORNMENTS
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Use `.form-adorn-text` for currency symbols, units, domain suffixes, and other text-based adornments. Text adornments auto-size to their content.
+
+<label class="form-control form-adorn">
+  <span class="form-adorn-text" aria-hidden="true">$</span>
+  <input type="text" class="form-ghost" placeholder="0.00">
+</label>
+<label class="form-control form-adorn form-adorn-end">
+  <span class="form-adorn-text" aria-hidden="true">USD</span>
+  <input type="text" class="form-ghost" placeholder="Amount">
+</label>
+<label class="form-control form-adorn">
+  <span class="form-adorn-text" aria-hidden="true">https://</span>
+  <input type="text" class="form-ghost" placeholder="example.com">
+</label>
+<label class="form-control form-adorn form-adorn-end">
+  <span class="form-adorn-text" aria-hidden="true">@example.com</span>
+  <input type="text" class="form-ghost" placeholder="username">
+</label>
+
+------------------------------------------------------------------------
+SIZING
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: Use `.form-adorn-sm` or `.form-adorn-lg` on the wrapper to adjust sizing.
+
+<label class="form-control form-control-sm form-adorn">
+  <div class="form-adorn-icon" aria-hidden="true">
+    <svg class="bi" width="16" height="16"><use href="#search" /></svg>
+  </div>
+  <input type="text" class="form-ghost" placeholder="Small input">
+</label>
+<label class="form-control form-adorn">
+  <div class="form-adorn-icon" aria-hidden="true">
+    <svg class="bi" width="16" height="16"><use href="#search" /></svg>
+  </div>
+  <input type="text" class="form-ghost" placeholder="Default input">
+</label>
+<label class="form-control form-control-lg form-adorn">
+  <div class="form-adorn-icon" aria-hidden="true">
+    <svg class="bi" width="16" height="16"><use href="#search" /></svg>
+  </div>
+  <input type="text" class="form-ghost" placeholder="Large input">
+</label>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 7  |  SCSS
+------------------------------------------------------------------------
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-adorn-tokens: defaults(
+  (
+    --form-adorn-gap: .375rem,
+    --form-adorn-icon-size: 1rem,
+    --form-adorn-icon-color: var(--fg-2),
+  ),
+  $form-adorn-tokens
+);
+
+========================================================================
+END OF FILE
+========================================================================

@@ -1,0 +1,167 @@
+========================================================================
+SPINNERS
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/spinner
+========================================================================
+
+Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript.
+
+CONTENTS
+   1. Border spinner  (example 1)
+   2. Growing spinner  (example 2)
+   3. Variants  (example 3)
+   4. Size  (examples 4, 5)
+   5. Custom spinners  (example 6)
+   6. CSS > Variables  (examples 7, 8)
+   7. CSS > Keyframes  (examples 9, 10)
+
+------------------------------------------------------------------------
+BORDER SPINNER
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Use the border spinners for a lightweight loading indicator.
+
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+
+<span class="badge theme-primary">
+  <span class="spinner-border" aria-hidden="true"></span>
+  <span role="status">Loading</span>
+</span>
+
+<button class="btn-subtle theme-primary" type="button" disabled>
+  <span class="spinner-border" aria-hidden="true"></span>
+  <span role="status">Loading…</span>
+</button>
+
+------------------------------------------------------------------------
+GROWING SPINNER
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: If you don’t fancy a border spinner, switch to the grow spinner. While it doesn’t technically spin, it does repeatedly grow!
+
+<div class="spinner-grow" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+
+------------------------------------------------------------------------
+VARIANTS
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Spinners use `currentColor` for their appearance, meaning you can customize the color with text color utilities. You can use any of our text color utilities on the standard spinner.
+
+<div class="spinner-border fg-primary" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+<div class="spinner-grow fg-accent" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+
+------------------------------------------------------------------------
+SIZE
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Spinner are `1em` by `1em` by default, all Add `.spinner-sm` to make a smaller spinner that can quickly be used within other components.
+
+<div class="spinner-border spinner-sm" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+<div class="spinner-grow spinner-sm" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+
+------------------------------------------------------------------------
+SIZE (cont.)
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Or, use custom CSS or inline styles to change the dimensions as needed.
+
+<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+<div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+  <span class="visually-hidden">Loading…</span>
+</div>
+
+------------------------------------------------------------------------
+CUSTOM SPINNERS
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: You can use the `.spinner-rotate` class to rotate a custom SVG spinner.
+
+<svg class="bi spinner-rotate" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor" stroke-width="2" stroke-linecap="round">
+  <path d="M8 1V4"/>
+  <path opacity="0.8" d="M3.05 3.05L5.17 5.17"/>
+  <path opacity="0.6" d="M4 8L1 8"/>
+  <path opacity="0.5" d="M5.17 10.83L3.05 12.95"/>
+  <path opacity="0.4" d="M8 12V15"/>
+  <path opacity="0.3" d="M10.83 10.83L12.95 12.95"/>
+  <path opacity="0.2" d="M15 8L12 8"/>
+  <path opacity="0.1" d="M12.95 3.05L10.83 5.17"/>
+</svg>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 7  |  SCSS
+------------------------------------------------------------------------
+Note: Spinners use local CSS variables on `.spinner-{border|grow}` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$spinner-border-tokens: defaults(
+  (
+    --spinner-width: 1em,
+    --spinner-height: 1em,
+    --spinner-border-width: .125em,
+    --spinner-animation-speed: 1s,
+    --spinner-animation-timing-function: linear,
+    --spinner-animation-name: spinner-border,
+  ),
+  $spinner-border-tokens
+);
+
+------------------------------------------------------------------------
+CSS > VARIABLES (cont.)
+Example 8  |  SCSS
+------------------------------------------------------------------------
+Note: Growing spinner tokens:
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$spinner-grow-tokens: defaults(
+  (
+    --spinner-width: 1em,
+    --spinner-height: 1em,
+    --spinner-animation-speed: 1s,
+    --spinner-animation-timing-function: ease-in-out,
+    --spinner-animation-name: spinner-grow,
+  ),
+  $spinner-grow-tokens
+);
+
+------------------------------------------------------------------------
+CSS > KEYFRAMES
+Example 9  |  SCSS
+------------------------------------------------------------------------
+Note: Used for creating the CSS animations for our spinners. Included in `scss/_spinner.scss`.
+
+@keyframes spinner-border {
+  to { transform: rotate(360deg); }
+}
+
+------------------------------------------------------------------------
+CSS > KEYFRAMES (cont.)
+Example 10  |  SCSS
+------------------------------------------------------------------------
+@keyframes spinner-grow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+========================================================================
+END OF FILE
+========================================================================

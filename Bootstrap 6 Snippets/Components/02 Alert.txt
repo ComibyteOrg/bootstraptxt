@@ -1,0 +1,273 @@
+========================================================================
+ALERT
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/alert
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
+
+CONTENTS
+   1. Default alert  (example 1)
+   2. Variants  (example 2)
+   3. Live example  (examples 3, 4)
+   4. Link color  (example 5)
+   5. Additional content > Well done!  (example 6)
+   6. With icons  (example 7)
+   7. Dismiss  (example 8)
+   8. CSS > Variables  (example 9)
+   9. JavaScript behavior > Initialize  (example 10)
+  10. JavaScript behavior > Triggers  (examples 11, 12)
+  11. JavaScript behavior > Methods  (examples 13, 14)
+  12. JavaScript behavior > Events  (example 15)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+The data API wires up `data-bs-dismiss="alert"` automatically. The constructor is only needed if you want to drive an alert from JavaScript.
+
+Automatic (data API):
+
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+Manual initialisation:
+
+const alert = new bootstrap.Alert('#myAlert')
+
+Reuse an existing instance:
+
+const alert = bootstrap.Alert.getOrCreateInstance('#myAlert')
+
+------------------------------------------------------------------------
+DEFAULT ALERT
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Alerts are available for any length of text, as well as an optional close button. Alerts are designed to be used with theme colors, but have neutral fallback colors for when no theme color is applied. For inline dismissal, use the alerts JavaScript plugin.
+
+<div class="alert" role="alert">
+  <p>A simple alert—check it out!</p>
+</div>
+
+------------------------------------------------------------------------
+VARIANTS
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Use any of our variant theme classes for color mode adaptive, contextual styling.
+
+<div class="alert theme-primary" role="alert">
+  <p>A simple primary alert—check it out!</p>
+</div>
+<div class="alert theme-accent" role="alert">
+  <p>A simple accent alert—check it out!</p>
+</div>
+<div class="alert theme-success" role="alert">
+  <p>A simple success alert—check it out!</p>
+</div>
+<div class="alert theme-danger" role="alert">
+  <p>A simple danger alert—check it out!</p>
+</div>
+<div class="alert theme-warning" role="alert">
+  <p>A simple warning alert—check it out!</p>
+</div>
+<div class="alert theme-info" role="alert">
+  <p>A simple info alert—check it out!</p>
+</div>
+<div class="alert theme-inverse" role="alert">
+  <p>A simple inverse alert—check it out!</p>
+</div>
+<div class="alert theme-secondary" role="alert">
+  <p>A simple secondary alert—check it out!</p>
+</div>
+
+------------------------------------------------------------------------
+LIVE EXAMPLE
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the built-in close button.
+
+<div id="liveAlertPlaceholder"></div>
+<button type="button" class="btn-solid theme-primary flex-grow-0" id="liveAlertBtn">Show live alert</button>
+
+------------------------------------------------------------------------
+LIVE EXAMPLE (cont.)
+Example 4  |  JS
+------------------------------------------------------------------------
+Note: We use the following JavaScript to trigger our live alert demo:
+
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert theme-${type}" role="alert">`,
+    `   <p>${message}</p>`,
+    '   <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
+const alertTrigger = document.getElementById('liveAlertBtn')
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    appendAlert('Nice, you triggered this alert message!', 'success')
+  })
+}
+
+------------------------------------------------------------------------
+LINK COLOR
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Use the `.alert-link` utility class to quickly provide matching colored links within any alert.
+
+<div class="alert theme-primary" role="alert">
+  <p>A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-accent" role="alert">
+  <p>A simple accent alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-success" role="alert">
+  <p>A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-danger" role="alert">
+  <p>A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-warning" role="alert">
+  <p>A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-info" role="alert">
+  <p>A simple info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-inverse" role="alert">
+  <p>A simple inverse alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+<div class="alert theme-secondary" role="alert">
+  <p>A simple secondary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.</p>
+</div>
+
+------------------------------------------------------------------------
+ADDITIONAL CONTENT > WELL DONE!
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.
+
+<div class="alert theme-success" role="alert">
+  <vstack>
+    <h4 class="alert-heading mb-2">Well done!</h4>
+    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <hr class="my-3">
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+  </vstack>
+</div>
+
+------------------------------------------------------------------------
+WITH ICONS
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: Similarly, you can use flexbox utilities and Bootstrap Icons to create alerts with icons. Depending on your icons and content, you may want to add more utilities or custom styles.
+
+<div class="alert theme-primary d-flex align-items-center" role="alert">
+  <svg xmlns="http://www.w3.org/2000/svg" class="bi flex-shrink-0" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </svg>
+  <p>An example alert with an icon</p>
+</div>
+
+------------------------------------------------------------------------
+DISMISS
+Example 8  |  HTML
+------------------------------------------------------------------------
+Note: Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. Here’s how:
+
+<div class="alert theme-warning" role="alert">
+  <p>Something’s wrong, check the fields below and try again.</p>
+  <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 9  |  SCSS
+------------------------------------------------------------------------
+Note: Alerts use local CSS variables on `.alert` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$alert-tokens: defaults(
+  (
+    --alert-gap: var(--spacer-3),
+    --alert-bg: var(--bg-1),
+    --alert-padding-x: var(--spacer),
+    --alert-padding-y: var(--spacer),
+    --alert-color: inherit,
+    --alert-border-color: var(--border-color),
+    --alert-border-radius: var(--radius-7),
+    --alert-link-color: inherit,
+    --alert-transition-property: "opacity",
+    --alert-transition-duration: .15s,
+    --alert-transition-timing: linear,
+    --hr-border-color: var(--theme-border, var(--alert-border-color)),
+  ),
+  $alert-tokens
+);
+
+------------------------------------------------------------------------
+JAVASCRIPT BEHAVIOR > INITIALIZE
+Example 10  |  JS
+------------------------------------------------------------------------
+Note: Initialize elements as alerts
+
+const alertList = document.querySelectorAll('.alert')
+const alerts = [...alertList].map(element => new bootstrap.Alert(element))
+
+------------------------------------------------------------------------
+JAVASCRIPT BEHAVIOR > TRIGGERS
+Example 11  |  HTML
+------------------------------------------------------------------------
+Note: Dismissal can be achieved with the `data-bs-dismiss` attribute on a button within the alert as demonstrated below:
+
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+------------------------------------------------------------------------
+JAVASCRIPT BEHAVIOR > TRIGGERS (cont.)
+Example 12  |  HTML
+------------------------------------------------------------------------
+Note: or on a button outside the alert using the additional `data-bs-target` as demonstrated below:
+
+<button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert" aria-label="Close"></button>
+
+------------------------------------------------------------------------
+JAVASCRIPT BEHAVIOR > METHODS
+Example 13  |  JS
+------------------------------------------------------------------------
+Note: Methods that show or hide a component return a promise. The promise resolves when the transition ends, so `await` continues at the same moment a `shown.bs.*` or `hidden.bs.*` listener runs. The methods still return immediately and never block the caller. A call on a component that is already transitioning does nothing and resolves right away. Learn more in our JavaScript docs.
+
+const bsAlert = new bootstrap.Alert('#myAlert')
+
+------------------------------------------------------------------------
+JAVASCRIPT BEHAVIOR > METHODS (cont.)
+Example 14  |  JS
+------------------------------------------------------------------------
+Note: This makes an alert listen for click events on descendant elements which have the `data-bs-dismiss="alert"` attribute. (Not necessary when using the data-api’s auto-initialization.)
+
+const alert = bootstrap.Alert.getOrCreateInstance('#myAlert')
+alert.close()
+
+------------------------------------------------------------------------
+JAVASCRIPT BEHAVIOR > EVENTS
+Example 15  |  JS
+------------------------------------------------------------------------
+Note: Bootstrap’s alert plugin exposes a few events for hooking into alert functionality.
+
+const myAlert = document.getElementById('myAlert')
+myAlert.addEventListener('closed.bs.alert', event => {
+  // do something, for instance, explicitly move focus to the most appropriate element,
+  // so it doesn’t get lost/reset to the start of the page
+  // document.getElementById('...').focus()
+})
+
+========================================================================
+END OF FILE
+========================================================================

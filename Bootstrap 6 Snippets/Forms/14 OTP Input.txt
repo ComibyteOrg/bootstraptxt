@@ -1,0 +1,240 @@
+========================================================================
+OTP INPUT
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/forms/otp-input
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Collect one-time passwords, PIN codes, and verification codes with a single accessible input rendered as separate digit slots.
+
+CONTENTS
+   1. How it works  (example 1)
+   2. Connected inputs  (example 2)
+   3. Four-digit PIN  (example 3)
+   4. With separator  (example 4)
+   5. Sizes  (example 5)
+   6. Alphanumeric and masking  (example 6)
+   7. Disabled  (example 7)
+   8. Validation  (example 8)
+   9. With form label  (example 9)
+  10. Usage > Via data attributes  (example 10)
+  11. Usage > Via JavaScript  (example 11)
+  12. Usage > Methods  (example 12)
+  13. Usage > Events  (example 13)
+  14. CSS > Variables  (example 14)
+  15. CSS > Sass list  (example 15)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+The data API initialises OTP inputs from `data-bs-otp` on a container wrapping a single `<input>`.
+
+Automatic (data API):
+
+<div class="otp" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Verification code">
+</div>
+
+Manual initialisation:
+
+const otpInput = new bootstrap.OtpInput(otpElement)
+
+Reuse an existing instance:
+
+const otpInput = bootstrap.OtpInput.getOrCreateInstance(otpElement)
+
+------------------------------------------------------------------------
+HOW IT WORKS
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Wrap a single `<input>` in a container with `.otp` and add `data-bs-otp` to enable the JavaScript. The plugin reads the input's `maxlength` to determine how many slots to render, hides the real input behind transparent overlay styling, and draws one `.otp-slot` per character. Give the input an accessible name with `aria-label` or an associated `<label>`.
+
+<div class="otp" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Verification code">
+</div>
+
+------------------------------------------------------------------------
+CONNECTED INPUTS
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Add `.otp-connected` to merge the slots into a single cohesive field with shared borders.
+
+<div class="otp otp-connected" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Verification code">
+</div>
+
+------------------------------------------------------------------------
+FOUR-DIGIT PIN
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Set the input's `maxlength` to control the number of slots—use fewer for shorter codes like a 4-digit PIN.
+
+<div class="otp otp-connected" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="4" aria-label="PIN">
+</div>
+
+------------------------------------------------------------------------
+WITH SEPARATOR
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Use `data-bs-groups` with an array of group sizes to split the slots into groups separated by a visual divider—handy for codes like "123-456". The separator is decorative and never becomes part of the value.
+
+<div class="otp" data-bs-otp data-bs-groups="[3,3]">
+  <input type="text" class="otp-input" maxlength="6" aria-label="Verification code">
+</div>
+
+------------------------------------------------------------------------
+SIZES
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Add `.otp-sm` or `.otp-lg` to the container to change the slot size.
+
+<div class="otp otp-sm mb-3" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Small verification code">
+</div>
+<div class="otp otp-lg" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Large verification code">
+</div>
+
+------------------------------------------------------------------------
+ALPHANUMERIC AND MASKING
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: By default only digits are accepted. Set `data-bs-type` to `alphanumeric` or `alpha` to accept letters, and `data-bs-mask="true"` to obscure the entered value while keeping it a normal text field (no `type="password"`, so the numeric keyboard and autofill still work).
+
+<div class="otp otp-connected mb-3" data-bs-otp data-bs-type="alphanumeric">
+  <input type="text" class="otp-input" maxlength="6" aria-label="Alphanumeric code">
+</div>
+<div class="otp otp-connected" data-bs-otp data-bs-mask="true">
+  <input type="text" class="otp-input" maxlength="6" aria-label="Masked code">
+</div>
+
+------------------------------------------------------------------------
+DISABLED
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: Add the `disabled` attribute to the input to prevent interaction.
+
+<div class="otp otp-connected" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Verification code" disabled>
+</div>
+
+------------------------------------------------------------------------
+VALIDATION
+Example 8  |  HTML
+------------------------------------------------------------------------
+Note: Add `.is-valid` or `.is-invalid` to the container to show validation states.
+
+<div class="otp otp-connected is-valid mb-3" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" value="123456" aria-label="Verification code">
+</div>
+<div class="otp otp-connected is-invalid" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" value="123" aria-label="Verification code">
+</div>
+
+------------------------------------------------------------------------
+WITH FORM LABEL
+Example 9  |  HTML
+------------------------------------------------------------------------
+Note: Associate a `<label>` with the input and add help text with `aria-describedby` for better accessibility.
+
+<div class="vstack gap-2">
+  <label class="form-label" for="otpCode">Verification code</label>
+  <div class="otp" data-bs-otp>
+    <input type="text" class="otp-input" id="otpCode" maxlength="6" aria-describedby="otpHelp">
+  </div>
+  <div id="otpHelp" class="form-text">Enter the 6-digit code sent to your phone.</div>
+</div>
+
+------------------------------------------------------------------------
+USAGE > VIA DATA ATTRIBUTES
+Example 10  |  HTML
+------------------------------------------------------------------------
+Note: Add `data-bs-otp` to a container wrapping a single `<input>` to automatically initialize the OTP input behavior.
+
+<div class="otp" data-bs-otp>
+  <input type="text" class="otp-input" maxlength="6" aria-label="Verification code">
+</div>
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT
+Example 11  |  JS
+------------------------------------------------------------------------
+Note: Initialize manually with JavaScript:
+
+const otpElement = document.querySelector('.otp')
+const otpInput = new bootstrap.OtpInput(otpElement)
+
+------------------------------------------------------------------------
+USAGE > METHODS
+Example 12  |  JS
+------------------------------------------------------------------------
+const otpElement = document.querySelector('.otp')
+const otpInput = bootstrap.OtpInput.getOrCreateInstance(otpElement)
+
+// Get the current value
+console.log(otpInput.getValue()) // "123456"
+
+// Set a value programmatically
+otpInput.setValue('654321')
+
+// Clear the value
+otpInput.clear()
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 13  |  JS
+------------------------------------------------------------------------
+const otpElement = document.querySelector('.otp')
+
+otpElement.addEventListener('complete.bs.otpInput', event => {
+  console.log('OTP complete:', event.value)
+  // Submit the form or validate the code
+})
+
+otpElement.addEventListener('input.bs.otpInput', event => {
+  console.log('Current value:', event.value)
+})
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 14  |  SCSS
+------------------------------------------------------------------------
+Note: OTP input use local CSS variables on `.otp` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+// stylelint-disable custom-property-no-missing-var-function
+// stylelint-disable-next-line scss/dollar-variable-default
+$otp-tokens: defaults(
+  (
+    --otp-size: var(--btn-input-lg-min-height),
+    --otp-font-size: var(--btn-input-font-size),
+    --otp-gap: .5rem,
+    --otp-slot-fg: var(--btn-input-fg),
+    --otp-slot-bg: var(--btn-input-bg),
+    --otp-slot-border-width: var(--border-width),
+    --otp-slot-border-color: var(--border-color),
+    --otp-slot-border-radius: var(--radius-5),
+  ),
+  $otp-tokens
+);
+
+------------------------------------------------------------------------
+CSS > SASS LIST
+Example 15  |  SCSS
+------------------------------------------------------------------------
+Note: We use a Sass list to define the sizes of the OTP input, so you can easily add or modify sizes by fetching the associated root variables for each size. This list should generally match the sizes defined in the `$form-control-sizes` Sass map in `_form-control.scss`.
+
+$otp-sizes: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$otp-sizes: defaults(
+  ("sm", "lg"),
+  $otp-sizes
+);
+
+========================================================================
+END OF FILE
+========================================================================

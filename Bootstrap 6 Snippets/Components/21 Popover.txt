@@ -1,0 +1,302 @@
+========================================================================
+POPOVER
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/popover
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Small, contextual overlays for displaying custom content and information via JavaScript.
+
+CONTENTS
+   1. Overview  (example 1)
+   2. Examples > Live demo  (example 2)
+   3. Examples > Placement  (example 3)
+   4. Examples > Responsive placement  (example 4)
+   5. Examples > Custom `container`  (examples 5, 6)
+   6. Examples > Custom popovers  (examples 7, 8)
+   7. Examples > Dismiss on next click  (examples 9, 10)
+   8. Examples > Disabled elements  (example 11)
+   9. CSS > Variables  (example 12)
+  10. Usage  (example 13)
+  11. Usage > Options > Using function with `floatingConfig`  (example 14)
+  12. Usage > Methods  (example 15)
+  13. Usage > Events  (example 16)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+Popovers are NOT initialised by the data API. Create an instance yourself, or use the delegated form below.
+
+Trigger markup:
+
+<button type="button" data-bs-toggle="popover" data-bs-title="Popover title"
+        data-bs-content="And here is some amazing content.">
+  Click to toggle popover
+</button>
+
+Manual initialisation:
+
+// one popover
+const popover = new bootstrap.Popover('#myPopover')
+
+// or every popover on the page
+const popovers = [...document.querySelectorAll('[data-bs-toggle="popover"]')]
+  .map(el => new bootstrap.Popover(el))
+
+Reuse an existing instance:
+
+const popover = bootstrap.Popover.getOrCreateInstance('#myPopover')
+
+------------------------------------------------------------------------
+OVERVIEW
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Click the button below to show and close a popover.
+
+<button type="button" class="btn-solid theme-primary"
+        data-bs-toggle="popover"
+        data-bs-title="Popover title"
+        data-bs-content="This is the popover content—make it as long as you want.">
+  Toggle popover
+</button>
+
+------------------------------------------------------------------------
+EXAMPLES > LIVE DEMO
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Titles are set via `data-bs-title` and body content is set via `data-bs-content`.
+
+<button type="button" class="btn-solid theme-primary"
+        data-bs-toggle="popover"
+        data-bs-title="Popover title"
+        data-bs-content="And here’s some amazing content. It’s very engaging. Right?">
+  Toggle popover
+</button>
+
+------------------------------------------------------------------------
+EXAMPLES > PLACEMENT
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Set `data-bs-placement` to change the direction. Four options are available: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL.
+
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="left"
+        data-bs-content="Left popover">
+  Popover on left
+</button>
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="top"
+        data-bs-content="Top popover">
+  Popover on top
+</button>
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="bottom"
+        data-bs-content="Bottom popover">
+  Popover on bottom
+</button>
+
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="right"
+        data-bs-content="Right popover">
+  Popover on right
+</button>
+
+------------------------------------------------------------------------
+EXAMPLES > RESPONSIVE PLACEMENT
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Change placement at different breakpoints using responsive prefixes. The syntax is `breakpoint:placement`, where breakpoint is one of `sm`, `md`, `lg`, `xl`, or `2xl`.
+
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="top md:right lg:bottom"
+        data-bs-content="This popover changes placement at different breakpoints.">
+  Top → md:right → lg:bottom
+</button>
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="left lg:top"
+        data-bs-content="Responsive popover placement.">
+  Left → lg:top
+</button>
+
+------------------------------------------------------------------------
+EXAMPLES > CUSTOM `CONTAINER`
+Example 5  |  JS
+------------------------------------------------------------------------
+Note: When you have some styles on a parent element that interfere with a popover, you’ll want to specify a custom `container` so that the popover’s HTML appears within that element instead. This is common in responsive tables, input groups, and the like.
+
+const popover = new bootstrap.Popover('.example-popover', {
+  container: 'body'
+})
+
+------------------------------------------------------------------------
+EXAMPLES > CUSTOM `CONTAINER` (cont.)
+Example 6  |  JS
+------------------------------------------------------------------------
+Note: Another situation where you’ll want to set an explicit custom `container` are popovers inside a dialog, to make sure that the popover itself is appended to the dialog. This is particularly important for popovers that contain interactive elements – dialogs will trap focus, so unless the popover is a child element of the dialog, users won’t be able to focus or activate these interactive elements.
+
+const popover = new bootstrap.Popover('.example-popover', {
+  container: '.dialog-body'
+})
+
+------------------------------------------------------------------------
+EXAMPLES > CUSTOM POPOVERS
+Example 7  |  SCSS
+------------------------------------------------------------------------
+Note: You can customize the appearance of popovers using CSS variables. We set a custom class with `data-bs-custom-class="custom-popover"` to scope our custom appearance and use it to override some of the local CSS variables.
+
+.custom-popover {
+  --bs-popover-max-width: 200px;
+  --bs-popover-border-color: var(--bd-violet-bg);
+  --bs-popover-header-bg: var(--bd-violet-bg);
+  --bs-popover-header-color: var(--bs-white);
+  --bs-popover-body-padding-x: 1rem;
+  --bs-popover-body-padding-y: 0.5rem;
+}
+
+------------------------------------------------------------------------
+EXAMPLES > CUSTOM POPOVERS (cont.)
+Example 8  |  HTML
+------------------------------------------------------------------------
+<button type="button" class="btn-solid theme-secondary"
+        data-bs-toggle="popover" data-bs-placement="right"
+        data-bs-custom-class="custom-popover"
+        data-bs-title="Custom popover"
+        data-bs-content="This popover is themed via CSS variables.">
+  Custom popover
+</button>
+
+------------------------------------------------------------------------
+EXAMPLES > DISMISS ON NEXT CLICK
+Example 9  |  HTML
+------------------------------------------------------------------------
+Note: Use the `focus` trigger to dismiss popovers on the user’s next click of an element other than the toggle element. Clicks and focus inside the popover itself do not dismiss it, so users can select text or use controls in the content.
+
+<a tabindex="0" class="btn-solid theme-secondary" role="button"
+        data-bs-toggle="popover"
+        data-bs-trigger="focus"
+        data-bs-title="Dismissible popover"
+        data-bs-content="And here’s some amazing content. It’s very engaging. Right?">
+  Dismissible popover
+</a>
+
+------------------------------------------------------------------------
+EXAMPLES > DISMISS ON NEXT CLICK (cont.)
+Example 10  |  JS
+------------------------------------------------------------------------
+const popover = new bootstrap.Popover('.popover-dismiss', {
+  trigger: 'focus'
+})
+
+------------------------------------------------------------------------
+EXAMPLES > DISABLED ELEMENTS
+Example 11  |  HTML
+------------------------------------------------------------------------
+Note: Elements with the `disabled` attribute aren’t interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you’ll want to trigger the popover from a wrapper `<div>` or `<span>`, ideally made keyboard-focusable using `tabindex="0"`.
+
+<span class="d-inline-block rounded-3" tabindex="0"
+        data-bs-toggle="popover"
+        data-bs-trigger="hover focus"
+        data-bs-content="Disabled popover">
+  <button class="btn-solid theme-primary" type="button" disabled>Disabled button</button>
+</span>
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 12  |  SCSS
+------------------------------------------------------------------------
+Note: Popovers use local CSS variables on `.popover` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$popover-tokens: defaults(
+  (
+    --popover-zindex: var(--z-popover),
+    --popover-max-width: 280px,
+    --popover-font-size: var(--font-size-sm),
+    --popover-bg: var(--bg-body),
+    --popover-border-width: var(--border-width),
+    --popover-border-color: var(--border-color-translucent),
+    --popover-border-radius: var(--radius-7),
+    --popover-inner-border-radius: calc(var(--radius-7) - var(--border-width)),
+    --popover-box-shadow: var(--box-shadow),
+    --popover-header-padding-x: var(--spacer),
+    --popover-header-padding-y: var(--spacer-3),
+    --popover-header-font-size: var(--font-size-sm),
+    --popover-header-color: inherit,
+    --popover-header-bg: var(--bg-1),
+    --popover-body-padding-x: var(--spacer),
+    --popover-body-padding-y: var(--spacer-3),
+    --popover-body-color: var(--fg-body),
+    --popover-arrow-width: 1rem,
+    --popover-arrow-height: .5rem,
+    --popover-arrow-border: var(--popover-border-color),
+    --popover-transition-property: "opacity",
+    --popover-transition-duration: .15s,
+    --popover-transition-timing: linear,
+  ),
+  $popover-tokens
+);
+
+------------------------------------------------------------------------
+USAGE
+Example 13  |  JS
+------------------------------------------------------------------------
+Note: Enable popovers via JavaScript:
+
+const exampleEl = document.getElementById('example')
+const popover = new bootstrap.Popover(exampleEl, options)
+
+------------------------------------------------------------------------
+USAGE > OPTIONS > USING FUNCTION WITH `FLOATINGCONFIG`
+Example 14  |  JS
+------------------------------------------------------------------------
+const popover = new bootstrap.Popover(element, {
+  floatingConfig(defaultBsFloatingConfig) {
+    // const newFloatingConfig = {...}
+    // use defaultBsFloatingConfig if needed...
+    // return newFloatingConfig
+  }
+})
+
+------------------------------------------------------------------------
+USAGE > METHODS
+Example 15  |  JS
+------------------------------------------------------------------------
+Note: Methods that show or hide a component return a promise. The promise resolves when the transition ends, so `await` continues at the same moment a `shown.bs.*` or `hidden.bs.*` listener runs. The methods still return immediately and never block the caller. A call on a component that is already transitioning does nothing and resolves right away. Learn more in our JavaScript docs.
+
+// getOrCreateInstance example
+const popover = bootstrap.Popover.getOrCreateInstance('#example') // Returns a Bootstrap popover instance
+
+// setContent example
+popover.setContent({
+  '.popover-header': 'another title',
+  '.popover-body': 'another content'
+})
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 16  |  JS
+------------------------------------------------------------------------
+const myPopoverTrigger = document.getElementById('myPopover')
+myPopoverTrigger.addEventListener('hidden.bs.popover', () => {
+  // do something...
+})
+
+========================================================================
+END OF FILE
+========================================================================

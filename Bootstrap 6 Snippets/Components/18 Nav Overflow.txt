@@ -1,0 +1,442 @@
+========================================================================
+NAV OVERFLOW
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/components/nav-overflow
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+Automatically collapse navigation items into a "More" menu when space is limited using the Priority+ pattern.
+
+CONTENTS
+   1. Examples  (example 1)
+   2. Examples > With tabs  (example 2)
+   3. Examples > With underline  (example 3)
+   4. Examples > Keep items visible  (example 4)
+   5. Examples > With disabled items  (example 5)
+   6. Examples > In a navbar  (example 6)
+   7. Examples > With menus  (example 7)
+   8. Customizing the toggle > Custom text  (example 8)
+   9. Customizing the toggle > Custom icon  (examples 9, 10, 11)
+  10. Customizing the toggle > Icon placement  (example 12)
+  11. Customizing the toggle > Minimum visible items  (example 13)
+  12. Customizing the toggle > Collapse all  (examples 14, 15)
+  13. Usage > Via data attributes  (example 16)
+  14. Usage > Via JavaScript  (example 17)
+  15. Usage > Methods  (example 18)
+  16. Usage > Events  (example 19)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+This component has no data API. Create it yourself and pass the wrapper element, not the nav.
+
+Manual initialisation:
+
+const navOverflow = new bootstrap.NavOverflow(wrapperElement, {
+  moreText: 'More',
+  threshold: 2
+})
+
+------------------------------------------------------------------------
+EXAMPLES
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: Wrap the nav in `<div class="nav-overflow" data-bs-toggle="nav-overflow">`. When items don’t fit, they’ll automatically move to a "More" menu. Drag the right edge of the container below to see how nav items automatically move to the "More" menu as space becomes limited.
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Analytics</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Reports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Settings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Help</a>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > WITH TABS
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: The overflow pattern works seamlessly with tabbed navigation:
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">History</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Activity</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Comments</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Attachments</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Related</a>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > WITH UNDERLINE
+Example 3  |  HTML
+------------------------------------------------------------------------
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-underline">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Features</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Pricing</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">FAQs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Contact</a>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > KEEP ITEMS VISIBLE
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Use the `.nav-overflow-keep` class on items that should never be moved to the overflow menu. These items will remain visible regardless of available space—useful for high-priority items like "Home" or action buttons.
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item nav-overflow-keep">
+      <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Services</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Blog</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Careers</a>
+    </li>
+    <li class="nav-item nav-overflow-keep">
+      <a class="nav-link" href="#">Contact</a>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > WITH DISABLED ITEMS
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Disabled states are preserved when items move to the overflow menu:
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Another link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">More content</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Even more</a>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > IN A NAVBAR
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: The nav overflow pattern can also be used within a navbar for horizontal navigation that adapts to available space:
+
+<nav class="navbar navbar-expand bg-1">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Brand</a>
+    <div class="nav-overflow" data-bs-toggle="nav-overflow">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+------------------------------------------------------------------------
+EXAMPLES > WITH MENUS
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: A nav item that already hosts a menu becomes a submenu of the overflow menu. The plugin moves the original `.menu` rather than cloning it, so nested submenus stay intact.
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
+        Products
+      </button>
+      <div class="menu">
+        <a class="menu-item" href="#">Laptops</a>
+        <div class="submenu">
+          <button class="menu-item" type="button">Phones</button>
+          <div class="menu">
+            <a class="menu-item" href="#">iPhone</a>
+            <a class="menu-item" href="#">Android</a>
+          </div>
+        </div>
+        <a class="menu-item" href="#">Tablets</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Services</a>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
+        Company
+      </button>
+      <div class="menu">
+        <a class="menu-item" href="#">About</a>
+        <a class="menu-item" href="#">Careers</a>
+        <a class="menu-item" href="#">Press</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Analytics</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Reports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Help</a>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > CUSTOM TEXT
+Example 8  |  JS
+------------------------------------------------------------------------
+Note: Use the `moreText` option to customize the text shown in the overflow toggle button:
+
+const wrapper = document.querySelector('.nav-overflow')
+new bootstrap.NavOverflow(wrapper, {
+  moreText: 'See all'
+})
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > CUSTOM ICON
+Example 9  |  JS
+------------------------------------------------------------------------
+Note: Provide a custom icon via the `moreIcon` option. Any HTML string works, including inline SVGs:
+
+const wrapper = document.querySelector('.nav-overflow')
+new bootstrap.NavOverflow(wrapper, {
+  moreIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/></svg>',
+  moreText: false // Icon only
+})
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > CUSTOM ICON (cont.)
+Example 10  |  HTML
+------------------------------------------------------------------------
+Note: Set `moreText` to `false` for an icon-only toggle. The component then writes no `.nav-overflow-text` element, and labels the button `aria-label="More"` so it still has a name. An empty string does the same. To name the button something else, write your own toggle:
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
+    <li class="nav-item nav-overflow-item">
+      <button class="nav-link nav-overflow-toggle" type="button" data-bs-toggle="menu" aria-label="Show more links">
+        <span class="nav-overflow-icon">…</span>
+      </button>
+      <div class="nav-overflow-menu menu"></div>
+    </li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > CUSTOM ICON (cont.)
+Example 11  |  HTML
+------------------------------------------------------------------------
+Note: Alternatively, place an element with `data-bs-overflow-icon` inside the wrapper, next to the nav. The component will pick it up, use it as the toggle icon, and remove the original element from the DOM. This takes priority over the `moreIcon` option.
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
+  </ul>
+  <svg data-bs-overflow-icon xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492"/>
+  </svg>
+</div>
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > ICON PLACEMENT
+Example 12  |  JS
+------------------------------------------------------------------------
+Note: Use the `iconPlacement` option to position the icon before (`'start'`, the default) or after (`'end'`) the text:
+
+const wrapper = document.querySelector('.nav-overflow')
+new bootstrap.NavOverflow(wrapper, {
+  moreText: 'Menu',
+  iconPlacement: 'end'
+})
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > MINIMUM VISIBLE ITEMS
+Example 13  |  JS
+------------------------------------------------------------------------
+Note: Use the `threshold` option to ensure a minimum number of items remain visible before the overflow kicks in:
+
+const wrapper = document.querySelector('.nav-overflow')
+new bootstrap.NavOverflow(wrapper, {
+  threshold: 3 // Always keep at least 3 items visible
+})
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > COLLAPSE ALL
+Example 14  |  HTML
+------------------------------------------------------------------------
+Note: Use the `collapseBelow` option to force all items into the overflow dropdown when the wrapper’s width is below a threshold. Pass a breakpoint name to resolve the value from `--bs-breakpoint-{name}`, or a number for a direct pixel value.
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow" data-bs-collapse-below="md">
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+CUSTOMIZING THE TOGGLE > COLLAPSE ALL (cont.)
+Example 15  |  JS
+------------------------------------------------------------------------
+Note: Or via JavaScript with a raw pixel value:
+
+const wrapper = document.querySelector('.nav-overflow')
+new bootstrap.NavOverflow(wrapper, {
+  collapseBelow: 768
+})
+
+------------------------------------------------------------------------
+USAGE > VIA DATA ATTRIBUTES
+Example 16  |  HTML
+------------------------------------------------------------------------
+Note: Add `data-bs-toggle="nav-overflow"` to the `.nav-overflow` wrapper to automatically enable the overflow behavior.
+
+<div class="nav-overflow" data-bs-toggle="nav-overflow">
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
+    <!-- More items... -->
+  </ul>
+</div>
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT
+Example 17  |  JS
+------------------------------------------------------------------------
+Note: Initialize the nav overflow component manually. Pass the wrapper, not the nav:
+
+const wrapperElement = document.querySelector('.nav-overflow')
+const navOverflow = new bootstrap.NavOverflow(wrapperElement, {
+  moreText: 'More',
+  threshold: 2
+})
+
+------------------------------------------------------------------------
+USAGE > METHODS
+Example 18  |  JS
+------------------------------------------------------------------------
+Note: All API methods are asynchronous and start a transition. They return to the caller as soon as the transition is started, but before it ends. In addition, a method call on a transitioning component will be ignored. Learn more in our JavaScript docs.
+
+const navOverflow = new bootstrap.NavOverflow('#myNav', {
+  threshold: 2
+})
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 19  |  JS
+------------------------------------------------------------------------
+Note: Bootstrap’s nav overflow component exposes events for hooking into overflow functionality. Both events fire on the `.nav-overflow` wrapper.
+
+const myNav = document.getElementById('myNav') // the .nav-overflow wrapper
+
+myNav.addEventListener('overflow.bs.navoverflow', event => {
+  console.log(`${event.overflowCount} items moved to overflow`)
+  console.log(`${event.visibleCount} items still visible`)
+})
+
+========================================================================
+END OF FILE
+========================================================================

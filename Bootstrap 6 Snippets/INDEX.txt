@@ -1,0 +1,61 @@
+========================================================================
+BOOTSTRAP 6.0 - LOCAL COMPONENT SNIPPETS
+========================================================================
+
+Every Bootstrap 6 component and form page, saved as plain text with
+copy-pasteable, properly indented code blocks.
+
+Docs version: 6.0.0-alpha.1  |  Scraped: 2026-11-03
+
+
+--- COMPONENTS --------------------------------------------------
+  Components/01 Accordion.txt         14 examples
+  Components/02 Alert.txt             15 examples
+  Components/03 Avatar.txt            14 examples
+  Components/04 Badge.txt              9 examples
+  Components/05 Breadcrumb.txt         6 examples
+  Components/06 Button.txt            36 examples
+  Components/07 Button Group.txt      18 examples
+  Components/08 Card.txt              34 examples
+  Components/09 Carousel.txt          19 examples
+  Components/10 Close Button.txt       4 examples
+  Components/11 Collapse.txt           8 examples
+  Components/12 Dialog.txt            22 examples
+  Components/13 Drawer.txt            23 examples
+  Components/14 List Group.txt        17 examples
+  Components/15 Menu.txt              30 examples
+  Components/16 Nav.txt               22 examples
+  Components/17 Navbar.txt            30 examples
+  Components/18 Nav Overflow.txt      19 examples
+  Components/19 Pagination.txt        13 examples
+  Components/20 Placeholder.txt        8 examples
+  Components/21 Popover.txt           16 examples
+  Components/22 Progress.txt          11 examples
+  Components/23 Scrollspy.txt          9 examples
+  Components/24 Spinner.txt           10 examples
+  Components/25 Stepper.txt           15 examples
+  Components/26 Tab.txt               11 examples
+  Components/27 Toasts.txt            21 examples
+  Components/28 Toggler.txt            8 examples
+  Components/29 Tooltip.txt           18 examples
+
+--- FORMS -------------------------------------------------------
+  Forms/01 Forms Overview.txt          4 examples
+  Forms/02 Field.txt                  14 examples
+  Forms/03 Form Control.txt           27 examples
+  Forms/04 Checkbox.txt                8 examples
+  Forms/05 Radio.txt                   7 examples
+  Forms/06 Switch.txt                  7 examples
+  Forms/07 Range.txt                  13 examples
+  Forms/08 Input Group.txt            16 examples
+  Forms/09 Floating Labels.txt        14 examples
+  Forms/10 Form Adorn.txt              7 examples
+  Forms/11 Chips.txt                  15 examples
+  Forms/12 Combobox.txt               14 examples
+  Forms/13 Datepicker.txt             26 examples
+  Forms/14 OTP Input.txt              15 examples
+  Forms/15 Password Strength.txt      15 examples
+  Forms/16 Layout.txt                 10 examples
+  Forms/17 Validation.txt             10 examples
+
+========================================================================

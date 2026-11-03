@@ -1,0 +1,369 @@
+========================================================================
+DATEPICKER
+Bootstrap 6.0  |  Local component reference
+Source: https://getbootstrap.com/docs/6.0/forms/datepicker
+Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
+========================================================================
+
+A flexible calendar and date picker popover with support for input or button toggles, range selection, multiple months, and more.
+
+CONTENTS
+   1. Overview  (example 1)
+   2. Examples > With form field  (example 2)
+   3. Examples > With icon  (example 3)
+   4. Examples > Min & Max dates  (example 4)
+   5. Examples > Multiple dates  (example 5)
+   6. Examples > Multiple months  (example 6)
+   7. Examples > Date range  (example 7)
+   8. Examples > Multi-month date range  (example 8)
+   9. Options > First day of week  (example 9)
+  10. Options > Placement  (example 10)
+  11. Options > Button trigger  (examples 11, 12, 13)
+  12. Options > Inline mode  (examples 14, 15, 16, 17)
+  13. Options > Custom date formatting  (example 18)
+  14. Dark mode > Inherited from parent  (example 19)
+  15. Dark mode > Datepicker-only theme  (example 20)
+  16. Shadow DOM  (example 21)
+  17. CSS > Variables  (example 22)
+  18. Usage > Via data attributes  (example 23)
+  19. Usage > Via JavaScript  (example 24)
+  20. Usage > Advanced configuration  (example 25)
+  21. Usage > Events  (example 26)
+
+------------------------------------------------------------------------
+JAVASCRIPT SETUP  (read this first)
+------------------------------------------------------------------------
+Include the bundle once per page, before </body>:
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+The data API initialises datepickers from `data-bs-toggle="datepicker"`.
+
+Automatic (data API):
+
+<input type="text" class="form-control" data-bs-toggle="datepicker">
+
+Manual initialisation:
+
+const datepicker = new bootstrap.Datepicker(datepickerEl, {
+  selectionMode: 'single',
+  firstWeekday: 1
+})
+
+Reuse an existing instance:
+
+const datepicker = bootstrap.Datepicker.getOrCreateInstance(datepickerEl)
+
+------------------------------------------------------------------------
+OVERVIEW
+Example 1  |  HTML
+------------------------------------------------------------------------
+Note: The Bootstrap Datepicker is a wrapper around Vanilla Calendar Pro that provides a consistent, accessible date selection experience. It supports light/dark themes, input binding, and flexible configuration via data attributes or JavaScript.
+
+<label for="datepicker1" class="form-label">Datepicker</label>
+<input type="text" class="form-control w-12" id="datepicker1" data-bs-toggle="datepicker" autocomplete="off" placeholder="Choose date…">
+
+------------------------------------------------------------------------
+EXAMPLES > WITH FORM FIELD
+Example 2  |  HTML
+------------------------------------------------------------------------
+Note: Use the form field component to layout and wrap your inputs with a label, description, and validation feedback messages in a vertical stack.
+
+<div class="form-field">
+  <label for="datepicker2" class="form-label">Datepicker field</label>
+  <input type="text" class="form-control w-12" id="datepicker2" data-bs-toggle="datepicker" autocomplete="off" placeholder="Choose date…">
+  <div class="form-text">
+    We’ll never share your email with anyone else.
+  </div>
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > WITH ICON
+Example 3  |  HTML
+------------------------------------------------------------------------
+Note: Use the form adorn component to add a calendar icon alongside the datepicker input. When the input is inside a `.form-adorn` wrapper, the calendar automatically positions relative to the wrapper instead of the input.
+
+<label for="datepickerIconStart" class="form-label">Select date</label>
+<div class="form-control form-adorn w-12">
+  <div class="form-adorn-icon">
+    <svg class="bi" width="16" height="16"><use href="#calendar-week" /></svg>
+  </div>
+    <input type="text" class="form-ghost" id="datepickerIconStart" data-bs-toggle="datepicker" autocomplete="off" placeholder="Choose date…">
+</div>
+
+------------------------------------------------------------------------
+EXAMPLES > MIN & MAX DATES
+Example 4  |  HTML
+------------------------------------------------------------------------
+Note: Restrict the selectable date range using `data-bs-date-min` and `data-bs-date-max`.
+
+<label for="datepickerMinMax" class="form-label">Event date (2026 only)</label>
+<input type="text" class="form-control w-12" id="datepickerMinMax" data-bs-toggle="datepicker" autocomplete="off" data-bs-date-min="2026-01-01" data-bs-date-max="2026-12-31" placeholder="Select a date in 2026">
+
+------------------------------------------------------------------------
+EXAMPLES > MULTIPLE DATES
+Example 5  |  HTML
+------------------------------------------------------------------------
+Note: Enable multiple date selection with `data-bs-selection-mode="multiple"`.
+
+<label for="datepicker3" class="form-label">Select multiple dates</label>
+<input type="text" class="form-control" id="datepicker3" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple" placeholder="Select date range…">
+
+------------------------------------------------------------------------
+EXAMPLES > MULTIPLE MONTHS
+Example 6  |  HTML
+------------------------------------------------------------------------
+Note: Display multiple months side-by-side with the `displayMonthsCount` option. This is useful for date range selection where users need to see more context.
+
+<label for="datepickerMultiMonth" class="form-label">Select date range</label>
+<input type="text" class="form-control" id="datepickerMultiMonth" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple-ranged" data-bs-display-months-count="2" placeholder="Select start and end dates">
+
+------------------------------------------------------------------------
+EXAMPLES > DATE RANGE
+Example 7  |  HTML
+------------------------------------------------------------------------
+Note: Select a range of dates with `data-bs-selection-mode="multiple-ranged"`. Use `data-bs-selected-dates` to preselect a date range.
+
+<label for="datepicker4" class="form-label">Select date range</label>
+<input type="text" class="form-control" id="datepicker4" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple-ranged" data-bs-selected-dates='["2026-06-10", "2026-06-18"]' placeholder="Select start and end dates…">
+
+------------------------------------------------------------------------
+EXAMPLES > MULTI-MONTH DATE RANGE
+Example 8  |  HTML
+------------------------------------------------------------------------
+Note: For selecting date ranges that span multiple months, combine `data-bs-selection-mode="multiple-ranged"` with `data-bs-display-months-count="2"` to show two months side-by-side, making it easier for users to select across month boundaries.
+
+<label for="datepickerRangeTwoMonths" class="form-label">Select date range</label>
+<input type="text" class="form-control" id="datepickerRangeTwoMonths" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple-ranged" data-bs-display-months-count="2" data-bs-selected-dates='["2026-06-25", "2026-07-08"]' placeholder="Select start and end dates…">
+
+------------------------------------------------------------------------
+OPTIONS > FIRST DAY OF WEEK
+Example 9  |  HTML
+------------------------------------------------------------------------
+Note: Set the first day of the week (0 = Sunday, 1 = Monday, etc.) with `data-bs-first-weekday`.
+
+<label for="datepicker6" class="form-label">Week starts on Sunday</label>
+<input type="text" class="form-control w-12" id="datepicker6" data-bs-toggle="datepicker" autocomplete="off" data-bs-first-weekday="0" placeholder="Select a date">
+
+------------------------------------------------------------------------
+OPTIONS > PLACEMENT
+Example 10  |  HTML
+------------------------------------------------------------------------
+Note: Control where the calendar appears relative to the input with `data-bs-placement`. Options are `left` (default), `center`, `right`, and `auto`.
+
+<div class="d-flex gap-3">
+  <div>
+    <label for="datepickerLeft" class="form-label">Left aligned</label>
+    <input type="text" class="form-control" id="datepickerLeft" data-bs-toggle="datepicker" autocomplete="off" data-bs-placement="left" placeholder="Left">
+  </div>
+  <div>
+    <label for="datepickerCenter" class="form-label">Center aligned</label>
+    <input type="text" class="form-control" id="datepickerCenter" data-bs-toggle="datepicker" autocomplete="off" data-bs-placement="center" placeholder="Center">
+  </div>
+  <div>
+    <label for="datepickerRight" class="form-label">Right aligned</label>
+    <input type="text" class="form-control" id="datepickerRight" data-bs-toggle="datepicker" autocomplete="off" data-bs-placement="right" placeholder="Right">
+  </div>
+</div>
+
+------------------------------------------------------------------------
+OPTIONS > BUTTON TRIGGER
+Example 11  |  HTML
+------------------------------------------------------------------------
+Note: Use a button instead of an input for use cases like dashboard date filters. Add `data-bs-datepicker-display` to the text element to preserve icons when the date updates.
+
+<button type="button" class="btn-outline theme-secondary" data-bs-toggle="datepicker">
+<svg class="bi" width="16" height="16"><use href="#calendar-week" /></svg>
+<span data-bs-datepicker-display>Select date</span>
+</button>
+
+------------------------------------------------------------------------
+OPTIONS > BUTTON TRIGGER (cont.)
+Example 12  |  HTML
+------------------------------------------------------------------------
+Note: For date range selection (e.g., dashboard time filters), use `data-bs-selection-mode="multiple-ranged"`. The calendar will close after both start and end dates are selected.
+
+<button type="button" class="btn-outline theme-secondary" data-bs-toggle="datepicker" data-bs-selection-mode="multiple-ranged">
+  <svg class="bi" width="16" height="16"><use href="#calendar-week" /></svg>
+  <span data-bs-datepicker-display>Last 7 days</span>
+</button>
+
+------------------------------------------------------------------------
+OPTIONS > BUTTON TRIGGER (cont.)
+Example 13  |  JS
+------------------------------------------------------------------------
+Note: You can also display the selected date in a separate element using the `displayElement` option via JavaScript:
+
+const datepicker = new bootstrap.Datepicker(buttonElement, {
+  selectionMode: 'multiple-ranged',
+  displayElement: '#date-display' // Selector or element
+})
+
+------------------------------------------------------------------------
+OPTIONS > INLINE MODE
+Example 14  |  HTML
+------------------------------------------------------------------------
+Note: Render the calendar inline (always visible, no popup) with `data-bs-inline="true"`. This is useful for embedding a calendar directly in the page.
+
+<div data-bs-toggle="datepicker" data-bs-inline="true"></div>
+
+------------------------------------------------------------------------
+OPTIONS > INLINE MODE (cont.)
+Example 15  |  HTML
+------------------------------------------------------------------------
+Note: Inline datepickers with date range selection:
+
+<div data-bs-toggle="datepicker" data-bs-inline="true" data-bs-selection-mode="multiple-ranged"></div>
+
+------------------------------------------------------------------------
+OPTIONS > INLINE MODE (cont.)
+Example 16  |  HTML
+------------------------------------------------------------------------
+Note: Multiple months inline:
+
+<div data-bs-toggle="datepicker" data-bs-inline="true" data-bs-display-months-count="2"></div>
+
+------------------------------------------------------------------------
+OPTIONS > INLINE MODE (cont.)
+Example 17  |  HTML
+------------------------------------------------------------------------
+Note: To bind to a form field, include a hidden input inside the container. The value will be updated with the selected date(s) in `YYYY-MM-DD` format:
+
+<form>
+<div data-bs-toggle="datepicker" data-bs-inline="true">
+  <input type="hidden" name="selected_date">
+</div>
+<button type="submit" class="btn-solid theme-primary mt-3">Submit</button>
+</form>
+
+------------------------------------------------------------------------
+OPTIONS > CUSTOM DATE FORMATTING
+Example 18  |  JS
+------------------------------------------------------------------------
+Note: Control how dates are displayed using the `dateFormat` option. Pass an `Intl.DateTimeFormat` options object or a custom function.
+
+// Using Intl.DateTimeFormat options
+const datepicker = new bootstrap.Datepicker(element, {
+  dateFormat: { month: 'short', day: 'numeric', year: 'numeric' }
+  // Output: "Dec 23, 2026 – Dec 28, 2026"
+})
+
+// Using a custom function
+const datepicker = new bootstrap.Datepicker(element, {
+  dateFormat: (date, locale) => {
+    return date.toLocaleDateString(locale, { month: 'short', day: 'numeric' })
+  }
+  // Output: "Dec 23 – Dec 28"
+})
+
+------------------------------------------------------------------------
+DARK MODE > INHERITED FROM PARENT
+Example 19  |  HTML
+------------------------------------------------------------------------
+Note: When a parent element has a theme, both the input and calendar popup inherit it:
+
+<div data-bs-theme="dark" class="p-3 bg-body fg-body rounded">
+<label for="datepickerDark" class="form-label">Dark mode datepicker</label>
+<input type="text" class="form-control" id="datepickerDark" data-bs-toggle="datepicker" autocomplete="off" placeholder="Select a date">
+</div>
+
+------------------------------------------------------------------------
+DARK MODE > DATEPICKER-ONLY THEME
+Example 20  |  HTML
+------------------------------------------------------------------------
+Note: Use `data-bs-datepicker-theme` to set the datepicker popup’s theme independently of the input. This is useful when you want a light input with a dark datepicker, or vice versa:
+
+<label for="datepickerTheme" class="form-label">Light input, dark datepicker</label>
+<input type="text" class="form-control w-12" id="datepickerTheme" data-bs-toggle="datepicker" autocomplete="off" data-bs-datepicker-theme="dark" placeholder="Select a date">
+
+------------------------------------------------------------------------
+SHADOW DOM
+Example 21  |  JS
+------------------------------------------------------------------------
+Note: The calendar renders inside a shadow root, which is useful for encapsulated web components. Two things differ from normal use:
+
+const sheet = new CSSStyleSheet()
+sheet.replaceSync(await (await fetch('/path/to/bootstrap.min.css')).text())
+
+const root = host.attachShadow({ mode: 'open' })
+root.adoptedStyleSheets = [sheet]
+root.innerHTML = '<input type="text" id="shadowDatepicker">'
+
+new bootstrap.Datepicker(root.getElementById('shadowDatepicker'))
+
+------------------------------------------------------------------------
+CSS > VARIABLES
+Example 22  |  SCSS
+------------------------------------------------------------------------
+// stylelint-disable-next-line scss/dollar-variable-default
+$datepicker-tokens: defaults(
+  (
+    --datepicker-padding: 1rem,
+    --datepicker-bg: var(--bg-body),
+    --datepicker-color: var(--fg-body),
+    --datepicker-border-color: var(--border-color-translucent),
+    --datepicker-border-width: var(--border-width),
+    --datepicker-border-radius: var(--radius-7),
+    --datepicker-box-shadow: var(--box-shadow),
+    --datepicker-font-size: var(--font-size-sm),
+    --datepicker-min-width: 280px,
+    --datepicker-zindex: var(--z-menu),
+    --datepicker-header-font-weight: 600,
+    --datepicker-weekday-color: var(--fg-3),
+    --datepicker-day-hover-bg: var(--bg-1),
+    --datepicker-day-selected-bg: var(--primary-bg),
+    --datepicker-day-selected-color: var(--primary-contrast),
+    --datepicker-day-today-bg: var(--bg-2),
+    --datepicker-day-today-color: var(--fg-1),
+    --datepicker-day-disabled-color: var(--fg-4),
+  ),
+  $datepicker-tokens
+);
+
+------------------------------------------------------------------------
+USAGE > VIA DATA ATTRIBUTES
+Example 23  |  HTML
+------------------------------------------------------------------------
+Note: Add `data-bs-toggle="datepicker"` to any input element to initialize it as a datepicker.
+
+<input type="text" class="form-control" data-bs-toggle="datepicker">
+
+------------------------------------------------------------------------
+USAGE > VIA JAVASCRIPT
+Example 24  |  JS
+------------------------------------------------------------------------
+Note: Initialize datepickers programmatically:
+
+const datepickerEl = document.getElementById('myDatepicker')
+const datepicker = new bootstrap.Datepicker(datepickerEl, {
+  selectionMode: 'single',
+  firstWeekday: 1
+})
+
+------------------------------------------------------------------------
+USAGE > ADVANCED CONFIGURATION
+Example 25  |  JS
+------------------------------------------------------------------------
+Note: For features not directly exposed by Bootstrap’s options, use `vcpOptions` to pass any Vanilla Calendar Pro setting:
+
+const datepicker = new bootstrap.Datepicker(element, {
+  vcpOptions: {
+    disableDatesPast: true,                     // Disable past dates
+    disableWeekdays: [0, 6],                    // Disable weekends
+    disableDates: ['2026-12-25', '2026-12-26'], // Disable specific dates
+    selectedHolidays: ['2026-01-01']            // Highlight holidays
+  }
+})
+
+------------------------------------------------------------------------
+USAGE > EVENTS
+Example 26  |  JS
+------------------------------------------------------------------------
+const datepickerEl = document.getElementById('myDatepicker')
+datepickerEl.addEventListener('change.bs.datepicker', event => {
+  console.log('Selected dates:', event.dates)
+})
+
+========================================================================
+END OF FILE
+========================================================================
