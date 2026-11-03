@@ -1,0 +1,83 @@
+========================================================================
+OPTIONS
+Bootstrap 6.0  |  Customize reference
+Source: https://getbootstrap.com/docs/6.0/customize/options
+========================================================================
+
+WHAT IT DOES
+Quickly customize Bootstrap with built-in variables to easily toggle global
+CSS preferences for controlling style and behavior.
+
+HOW TO USE IT
+Every page here shows how to change Bootstrap itself: Sass variables, CSS
+custom properties, and compile-time options. You only need this section if you
+are comfortable with Sass; otherwise the defaults just work.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+Customize Bootstrap with our built-in custom variables file and easily toggle
+global CSS preferences with new `$enable-*` Sass variables. Override a
+variable’s value and recompile with `npm run test` as needed.
+
+You can find and customize these variables for key global options in
+Bootstrap’s `scss/_config.scss` file.
+
+`$spacer`
+  Values: `1rem` (default), or any value > 0
+  Description: Specifies the default spacer value to programmatically generate our margin, padding, and gap utilities.
+
+`$enable-rounded`
+  Values: `true` (default) or `false`
+  Description: Enables predefined `border-radius` styles on various components.
+
+`$enable-shadows`
+  Values: `true` or `false` (default)
+  Description: Enables predefined decorative `box-shadow` styles on various components. Does not affect `box-shadow`s used for focus states.
+
+`$enable-gradients`
+  Values: `true` or `false` (default)
+  Description: Enables predefined gradients via `background-image` styles on various components.
+
+`$enable-transitions`
+  Values: `true` (default) or `false`
+  Description: Enables predefined `transition`s on various components.
+
+`$enable-reduced-motion`
+  Values: `true` (default) or `false`
+  Description: Enables the `prefers-reduced-motion` media query, which suppresses certain animations/transitions based on the users’ browser/operating system preferences.
+
+`$enable-grid-classes`
+  Values: `true` (default) or `false`
+  Description: Enables the generation of CSS classes for the grid system (e.g. `.row`, `.md:col-1`, etc.).
+
+`$enable-cssgrid`
+  Values: `true` or `false` (default)
+  Description: Enables the CSS Grid system (e.g. `.grid`, `.md:g-col-1`, etc.).
+
+`$enable-container-classes`
+  Values: `true` (default) or `false`
+  Description: Enables the generation of CSS classes for layout containers.
+
+`$enable-button-pointers`
+  Values: `true` (default) or `false`
+  Description: Add “hand” cursor to non-disabled button elements.
+
+`$enable-negative-margins`
+  Values: `true` or `false` (default)
+  Description: Enables the generation of negative margin utilities.
+
+`$enable-deprecation-messages`
+  Values: `true` (default) or `false`
+  Description: Set to `false` to hide warnings when using any of the deprecated mixins and functions that are planned to be removed in a future major version.
+
+`$enable-smooth-scroll`
+  Values: `true` (default) or `false`
+  Description: Applies `scroll-behavior: smooth` globally, except for users asking for reduced motion through `prefers-reduced-motion` media query
+
+========================================================================
+END OF FILE
+========================================================================

@@ -1,35 +1,56 @@
 ========================================================================
 SWITCH
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/switch
 ========================================================================
 
+WHAT IT DOES
 Custom toggle component built on top of native `<input>` checkbox elements.
 
-CONTENTS
-   1. Basic switch  (example 1)
-   2. With form field  (example 2)
-   3. Theme colors  (example 3)
-   4. Disabled  (example 4)
-   5. Sizes  (example 5)
-   6. Custom width  (example 6)
-   7. CSS > Variables  (example 7)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Basic switch
+  With form field
+  Theme colors
+  Disabled
+  Sizes
+  Custom width
+  CSS
+     - Variables
+
+========================================================================
 BASIC SWITCH
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Switches work by layering an invisible checkbox over the custom switch indicator. This preserves interactivity while giving you a completely customizable layer underneath. Switches also include the `switch` attribute for browsers that support it, which provides haptic feedback when toggling.
+========================================================================
+
+Switches work by layering an invisible checkbox over the custom switch
+indicator. This preserves interactivity while giving you a completely
+customizable layer underneath. Switches also include the `switch` attribute
+for browsers that support it, which provides haptic feedback when toggling.
+
+Example code (HTML):
 
 <div class="switch">
   <input type="checkbox" value="" id="switch" role="switch" switch>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 WITH FORM FIELD
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Wrap the `.switch` in a `.form-field` layout wrapper and add your label. The grid layout places the switch and label side by side.
+========================================================================
+
+Wrap the `.switch` in a `.form-field` layout wrapper and add your label. The
+grid layout places the switch and label side by side.
+
+Example code (HTML):
 
 <div class="form-field">
   <div class="switch">
@@ -38,13 +59,17 @@ Note: Wrap the `.switch` in a `.form-field` layout wrapper and add your label. T
   <label for="switchMdLabel">Default switch</label>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 THEME COLORS
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Modify the appearance of switches by adding the `.theme-{color}` class to the `.switch` element. This will set the checked background and border color to the theme color.
+========================================================================
 
-<div class="form-field">
+Modify the appearance of switches by adding the `.theme-{color}` class to the
+`.switch` element. This will set the checked background and border color to
+the theme color.
+
+Example code (HTML):
+
+ <div class="form-field">
   <div class="switch theme-primary">
     <input type="checkbox" value="" id="switchprimary" role="switch" switch checked>
   </div>
@@ -93,11 +118,14 @@ Note: Modify the appearance of switches by adding the `.theme-{color}` class to 
   <label for="switchsecondary">Example secondary switch</label>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 DISABLED
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Add the `disabled` attribute and the associated `<label>`s are automatically styled to match with a lighter color to help indicate the input’s state.
+========================================================================
+
+Add the `disabled` attribute and the associated `<label>`s are automatically
+styled to match with a lighter color to help indicate the input’s state.
+
+Example code (HTML):
 
 <div class="form-field">
   <div class="switch">
@@ -113,11 +141,13 @@ Note: Add the `disabled` attribute and the associated `<label>`s are automatical
   <label for="switchCheckedDisabledLabel">Disabled checked switch</label>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SIZES
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Add a size modifier class to make your switch appear smaller or larger.
+========================================================================
+
+Add a size modifier class to make your switch appear smaller or larger.
+
+Example code (HTML):
 
 <div class="form-field">
   <div class="switch switch-sm">
@@ -138,22 +168,33 @@ Note: Add a size modifier class to make your switch appear smaller or larger.
   <label for="switchSizeLg">Large switch</label>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 CUSTOM WIDTH
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Customize your switch for any width and indicator size you need by overriding the CSS variables. For example, for a more modern look, you could widen the switch and indicator.
+========================================================================
 
-<div class="form-field">  <div class="switch" style="--bs-switch-width: 2.75rem; --bs-switch-indicator-width: 1.5rem;">
+Customize your switch for any width and indicator size you need by overriding
+the CSS variables. For example, for a more modern look, you could widen the
+switch and indicator.
+
+Example code (HTML):
+
+<div class="form-field">
+  <div class="switch" style="--bs-switch-width: 2.75rem; --bs-switch-indicator-width: 1.5rem;">
     <input type="checkbox" value="" id="switchCustomWidth" role="switch" switch>
   </div>
   <label for="switchCustomWidth">Custom width switch</label>
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 7  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
+
+Example code (SCSS):
+
 // stylelint-disable-next-line scss/dollar-variable-default
 $switch-tokens: defaults(
   (

@@ -1,28 +1,62 @@
 ========================================================================
 PROGRESS
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/progress
 ========================================================================
 
-Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.
+WHAT IT DOES
+Documentation and examples for using Bootstrap custom progress bars featuring
+support for stacked bars, animated backgrounds, and text labels.
 
-CONTENTS
-   1. How it works  (example 1)
-   2. Bar sizing > Width  (example 2)
-   3. Bar sizing > Height  (example 3)
-   4. Labels  (example 4)
-   5. Backgrounds  (examples 5, 6)
-   6. Multiple bars  (example 7)
-   7. Striped  (example 8)
-   8. Animated stripes  (example 9)
-   9. CSS > Variables  (example 10)
-  10. CSS > Keyframes  (example 11)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+  Bar sizing
+     - Width
+     - Height
+  Labels
+     - Long labels
+  Backgrounds
+  Multiple bars
+  Striped
+  Animated stripes
+  CSS
+     - Variables
+     - Keyframes
+
+========================================================================
 HOW IT WORKS
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Progress components are built with two HTML elements, some CSS to set the width, and a few attributes. We don’t use the HTML5 `<progress>` element, ensuring you can stack progress bars, animate them, and place text labels over them.
+========================================================================
+
+Progress components are built with two HTML elements, some CSS to set the
+width, and a few attributes. We don’t use the HTML5 `<progress>` element,
+ensuring you can stack progress bars, animate them, and place text labels over
+them.
+
+- We use the `.progress` as a wrapper to indicate the max value of the
+  progress bar.
+- The `.progress` wrapper also requires a `role="progressbar"` and `aria`
+  attributes to make it accessible, including an accessible name (using
+  `aria-label`, `aria-labelledby`, or similar).
+- We use the inner `.progress-bar` purely for the visual bar and label.
+- The `.progress-bar` requires an inline style, utility class, or custom CSS
+  to set its width.
+- We provide a special `.progress-stacked` class to create multiple/stacked
+  progress bars.
+
+Put that all together, and you have the following examples.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar" style="width: 0%"></div>
@@ -40,21 +74,32 @@ Note: Progress components are built with two HTML elements, some CSS to set the 
   <div class="progress-bar" style="width: 100%"></div>
 </div>
 
+========================================================================
+BAR SIZING
+========================================================================
+
 ------------------------------------------------------------------------
-BAR SIZING > WIDTH
-Example 2  |  HTML
+WIDTH
 ------------------------------------------------------------------------
-Note: Bootstrap provides a handful of utilities for setting width. Depending on your needs, these may help with quickly configuring the width of the `.progress-bar`.
+
+Bootstrap provides a handful of utilities for setting width. Depending on your
+needs, these may help with quickly configuring the width of the
+`.progress-bar`.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar w-75"></div>
 </div>
 
 ------------------------------------------------------------------------
-BAR SIZING > HEIGHT
-Example 3  |  HTML
+HEIGHT
 ------------------------------------------------------------------------
-Note: You only set a `height` value on the `.progress` container, so if you change that value, the inner `.progress-bar` will automatically resize accordingly.
+
+You only set a `height` value on the `.progress` container, so if you change
+that value, the inner `.progress-bar` will automatically resize accordingly.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 1px">
   <div class="progress-bar" style="width: 25%"></div>
@@ -63,21 +108,45 @@ Note: You only set a `height` value on the `.progress` container, so if you chan
   <div class="progress-bar" style="width: 25%"></div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 LABELS
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Add labels to your progress bars by placing text within the `.progress-bar`.
+========================================================================
+
+Add labels to your progress bars by placing text within the `.progress-bar`.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar" style="width: 25%">25%</div>
 </div>
 
 ------------------------------------------------------------------------
-BACKGROUNDS
-Example 5  |  HTML
+LONG LABELS
 ------------------------------------------------------------------------
-Note: Use background utility classes to change the appearance of individual progress bars.
+
+Note that by default, the content inside the `.progress-bar` is controlled
+with `overflow: hidden`, so it doesn’t bleed out of the bar. If your progress
+bar is shorter than its label, the content will be capped and may become
+unreadable. To change this behavior, you can use `.overflow-visible` from the
+overflow utilities.
+
+WARNING:
+  Labels longer than the progress bar within may not be fully accessible using
+  this method because it relies on the text color having the correct contrast
+  ratio with both the `.progress` and `.progress-bar` background colors. Use
+  caution when implementing this example.
+
+  If the text can overlap the progress bar, we often recommend displaying the
+  label outside of the progress bar for better accessibility.
+
+========================================================================
+BACKGROUNDS
+========================================================================
+
+Use background utility classes to change the appearance of individual progress
+bars.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar bg-success" style="width: 25%"></div>
@@ -92,11 +161,20 @@ Note: Use background utility classes to change the appearance of individual prog
   <div class="progress-bar bg-danger" style="width: 100%"></div>
 </div>
 
-------------------------------------------------------------------------
-BACKGROUNDS (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Accessibility Tip: Using color to convey meaningUsing color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies like screen readers. Please ensure the meaning is obvious from the content itself (e.g., the visible text with a sufficient color contrast) or is included through alternative means, such as additional text hidden with the `.visually-hidden` class.
+Accessibility Tip: Using color to convey meaning
+
+Using color to add meaning only provides a visual indication, which will not
+be conveyed to users of assistive technologies like screen readers. Please
+ensure the meaning is obvious from the content itself (e.g., the visible text
+with a sufficient color contrast) or is included through alternative means,
+such as additional text hidden with the `.visually-hidden` class.
+
+If you’re adding labels to progress bars with a custom background color, make
+sure to also set an appropriate text color, so the labels remain readable and
+have sufficient contrast. We recommend using the theme contrast helper
+classes.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar theme-success" style="width: 25%">25%</div>
@@ -111,11 +189,16 @@ Note: Accessibility Tip: Using color to convey meaningUsing color to add meaning
   <div class="progress-bar theme-danger" style="width: 100%">100%</div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 MULTIPLE BARS
-Example 7  |  HTML
-------------------------------------------------------------------------
-Note: You can include multiple progress components inside a container with `.progress-stacked` to create a single stacked progress bar. Note that in this case, the styling to set the visual width of the progress bar must be applied to the `.progress` elements, rather than the `.progress-bar`s.
+========================================================================
+
+You can include multiple progress components inside a container with
+`.progress-stacked` to create a single stacked progress bar. Note that in this
+case, the styling to set the visual width of the progress bar must be applied
+to the `.progress` elements, rather than the `.progress-bar`s.
+
+Example code (HTML):
 
 <div class="progress-stacked">
   <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
@@ -129,11 +212,14 @@ Note: You can include multiple progress components inside a container with `.pro
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 STRIPED
-Example 8  |  HTML
-------------------------------------------------------------------------
-Note: Add `.progress-bar-striped` to any `.progress-bar` to apply a stripe via CSS gradient over the progress bar’s background color.
+========================================================================
+
+Add `.progress-bar-striped` to any `.progress-bar` to apply a stripe via CSS
+gradient over the progress bar’s background color.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Default striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar progress-bar-striped" style="width: 10%"></div>
@@ -151,21 +237,32 @@ Note: Add `.progress-bar-striped` to any `.progress-bar` to apply a stripe via C
   <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%"></div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 ANIMATED STRIPES
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: The striped gradient can also be animated. Add `.progress-bar-animated` to `.progress-bar` to animate the stripes right to left via CSS3 animations.
+========================================================================
+
+The striped gradient can also be animated. Add `.progress-bar-animated` to
+`.progress-bar` to animate the stripes right to left via CSS3 animations.
+
+Example code (HTML):
 
 <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 10  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Progress use local CSS variables on `.progress` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Progress use local CSS variables on `.progress` for real-time customization.
+Values for the CSS variables are generated from Sass maps unique to each
+component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $progress-tokens: defaults(
@@ -184,10 +281,13 @@ $progress-tokens: defaults(
 );
 
 ------------------------------------------------------------------------
-CSS > KEYFRAMES
-Example 11  |  SCSS
+KEYFRAMES
 ------------------------------------------------------------------------
-Note: Used for creating the CSS animations for `.progress-bar-animated`. Included in `scss/_progress-bar.scss`.
+
+Used for creating the CSS animations for `.progress-bar-animated`. Included in
+`scss/_progress-bar.scss`.
+
+Example code (SCSS):
 
 @if $enable-transitions {
   @keyframes progress-bar-stripes {

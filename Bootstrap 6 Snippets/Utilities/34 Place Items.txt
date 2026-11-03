@@ -1,0 +1,115 @@
+========================================================================
+PLACE ITEMS
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/place-items
+========================================================================
+
+WHAT IT DOES
+Use place-items utilities to control the alignment of grid items within their
+grid areas on both the block and inline axes simultaneously.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Basic usage
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class                 Styles
+--------------------  ---------------------
+.place-items-start    place-items: start;
+.place-items-end      place-items: end;
+.place-items-center   place-items: center;
+.place-items-stretch  place-items: stretch;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Use `place-items` utilities on CSS Grid containers as a shorthand to set both
+`align-items` and `justify-items` at once. This property controls how grid
+items are positioned within their grid areas on both axes.
+
+========================================================================
+BASIC USAGE
+========================================================================
+
+Use `place-items` utilities to control the alignment of grid items. Choose
+from `start`, `end`, `center`, or `stretch` (browser default).
+
+Example code (HTML):
+
+<div class="d-grid place-items-start">...</div>
+<div class="d-grid place-items-end">...</div>
+<div class="d-grid place-items-center">...</div>
+<div class="d-grid place-items-stretch">...</div>
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for `place-items`.
+
+- `.place-items-start`
+- `.place-items-end`
+- `.place-items-center`
+- `.place-items-stretch`
+- `.sm:place-items-start`
+- `.sm:place-items-end`
+- `.sm:place-items-center`
+- `.sm:place-items-stretch`
+- `.md:place-items-start`
+- `.md:place-items-end`
+- `.md:place-items-center`
+- `.md:place-items-stretch`
+- `.lg:place-items-start`
+- `.lg:place-items-end`
+- `.lg:place-items-center`
+- `.lg:place-items-stretch`
+- `.xl:place-items-start`
+- `.xl:place-items-end`
+- `.xl:place-items-center`
+- `.xl:place-items-stretch`
+- `.2xl:place-items-start`
+- `.2xl:place-items-end`
+- `.2xl:place-items-center`
+- `.2xl:place-items-stretch`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Place items utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"place-items": (
+  responsive: true,
+  property: place-items,
+  values: (
+    start: start,
+    end: end,
+    center: center,
+    stretch: stretch,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

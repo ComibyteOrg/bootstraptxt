@@ -1,0 +1,177 @@
+========================================================================
+ALIGN CONTENT
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/align-content
+========================================================================
+
+WHAT IT DOES
+Use align-content utilities to align flex items together on the cross axis.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Basic usage
+     - Start
+     - End
+     - Center
+     - Between
+     - Around
+     - Stretch
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class                   Styles
+----------------------  -----------------------------
+.align-content-start    align-content: flex-start;
+.align-content-end      align-content: flex-end;
+.align-content-center   align-content: center;
+.align-content-between  align-content: space-between;
+.align-content-around   align-content: space-around;
+.align-content-stretch  align-content: stretch;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Use `align-content` utilities on flexbox containers to align flex items
+together on the cross axis. Choose from `start` (browser default), `end`,
+`center`, `between`, `around`, or `stretch`. To demonstrate these utilities,
+we’ve enforced `flex-wrap: wrap` and increased the number of flex items.
+
+Heads up! This property has no effect on single rows of flex items.
+
+========================================================================
+BASIC USAGE
+========================================================================
+
+------------------------------------------------------------------------
+START
+------------------------------------------------------------------------
+
+Example code (HTML):
+
+<div class="d-flex align-content-start flex-wrap">...</div>
+
+------------------------------------------------------------------------
+END
+------------------------------------------------------------------------
+
+Example code (HTML):
+
+<div class="d-flex align-content-end flex-wrap">...</div>
+
+------------------------------------------------------------------------
+CENTER
+------------------------------------------------------------------------
+
+Example code (HTML):
+
+<div class="d-flex align-content-center flex-wrap">...</div>
+
+------------------------------------------------------------------------
+BETWEEN
+------------------------------------------------------------------------
+
+Example code (HTML):
+
+<div class="d-flex align-content-between flex-wrap">...</div>
+
+------------------------------------------------------------------------
+AROUND
+------------------------------------------------------------------------
+
+Example code (HTML):
+
+<div class="d-flex align-content-around flex-wrap">...</div>
+
+------------------------------------------------------------------------
+STRETCH
+------------------------------------------------------------------------
+
+Example code (HTML):
+
+<div class="d-flex align-content-stretch flex-wrap">...</div>
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for `align-content`.
+
+- `.align-content-start`
+- `.align-content-end`
+- `.align-content-center`
+- `.align-content-between`
+- `.align-content-around`
+- `.align-content-stretch`
+- `.sm:align-content-start`
+- `.sm:align-content-end`
+- `.sm:align-content-center`
+- `.sm:align-content-between`
+- `.sm:align-content-around`
+- `.sm:align-content-stretch`
+- `.md:align-content-start`
+- `.md:align-content-end`
+- `.md:align-content-center`
+- `.md:align-content-between`
+- `.md:align-content-around`
+- `.md:align-content-stretch`
+- `.lg:align-content-start`
+- `.lg:align-content-end`
+- `.lg:align-content-center`
+- `.lg:align-content-between`
+- `.lg:align-content-around`
+- `.lg:align-content-stretch`
+- `.xl:align-content-start`
+- `.xl:align-content-end`
+- `.xl:align-content-center`
+- `.xl:align-content-between`
+- `.xl:align-content-around`
+- `.xl:align-content-stretch`
+- `.2xl:align-content-start`
+- `.2xl:align-content-end`
+- `.2xl:align-content-center`
+- `.2xl:align-content-between`
+- `.2xl:align-content-around`
+- `.2xl:align-content-stretch`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Align content utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"align-content": (
+  responsive: true,
+  property: align-content,
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    stretch: stretch,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

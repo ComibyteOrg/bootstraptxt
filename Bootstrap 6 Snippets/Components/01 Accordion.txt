@@ -1,30 +1,58 @@
 ========================================================================
 ACCORDION
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/accordion
 ========================================================================
 
-Build vertically collapsing accordions with native HTML `<details>` and `<summary>` elements.
+WHAT IT DOES
+Build vertically collapsing accordions with native HTML `<details>` and
+`<summary>` elements.
 
-CONTENTS
-   1. Example  (example 1)
-   2. Variants  (example 2)
-   3. Small  (example 3)
-   4. Flush  (example 4)
-   5. Gap  (examples 5, 6)
-   6. Always open  (example 7)
-   7. Expand & Collapse all  (examples 8, 9)
-   8. Nested  (example 10)
-   9. CSS > Variables  (example 11)
-  10. Customize > Custom icons  (example 12)
-  11. Customize > Events  (example 13)
-  12. Customize > Programmatic control  (example 14)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Example
+  Variants
+  Small
+  Flush
+  Gap
+  Always open
+  Expand & Collapse all
+  Nested
+  Accessibility
+  CSS
+     - Variables
+  Customize
+     - Custom icons
+     - Events
+     - Programmatic control
+
+The accordion uses native HTML `<details>` and `<summary>` elements,
+leveraging the `name` attribute to create exclusive accordions where only one
+item can be open at a time. This approach requires no JavaScript for core
+functionality and is fully accessible by default.
+
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Click the accordions below to expand/collapse the accordion content. Each `<details>` element shares the same `name` attribute value, creating an exclusive accordion where opening one item automatically closes the others.
+========================================================================
+
+Click the accordions below to expand/collapse the accordion content. Each
+`<details>` element shares the same `name` attribute value, creating an
+exclusive accordion where opening one item automatically closes the others.
+
+To render an accordion that’s expanded by default, add the `open` attribute to
+the `<details>` element.
+
+Example code (HTML):
 
 <div class="accordion">
   <details class="accordion-item" name="accordionExample" open>
@@ -56,69 +84,101 @@ Note: Click the accordions below to expand/collapse the accordion content. Each 
   </details>
 </div>
 
-------------------------------------------------------------------------
+The panel height animation needs `interpolate-size`. Browsers without it open
+and close the panel at once. See Transitions to change the timing or to remove
+it.
+
+NOTE:
+  The animation effect of this component is dependent on the
+  `prefers-reduced-motion` media query. See the reduced motion section of our
+  accessibility documentation.
+
+========================================================================
 VARIANTS
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Use the contextual `.theme-{color}` classes to apply a semantic theme color to open accordion items.
+========================================================================
+
+Use the contextual `.theme-{color}` classes to apply a semantic theme color to
+open accordion items.
+
+Example code (HTML):
 
 <div class="accordion theme-primary">
   <!-- Accordion items here -->
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SMALL
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Add `.accordion-sm` to the `.accordion` for a more compact accordion with tighter padding, a smaller border radius, and a smaller font size.
+========================================================================
+
+Add `.accordion-sm` to the `.accordion` for a more compact accordion with
+tighter padding, a smaller border radius, and a smaller font size.
+
+Example code (HTML):
 
 <div class="accordion accordion-sm">
   <!-- Accordion items here -->
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 FLUSH
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Add `.accordion-flush` to remove some borders and rounded corners to render accordions edge-to-edge with their parent container.
+========================================================================
+
+Add `.accordion-flush` to remove some borders and rounded corners to render
+accordions edge-to-edge with their parent container.
+
+Example code (HTML):
 
 <div class="accordion accordion-flush">
   <!-- Accordion items here -->
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 GAP
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Add `.accordion-gap` to put space between accordion items. Each item is a separate rounded card.
+========================================================================
+
+Add `.accordion-gap` to put space between accordion items. Each item is a
+separate rounded card.
+
+The gap lives on the accordion, not the panel. The panel still animates only
+its `block-size`, so the open and close transition stays smooth.
+
+Example code (HTML):
 
 <div class="accordion accordion-gap">
   <!-- Accordion items here -->
 </div>
 
-------------------------------------------------------------------------
-GAP (cont.)
-Example 6  |  SCSS
-------------------------------------------------------------------------
+Example code (SCSS):
+
 --accordion-gap: var(--spacer-2);
 
-------------------------------------------------------------------------
+========================================================================
 ALWAYS OPEN
-Example 7  |  HTML
-------------------------------------------------------------------------
-Note: Omit the `name` attribute on each `<details>` element to allow multiple accordion items to be open simultaneously.
+========================================================================
 
-<div class="accordion">  <details class="accordion-item" open>
+Omit the `name` attribute on each `<details>` element to allow multiple
+accordion items to be open simultaneously.
+
+Example code (HTML):
+
+<div class="accordion">
+  <details class="accordion-item" open>
     <!-- No name attribute, so items open independently -->
   </details>
   <!-- More accordion items here -->
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 EXPAND & COLLAPSE ALL
-Example 8  |  HTML
-------------------------------------------------------------------------
-Note: To enable expanding and collapsing of all accordion items at once, remove the `name` attribute from each `<details>` element using JavaScript. This allows multiple accordion items to be open simultaneously. Restore the `name` attribute when you collapse the items again if you want exclusive behavior back.
+========================================================================
+
+To enable expanding and collapsing of all accordion items at once, remove the
+`name` attribute from each `<details>` element using JavaScript. This allows
+multiple accordion items to be open simultaneously. Restore the `name`
+attribute when you collapse the items again if you want exclusive behavior
+back.
+
+Example code (HTML):
 
 <button type="button" class="btn-subtle btn-sm theme-secondary mb-3" id="btnAccordionToggleAll" aria-expanded="false">Expand all</button>
 
@@ -152,11 +212,9 @@ Note: To enable expanding and collapsing of all accordion items at once, remove 
   </details>
 </div>
 
-------------------------------------------------------------------------
-EXPAND & COLLAPSE ALL (cont.)
-Example 9  |  JS
-------------------------------------------------------------------------
-Note: We use the following JavaScript for this demo:
+We use the following JavaScript for this demo:
+
+Example code (JS):
 
 const accordion = document.getElementById('accordionExpandCollapse')
 const toggleBtn = document.getElementById('btnAccordionToggleAll')
@@ -183,11 +241,15 @@ if (accordion && toggleBtn) {
   })
 }
 
-------------------------------------------------------------------------
+========================================================================
 NESTED
-Example 10  |  HTML
-------------------------------------------------------------------------
-Note: Accordions can be nested inside each other by placing a full `.accordion` within an `.accordion-body`. Use unique `name` attribute values for each level so the parent and child accordions operate independently.
+========================================================================
+
+Accordions can be nested inside each other by placing a full `.accordion`
+within an `.accordion-body`. Use unique `name` attribute values for each level
+so the parent and child accordions operate independently.
+
+Example code (HTML):
 
 <div class="accordion">
   <details class="accordion-item" name="accordionNested" open>
@@ -248,11 +310,31 @@ Note: Accordions can be nested inside each other by placing a full `.accordion` 
   </details>
 </div>
 
+========================================================================
+ACCESSIBILITY
+========================================================================
+
+The native `<details>` and `<summary>` elements provide built-in
+accessibility:
+
+- Screen readers announce the expanded/collapsed state automatically
+- Keyboard navigation works out of the box (Enter/Space to toggle)
+- The `<summary>` element is focusable by default
+- No ARIA attributes are required as the semantics are built into the elements
+
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 11  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Accordions use local CSS variables on `.accordion` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Accordions use local CSS variables on `.accordion` for real-time
+customization. Values for the CSS variables are generated from Sass maps
+unique to each component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $accordion-tokens: defaults(
@@ -282,11 +364,18 @@ $accordion-tokens: defaults(
   $accordion-tokens
 );
 
+========================================================================
+CUSTOMIZE
+========================================================================
+
 ------------------------------------------------------------------------
-CUSTOMIZE > CUSTOM ICONS
-Example 12  |  HTML
+CUSTOM ICONS
 ------------------------------------------------------------------------
-Note: The accordion uses an inline SVG for the chevron icon. You can customize this by replacing the SVG within the `.accordion-header`:
+
+The accordion uses an inline SVG for the chevron icon. You can customize this
+by replacing the SVG within the `.accordion-header`:
+
+Example code (HTML):
 
 <summary class="accordion-header">
   Accordion Title
@@ -295,11 +384,16 @@ Note: The accordion uses an inline SVG for the chevron icon. You can customize t
   </svg>
 </summary>
 
+The `.accordion-icon` class handles positioning and the rotation animation
+when the accordion opens.
+
 ------------------------------------------------------------------------
-CUSTOMIZE > EVENTS
-Example 13  |  JS
+EVENTS
 ------------------------------------------------------------------------
-Note: You can listen for the native `toggle` event on `<details>` elements:
+
+You can listen for the native `toggle` event on `<details>` elements:
+
+Example code (JS):
 
 const accordionItem = document.querySelector('.accordion-item')
 accordionItem.addEventListener('toggle', event => {
@@ -311,10 +405,12 @@ accordionItem.addEventListener('toggle', event => {
 })
 
 ------------------------------------------------------------------------
-CUSTOMIZE > PROGRAMMATIC CONTROL
-Example 14  |  JS
+PROGRAMMATIC CONTROL
 ------------------------------------------------------------------------
-Note: Toggle accordion items programmatically using the `open` property:
+
+Toggle accordion items programmatically using the `open` property:
+
+Example code (JS):
 
 const accordionItem = document.querySelector('.accordion-item')
 

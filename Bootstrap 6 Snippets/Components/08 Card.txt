@@ -1,38 +1,57 @@
 ========================================================================
 CARDS
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/card
 ========================================================================
 
-Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
+WHAT IT DOES
+Bootstrap’s cards provide a flexible and extensible content container with
+multiple variants and options.
 
-CONTENTS
-   1. Card title  (example 1)
-   2. Content types > Body  (examples 2, 3)
-   3. Content types > Titles, text, and links > Example card title  (example 4)
-   4. Content types > Images  (examples 5, 6)
-   5. Content types > List groups  (examples 7, 8, 9)
-   6. Content types > Kitchen sink > Card title  (example 10)
-   7. Content types > Header and footer > Special title treatment  (examples 11, 12, 13, 14)
-   8. Width > Grid > Card title  (example 15)
-   9. Width > Utilities > Card title  (example 16)
-  10. Width > Custom CSS > Card title  (example 17)
-  11. Navigation  (examples 18, 19)
-  12. Images > Image caps > Card title  (example 20)
-  13. Images > Image overlays > Card title  (example 21)
-  14. Card row > Card title  (examples 22, 23)
-  15. Theme variants > Card title  (examples 24, 25)
-  16. Translucent cards > Translucent card  (example 26)
-  17. Translucent cards > Card with header  (example 27)
-  18. Card layout > Card groups > Card title  (examples 28, 29)
-  19. Card layout > Grid cards > Card title  (examples 30, 31, 32, 33)
-  20. CSS > Variables  (example 34)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
-CARD TITLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Some quick example text to build on the card title and make up the bulk of the card’s content.
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+  Content types
+     - Body
+     - Titles, text, and links
+     - Images
+     - List groups
+     - Kitchen sink
+     - Header and footer
+  Width
+     - Grid
+     - Utilities
+     - Custom CSS
+  Navigation
+  Images
+     - Image caps
+     - Image overlays
+  Card row
+  Theme variants
+  Translucent cards
+  Card layout
+     - Card groups
+     - Grid cards
+  CSS
+     - Variables
+
+Cards are flexible and extensible content containers with support for headers
+and footers, a wide variety of content, contextual background colors, and
+additional display options. Cards have no fixed width to start, so they’ll
+naturally fill the width of their parent element, or slot into your grid
+columns.
+
+Example code (HTML):
 
 <section class="card" style="max-width: 320px">
   <img src="..." class="card-img-top" alt="...">
@@ -43,11 +62,37 @@ Note: Some quick example text to build on the card title and make up the bulk of
   </div>
 </section>
 
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Cards are built with as little markup and styles as possible, but still manage
+to deliver a ton of control and customization.
+
+- Cards are flexbox containers, so they offer easy alignment via flexbox
+  utilities and grid column classes.
+- `.card` has no default padding, you need `.card-body` for that. Use it as a
+  modifier class or a child element alongside headers, footers, images, and
+  more. This allows greater flexibility with the least amount of overhead.
+- Cards have no `margin` by default. Use margin utilities or gap utilities as
+  needed.
+- Cards can contain text, images, lists, and most other HTML.
+- Choose semantic HTML that fits the content. We use `<div>`s for simplicity's
+  sake in our documentation, but you can also use `<section>`, `<article>`,
+  etc.
+
+========================================================================
+CONTENT TYPES
+========================================================================
+
 ------------------------------------------------------------------------
-CONTENT TYPES > BODY
-Example 2  |  HTML
+BODY
 ------------------------------------------------------------------------
-Note: The building block of a card is the `.card-body`. Use it whenever you need a padded section within a card.
+
+The building block of a card is the `.card-body`. Use it whenever you need a
+padded section within a card.
+
+Example code (HTML):
 
 <div class="card">
   <div class="card-body">
@@ -55,21 +100,29 @@ Note: The building block of a card is the `.card-body`. Use it whenever you need
   </div>
 </div>
 
-------------------------------------------------------------------------
-CONTENT TYPES > BODY (cont.)
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: For simple cards, you can use the `.card-body` class directly on the card element.
+For simple cards, you can use the `.card-body` class directly on the card
+element.
+
+Example code (HTML):
 
 <div class="card card-body">
   This is some text within a card body.
 </div>
 
 ------------------------------------------------------------------------
-CONTENT TYPES > TITLES, TEXT, AND LINKS > EXAMPLE CARD TITLE
-Example 4  |  HTML
+TITLES, TEXT, AND LINKS
 ------------------------------------------------------------------------
-Note: With a card subtitle
+
+Card bodies arrange their direct children in a column and apply a consistent
+gap. Use these optional classes as content hooks.
+
+- For a title, use `.card-title`.
+- For a subtitle, use `.card-subtitle`. It reduces the gap above the subtitle.
+- For text, use `.card-text`.
+
+Use type and color utilities as needed. Links need no card-specific class.
+
+Example code (HTML):
 
 <div class="card" style="max-width: 320px;">
   <div class="card-body">
@@ -81,10 +134,12 @@ Note: With a card subtitle
 </div>
 
 ------------------------------------------------------------------------
-CONTENT TYPES > IMAGES
-Example 5  |  HTML
+IMAGES
 ------------------------------------------------------------------------
-Note: Place images anywhere in a card and style as you like.
+
+Place images anywhere in a card and style as you like.
+
+Example code (HTML):
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">
@@ -95,11 +150,10 @@ Note: Place images anywhere in a card and style as you like.
   </div>
 </div>
 
-------------------------------------------------------------------------
-CONTENT TYPES > IMAGES (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Use `.card-img-top` and `.card-img-bottom` to round the top and bottom corners of the image.
+Use `.card-img-top` and `.card-img-bottom` to round the top and bottom corners
+of the image.
+
+Example code (HTML):
 
 <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
@@ -115,10 +169,14 @@ Note: Use `.card-img-top` and `.card-img-bottom` to round the top and bottom cor
 </div>
 
 ------------------------------------------------------------------------
-CONTENT TYPES > LIST GROUPS
-Example 7  |  HTML
+LIST GROUPS
 ------------------------------------------------------------------------
-Note: When your card only contains a list group—no header, footer, or body—use a `.list-group` on its own. A card already draws an outer border, so a default list group inside a card would double that border.
+
+When your card only contains a list group—no header, footer, or body—use a
+`.list-group` on its own. A card already draws an outer border, so a default
+list group inside a card would double that border.
+
+Example code (HTML):
 
 <ul class="list-group" style="width: 18rem;">
   <li class="list-group-item">An item</li>
@@ -126,27 +184,26 @@ Note: When your card only contains a list group—no header, footer, or body—u
   <li class="list-group-item">A third item</li>
 </ul>
 
-------------------------------------------------------------------------
-CONTENT TYPES > LIST GROUPS (cont.)
-Example 8  |  HTML
-------------------------------------------------------------------------
-Note: When you mix a list group with other card sub-components, add `.list-group-flush` to drop the list’s own outer border.
+When you mix a list group with other card sub-components, add
+`.list-group-flush` to drop the list’s own outer border.
+
+Example code (HTML):
 
 <div class="card" style="width: 18rem;">
   <div class="card-header">
     Featured
-  </div>  <ul class="list-group list-group-flush">
+  </div>
+  <ul class="list-group list-group-flush">
     <li class="list-group-item">An item</li>
     <li class="list-group-item">A second item</li>
     <li class="list-group-item">A third item</li>
   </ul>
 </div>
 
-------------------------------------------------------------------------
-CONTENT TYPES > LIST GROUPS (cont.)
-Example 9  |  HTML
-------------------------------------------------------------------------
-<div class="card" style="width: 18rem;">  <ul class="list-group list-group-flush">
+Example code (HTML):
+
+<div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
     <li class="list-group-item">An item</li>
     <li class="list-group-item">A second item</li>
     <li class="list-group-item">A third item</li>
@@ -157,10 +214,14 @@ Example 9  |  HTML
 </div>
 
 ------------------------------------------------------------------------
-CONTENT TYPES > KITCHEN SINK > CARD TITLE
-Example 10  |  HTML
+KITCHEN SINK
 ------------------------------------------------------------------------
-Note: Some quick example text to build on the card title and make up the bulk of the card’s content.
+
+Mix and match multiple content types to create the card you need, or throw
+everything in there. Shown below are image styles, blocks, text styles, and a
+list group—all wrapped in a fixed-width card.
+
+Example code (HTML):
 
 <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
@@ -180,10 +241,12 @@ Note: Some quick example text to build on the card title and make up the bulk of
 </div>
 
 ------------------------------------------------------------------------
-CONTENT TYPES > HEADER AND FOOTER > SPECIAL TITLE TREATMENT
-Example 11  |  HTML
+HEADER AND FOOTER
 ------------------------------------------------------------------------
-Note: With supporting text below as a natural lead-in to additional content.
+
+Add an optional header and/or footer within a card.
+
+Example code (HTML):
 
 <div class="card">
   <div class="card-header">
@@ -196,11 +259,9 @@ Note: With supporting text below as a natural lead-in to additional content.
   </div>
 </div>
 
-------------------------------------------------------------------------
-CONTENT TYPES > HEADER AND FOOTER > SPECIAL TITLE TREATMENT (cont.)
-Example 12  |  HTML
-------------------------------------------------------------------------
-Note: With supporting text below as a natural lead-in to additional content.
+Card headers can be styled by adding `.card-header` to `<h*>` elements.
+
+Example code (HTML):
 
 <div class="card">
   <h5 class="card-header">Featured</h5>
@@ -211,11 +272,7 @@ Note: With supporting text below as a natural lead-in to additional content.
   </div>
 </div>
 
-------------------------------------------------------------------------
-CONTENT TYPES > HEADER AND FOOTER > SPECIAL TITLE TREATMENT (cont.)
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: A well-known quote, contained in a blockquote element.
+Example code (HTML):
 
 <div class="card">
   <div class="card-header">
@@ -233,11 +290,7 @@ Note: A well-known quote, contained in a blockquote element.
   </div>
 </div>
 
-------------------------------------------------------------------------
-CONTENT TYPES > HEADER AND FOOTER > SPECIAL TITLE TREATMENT (cont.)
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: With supporting text below as a natural lead-in to additional content.
+Example code (HTML):
 
 <div class="card text-center">
   <div class="card-header">
@@ -245,18 +298,29 @@ Note: With supporting text below as a natural lead-in to additional content.
   </div>
   <div class="card-body">
     <h4 class="card-title">Special title treatment</h4>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>    <a href="#" class="btn-solid theme-primary mx-auto">Go somewhere</a>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn-solid theme-primary mx-auto">Go somewhere</a>
   </div>
   <div class="card-footer fg-2">
     2 days ago
   </div>
 </div>
 
+========================================================================
+WIDTH
+========================================================================
+
+Cards assume no specific `width` to start, so they’ll be 100% wide unless
+otherwise stated. You can change this as needed with custom CSS, grid classes,
+grid Sass mixins, or utilities.
+
 ------------------------------------------------------------------------
-WIDTH > GRID > CARD TITLE
-Example 15  |  HTML
+GRID
 ------------------------------------------------------------------------
-Note: With supporting text below as a natural lead-in to additional content.
+
+Using the grid, wrap cards in columns and rows as needed.
+
+Example code (HTML):
 
 <div class="row">
   <div class="sm:col-6 mb-3 sm:mb-0">
@@ -280,10 +344,12 @@ Note: With supporting text below as a natural lead-in to additional content.
 </div>
 
 ------------------------------------------------------------------------
-WIDTH > UTILITIES > CARD TITLE
-Example 16  |  HTML
+UTILITIES
 ------------------------------------------------------------------------
-Note: With supporting text below as a natural lead-in to additional content.
+
+Use our handful of available sizing utilities to quickly set a card’s width.
+
+Example code (HTML):
 
 <div class="card w-75 mb-3">
   <div class="card-body">
@@ -302,10 +368,12 @@ Note: With supporting text below as a natural lead-in to additional content.
 </div>
 
 ------------------------------------------------------------------------
-WIDTH > CUSTOM CSS > CARD TITLE
-Example 17  |  HTML
+CUSTOM CSS
 ------------------------------------------------------------------------
-Note: With supporting text below as a natural lead-in to additional content.
+
+Use custom CSS in your stylesheets or as inline styles to set a width.
+
+Example code (HTML):
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">
@@ -315,11 +383,14 @@ Note: With supporting text below as a natural lead-in to additional content.
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 NAVIGATION
-Example 18  |  HTML
-------------------------------------------------------------------------
-Note: Add some navigation to a card’s header (or block) with Bootstrap’s nav components.
+========================================================================
+
+Add some navigation to a card’s header (or block) with Bootstrap’s nav
+components.
+
+Example code (HTML):
 
 <div class="card text-center">
   <div class="card-header">
@@ -342,11 +413,9 @@ Note: Add some navigation to a card’s header (or block) with Bootstrap’s nav
   </div>
 </div>
 
-------------------------------------------------------------------------
-NAVIGATION (cont.)
-Example 19  |  HTML
-------------------------------------------------------------------------
-Note: This works with `.nav-pills` as well.
+This works with `.nav-pills` as well.
+
+Example code (HTML):
 
 <div class="card text-center">
   <div class="card-header">
@@ -369,11 +438,22 @@ Note: This works with `.nav-pills` as well.
   </div>
 </div>
 
+========================================================================
+IMAGES
+========================================================================
+
+Cards include a few options for working with images. Choose from appending
+“image caps” at either end of a card, overlaying images with card content, or
+simply embedding the image in a card.
+
 ------------------------------------------------------------------------
-IMAGES > IMAGE CAPS > CARD TITLE
-Example 20  |  HTML
+IMAGE CAPS
 ------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+
+Similar to headers and footers, cards can include top and bottom “image
+caps”—images at the top or bottom of a card.
+
+Example code (HTML):
 
 <div class="card mb-3">
   <img src="..." class="card-img-top" alt="...">
@@ -393,10 +473,13 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
 </div>
 
 ------------------------------------------------------------------------
-IMAGES > IMAGE OVERLAYS > CARD TITLE
-Example 21  |  HTML
+IMAGE OVERLAYS
 ------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+
+Turn an image into a card background and overlay your card’s text. Depending
+on the image, you may or may not need additional styles or utilities.
+
+Example code (HTML):
 
 <div class="card theme-inverse">
   <img src="..." class="card-img" alt="...">
@@ -407,11 +490,20 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
   </div>
 </div>
 
-------------------------------------------------------------------------
-CARD ROW > CARD TITLE
-Example 22  |  HTML
-------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+NOTE:
+  Note that content should not be larger than the height of the image. If
+  content is larger than the image the content will be displayed outside the
+  image.
+
+========================================================================
+CARD ROW
+========================================================================
+
+Use the `.card-row` class to make a card horizontal. For image caps, use the
+`.card-img-start` or `.card-img-end` class to position the image at the
+(inline) start or end position of the card.
+
+Example code (HTML):
 
 <div class="card card-row" style="max-width: 540px;">
   <img src="..." class="card-img-start" alt="...">
@@ -422,11 +514,9 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
   </div>
 </div>
 
-------------------------------------------------------------------------
-CARD ROW > CARD TITLE (cont.)
-Example 23  |  HTML
-------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+And with the reverse layout:
+
+Example code (HTML):
 
 <div class="card card-row" style="max-width: 540px;">
   <div class="card-body">
@@ -437,11 +527,16 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
   <img src="..." class="card-img-end" alt="...">
 </div>
 
-------------------------------------------------------------------------
-THEME VARIANTS > CARD TITLE
-Example 24  |  HTML
-------------------------------------------------------------------------
-Note: Card text…
+========================================================================
+THEME VARIANTS
+========================================================================
+
+Customize cards by using our theme color utilities. By default, cards use `bg`
+for their background and border colors when applying a theme color. Use
+`.card-subtle` to swap the background and border colors for a more subtle
+look.
+
+Example code (HTML):
 
 <div class="card theme-primary">…</div>
 <div class="card theme-accent">…</div>
@@ -452,11 +547,7 @@ Note: Card text…
 <div class="card theme-inverse">…</div>
 <div class="card theme-secondary">…</div>
 
-------------------------------------------------------------------------
-THEME VARIANTS > CARD TITLE (cont.)
-Example 25  |  HTML
-------------------------------------------------------------------------
-Note: Card text…
+Example code (HTML):
 
 <div class="card card-subtle theme-primary">…</div>
 <div class="card card-subtle theme-accent">…</div>
@@ -467,11 +558,14 @@ Note: Card text…
 <div class="card card-subtle theme-inverse">…</div>
 <div class="card card-subtle theme-secondary">…</div>
 
-------------------------------------------------------------------------
-TRANSLUCENT CARDS > TRANSLUCENT CARD
-Example 26  |  HTML
-------------------------------------------------------------------------
-Note: This card has a translucent background with a backdrop blur effect.
+========================================================================
+TRANSLUCENT CARDS
+========================================================================
+
+Add `.card-translucent` to blur and saturate the background of a card. Header
+and footer backgrounds are also adjusted for a consistent look.
+
+Example code (HTML):
 
 <div class="card card-translucent" style="width: 18rem;">
   <div class="card-body">
@@ -481,11 +575,7 @@ Note: This card has a translucent background with a backdrop blur effect.
   </div>
 </div>
 
-------------------------------------------------------------------------
-TRANSLUCENT CARDS > CARD WITH HEADER
-Example 27  |  HTML
-------------------------------------------------------------------------
-Note: Headers and footers are also made translucent to maintain a consistent look.
+Example code (HTML):
 
 <div class="card card-translucent" style="width: 18rem;">
   <div class="card-header">
@@ -501,11 +591,26 @@ Note: Headers and footers are also made translucent to maintain a consistent loo
   </div>
 </div>
 
+========================================================================
+CARD LAYOUT
+========================================================================
+
+In addition to styling the content within cards, Bootstrap includes a few
+options for laying out series of cards.
+
 ------------------------------------------------------------------------
-CARD LAYOUT > CARD GROUPS > CARD TITLE
-Example 28  |  HTML
+CARD GROUPS
 ------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+
+Use card groups to render cards as a single, attached element with equal width
+and height columns. Card groups start off stacked and use `display: flex;` to
+become attached with uniform dimensions starting at the `sm` breakpoint.
+
+This layout uses container queries, so wrap the card group in a query
+container—add the `.contains-inline` utility to a parent element—for the row
+layout to take effect. Without a query container, the cards remain stacked.
+
+Example code (HTML):
 
 <div class="contains-inline">
   <div class="card-group">
@@ -536,11 +641,9 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
   </div>
 </div>
 
-------------------------------------------------------------------------
-CARD LAYOUT > CARD GROUPS > CARD TITLE (cont.)
-Example 29  |  HTML
-------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+When using card groups with footers, their content will automatically line up.
+
+Example code (HTML):
 
 <div class="contains-inline">
   <div class="card-group">
@@ -578,10 +681,16 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
 </div>
 
 ------------------------------------------------------------------------
-CARD LAYOUT > GRID CARDS > CARD TITLE
-Example 30  |  HTML
+GRID CARDS
 ------------------------------------------------------------------------
-Note: This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+
+Use the Bootstrap grid system and its `.row-cols` classes to control how many
+grid columns (wrapped around your cards) you show per row. For example, here’s
+`.row-cols-1` laying out the cards on one column, and `.md:row-cols-2`
+splitting four cards to equal width across multiple rows, from the medium
+breakpoint up.
+
+Example code (HTML):
 
 <div class="row row-cols-1 md:row-cols-2 g-4">
   <div class="col">
@@ -622,11 +731,9 @@ Note: This is a longer card with supporting text below as a natural lead-in to a
   </div>
 </div>
 
-------------------------------------------------------------------------
-CARD LAYOUT > GRID CARDS > CARD TITLE (cont.)
-Example 31  |  HTML
-------------------------------------------------------------------------
-Note: This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+Change it to `.row-cols-3` and you’ll see the fourth card wrap.
+
+Example code (HTML):
 
 <div class="row row-cols-1 md:row-cols-3 g-4">
   <div class="col">
@@ -667,11 +774,10 @@ Note: This is a longer card with supporting text below as a natural lead-in to a
   </div>
 </div>
 
-------------------------------------------------------------------------
-CARD LAYOUT > GRID CARDS > CARD TITLE (cont.)
-Example 32  |  HTML
-------------------------------------------------------------------------
-Note: This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+When you need equal height, add `.h-100` to the cards. If you want equal
+heights by default, you can set `$card-height: 100%` in Sass.
+
+Example code (HTML):
 
 <div class="row row-cols-1 md:row-cols-3 g-4">
   <div class="col">
@@ -712,11 +818,9 @@ Note: This is a longer card with supporting text below as a natural lead-in to a
   </div>
 </div>
 
-------------------------------------------------------------------------
-CARD LAYOUT > GRID CARDS > CARD TITLE (cont.)
-Example 33  |  HTML
-------------------------------------------------------------------------
-Note: This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+Just like with card groups, card footers will automatically line up.
+
+Example code (HTML):
 
 <div class="row row-cols-1 md:row-cols-3 g-4">
   <div class="col">
@@ -757,11 +861,19 @@ Note: This is a wider card with supporting text below as a natural lead-in to ad
   </div>
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 34  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Cards use local CSS variables on `.card` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Cards use local CSS variables on `.card` for real-time customization. Values
+for the CSS variables are generated from Sass maps unique to each component
+and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $card-tokens: defaults(

@@ -1,26 +1,55 @@
 ========================================================================
 PLACEHOLDER
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/placeholder
 ========================================================================
 
-Use loading placeholders (skeleton loaders) for your components or pages to indicate something may still be loading.
+WHAT IT DOES
+Use loading placeholders (skeleton loaders) for your components or pages to
+indicate something may still be loading.
 
-CONTENTS
-   1. Example  (example 1)
-   2. How it works  (example 2)
-   3. Width  (example 3)
-   4. Color  (example 4)
-   5. Sizing  (example 5)
-   6. Animation  (example 6)
-   7. Animation > Text  (example 7)
-   8. CSS > Variables  (example 8)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  About
+  Example
+  How it works
+  Width
+  Color
+  Sizing
+  Animation
+     - Text
+  CSS
+     - Variables
+
+========================================================================
+ABOUT
+========================================================================
+
+Placeholders can be used to enhance the experience of your application.
+They’re built only with HTML and CSS, meaning you don’t need any JavaScript to
+create them. You will, however, need some custom JavaScript to toggle their
+visibility. Their appearance, color, and sizing can be easily customized with
+our utility classes.
+
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: In the example below, we take a typical card component and recreate it with placeholders applied to create a “loading card”. Size and proportions are the same between the two.
+========================================================================
+
+In the example below, we take a typical card component and recreate it with
+placeholders applied to create a “loading card”. Size and proportions are the
+same between the two.
+
+Example code (HTML):
 
 <div class="card">
   <img src="..." class="card-img-top" alt="...">
@@ -49,11 +78,20 @@ Note: In the example below, we take a typical card component and recreate it wit
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 HOW IT WORKS
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Create placeholders with the `.placeholder` class and a grid column class (e.g., `.col-6`) to set the `width`. They can replace the text inside an element or be added as a modifier class to an existing component.
+========================================================================
+
+Create placeholders with the `.placeholder` class and a grid column class
+(e.g., `.col-6`) to set the `width`. They can replace the text inside an
+element or be added as a modifier class to an existing component.
+
+We apply additional styling to `.btn`s via `::before` to ensure the `height`
+is respected. You may extend this pattern for other situations as needed, or
+add a ` ` within the element to reflect the height when actual text is
+rendered in its place.
+
+Example code (HTML):
 
 <p aria-hidden="true">
   <span class="placeholder col-6"></span>
@@ -61,21 +99,34 @@ Note: Create placeholders with the `.placeholder` class and a grid column class 
 
 <a class="btn-solid theme-primary disabled col-4" aria-disabled="true"></a>
 
-------------------------------------------------------------------------
+NOTE:
+  The use of `aria-hidden="true"` only indicates that the element should be
+  hidden to screen readers. The loading behavior of the placeholder depends on
+  how authors will actually use the placeholder styles, how they plan to update
+  things, etc. Some JavaScript code may be needed to swap the state of the
+  placeholder and inform AT users of the update.
+
+========================================================================
 WIDTH
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: You can change the `width` through grid column classes, width utilities, or inline styles.
+========================================================================
+
+You can change the `width` through grid column classes, width utilities, or
+inline styles.
+
+Example code (HTML):
 
 <span class="placeholder col-6"></span>
 <span class="placeholder w-75"></span>
 <span class="placeholder" style="width: 25%;"></span>
 
-------------------------------------------------------------------------
+========================================================================
 COLOR
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: By default, the `placeholder` uses `currentColor`. This can be overridden with a custom color or utility class.
+========================================================================
+
+By default, the `placeholder` uses `currentColor`. This can be overridden with
+a custom color or utility class.
+
+Example code (HTML):
 
 <span class="placeholder col-9"></span>
 
@@ -88,22 +139,30 @@ Note: By default, the `placeholder` uses `currentColor`. This can be overridden 
 <span class="placeholder col-6 bg-inverse"></span>
 <span class="placeholder col-6 bg-secondary"></span>
 
-------------------------------------------------------------------------
+========================================================================
 SIZING
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: The size of `.placeholder`s are based on the typographic style of the parent element. Customize them with sizing modifiers: `.placeholder-lg`, `.placeholder-sm`, or `.placeholder-xs`.
+========================================================================
+
+The size of `.placeholder`s are based on the typographic style of the parent
+element. Customize them with sizing modifiers: `.placeholder-lg`,
+`.placeholder-sm`, or `.placeholder-xs`.
+
+Example code (HTML):
 
 <span class="placeholder col-12 placeholder-lg"></span>
 <span class="placeholder col-12"></span>
 <span class="placeholder col-12 placeholder-sm"></span>
 <span class="placeholder col-12 placeholder-xs"></span>
 
-------------------------------------------------------------------------
+========================================================================
 ANIMATION
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Use `.placeholder-wave` for the default loading animation. Use `.placeholder-pulse` for an opacity pulse. The old `.placeholder-glow` class remains as a compatibility alias for `.placeholder-pulse`.
+========================================================================
+
+Use `.placeholder-wave` for the default loading animation. Use
+`.placeholder-pulse` for an opacity pulse. The old `.placeholder-glow` class
+remains as a compatibility alias for `.placeholder-pulse`.
+
+Example code (HTML):
 
 <p class="placeholder-wave">
   <span class="placeholder col-12"></span>
@@ -114,17 +173,26 @@ Note: Use `.placeholder-wave` for the default loading animation. Use `.placehold
 </p>
 
 ------------------------------------------------------------------------
-ANIMATION > TEXT
-Example 7  |  HTML
+TEXT
 ------------------------------------------------------------------------
-Note: Add `.placeholder-wave` to an inline element to apply the loading animation to text.
+
+Add `.placeholder-wave` to an inline element to apply the loading animation to
+text.
+
+Example code (HTML):
 
 <span class="placeholder-wave fg-3">Working on it…</span>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 8  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
+
+Example code (SCSS):
+
 // stylelint-disable-next-line scss/dollar-variable-default
 $placeholder-tokens: defaults(
   (

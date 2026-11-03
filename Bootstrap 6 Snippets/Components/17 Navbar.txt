@@ -1,31 +1,46 @@
 ========================================================================
 NAVBAR
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/navbar
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-Create flexible, responsive navigation bars. Includes support for branding, navigation, and a built-in drawer for mobile.
+WHAT IT DOES
+Create flexible, responsive navigation bars. Includes support for branding,
+navigation, and a built-in drawer for mobile.
 
-CONTENTS
-   1. Example  (example 1)
-   2. Supported content > Brand > Text  (example 2)
-   3. Supported content > Brand > Image  (example 3)
-   4. Supported content > Brand > Image and text  (example 4)
-   5. Supported content > Nav  (examples 5, 6, 7)
-   6. Supported content > Forms  (examples 8, 9, 10, 11)
-   7. Supported content > Text  (examples 12, 13)
-   8. Dark navbar  (example 14)
-   9. Translucent navbar  (example 15)
-  10. Color schemes  (example 16)
-  11. Containers  (examples 17, 18)
-  12. Placement  (example 19)
-  13. Responsive behaviors > Drawer > Drawer placement  (examples 20, 21)
-  14. Responsive behaviors > Toggler  (examples 22, 23, 24)
-  15. Responsive behaviors > External content  (example 25)
-  16. CSS > Variables  (examples 26, 27, 28)
-  17. CSS > Sass map  (example 29)
-  18. CSS > Sass loops  (example 30)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Example
+  How it works
+  Supported content
+     - Brand
+     - Nav
+     - Forms
+     - Text
+  Dark navbar
+  Translucent navbar
+  Color schemes
+  Containers
+  Placement
+  Responsive behaviors
+     - Drawer
+     - Toggler
+     - External content
+  CSS
+     - Variables
+     - Sass map
+     - Sass loops
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -54,11 +69,15 @@ Manual control of the navbar drawer:
 const drawer = new bootstrap.Drawer('#navbarDrawer')
 drawer.show()
 
-------------------------------------------------------------------------
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Here’s a navbar that includes most supported sub-components and a responsive right drawer with our Drawer plugin. Use the lower-right corner grip to resize to preview responsive behavior.
+========================================================================
+
+Here’s a navbar that includes most supported sub-components and a responsive
+right drawer with our Drawer plugin. Use the lower-right corner grip to resize
+to preview responsive behavior.
+
+Example code (HTML):
 
 <nav class="navbar md:navbar-expand bg-1">
   <div class="container-fluid">
@@ -105,11 +124,60 @@ Note: Here’s a navbar that includes most supported sub-components and a respon
   </div>
 </nav>
 
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Here’s what you need to know before getting started with the navbar:
+
+- Navbars require a wrapping `.navbar` with `.{breakpoint}:navbar-expand`
+  (e.g. `.md:navbar-expand`) for responsive collapsing and color scheme
+  classes.
+- Navbars and their contents are fluid by default. Change the container to
+  limit their horizontal width in different ways.
+- Use our margin, padding, and flex utility classes for controlling spacing
+  and alignment within navbars.
+- Navbars are responsive by default using our drawer component. On mobile,
+  navigation links slide in from the side as a drawer.
+- Ensure accessibility by using a `<nav>` element or, if using a more generic
+  element such as a `<div>`, add a `role="navigation"` to every navbar to
+  explicitly identify it as a landmark region for users of assistive
+  technologies.
+- Indicate the current item by using `aria-current="page"` for the current
+  page or `aria-current="true"` for the current item in a set.
+
+NOTE:
+  The animation effect of this component is dependent on the
+  `prefers-reduced-motion` media query. See the reduced motion section of our
+  accessibility documentation.
+
+========================================================================
+SUPPORTED CONTENT
+========================================================================
+
+Navbars come with built-in support for a handful of sub-components. Choose
+from the following as needed:
+
+- `.navbar-brand` for your company, product, or project name.
+- `.navbar-nav` for a full-height and lightweight navigation (including
+  support for menus).
+- `.navbar-toggler` for use with our drawer plugin and other navigation
+  toggling behaviors.
+- Flex and spacing utilities for any form controls and actions.
+- `.navbar-text` for adding vertically centered strings of text.
+
 ------------------------------------------------------------------------
-SUPPORTED CONTENT > BRAND > TEXT
-Example 2  |  HTML
+BRAND
 ------------------------------------------------------------------------
-Note: Add your text within an element with the `.navbar-brand` class.
+
+The `.navbar-brand` can be applied to most elements, but an anchor works best,
+as some elements might require utility classes or custom styles.
+
+TEXT:
+
+Add your text within an element with the `.navbar-brand` class.
+
+Example code (HTML):
 
 <!-- As a link -->
 <nav class="navbar bg-1 fg-2">
@@ -125,11 +193,11 @@ Note: Add your text within an element with the `.navbar-brand` class.
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > BRAND > IMAGE
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: You can replace the text within the `.navbar-brand` with an `<img>`.
+IMAGE:
+
+You can replace the text within the `.navbar-brand` with an `<img>`.
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container">
@@ -139,11 +207,13 @@ Note: You can replace the text within the `.navbar-brand` with an `<img>`.
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > BRAND > IMAGE AND TEXT
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: You can also make use of some additional utilities to add an image and text at the same time. Note the addition of `.d-inline-block` and `.align-text-top` on the `<img>`.
+IMAGE AND TEXT:
+
+You can also make use of some additional utilities to add an image and text at
+the same time. Note the addition of `.d-inline-block` and `.align-text-top` on
+the `<img>`.
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container-fluid">
@@ -155,10 +225,20 @@ Note: You can also make use of some additional utilities to add an image and tex
 </nav>
 
 ------------------------------------------------------------------------
-SUPPORTED CONTENT > NAV
-Example 5  |  HTML
+NAV
 ------------------------------------------------------------------------
-Note: Navbar navigation links build on our `.nav` options with their own modifier class and require the use of toggler classes for proper responsive styling. Navigation in navbars will also grow to occupy as much horizontal space as possible to keep your navbar contents securely aligned.
+
+Navbar navigation links build on our `.nav` options with their own modifier
+class and require the use of toggler classes for proper responsive styling.
+Navigation in navbars will also grow to occupy as much horizontal space as
+possible to keep your navbar contents securely aligned.
+
+Add the `.active` class on `.nav-link` to indicate the current page.
+
+Please note that you should also add the `aria-current` attribute on the
+active `.nav-link`.
+
+Example code (HTML):
 
 <nav class="navbar sm:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
@@ -191,11 +271,10 @@ Note: Navbar navigation links build on our `.nav` options with their own modifie
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > NAV (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: And because we use classes for our navs, you can avoid the list-based approach entirely if you like.
+And because we use classes for our navs, you can avoid the list-based approach
+entirely if you like.
+
+Example code (HTML):
 
 <nav class="navbar sm:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
@@ -220,11 +299,11 @@ Note: And because we use classes for our navs, you can avoid the list-based appr
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > NAV (cont.)
-Example 7  |  HTML
-------------------------------------------------------------------------
-Note: You can also use menus in your navbar. Menus require a wrapping element for positioning, so be sure to use separate and nested elements for `.nav-item` and `.nav-link` as shown below.
+You can also use menus in your navbar. Menus require a wrapping element for
+positioning, so be sure to use separate and nested elements for `.nav-item`
+and `.nav-link` as shown below.
+
+Example code (HTML):
 
 <nav class="navbar lg:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
@@ -265,10 +344,12 @@ Note: You can also use menus in your navbar. Menus require a wrapping element fo
 </nav>
 
 ------------------------------------------------------------------------
-SUPPORTED CONTENT > FORMS
-Example 8  |  HTML
+FORMS
 ------------------------------------------------------------------------
-Note: Place various form controls and components within a navbar:
+
+Place various form controls and components within a navbar:
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container-fluid">
@@ -279,11 +360,11 @@ Note: Place various form controls and components within a navbar:
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > FORMS (cont.)
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: Immediate child elements of `.navbar` use flex layout and will default to `justify-content: space-between`. Use additional flex utilities as needed to adjust this behavior.
+Immediate child elements of `.navbar` use flex layout and will default to
+`justify-content: space-between`. Use additional flex utilities as needed to
+adjust this behavior.
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container-fluid">
@@ -295,11 +376,10 @@ Note: Immediate child elements of `.navbar` use flex layout and will default to 
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > FORMS (cont.)
-Example 10  |  HTML
-------------------------------------------------------------------------
-Note: Input groups work, too. If your navbar is an entire form, or mostly a form, you can use the `<form>` element as the container and save some HTML.
+Input groups work, too. If your navbar is an entire form, or mostly a form,
+you can use the `<form>` element as the container and save some HTML.
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <form class="container-fluid">
@@ -310,11 +390,11 @@ Note: Input groups work, too. If your navbar is an entire form, or mostly a form
   </form>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > FORMS (cont.)
-Example 11  |  HTML
-------------------------------------------------------------------------
-Note: Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements.
+Various buttons are supported as part of these navbar forms, too. This is also
+a great reminder that vertical alignment utilities can be used to align
+different sized elements.
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <form class="container-fluid justify-content-start">
@@ -324,10 +404,13 @@ Note: Various buttons are supported as part of these navbar forms, too. This is 
 </nav>
 
 ------------------------------------------------------------------------
-SUPPORTED CONTENT > TEXT
-Example 12  |  HTML
+TEXT
 ------------------------------------------------------------------------
-Note: Navbars may contain bits of text with the help of `.navbar-text`. This class adjusts vertical alignment and horizontal spacing for strings of text.
+
+Navbars may contain bits of text with the help of `.navbar-text`. This class
+adjusts vertical alignment and horizontal spacing for strings of text.
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container-fluid">
@@ -337,11 +420,9 @@ Note: Navbars may contain bits of text with the help of `.navbar-text`. This cla
   </div>
 </nav>
 
-------------------------------------------------------------------------
-SUPPORTED CONTENT > TEXT (cont.)
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: Mix and match with other components and utilities as needed.
+Mix and match with other components and utilities as needed.
+
+Example code (HTML):
 
 <nav class="navbar md:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
@@ -374,11 +455,13 @@ Note: Mix and match with other components and utilities as needed.
   </div>
 </nav>
 
-------------------------------------------------------------------------
+========================================================================
 DARK NAVBAR
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: To make a navbar dark, add `data-bs-theme="dark"` to the `.navbar` element.
+========================================================================
+
+To make a navbar dark, add `data-bs-theme="dark"` to the `.navbar` element.
+
+Example code (HTML):
 
 <nav class="navbar md:navbar-expand bg-1" data-bs-theme="dark">
   <div class="container-fluid">
@@ -425,11 +508,15 @@ Note: To make a navbar dark, add `data-bs-theme="dark"` to the `.navbar` element
   </div>
 </nav>
 
-------------------------------------------------------------------------
+========================================================================
 TRANSLUCENT NAVBAR
-Example 15  |  HTML
-------------------------------------------------------------------------
-Note: Add `.navbar-translucent` to blur and saturate the background of a navbar. This works well for navbars positioned over content, such as fixed or sticky navbars.
+========================================================================
+
+Add `.navbar-translucent` to blur and saturate the background of a navbar.
+This works well for navbars positioned over content, such as fixed or sticky
+navbars.
+
+Example code (HTML):
 
 <nav class="navbar navbar-translucent md:navbar-expand" data-bs-theme="dark">
   <div class="container-fluid">
@@ -448,11 +535,17 @@ Note: Add `.navbar-translucent` to blur and saturate the background of a navbar.
   </div>
 </nav>
 
-------------------------------------------------------------------------
+========================================================================
 COLOR SCHEMES
-Example 16  |  HTML
-------------------------------------------------------------------------
-Note: Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass and CSS variables. The default is our "light navbar" for use with light background colors, but you can also apply `data-bs-theme="dark"` to the `.navbar` parent for dark background colors. Then, customize with `.bg-*` and additional utilities.
+========================================================================
+
+Navbar themes are easier than ever thanks to Bootstrap’s combination of Sass
+and CSS variables. The default is our "light navbar" for use with light
+background colors, but you can also apply `data-bs-theme="dark"` to the
+`.navbar` parent for dark background colors. Then, customize with `.bg-*` and
+additional utilities.
+
+Example code (HTML):
 
 <nav class="navbar" data-bs-theme="dark">
   <!-- Navbar content -->
@@ -466,11 +559,16 @@ Note: Navbar themes are easier than ever thanks to Bootstrap’s combination of 
   <!-- Navbar content -->
 </nav>
 
-------------------------------------------------------------------------
+========================================================================
 CONTAINERS
-Example 17  |  HTML
-------------------------------------------------------------------------
-Note: Although it’s not required, you can wrap a navbar in a `.container` to center it on a page–though note that an inner container is still required. Or you can add a container inside the `.navbar` to only center the contents of a fixed or static top navbar.
+========================================================================
+
+Although it’s not required, you can wrap a navbar in a `.container` to center
+it on a page–though note that an inner container is still required. Or you can
+add a container inside the `.navbar` to only center the contents of a fixed or
+static top navbar.
+
+Example code (HTML):
 
 <div class="container">
   <nav class="navbar lg:navbar-expand bg-1 fg-2">
@@ -480,11 +578,10 @@ Note: Although it’s not required, you can wrap a navbar in a `.container` to c
   </nav>
 </div>
 
-------------------------------------------------------------------------
-CONTAINERS (cont.)
-Example 18  |  HTML
-------------------------------------------------------------------------
-Note: Use any of the responsive containers to change how wide the content in your navbar is presented.
+Use any of the responsive containers to change how wide the content in your
+navbar is presented.
+
+Example code (HTML):
 
 <nav class="navbar lg:navbar-expand bg-1 fg-2">
   <div class="md:container">
@@ -492,11 +589,32 @@ Note: Use any of the responsive containers to change how wide the content in you
   </div>
 </nav>
 
-------------------------------------------------------------------------
+========================================================================
 PLACEMENT
-Example 19  |  HTML
-------------------------------------------------------------------------
-Note: Use our position utilities to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the bottom (scrolls with the page until it reaches the bottom, then stays there).
+========================================================================
+
+Use our position utilities to place navbars in non-static positions. Choose
+from fixed to the top, fixed to the bottom, stickied to the top (scrolls with
+the page until it reaches the top, then stays there), or stickied to the
+bottom (scrolls with the page until it reaches the bottom, then stays there).
+
+Fixed navbars use `position: fixed`, meaning they’re pulled from the normal
+flow of the DOM and may require custom CSS (e.g., `padding-top` on the
+`<body>`) to prevent overlap with other elements.
+
+Placement
+
+Default (static)
+
+Fixed top
+
+Fixed bottom
+
+Sticky top
+
+Sticky bottom
+
+Example code (HTML):
 
 <nav class="navbar bg-1">
   <div class="container-fluid">
@@ -504,11 +622,42 @@ Note: Use our position utilities to place navbars in non-static positions. Choos
   </div>
 </nav>
 
+========================================================================
+RESPONSIVE BEHAVIORS
+========================================================================
+
+Navbars can use `.navbar-toggler`, and
+`.lg:navbar-expand{-sm|-md|-lg|-xl|-2xl}` classes to determine when their
+content appears in a drawer or inline. In combination with other utilities,
+you can easily choose when to show or hide particular elements.
+
+For navbars that never collapse, add the `.lg:navbar-expand` class on the
+navbar. For navbars that always show the drawer, don’t add any
+`.lg:navbar-expand` class.
+
 ------------------------------------------------------------------------
-RESPONSIVE BEHAVIORS > DRAWER > DRAWER PLACEMENT
-Example 20  |  HTML
+DRAWER
 ------------------------------------------------------------------------
-Note: You can customize which side the drawer appears from using drawer placement classes:
+
+By default, navbars use the drawer component for their responsive behavior.
+This provides a modern drawer-style menu that slides in from any side of the
+screen.
+
+DRAWER PLACEMENT:
+
+You can customize which side the drawer appears from using drawer placement
+classes:
+
+- `.drawer-start` - slides in from the left (or right in RTL)
+- `.drawer-end` - slides in from the right (or left in RTL)
+- `.drawer-top` - slides in from the top
+- `.drawer-bottom` - slides in from the bottom
+
+These examples omit the `.lg:navbar-expand` class to always show the drawer
+behavior. Click the toggler to see the drawer slide in from different
+directions.
+
+Example code (HTML):
 
 <nav class="navbar md:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
@@ -532,10 +681,8 @@ Note: You can customize which side the drawer appears from using drawer placemen
   </div>
 </nav>
 
-------------------------------------------------------------------------
-RESPONSIVE BEHAVIORS > DRAWER > DRAWER PLACEMENT (cont.)
-Example 21  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <nav class="navbar md:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Top Drawer</a>
@@ -559,10 +706,19 @@ Example 21  |  HTML
 </nav>
 
 ------------------------------------------------------------------------
-RESPONSIVE BEHAVIORS > TOGGLER
-Example 22  |  HTML
+TOGGLER
 ------------------------------------------------------------------------
-Note: Navbar togglers are left-aligned by default, but should they follow a sibling element like a `.navbar-brand`, they’ll automatically be aligned to the far right. Reversing your markup will reverse the placement of the toggler.
+
+Navbar togglers are left-aligned by default, but should they follow a sibling
+element like a `.navbar-brand`, they’ll automatically be aligned to the far
+right. Reversing your markup will reverse the placement of the toggler.
+
+These examples omit the `.lg:navbar-expand` class to always show the collapsed
+state with the toggler visible. Click the toggler to open the drawer.
+
+With no `.navbar-brand` shown (hidden inside the drawer):
+
+Example code (HTML):
 
 <nav class="navbar md:navbar-expand bg-1 fg-2">
   <div class="container-fluid">
@@ -590,11 +746,9 @@ Note: Navbar togglers are left-aligned by default, but should they follow a sibl
   </div>
 </nav>
 
-------------------------------------------------------------------------
-RESPONSIVE BEHAVIORS > TOGGLER (cont.)
-Example 23  |  HTML
-------------------------------------------------------------------------
-Note: With a brand name shown on the left and toggler on the right:
+With a brand name shown on the left and toggler on the right:
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container-fluid">
@@ -622,11 +776,9 @@ Note: With a brand name shown on the left and toggler on the right:
   </div>
 </nav>
 
-------------------------------------------------------------------------
-RESPONSIVE BEHAVIORS > TOGGLER (cont.)
-Example 24  |  HTML
-------------------------------------------------------------------------
-Note: With a toggler on the left and brand name on the right:
+With a toggler on the left and brand name on the right:
+
+Example code (HTML):
 
 <nav class="navbar bg-1 fg-2">
   <div class="container-fluid">
@@ -655,10 +807,14 @@ Note: With a toggler on the left and brand name on the right:
 </nav>
 
 ------------------------------------------------------------------------
-RESPONSIVE BEHAVIORS > EXTERNAL CONTENT
-Example 25  |  HTML
+EXTERNAL CONTENT
 ------------------------------------------------------------------------
-Note: Sometimes you want to use the drawer plugin to trigger a container element for content that structurally sits outside of the `.navbar`. Because our plugin works on the `id` and `data-bs-target` matching, that’s easily done!
+
+Sometimes you want to use the drawer plugin to trigger a container element for
+content that structurally sits outside of the `.navbar`. Because our plugin
+works on the `id` and `data-bs-target` matching, that’s easily done!
+
+Example code (HTML):
 
 <dialog class="drawer drawer-top" tabindex="-1" id="navbarToggleExternalContent" data-bs-theme="dark" aria-labelledby="navbarToggleExternalContentLabel">
   <div class="drawer-header">
@@ -677,11 +833,29 @@ Note: Sometimes you want to use the drawer plugin to trigger a container element
   </div>
 </nav>
 
+When you do this, we recommend including additional JavaScript to move the
+focus programmatically to the container when it is opened. Otherwise, keyboard
+users and users of assistive technologies will likely have a hard time finding
+the newly revealed content - particularly if the container that was opened
+comes before the toggler in the document’s structure. We also recommend making
+sure that the toggler has the `aria-controls` attribute, pointing to the `id`
+of the content container. In theory, this allows assistive technology users to
+jump directly from the toggler to the container it controls–but support for
+this is currently quite patchy.
+
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 26  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Navbars use local CSS variables on `.navbar` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Navbars use local CSS variables on `.navbar` for real-time customization.
+Values for the CSS variables are generated from Sass maps unique to each
+component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $navbar-tokens: defaults(
@@ -713,10 +887,8 @@ $navbar-tokens: defaults(
   $navbar-tokens
 );
 
-------------------------------------------------------------------------
-CSS > VARIABLES (cont.)
-Example 27  |  SCSS
-------------------------------------------------------------------------
+Example code (SCSS):
+
 // stylelint-disable-next-line scss/dollar-variable-default
 $navbar-dark-tokens: defaults(
   (
@@ -731,10 +903,8 @@ $navbar-dark-tokens: defaults(
   $navbar-dark-tokens
 );
 
-------------------------------------------------------------------------
-CSS > VARIABLES (cont.)
-Example 28  |  SCSS
-------------------------------------------------------------------------
+Example code (SCSS):
+
 // stylelint-disable-next-line scss/dollar-variable-default
 $navbar-nav-tokens: defaults(
   (
@@ -755,18 +925,27 @@ $navbar-nav-tokens: defaults(
 );
 
 ------------------------------------------------------------------------
-CSS > SASS MAP
-Example 29  |  SCSS
+SASS MAP
 ------------------------------------------------------------------------
-Note: We reassign the global `$breakpoints` map to `$navbar-breakpoints` in `scss/_navbar.scss` and use this for our loop to generate the responsive navbar expand/collapse classes. This allows you to customize the breakpoints for navbars independently of the global breakpoints.
+
+We reassign the global `$breakpoints` map to `$navbar-breakpoints` in
+`scss/_navbar.scss` and use this for our loop to generate the responsive
+navbar expand/collapse classes. This allows you to customize the breakpoints
+for navbars independently of the global breakpoints.
+
+Example code (SCSS):
 
 $navbar-breakpoints: $breakpoints;
 
 ------------------------------------------------------------------------
-CSS > SASS LOOPS
-Example 30  |  SCSS
+SASS LOOPS
 ------------------------------------------------------------------------
-Note: Responsive navbar expand/collapse classes (e.g., `.lg:navbar-expand`) are combined with the `$navbar-breakpoints` map and generated through a loop in `scss/_navbar.scss`.
+
+Responsive navbar expand/collapse classes (e.g., `.lg:navbar-expand`) are
+combined with the `$navbar-breakpoints` map and generated through a loop in
+`scss/_navbar.scss`.
+
+Example code (SCSS):
 
 // Generate series of responsive `.navbar-expand` classes for configuring
 // where your navbar collapses and expands. Uses container queries so the

@@ -1,0 +1,246 @@
+========================================================================
+POSITION
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/position
+========================================================================
+
+WHAT IT DOES
+Use these shorthand utilities for quickly configuring the position of an
+element.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Position values
+  Arrange elements
+  Center elements
+  Examples
+  CSS
+     - Sass maps
+     - Sass utilities API
+
+Class                Styles
+-------------------  ---------------------------------
+.position-static     position: static;
+.position-relative   position: relative;
+.position-absolute   position: absolute;
+.position-fixed      position: fixed;
+.position-sticky     position: sticky;
+.top-0               top: 0;
+.top-50              top: 50%;
+.top-100             top: 100%;
+.bottom-0            bottom: 0;
+.bottom-50           bottom: 50%;
+.bottom-100          bottom: 100%;
+.start-0             inset-inline-start: 0;
+.start-50            inset-inline-start: 50%;
+.start-100           inset-inline-start: 100%;
+.end-0               inset-inline-end: 0;
+.end-50              inset-inline-end: 50%;
+.end-100             inset-inline-end: 100%;
+.translate-middle    transform: translate(-50%, -50%);
+.translate-middle-x  transform: translateX(-50%);
+.translate-middle-y  transform: translateY(-50%);
+
+========================================================================
+POSITION VALUES
+========================================================================
+
+Quick positioning classes are available, though they are not responsive.
+
+Example code (HTML):
+
+<div class="position-static">...</div>
+<div class="position-relative">...</div>
+<div class="position-absolute">...</div>
+<div class="position-fixed">...</div>
+<div class="position-sticky">...</div>
+
+========================================================================
+ARRANGE ELEMENTS
+========================================================================
+
+Arrange elements easily with the edge positioning utilities. The format is
+`{property}-{position}`.
+
+Where property is one of:
+
+- `top` - for the vertical `top` position
+- `start` - for the horizontal `left` position (in LTR)
+- `bottom` - for the vertical `bottom` position
+- `end` - for the horizontal `right` position (in LTR)
+
+Where position is one of:
+
+- `0` - for `0` edge position
+- `50` - for `50%` edge position
+- `100` - for `100%` edge position
+
+(You can add more position values by adding entries to the `$position-values`
+Sass map variable.)
+
+Example code (HTML):
+
+<div class="position-relative">
+  <div class="position-absolute top-0 start-0"></div>
+  <div class="position-absolute top-0 end-0"></div>
+  <div class="position-absolute top-50 start-50"></div>
+  <div class="position-absolute bottom-50 end-50"></div>
+  <div class="position-absolute bottom-0 start-0"></div>
+  <div class="position-absolute bottom-0 end-0"></div>
+</div>
+
+========================================================================
+CENTER ELEMENTS
+========================================================================
+
+In addition, you can also center the elements with the transform utility class
+`.translate-middle`.
+
+This class applies the transformations `translateX(-50%)` and
+`translateY(-50%)` to the element which, in combination with the edge
+positioning utilities, allows you to absolute center an element.
+
+Example code (HTML):
+
+<div class="position-relative">
+  <div class="position-absolute top-0 start-0 translate-middle"></div>
+  <div class="position-absolute top-0 start-50 translate-middle"></div>
+  <div class="position-absolute top-0 start-100 translate-middle"></div>
+  <div class="position-absolute top-50 start-0 translate-middle"></div>
+  <div class="position-absolute top-50 start-50 translate-middle"></div>
+  <div class="position-absolute top-50 start-100 translate-middle"></div>
+  <div class="position-absolute top-100 start-0 translate-middle"></div>
+  <div class="position-absolute top-100 start-50 translate-middle"></div>
+  <div class="position-absolute top-100 start-100 translate-middle"></div>
+</div>
+
+By adding `.translate-middle-x` or `.translate-middle-y` classes, elements can
+be positioned only in horizontal or vertical direction.
+
+Example code (HTML):
+
+<div class="position-relative">
+  <div class="position-absolute top-0 start-0"></div>
+  <div class="position-absolute top-0 start-50 translate-middle-x"></div>
+  <div class="position-absolute top-0 end-0"></div>
+  <div class="position-absolute top-50 start-0 translate-middle-y"></div>
+  <div class="position-absolute top-50 start-50 translate-middle"></div>
+  <div class="position-absolute top-50 end-0 translate-middle-y"></div>
+  <div class="position-absolute bottom-0 start-0"></div>
+  <div class="position-absolute bottom-0 start-50 translate-middle-x"></div>
+  <div class="position-absolute bottom-0 end-0"></div>
+</div>
+
+========================================================================
+EXAMPLES
+========================================================================
+
+Here are some real life examples of these classes:
+
+Example code (HTML):
+
+<button type="button" class="btn-solid theme-primary position-relative">
+  Mails <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill theme-secondary theme-contrast">+99 <span class="visually-hidden">unread messages</span></span>
+</button>
+
+<div class="position-relative py-2 px-4 theme-secondary theme-contrast border border-secondary rounded-pill">
+  Marker <svg width="1em" height="1em" viewBox="0 0 16 16" class="position-absolute top-100 start-50 translate-middle mt-1" fill="var(--bs-theme-bg)" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
+</div>
+
+<button type="button" class="btn-solid theme-primary position-relative">
+  Alerts <span class="position-absolute top-0 start-100 translate-middle w-1 h-1 border border-bg rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
+</button>
+
+You can use these classes with existing components to create new ones.
+Remember that you can extend its functionality by adding entries to the
+`$position-values` variable.
+
+Example code (HTML):
+
+<div class="position-relative m-4">
+  <div class="progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height: 1px;">
+    <div class="progress-bar" style="width: 50%"></div>
+  </div>
+  <button type="button" class="position-absolute top-0 start-0 translate-middle btn-solid btn-sm theme-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
+  <button type="button" class="position-absolute top-0 start-50 translate-middle btn-solid btn-sm theme-primary rounded-pill" style="width: 2rem; height:2rem;">2</button>
+  <button type="button" class="position-absolute top-0 start-100 translate-middle btn-solid btn-sm theme-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+</div>
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS MAPS
+------------------------------------------------------------------------
+
+Default position utility values are declared in a Sass map, then used to
+generate our utilities.
+
+Example code (SCSS):
+
+$position-values: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$position-values: defaults(
+  (
+    0: 0,
+    50: 50%,
+    100: 100%
+  ),
+  $position-values
+);
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Position utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"position": (
+  property: position,
+  values: static relative absolute fixed sticky
+),
+"top": (
+  property: top,
+  values: $position-values
+),
+"bottom": (
+  property: bottom,
+  values: $position-values
+),
+"start": (
+  property: inset-inline-start,
+  class: start,
+  values: $position-values
+),
+"end": (
+  property: inset-inline-end,
+  class: end,
+  values: $position-values
+),
+"translate-middle": (
+  property: transform,
+  class: translate-middle,
+  values: (
+    null: translate(-50%, -50%),
+    x: translateX(-50%),
+    y: translateY(-50%),
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

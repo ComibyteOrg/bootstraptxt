@@ -1,27 +1,47 @@
 ========================================================================
 TOASTS
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/toasts
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.
+WHAT IT DOES
+Push notifications to your visitors with a toast, a lightweight and easily
+customizable alert message.
 
-CONTENTS
-   1. Examples > Basic  (example 1)
-   2. Examples > Live example  (examples 2, 3)
-   3. Examples > Translucent  (examples 4, 5)
-   4. Examples > Stacking  (example 6)
-   5. Examples > Dark toasts  (example 7)
-   6. Examples > Variants  (example 8)
-   7. Examples > Custom content  (examples 9, 10)
-   8. Examples > Instant  (example 11)
-   9. Placement  (examples 12, 13, 14)
-  10. Accessibility  (examples 15, 16)
-  11. CSS > Variables  (example 17)
-  12. Usage  (example 18)
-  13. Usage > Triggers  (examples 19, 20)
-  14. Usage > Events  (example 21)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Examples
+     - Basic
+     - Live example
+     - Translucent
+     - Stacking
+     - Dark toasts
+     - Variants
+     - Custom content
+     - Instant
+  Placement
+  Accessibility
+  CSS
+     - Variables
+  Usage
+     - Via data attributes
+     - Triggers
+     - Dependencies
+     - Options
+     - Methods
+     - Events
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -51,11 +71,42 @@ Reuse an existing instance:
 
 const toast = bootstrap.Toast.getOrCreateInstance('#myToast')
 
+Toasts are lightweight notifications designed to mimic the push notifications
+that have been popularized by mobile and desktop operating systems. They’re
+built with flexbox, so they’re easy to align and position.
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Things to know when using the toast plugin:
+
+- Toasts are opt-in for performance reasons, so you must initialize them
+  yourself.
+- Toasts will automatically hide if you do not specify `autohide: false`.
+
+NOTE:
+  The animation effect of this component is dependent on the
+  `prefers-reduced-motion` media query. See the reduced motion section of our
+  accessibility documentation.
+
+========================================================================
+EXAMPLES
+========================================================================
+
 ------------------------------------------------------------------------
-EXAMPLES > BASIC
-Example 1  |  HTML
+BASIC
 ------------------------------------------------------------------------
-Note: To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use `display: flex`, allowing easy alignment of content thanks to our margin and flexbox utilities.
+
+To encourage extensible and predictable toasts, we recommend a header and
+body. Toast headers use `display: flex`, allowing easy alignment of content
+thanks to our margin and flexbox utilities.
+
+Toasts are as flexible as you need and have very little required markup. At a
+minimum, we require a single element to contain your “toasted” content and
+strongly encourage a dismiss button.
+
+Example code (HTML):
 
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -70,10 +121,19 @@ Note: To encourage extensible and predictable toasts, we recommend a header and 
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > LIVE EXAMPLE
-Example 2  |  HTML
+LIVE EXAMPLE
 ------------------------------------------------------------------------
-Note: Click the button below to show a toast (positioned with our utilities in the lower right corner) that has been hidden by default.
+
+Click the button below to show a toast (positioned with our utilities in the
+lower right corner) that has been hidden by default.
+
+Bootstrap
+
+11 mins ago
+
+Hello, world! This is a toast message.
+
+Example code (HTML):
 
 <button type="button" class="btn-solid theme-primary" id="liveToastBtn">Show live toast</button>
 
@@ -91,11 +151,9 @@ Note: Click the button below to show a toast (positioned with our utilities in t
   </div>
 </div>
 
-------------------------------------------------------------------------
-EXAMPLES > LIVE EXAMPLE (cont.)
-Example 3  |  JS
-------------------------------------------------------------------------
-Note: We use the following JavaScript to trigger our live toast demo:
+We use the following JavaScript to trigger our live toast demo:
+
+Example code (JS):
 
 const toastTrigger = document.getElementById('liveToastBtn')
 const toastLiveExample = document.getElementById('liveToast')
@@ -108,10 +166,12 @@ if (toastTrigger) {
 }
 
 ------------------------------------------------------------------------
-EXAMPLES > TRANSLUCENT
-Example 4  |  HTML
+TRANSLUCENT
 ------------------------------------------------------------------------
-Note: Toasts are slightly translucent to blend in with what’s below them.
+
+Toasts are slightly translucent to blend in with what’s below them.
+
+Example code (HTML):
 
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -125,11 +185,10 @@ Note: Toasts are slightly translucent to blend in with what’s below them.
   </div>
 </div>
 
-------------------------------------------------------------------------
-EXAMPLES > TRANSLUCENT (cont.)
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Add `.toast-translucent` to enhance the translucency with a backdrop blur and saturation filter.
+Add `.toast-translucent` to enhance the translucency with a backdrop blur and
+saturation filter.
+
+Example code (HTML):
 
 <div class="toast toast-translucent" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -144,10 +203,13 @@ Note: Add `.toast-translucent` to enhance the translucency with a backdrop blur 
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > STACKING
-Example 6  |  HTML
+STACKING
 ------------------------------------------------------------------------
-Note: You can stack toasts by wrapping them in a toast container, which will vertically add some spacing.
+
+You can stack toasts by wrapping them in a toast container, which will
+vertically add some spacing.
+
+Example code (HTML):
 
 <div class="toast-container position-static">
   <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -176,10 +238,13 @@ Note: You can stack toasts by wrapping them in a toast container, which will ver
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > DARK TOASTS
-Example 7  |  HTML
+DARK TOASTS
 ------------------------------------------------------------------------
-Note: Set a toast to dark mode by adding the `data-bs-theme="dark"` attribute to the `.toast` element.
+
+Set a toast to dark mode by adding the `data-bs-theme="dark"` attribute to the
+`.toast` element.
+
+Example code (HTML):
 
 <div class="toast" data-bs-theme="dark" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -198,10 +263,13 @@ Note: Set a toast to dark mode by adding the `data-bs-theme="dark"` attribute to
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > VARIANTS
-Example 8  |  HTML
+VARIANTS
 ------------------------------------------------------------------------
-Note: Toasts can be themed with our theme color utilities. Apply to the entire toast or individual elements within the toast.
+
+Toasts can be themed with our theme color utilities. Apply to the entire toast
+or individual elements within the toast.
+
+Example code (HTML):
 
 <div class="toast theme-primary" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -236,10 +304,15 @@ Note: Toasts can be themed with our theme color utilities. Apply to the entire t
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > CUSTOM CONTENT
-Example 9  |  HTML
+CUSTOM CONTENT
 ------------------------------------------------------------------------
-Note: Customize your toasts by removing sub-components, tweaking them with utilities, or by adding your own markup. Here we’ve created a simpler toast by removing the default `.toast-header`, adding a custom hide icon from Bootstrap Icons, and using some flexbox utilities to adjust the layout.
+
+Customize your toasts by removing sub-components, tweaking them with
+utilities, or by adding your own markup. Here we’ve created a simpler toast by
+removing the default `.toast-header`, adding a custom hide icon from Bootstrap
+Icons, and using some flexbox utilities to adjust the layout.
+
+Example code (HTML):
 
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex justify-content-between">
@@ -250,11 +323,9 @@ Note: Customize your toasts by removing sub-components, tweaking them with utili
   </div>
 </div>
 
-------------------------------------------------------------------------
-EXAMPLES > CUSTOM CONTENT (cont.)
-Example 10  |  HTML
-------------------------------------------------------------------------
-Note: Alternatively, you can also add additional controls and components to toasts.
+Alternatively, you can also add additional controls and components to toasts.
+
+Example code (HTML):
 
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-body">
@@ -268,10 +339,14 @@ Note: Alternatively, you can also add additional controls and components to toas
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > INSTANT
-Example 11  |  HTML
+INSTANT
 ------------------------------------------------------------------------
-Note: By default, toasts fade in and out. To disable the animation, add `.toast-instant` to the toast. The `show` and `hide` methods then finish immediately, so `shown.bs.toast` and `hidden.bs.toast` fire right away.
+
+By default, toasts fade in and out. To disable the animation, add
+`.toast-instant` to the toast. The `show` and `hide` methods then finish
+immediately, so `shown.bs.toast` and `hidden.bs.toast` fire right away.
+
+Example code (HTML):
 
 <div class="toast toast-instant" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -285,11 +360,15 @@ Note: By default, toasts fade in and out. To disable the animation, add `.toast-
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 PLACEMENT
-Example 12  |  HTML
-------------------------------------------------------------------------
-Note: Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you’re only ever going to show one toast at a time, put the positioning styles right on the `.toast`.
+========================================================================
+
+Place toasts with custom CSS as you need them. The top right is often used for
+notifications, as is the top middle. If you’re only ever going to show one
+toast at a time, put the positioning styles right on the `.toast`.
+
+Example code (HTML):
 
 <form>
   <div class="mb-3">
@@ -323,11 +402,10 @@ Note: Place toasts with custom CSS as you need them. The top right is often used
   </div>
 </div>
 
-------------------------------------------------------------------------
-PLACEMENT (cont.)
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: For systems that generate more notifications, consider using a wrapping element so they can easily stack.
+For systems that generate more notifications, consider using a wrapping
+element so they can easily stack.
+
+Example code (HTML):
 
 <div aria-live="polite" aria-atomic="true" class="position-relative">
   <!-- Position it: -->
@@ -363,11 +441,10 @@ Note: For systems that generate more notifications, consider using a wrapping el
   </div>
 </div>
 
-------------------------------------------------------------------------
-PLACEMENT (cont.)
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically.
+You can also get fancy with flexbox utilities to align toasts horizontally
+and/or vertically.
+
+Example code (HTML):
 
 <!-- Flexbox container for aligning the toasts -->
 <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
@@ -386,21 +463,46 @@ Note: You can also get fancy with flexbox utilities to align toasts horizontally
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 ACCESSIBILITY
-Example 15  |  HTML
-------------------------------------------------------------------------
-Note: Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an `aria-live` region. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the alert component instead of toast.
+========================================================================
+
+Toasts are intended to be small interruptions to your visitors or users, so to
+help those with screen readers and similar assistive technologies, you should
+wrap your toasts in an `aria-live` region. Changes to live regions (such as
+injecting/updating a toast component) are automatically announced by screen
+readers without needing to move the user’s focus or otherwise interrupt the
+user. Additionally, include `aria-atomic="true"` to ensure that the entire
+toast is always announced as a single (atomic) unit, rather than just
+announcing what was changed (which could lead to problems if you only update
+part of the toast’s content, or if displaying the same toast content at a
+later point in time). If the information needed is important for the process,
+e.g. for a list of errors in a form, then use the alert component instead of
+toast.
+
+Note that the live region needs to be present in the markup before the toast
+is generated or updated. If you dynamically generate both at the same time and
+inject them into the page, they will generally not be announced by assistive
+technologies.
+
+You also need to adapt the `role` and `aria-live` level depending on the
+content. If it’s an important message like an error, use `role="alert"
+aria-live="assertive"`, otherwise use `role="status" aria-live="polite"`
+attributes.
+
+As the content you’re displaying changes, be sure to update the `delay`
+timeout so that users have enough time to read the toast.
+
+Example code (HTML):
 
 <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-delay="10000">
   <div role="alert" aria-live="assertive" aria-atomic="true">...</div>
 </div>
 
-------------------------------------------------------------------------
-ACCESSIBILITY (cont.)
-Example 16  |  HTML
-------------------------------------------------------------------------
-Note: When using `autohide: false`, you must add a close button to allow users to dismiss the toast.
+When using `autohide: false`, you must add a close button to allow users to
+dismiss the toast.
+
+Example code (HTML):
 
 <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
   <div class="toast-header">
@@ -414,11 +516,27 @@ Note: When using `autohide: false`, you must add a close button to allow users t
   </div>
 </div>
 
+While technically it’s possible to add focusable/actionable controls (such as
+additional buttons or links) in your toast, you should avoid doing this for
+autohiding toasts. Even if you give the toast a long `delay` timeout, keyboard
+and assistive technology users may find it difficult to reach the toast in
+time to take action (since toasts don’t receive focus when they are
+displayed). If you absolutely must have further controls, we recommend using a
+toast with `autohide: false`.
+
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 17  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Toasts use local CSS variables on `.toast` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Toasts use local CSS variables on `.toast` for real-time customization. Values
+for the CSS variables are generated from Sass maps unique to each component
+and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable custom-property-no-missing-var-function
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -447,35 +565,135 @@ $toast-tokens: defaults(
 );
 // stylelint-enable custom-property-no-missing-var-function
 
-------------------------------------------------------------------------
+========================================================================
 USAGE
-Example 18  |  JS
-------------------------------------------------------------------------
-Note: Initialize toasts via JavaScript:
+========================================================================
+
+Initialize toasts via JavaScript:
+
+Example code (JS):
 
 const toastElList = document.querySelectorAll('.toast')
 const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, option))
 
 ------------------------------------------------------------------------
-USAGE > TRIGGERS
-Example 19  |  HTML
+VIA DATA ATTRIBUTES
 ------------------------------------------------------------------------
-Note: Dismissal can be achieved with the `data-bs-dismiss` attribute on a button within the toast as demonstrated below:
+
+Attribute                  Description
+-------------------------  --------------------------------------------------------------
+`data-bs-dismiss="toast"`  On a close control, dismisses the toast when activated.
+`data-bs-autohide`         Whether the toast hides automatically after the delay.
+`data-bs-delay`            Time in milliseconds before hiding (when autohide is enabled).
+
+------------------------------------------------------------------------
+TRIGGERS
+------------------------------------------------------------------------
+
+Dismissal can be achieved with the `data-bs-dismiss` attribute on a button
+within the toast as demonstrated below:
+
+Example code (HTML):
 
 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 
-------------------------------------------------------------------------
-USAGE > TRIGGERS (cont.)
-Example 20  |  HTML
-------------------------------------------------------------------------
-Note: or on a button outside the toast using the additional `data-bs-target` as demonstrated below:
+or on a button outside the toast using the additional `data-bs-target` as
+demonstrated below:
+
+Example code (HTML):
 
 <button type="button" class="btn-close" data-bs-dismiss="toast" data-bs-target="#my-toast" aria-label="Close"></button>
 
 ------------------------------------------------------------------------
-USAGE > EVENTS
-Example 21  |  JS
+DEPENDENCIES
 ------------------------------------------------------------------------
+
+The toast plugin requires the following JavaScript files if you’re building
+Bootstrap’s JS from source:
+
+File                                  Description
+------------------------------------  ---------------------------
+`js/src/toast.ts`                     Main toast component
+`js/src/base-component.ts`            Base component class
+`js/src/dom/data.ts`                  Element data store
+`js/src/dom/event-handler.ts`         Event handling utilities
+`js/src/dom/manipulator.ts`           Data attribute manipulation
+`js/src/dom/selector-engine.ts`       DOM selector utilities
+`js/src/util/component-functions.ts`  Shared component helpers
+`js/src/util/config.ts`               Configuration base class
+`js/src/util/index.ts`                Core utility functions
+
+------------------------------------------------------------------------
+OPTIONS
+------------------------------------------------------------------------
+
+As options can be passed via data attributes or JavaScript, you can append an
+option name to `data-bs-`, as in `data-bs-animation="{value}"`. Make sure to
+change the case type of the option name from “camelCase” to “kebab-case” when
+passing the options via data attributes. For example, use
+`data-bs-custom-class="beautifier"` instead of
+`data-bs-customClass="beautifier"`.
+
+All components support a reserved data attribute `data-bs-config` that can
+house simple component configuration as a JSON string. When an element has
+`data-bs-config='{"delay":0, "title":123}'` and `data-bs-title="456"`
+attributes, the final `title` value will be `456` and the separate data
+attributes will override values given on `data-bs-config`. In addition,
+existing data attributes are able to house JSON values like
+`data-bs-delay='{"show":0,"hide":150}'`.
+
+The final configuration object is the merged result of `data-bs-config`,
+`data-bs-`, and `js object` where the latest given key-value overrides the
+others.
+
+Name        Type     Default  Description
+----------  -------  -------  ----------------------------------------------
+`autohide`  boolean  `true`   Automatically hide the toast after the delay.
+`delay`     number   `5000`   Delay in milliseconds before hiding the toast.
+
+------------------------------------------------------------------------
+METHODS
+------------------------------------------------------------------------
+
+NOTE:
+  Methods that show or hide a component return a promise. The promise resolves
+  when the transition ends, so `await` continues at the same moment a
+  `shown.bs.*` or `hidden.bs.*` listener runs. The methods still return
+  immediately and never block the caller. A call on a component that is already
+  transitioning does nothing and resolves right away. Learn more in our
+  JavaScript docs.
+
+`dispose`
+  Description: Hides an element’s toast. Your toast will remain on the DOM but won’t show anymore.
+
+`getInstance`
+  Description: Static method which allows you to get the toast instance associated with a DOM element. For example: `const myToastEl = document.getElementById('myToastEl')` `const myToast = bootstrap.Toast.getInstance(myToastEl)` Returns a Bootstrap toast instance.
+
+`getOrCreateInstance`
+  Description: Static method which allows you to get the toast instance associated with a DOM element, or create a new one, in case it wasn’t initialized. `const myToastEl = document.getElementById('myToastEl')` `const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl)` Returns a Bootstrap toast instance.
+
+`hide`
+  Description: Hides an element’s toast. Returns a promise that resolves once the toast is hidden (i.e. after the `hidden.bs.toast` event fires). You have to manually call this method if you made `autohide` to `false`.
+
+`isShown`
+  Description: Returns a boolean according to toast’s visibility state.
+
+`show`
+  Description: Reveals an element’s toast. Returns a promise that resolves once the toast is shown (i.e. after the `shown.bs.toast` event fires). You have to manually call this method, instead your toast won’t show.
+
+------------------------------------------------------------------------
+EVENTS
+------------------------------------------------------------------------
+
+Event              Description
+-----------------  --------------------------------------------------------------------------------
+`hide.bs.toast`    This event is fired immediately when the `hide` instance method has been called.
+`hidden.bs.toast`  This event is fired when the toast has finished being hidden from the user.
+`show.bs.toast`    This event fires immediately when the `show` instance method is called.
+`shown.bs.toast`   This event is fired when the toast has been made visible to the user.
+
+Example code (JS):
+
 const myToastEl = document.getElementById('myToast')
 myToastEl.addEventListener('hidden.bs.toast', () => {
   // do something...

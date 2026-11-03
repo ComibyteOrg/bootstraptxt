@@ -1,0 +1,81 @@
+========================================================================
+FOCUS RING
+Bootstrap 6.0  |  Helpers reference
+Source: https://getbootstrap.com/docs/6.0/helpers/focus-ring
+========================================================================
+
+WHAT IT DOES
+Utility classes that allows you to add and modify custom focus ring styles to
+elements and components.
+
+HOW TO USE IT
+Add the helper class to the element you want to affect. Helpers are small,
+single-purpose classes that do one job.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Example
+  Variants
+  Custom colors
+
+The `.focus-ring` helper modifies the default `outline` for focus states with
+one that can be more easily customized. Focus ring is made up of a series of
+CSS variables, inherited from the `:root` level, that can be modified for any
+element or component.
+
+========================================================================
+EXAMPLE
+========================================================================
+
+Tab into the example below to see the focus ring in action, or into the
+example below and then press `Tab`.
+
+Example code (HTML):
+
+<a href="#" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2">
+  Custom focus ring
+</a>
+
+========================================================================
+VARIANTS
+========================================================================
+
+Change the color of the focus ring with the theme color utility classes. The
+helper class pulls in the `--bs-theme-focus-ring` CSS variable for the given
+theme color.
+
+Example code (HTML):
+
+<a href="#" class="d-inline-flex focus-ring theme-primary py-1 px-2 text-decoration-none border rounded-2">Primary focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-accent py-1 px-2 text-decoration-none border rounded-2">Accent focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-success py-1 px-2 text-decoration-none border rounded-2">Success focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-danger py-1 px-2 text-decoration-none border rounded-2">Danger focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-warning py-1 px-2 text-decoration-none border rounded-2">Warning focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-info py-1 px-2 text-decoration-none border rounded-2">Info focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-inverse py-1 px-2 text-decoration-none border rounded-2">Inverse focus</a>
+<a href="#" class="d-inline-flex focus-ring theme-secondary py-1 px-2 text-decoration-none border rounded-2">Secondary focus</a>
+
+========================================================================
+CUSTOM COLORS
+========================================================================
+
+Modify the `--bs-focus-ring-color` CSS variable as needed to change the
+default appearance. Use existing theme variables or your own colors. When
+using your own colors, we recommend using `light-dark()` for color mode
+support and `color-mix()` to ensure colors deviate slightly for more contrast
+on different backgrounds.
+
+Example code (HTML):
+
+<a href="#" class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2" style="--bs-focus-ring-color: var(--bs-success-focus-ring)">
+  Green focus ring
+</a>
+
+========================================================================
+END OF FILE
+========================================================================

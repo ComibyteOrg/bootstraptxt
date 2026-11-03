@@ -1,0 +1,112 @@
+========================================================================
+FLOAT
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/float
+========================================================================
+
+WHAT IT DOES
+Toggle floats on any element, across any breakpoint, using our responsive
+float utilities.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class         Styles
+------------  --------------------
+.float-start  float: inline-start;
+.float-end    float: inline-end;
+.float-none   float: none;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+These utility classes float an element to the left or right, or disable
+floating, based on the current viewport size using the CSS `float` property.
+`!important` is included to avoid specificity issues. These use the same
+viewport breakpoints as our grid system. Please be aware float utilities have
+no effect on flex items.
+
+Example code (HTML):
+
+<div class="float-start">Float start on all viewport sizes</div><br>
+<div class="float-end">Float end on all viewport sizes</div><br>
+<div class="float-none">Don’t float on all viewport sizes</div>
+
+Use the `.d-flow-root` utility on a parent element to clear floats.
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for each `float` value.
+
+Example code (HTML):
+
+<div class="sm:float-end">Float end on viewports sized SM (small) or wider</div><br>
+<div class="md:float-end">Float end on viewports sized MD (medium) or wider</div><br>
+<div class="lg:float-end">Float end on viewports sized LG (large) or wider</div><br>
+<div class="xl:float-end">Float end on viewports sized XL (extra large) or wider</div><br>
+<div class="2xl:float-end">Float end on viewports sized 2XL (extra extra large) or wider</div><br>
+
+Here are all the support classes:
+
+- `.float-start`
+- `.float-end`
+- `.float-none`
+- `.sm:float-start`
+- `.sm:float-end`
+- `.sm:float-none`
+- `.md:float-start`
+- `.md:float-end`
+- `.md:float-none`
+- `.lg:float-start`
+- `.lg:float-end`
+- `.lg:float-none`
+- `.xl:float-start`
+- `.xl:float-end`
+- `.xl:float-none`
+- `.2xl:float-start`
+- `.2xl:float-end`
+- `.2xl:float-none`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Float utilities are declared in our utilities API in `scss/_utilities.scss`.
+Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"float": (
+  property: float,
+  responsive: true,
+  values: (
+    start: inline-start,
+    end: inline-end,
+    none: none,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

@@ -1,0 +1,162 @@
+========================================================================
+ASPECT RATIO
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/aspect-ratio
+========================================================================
+
+WHAT IT DOES
+Make elements maintain specific aspect ratios. Perfect for handling videos,
+slideshow embeds, and more based on the width of the parent.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Example
+  Custom ratios
+  CSS
+     - Sass map
+     - Sass utilities API
+
+Class        Styles
+-----------  -------------------
+.ratio-auto  --bs-ratio: auto;
+.ratio-1x1   --bs-ratio: 1 / 1;
+.ratio-4x3   --bs-ratio: 4 / 3;
+.ratio-16x9  --bs-ratio: 16 / 9;
+.ratio-21x9  --bs-ratio: 21 / 9;
+
+Use the ratio utility to manage the aspect ratios of content like `<iframe>`s,
+`<embed>`s, `<video>`s, and `<object>`s. These helpers also can be used on any
+standard HTML child element (e.g., a `<div>` or `<img>`). Customize the
+available aspect ratios with the Sass variable or the utility API.
+
+NOTE:
+  Pro-Tip! You don’t need `frameborder="0"` on your `<iframe>`s as we override
+  that for you in Reboot.
+
+========================================================================
+EXAMPLE
+========================================================================
+
+Add your ratio utility to the element you want to modify, like an `<iframe>`,
+`<video>`, or less semantic elements like `<div>`. Ratio utilities also pair
+well with any width utilities, as shown below. Customize the available aspect
+ratios with the Sass variable or the utility API.
+
+Example code (HTML):
+
+<iframe class="w-100 ratio-16x9" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+
+Swap the `.ratio-*` class for a different aspect ratio.
+
+Example code (HTML):
+
+<div class="ratio-auto">
+  <div>Auto</div>
+</div>
+<div class="w-25 ratio-1x1">
+  <div>1×1</div>
+</div>
+<div class="w-50 ratio-4x3">
+  <div>4×3</div>
+</div>
+<div class="w-75 ratio-16x9">
+  <div>16×9</div>
+</div>
+<div class="w-100 ratio-21x9">
+  <div>21×9</div>
+</div>
+
+========================================================================
+CUSTOM RATIOS
+========================================================================
+
+To set a custom ratio, override `--bs-ratio` on any `.ratio-*` element.
+
+Example code (HTML):
+
+<div class="w-25 ratio-auto" style="--bs-ratio: 2 / 1;">
+  <div>2×1</div>
+</div>
+
+You can also change the ratio at breakpoints by overriding the same custom
+property in your own CSS.
+
+Example code (SCSS):
+
+.custom-ratio {
+  --bs-ratio: 4 / 3;
+
+  @include media-breakpoint-up(md) {
+    --bs-ratio: 2 / 1;
+  }
+}
+
+Then apply that class to your markup:
+
+Example code (HTML):
+
+<div class="ratio-auto custom-ratio">
+  <div>4×3, then 2×1</div>
+</div>
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS MAP
+------------------------------------------------------------------------
+
+Within `_config.scss`, you can change the aspect ratios you want to use.
+Here’s our default `$aspect-ratios` map. Modify the map as you like and
+recompile your Sass to put them to use.
+
+Example code (SCSS):
+
+$aspect-ratios: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$aspect-ratios: defaults(
+  (
+    "auto": auto,
+    "1x1": #{"1 / 1"},
+    "4x3": #{"4 / 3"},
+    "16x9": #{"16 / 9"},
+    "21x9": #{"21 / 9"}
+  ),
+  $aspect-ratios
+);
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Aspect ratio utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"aspect-ratio-attr": (
+  selector: "attr-includes",
+  class: "ratio-",
+  property: aspect-ratio,
+  values: var(--ratio),
+),
+"aspect-ratio": (
+  property: --ratio,
+  class: ratio,
+  values: $aspect-ratios
+),
+
+========================================================================
+END OF FILE
+========================================================================

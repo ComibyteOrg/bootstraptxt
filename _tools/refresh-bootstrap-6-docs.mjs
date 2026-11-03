@@ -1,57 +1,204 @@
 /**
  * Bootstrap 6 docs -> local, copy-pasteable text snippets.
  *
- * Pulls every page listed below from https://getbootstrap.com/docs/6.0/,
- * rebuilds the syntax-highlighted code panels into plain text, and writes
- * one .txt per component/forms page.
+ * Every page of the official documentation is rendered as a plain-text
+ * reference: explanations, class tables, lists, and all code blocks.
+ * Pages that rely on JavaScript start with a JAVASCRIPT SETUP block.
  *
  * Usage:  node _tools/refresh-bootstrap-6-docs.mjs
+ * Output: ./Bootstrap 6 Snippets/
  */
 
 import { mkdir, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
+import { renderPage } from './render-page.mjs'
 
 const BASE = 'https://getbootstrap.com/docs/6.0'
 const OUT = join(process.cwd(), 'Bootstrap 6 Snippets')
 
-const COMPONENTS = [
-  ['accordion', 'Accordion'],
-  ['alert', 'Alert'],
-  ['avatar', 'Avatar'],
-  ['badge', 'Badge'],
-  ['breadcrumb', 'Breadcrumb'],
-  ['button', 'Button'],
-  ['button-group', 'Button Group'],
-  ['card', 'Card'],
-  ['carousel', 'Carousel'],
-  ['close-button', 'Close Button'],
-  ['collapse', 'Collapse'],
-  ['dialog', 'Dialog'],
-  ['drawer', 'Drawer'],
-  ['list-group', 'List Group'],
-  ['menu', 'Menu'],
-  ['nav', 'Nav'],
-  ['navbar', 'Navbar'],
-  ['nav-overflow', 'Nav Overflow'],
-  ['pagination', 'Pagination'],
-  ['placeholder', 'Placeholder'],
-  ['popover', 'Popover'],
-  ['progress', 'Progress'],
-  ['scrollspy', 'Scrollspy'],
-  ['spinner', 'Spinner'],
-  ['stepper', 'Stepper'],
-  ['tab', 'Tab'],
-  ['toasts', 'Toasts'],
-  ['toggler', 'Toggler'],
-  ['tooltip', 'Tooltip'],
+// ------------------------------------------------------------------ pages
+// Ordered as they appear in the docs sidebar.
+
+const SECTIONS = [
+  {
+    folder: 'Getting Started', path: 'getting-started', pages: [
+      ['install', 'Install'],
+      ['approach', 'Approach'],
+      ['accessibility', 'Accessibility'],
+      ['browsers-devices', 'Browsers and Devices'],
+      ['css-variables', 'CSS Variables'],
+      ['javascript', 'JavaScript'],
+    ],
+  },
+  {
+    folder: 'Guides', path: 'guides', pages: [
+      ['quickstart', 'Quickstart'],
+      ['npm', 'npm'],
+      ['webpack', 'Webpack'],
+      ['parcel', 'Parcel'],
+      ['vite', 'Vite'],
+      ['contribute', 'Contribute'],
+      ['migration', 'Migration'],
+    ],
+  },
+  {
+    folder: 'Customize', path: 'customize', pages: [
+      ['overview', 'Customize'],
+      ['sass', 'Sass'],
+      ['options', 'Options'],
+      ['color', 'Color'],
+      ['theme', 'Theme'],
+      ['color-modes', 'Color Modes'],
+      ['components', 'Components'],
+      ['transitions', 'Transitions'],
+      ['rtl', 'RTL'],
+      ['optimize', 'Optimize'],
+    ],
+  },
+  {
+    folder: 'Layout', path: 'layout', pages: [
+      ['breakpoints', 'Breakpoints'],
+      ['containers', 'Containers'],
+      ['grid', 'Grid System'],
+      ['columns', 'Columns'],
+      ['gutters', 'Gutters'],
+      ['utilities', 'Utilities for Layout'],
+      ['z-index', 'Z-Index'],
+      ['css-grid', 'CSS Grid'],
+    ],
+  },
+  {
+    folder: 'Content', path: 'content', pages: [
+      ['reboot', 'Reboot'],
+      ['typography', 'Typography'],
+      ['images', 'Images'],
+      ['tables', 'Tables'],
+      ['prose', 'Prose'],
+    ],
+  },
+  {
+    folder: 'Components', path: 'components', pages: [
+      ['accordion', 'Accordion'],
+      ['alert', 'Alert'],
+      ['avatar', 'Avatar'],
+      ['badge', 'Badge'],
+      ['breadcrumb', 'Breadcrumb'],
+      ['button', 'Button'],
+      ['button-group', 'Button Group'],
+      ['card', 'Card'],
+      ['carousel', 'Carousel'],
+      ['close-button', 'Close Button'],
+      ['collapse', 'Collapse'],
+      ['dialog', 'Dialog'],
+      ['drawer', 'Drawer'],
+      ['list-group', 'List Group'],
+      ['menu', 'Menu'],
+      ['nav', 'Nav'],
+      ['navbar', 'Navbar'],
+      ['nav-overflow', 'Nav Overflow'],
+      ['pagination', 'Pagination'],
+      ['placeholder', 'Placeholder'],
+      ['popover', 'Popover'],
+      ['progress', 'Progress'],
+      ['scrollspy', 'Scrollspy'],
+      ['spinner', 'Spinner'],
+      ['stepper', 'Stepper'],
+      ['tab', 'Tab'],
+      ['toasts', 'Toasts'],
+      ['toggler', 'Toggler'],
+      ['tooltip', 'Tooltip'],
+    ],
+  },
+  {
+    folder: 'Forms', path: 'forms', pages: [
+      ['overview', 'Forms Overview'],
+      ['field', 'Field'],
+      ['form-control', 'Form Control'],
+      ['checkbox', 'Checkbox'],
+      ['radio', 'Radio'],
+      ['switch', 'Switch'],
+      ['range', 'Range'],
+      ['input-group', 'Input Group'],
+      ['floating-labels', 'Floating Labels'],
+      ['form-adorn', 'Form Adorn'],
+      ['chips', 'Chips'],
+      ['combobox', 'Combobox'],
+      ['datepicker', 'Datepicker'],
+      ['otp-input', 'OTP Input'],
+      ['password-strength', 'Password Strength'],
+      ['layout', 'Layout'],
+      ['validation', 'Validation'],
+    ],
+  },
+  {
+    folder: 'Helpers', path: 'helpers', pages: [
+      ['focus-ring', 'Focus Ring'],
+      ['hover-lift', 'Hover Lift'],
+      ['icon-link', 'Icon Link'],
+      ['position', 'Position'],
+      ['stacks', 'Stacks'],
+      ['stretched-link', 'Stretched Link'],
+      ['text-truncation', 'Text Truncation'],
+      ['vertical-rule', 'Vertical Rule'],
+      ['visually-hidden', 'Visually Hidden'],
+    ],
+  },
+  {
+    folder: 'Utilities', path: 'utilities', pages: [
+      ['api', 'Utilities API'],
+      ['align-content', 'Align Content'],
+      ['align-items', 'Align Items'],
+      ['align-self', 'Align Self'],
+      ['aspect-ratio', 'Aspect Ratio'],
+      ['background', 'Background'],
+      ['border', 'Border'],
+      ['border-color', 'Border Color'],
+      ['border-radius', 'Border Radius'],
+      ['colors', 'Colors'],
+      ['color-scheme', 'Color Scheme'],
+      ['container-queries', 'Container Queries'],
+      ['display', 'Display'],
+      ['divide', 'Divide'],
+      ['flex', 'Flex'],
+      ['float', 'Float'],
+      ['font-family', 'Font Family'],
+      ['font-size', 'Font Size'],
+      ['font-style', 'Font Style'],
+      ['font-weight', 'Font Weight'],
+      ['gap', 'Gap'],
+      ['grid', 'Grid'],
+      ['height', 'Height'],
+      ['justify-content', 'Justify Content'],
+      ['justify-items', 'Justify Items'],
+      ['line-height', 'Line Height'],
+      ['link', 'Link'],
+      ['margin', 'Margin'],
+      ['motion', 'Motion'],
+      ['object-fit', 'Object Fit'],
+      ['opacity', 'Opacity'],
+      ['overflow', 'Overflow'],
+      ['padding', 'Padding'],
+      ['place-items', 'Place Items'],
+      ['pointer-events', 'Pointer Events'],
+      ['position', 'Position'],
+      ['shadows', 'Shadows'],
+      ['space', 'Space'],
+      ['text-alignment', 'Text Alignment'],
+      ['text-decoration', 'Text Decoration'],
+      ['text-transform', 'Text Transform'],
+      ['text-wrapping', 'Text Wrapping'],
+      ['theme', 'Theme'],
+      ['user-select', 'User Select'],
+      ['vertical-align', 'Vertical Align'],
+      ['visibility', 'Visibility'],
+      ['width', 'Width'],
+      ['z-index', 'Z-Index'],
+    ],
+  },
 ]
 
-// Verified against each component's "Usage" section in the v6 docs.
-// mode    -> how initialisation works
-// auto    -> markup that the data API picks up on its own
-// markup  -> trigger markup for components that are NOT auto-initialised
-// manual  -> explicit constructor call
-// reuse   -> getting an existing instance back
+// -------------------------------------------------------- javaScript setup
+
 const JS_SETUP = {
   Alert: {
     mode: 'The data API wires up `data-bs-dismiss="alert"` automatically. The constructor is only needed if you want to drive an alert from JavaScript.',
@@ -277,174 +424,25 @@ const JS_SETUP = {
   },
 }
 
-const FORMS = [
-  ['overview', 'Forms Overview'],
-  ['field', 'Field'],
-  ['form-control', 'Form Control'],
-  ['checkbox', 'Checkbox'],
-  ['radio', 'Radio'],
-  ['switch', 'Switch'],
-  ['range', 'Range'],
-  ['input-group', 'Input Group'],
-  ['floating-labels', 'Floating Labels'],
-  ['form-adorn', 'Form Adorn'],
-  ['chips', 'Chips'],
-  ['combobox', 'Combobox'],
-  ['datepicker', 'Datepicker'],
-  ['otp-input', 'OTP Input'],
-  ['password-strength', 'Password Strength'],
-  ['layout', 'Layout'],
-  ['validation', 'Validation'],
-]
-
-// ---------------------------------------------------------------- helpers
-
-const NAMED = {
-  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', '#39': "'",
-}
-
-function decodeEntities (str) {
-  return str
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
-    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
-    .replace(/&([a-zA-Z#0-9]+);/g, (m, name) => (name in NAMED ? NAMED[name] : m))
-}
-
-function htmlToText (html) {
-  return decodeEntities(
-    html
-      .replace(/<code[^>]*>/gi, '`')
-      .replace(/<\/code>/gi, '`')
-      .replace(/<kbd[^>]*>/gi, '`')
-      .replace(/<\/kbd>/gi, '`')
-      .replace(/<[^>]+>/g, '')
-  )
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-/** Rebuild a Shiki <pre> panel into plain text, preserving indentation. */
-function preToText (inner) {
-  let s = inner.replace(/\r/g, '')
-  s = s.replace(/\n/g, '')                     // drop newlines *between* line spans
-  s = s.replace(/<span class="line">/g, '\n')  // one span == one source line
-  s = s.replace(/<[^>]+>/g, '')
-  s = decodeEntities(s)
-  s = s.replace(/^\n/, '')
-  s = s.split('\n').map(line => line.replace(/[ \t]+$/, '')).join('\n')
-  s = s.replace(/\n{3,}/g, '\n\n')
-  return s.trim()
-}
+// --------------------------------------------------------------- helpers
 
 function sanitizeFilename (name) {
   return name.replace(/[<>:"/\\|?*]/g, '-').replace(/\s+/g, ' ').trim()
 }
 
-const LANG_BY_EXT = {
-  scss: 'SCSS', sass: 'SASS', css: 'CSS',
-  js: 'JS', mjs: 'JS', cjs: 'JS', ts: 'TS',
-  html: 'HTML', json: 'JSON', md: 'MD', bash: 'BASH', sh: 'BASH',
-}
-
-/**
- * Language of a code panel. Panels either carry an inline badge
- * ("HTML", "JS", ...) or a link to the source file they were pulled from.
- */
-function detectLanguage (body, preIndex, code) {
-  const window = body.slice(Math.max(0, preIndex - 5000), preIndex)
-  const toolbarAt = window.lastIndexOf('highlight-toolbar')
-  const chunk = toolbarAt === -1 ? '' : window.slice(toolbarAt)
-
-  const badge = chunk.match(/>\s*(HTML|CSS|SCSS|SASS|JS|JAVASCRIPT|BASH|SHELL|JSON|TS|TYPESCRIPT)\s*</i)
-  if (badge) {
-    const label = badge[1].toUpperCase()
-    return { JAVASCRIPT: 'JS', TYPESCRIPT: 'TS', SHELL: 'BASH' }[label] || label
-  }
-
-  const href = chunk.match(/href="([^"]+\.[a-z0-9]{2,5})"/i)
-  if (href) {
-    const ext = href[1].split('.').pop().toLowerCase()
-    if (LANG_BY_EXT[ext]) return LANG_BY_EXT[ext]
-  }
-
-  if (/^\s*[.#@&][\w-]+[\s\S]*?\{/m.test(code) && /--bs-[\w-]+\s*:/.test(code)) return 'CSS'
-  if (/^\s*(import\s|export\s|const\s|let\s|var\s|document\.|new\s)/m.test(code)) return 'JS'
-  return 'HTML'
-}
-
-async function fetchPage (slug, kind) {
-  const url = `${BASE}/${kind}/${slug}`
+async function fetchPage (slug, path) {
+  const url = `${BASE}/${path}/${slug}`
   const res = await fetch(url, {
-    headers: { 'user-agent': 'bootstrap-local-snippets/1.0' },
+    headers: { 'user-agent': 'bootstrap-local-docs/2.0' },
   })
   if (!res.ok) throw new Error(`${res.status} ${url}`)
   return { url, html: await res.text() }
 }
 
-function extractTitle (main, fallback) {
-  const h1 = main.match(/<h1[^>]*id="content"[^>]*>([\s\S]*?)<\/h1>/)
-  if (h1) return htmlToText(h1[1])
-  const anyH1 = main.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)
-  return anyH1 ? htmlToText(anyH1[1]) : fallback
-}
-
-function extractIntro (main) {
-  const sub = main.match(/<div class="bd-subtitle">([\s\S]*?)<\/div>/)
-  return sub ? htmlToText(sub[1]) : ''
-}
-
-function extractBody (html) {
+function requiresJs (html) {
   const start = html.indexOf('<main')
-  const end = html.lastIndexOf('</main>')
-  if (start === -1 || end === -1) return html
-  return html.slice(start, end)
-}
-
-/** Walk headings + code panels in document order and pair them up. */
-function extractExamples (body) {
-  const events = []
-  const headingRe = /<h([234])\b[^>]*>([\s\S]*?)<\/h\1>/g
-  const preRe = /<pre[^>]*class="astro-code[^"]*"[^>]*>([\s\S]*?)<\/pre>/g
-
-  for (const m of body.matchAll(headingRe)) {
-    events.push({ type: 'heading', level: Number(m[1]), text: htmlToText(m[2]), index: m.index, end: m.index + m[0].length })
-  }
-  for (const m of body.matchAll(preRe)) {
-    events.push({ type: 'pre', inner: m[1], index: m.index, end: m.index + m[0].length })
-  }
-  events.sort((a, b) => a.index - b.index)
-
-  const examples = []
-  const stack = { 2: '', 3: '', 4: '' }
-  let segmentStart = 0
-
-  for (const ev of events) {
-    if (ev.type === 'heading') {
-      stack[ev.level] = ev.text
-      for (let deeper = ev.level + 1; deeper <= 4; deeper++) stack[deeper] = ''
-      segmentStart = ev.end
-      continue
-    }
-
-    const code = preToText(ev.inner)
-    if (!code) { segmentStart = ev.end; continue }
-
-    // first paragraph in this segment = the explanatory note for the example
-    const segment = body.slice(segmentStart, ev.index)
-    const p = segment.match(/<p[^>]*>([\s\S]*?)<\/p>/)
-    const note = p ? htmlToText(p[1]) : ''
-
-    const path = [stack[2], stack[3], stack[4]].filter(Boolean)
-    examples.push({
-      section: path.length ? path.join(' > ') : 'Overview',
-      note,
-      lang: detectLanguage(body, ev.index, code),
-      code,
-    })
-    segmentStart = ev.end
-  }
-
-  return examples
+  if (start === -1) return false
+  return html.slice(start, start + 8000).includes('filetype-js')
 }
 
 function renderJsSetup (setup) {
@@ -486,401 +484,358 @@ function renderJsSetup (setup) {
     out.push(setup.reuse)
   }
 
-  out.push('')
   return out
-}
-
-function renderPage ({ title, intro, url, requiresJs, examples, setup }) {
-  const bar = '='.repeat(72)
-  const thin = '-'.repeat(72)
-  const out = []
-
-  out.push(bar)
-  out.push(title.toUpperCase())
-  out.push('Bootstrap 6.0  |  Local component reference')
-  out.push(`Source: ${url}`)
-  if (requiresJs) out.push('Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)')
-  out.push(bar)
-  out.push('')
-  if (intro) {
-    out.push(intro)
-    out.push('')
-  }
-
-  // compact contents: unique sections in document order
-  const contents = []
-  const seen = new Map()
-  examples.forEach((ex, i) => {
-    if (!seen.has(ex.section)) {
-      seen.set(ex.section, contents.length)
-      contents.push({ section: ex.section, examples: [i + 1] })
-    } else {
-      contents[seen.get(ex.section)].examples.push(i + 1)
-    }
-  })
-
-  if (contents.length > 1) {
-    out.push('CONTENTS')
-    contents.forEach((entry, i) => {
-      const nums = entry.examples.length === 1
-        ? `example ${entry.examples[0]}`
-        : `examples ${entry.examples.join(', ')}`
-      out.push(`  ${String(i + 1).padStart(2, ' ')}. ${entry.section}  (${nums})`)
-    })
-    out.push('')
-  }
-
-  if (setup) out.push(...renderJsSetup(setup))
-
-  let lastSection = ''
-  examples.forEach((ex, i) => {
-    out.push(thin)
-    if (ex.section !== lastSection) {
-      out.push(`${ex.section.toUpperCase()}`)
-      lastSection = ex.section
-    } else {
-      out.push(`${ex.section.toUpperCase()} (cont.)`)
-    }
-    out.push(`Example ${i + 1}  |  ${ex.lang}`)
-    out.push(thin)
-    if (ex.note) {
-      out.push(`Note: ${ex.note}`)
-      out.push('')
-    }
-    out.push(ex.code)
-    out.push('')
-  })
-
-  out.push(bar)
-  out.push('END OF FILE')
-  out.push(bar)
-  return out.join('\n') + '\n'
 }
 
 // ------------------------------------------------------------------ main
 
-async function buildSection (kind, pages, folder) {
-  const dir = join(OUT, folder)
+async function buildSection (section) {
+  const dir = join(OUT, section.folder)
   await mkdir(dir, { recursive: true })
-  const index = []
+  const entries = []
 
-  for (let i = 0; i < pages.length; i += 4) {
-    const batch = pages.slice(i, i + 4)
-    const results = await Promise.allSettled(batch.map(([slug]) => fetchPage(slug, kind)))
+  for (let i = 0; i < section.pages.length; i += 4) {
+    const batch = section.pages.slice(i, i + 4)
+    const results = await Promise.allSettled(batch.map(([slug]) => fetchPage(slug, section.path)))
 
     for (let j = 0; j < batch.length; j++) {
       const [slug, fallbackTitle] = batch[j]
       const res = results[j]
+      const num = String(i + j + 1).padStart(2, '0')
+      const file = `${num} ${sanitizeFilename(fallbackTitle)}.txt`
+
       if (res.status === 'rejected') {
-        console.error(`  FAILED  ${slug}: ${res.reason.message}`)
+        console.error(`  FAILED  ${section.folder}/${slug}: ${res.reason.message}`)
+        entries.push({ file: `${section.folder}/${file}`, title: fallbackTitle, ok: false })
         continue
       }
 
-      const body = extractBody(res.value.html)
-      const title = extractTitle(body, fallbackTitle) || fallbackTitle
-      const intro = extractIntro(body)
-      const mainAt = res.value.html.indexOf('<main')
-      const requiresJs = res.value.html.slice(mainAt, mainAt + 8000).includes('filetype-js')
-      const examples = extractExamples(body)
-
-      const file = `${String(i + j + 1).padStart(2, '0')} ${sanitizeFilename(fallbackTitle)}.txt`
-      const content = renderPage({
-        title,
-        intro,
+      const html = res.value.html
+      const js = requiresJs(html)
+      const setup = js && JS_SETUP[fallbackTitle] ? renderJsSetup(JS_SETUP[fallbackTitle]) : null
+      const content = renderPage(html, {
+        title: fallbackTitle,
         url: res.value.url,
-        requiresJs,
-        examples,
-        setup: requiresJs ? JS_SETUP[fallbackTitle] : null,
+        category: section.folder,
+        requiresJs: js,
+        setup,
       })
-      await writeFile(join(dir, file), content, 'utf8')
 
-      index.push({ file: `${folder}/${file}`, title, count: examples.length })
-      console.log(`  ok  ${file}  (${examples.length} examples)`)
+      await writeFile(join(dir, file), content, 'utf8')
+      entries.push({ file: `${section.folder}/${file}`, title: fallbackTitle, ok: true })
+      console.log(`  ok  ${section.folder}/${file}`)
     }
   }
 
-  return index
+  return entries
 }
 
-const index = []
 await mkdir(OUT, { recursive: true })
 
-console.log('Downloading components...')
-index.push(...await buildSection('components', COMPONENTS, 'Components'))
-
-console.log('Downloading forms...')
-index.push(...await buildSection('forms', FORMS, 'Forms'))
+const index = []
+const failed = []
+for (const section of SECTIONS) {
+  console.log(`Building ${section.folder}...`)
+  index.push(...await buildSection(section))
+}
+for (const entry of index) if (!entry.ok) failed.push(entry.file)
 
 // ------------------------------------------------------------------ index
 
-const indexLines = []
 const bar = '='.repeat(72)
+const thin = '-'.repeat(72)
+const indexLines = []
 indexLines.push(bar)
-indexLines.push('BOOTSTRAP 6.0 - LOCAL COMPONENT SNIPPETS')
-indexLines.push('='.repeat(72))
+indexLines.push('BOOTSTRAP 6.0 - COMPLETE LOCAL DOCUMENTATION')
+indexLines.push(bar)
 indexLines.push('')
-indexLines.push('Every Bootstrap 6 component and form page, saved as plain text with')
-indexLines.push('copy-pasteable, properly indented code blocks.')
+indexLines.push('Every page of the official Bootstrap 6 documentation, converted to')
+indexLines.push('plain text with explanations, class tables and copy-pasteable code.')
 indexLines.push('')
-indexLines.push(`Docs version: 6.0.0-alpha.1  |  Scraped: ${new Date().toISOString().slice(0, 10)}`)
+indexLines.push(`Docs version: 6.0.0-alpha.1  |  Pages: ${index.length}  |  Generated: ${new Date().toISOString().slice(0, 10)}`)
 indexLines.push('')
 
-let currentFolder = ''
+let sectionPath = ''
 for (const entry of index) {
   const folder = entry.file.split('/')[0]
-  if (folder !== currentFolder) {
-    currentFolder = folder
+  if (folder !== sectionPath) {
+    sectionPath = folder
     indexLines.push('')
     indexLines.push(`--- ${folder.toUpperCase()} ${'-'.repeat(Math.max(2, 60 - folder.length))}`)
   }
-  indexLines.push(`  ${entry.file.padEnd(34)} ${String(entry.count).padStart(3)} examples`)
+  indexLines.push(`  ${entry.file.padEnd(40)} ${entry.ok ? 'ok' : 'FAILED'}`)
 }
 indexLines.push('')
 indexLines.push(bar)
-
 await writeFile(join(OUT, 'INDEX.txt'), indexLines.join('\n') + '\n', 'utf8')
 
-// ------------------------------------------------------------------ readme
+// ------------------------------------------------------------- beginner guide
 
-const totalExamples = index.reduce((sum, entry) => sum + entry.count, 0)
+const guide = `========================================================================
+BOOTSTRAP 6.0 - BEGINNER'S GUIDE
+========================================================================
+How to read this library and how Bootstrap works, from zero.
+========================================================================
 
+WHAT BOOTSTRAP IS
+-----------------
+Bootstrap is a set of ready-made CSS classes and JavaScript plugins.
+Instead of writing CSS yourself, you add classes to HTML and Bootstrap
+styles things for you: buttons, navbars, grids, forms, colors, spacing.
+
+It is mobile-first: the default classes style every screen size, and
+breakpoint prefixes change styles at specific widths.
+
+
+THE FASTEST WAY TO USE IT
+-------------------------
+1. Start with "00 Quick Start.txt" in this folder.
+2. Save the HTML and open it in your browser. You have a working page.
+3. Copy snippets from this library into the <body>.
+
+That's it. No build step required.
+
+
+HOW A BOOTSTRAP PAGE IS BUILT
+-----------------------------
+Every Bootstrap page needs three things:
+
+  1. The CSS file (in <head>):
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  2. Your HTML (components, grids, utilities) inside <body>.
+
+  3. The JS bundle (before </body>), only if you use interactive
+     components (navbar drawer, dialogs, toasts, tooltips, ...):
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+You do NOT need a build tool to follow this library.
+
+
+THE THREE BUILDING BLOCKS
+-------------------------
+1. CONTAINER - centers your content and pads it on the sides.
+   <div class="container"> ... </div>
+
+2. ROW - a horizontal grid row.
+   <div class="row"> ... </div>
+
+3. COLUMN - one of 12 columns per row.
+   <div class="row">
+     <div class="col-8">Main content</div>
+     <div class="col-4">Sidebar</div>
+   </div>
+
+The grid is the #1 thing beginners struggle with. See Layout/03 Grid System.txt
+for every option and Layout/01 Breakpoints.txt for the screen sizes.
+
+
+BREAKPOINTS (AND THE V6 PREFIX RULE)
+------------------------------------
+Bootstrap has six screen sizes:
+
+   xs  <576px     sm  ≥576px     md  ≥768px
+   lg  ≥1024px    xl  ≥1280px    2xl ≥1536px
+
+In Bootstrap 6 the prefix goes FIRST:
+
+   v5: navbar-expand-md     →     v6: md:navbar-expand
+   v5: col-md-6             →     v6: md:col-6
+
+If you write the old v5 order, nothing happens. This is the most common
+mistake when copying old snippets from the internet.
+
+
+SPACING AND SIZING SCALES
+--------------------------
+Spacing classes use these steps (spacing is in rem):
+
+   0        = 0
+   1        = 0.25rem
+   2        = 0.375rem
+   3        = 0.5rem
+   4        = 0.75rem
+   5        = 1rem
+   6        = 1.25rem
+   7        = 1.5rem
+   8        = 1.75rem
+   9        = 2rem
+   10       = 2.25rem
+   11       = 2.5rem
+   12       = 3rem
+
+   Same idea for font sizes (fs-*), gap (gap-*), width/height (w-*, h-*),
+   borders (border, border-*) and more.
+
+
+CLASS NAMES DECODED
+-------------------
+Almost every Bootstrap class follows {place}-{amount}:
+
+   m-3     margin on ALL sides
+   mt-3    margin TOP
+   mb-3    margin BOTTOM
+   ms-3    margin INLINE START (left in English)
+   me-3    margin INLINE END   (right in English)
+   mx-3    margin left and right
+   my-3    margin top and bottom
+
+   p-*     same, for padding
+   d-flex  display: flex
+   justify-content-between / -center / -start / -end
+   align-items-center / -start / -end
+   gap-3   gap between flex/grid children
+   text-center / start / end
+   fs-lg   font size large; fs-sm small; fs-3xl extra large
+
+
+THE SIX THINGS TO COPY FIRST
+----------------------------
+  1. 00 Quick Start.txt             a page skeleton
+  2. Layout/03 Grid System.txt     the 12-column grid
+  3. Layout/02 Containers.txt      page width and centering
+  4. Content/02 Typography.txt     headings, paragraphs, lists
+  5. Components/17 Navbar.txt      the navbar every site copies
+  6. Components/06 Button.txt      buttons and button variants
+
+
+INTERACTIVE COMPONENTS NEED JS
+-------------------------------
+Some components work automatically once the bundle is loaded
+(navbar drawer, menu, tabs, collapse, alerts).
+
+Others require you to initialise them yourself:
+
+   Tooltip, Popover, Toast, Nav Overflow
+
+Open the component's .txt file and read the "JAVASCRIPT SETUP" block; it
+tells you exactly which kind yours is, with working code.
+
+
+COLOURS
+-------
+Semantic theme tokens (these adapt between light/dark mode):
+
+   theme-primary    brand/action colour
+   theme-secondary  secondary actions
+   theme-success    success states
+   theme-warning    warnings
+   theme-danger     errors
+
+   bg-1, bg-2, ...  neutral surfaces (numbered)
+   fg-2, fg-3, ...  text colours (numbered)
+
+   btn-solid, btn-outline, btn-subtle, btn-icon   button styles
+   data-bs-theme="auto|light|dark"                 color modes
+
+
+HOW TO READ A .txt FILE
+-----------------------
+  1. Header: what the component is, and whether it needs JS.
+  2. WHAT IT DOES / HOW TO USE IT in plain English.
+  3. ON THIS PAGE: a table of contents for the file.
+  4. The rest: explanation first, then code, tables and examples.
+  5. Code blocks are complete and ready to paste into your page.
+
+
+COMMON MISTAKES
+---------------
+  - Forgetting the JS bundle (navbar toggle and menus won't open).
+  - Using v5 class order (col-md-6) instead of v6 (md:col-6).
+  - Copying "hidden" v5 classes that no longer exist.
+  - Using utility classes without Bootstrap CSS loaded.
+  - Closing tags incorrectly - Bootstrap components are strict HTML.
+  - Adding BOTH .container and .container-fluid (pick one).
+
+
+FINDING THINGS FAST
+-------------------
+  INDEX.txt          everything, by section
+  00 JS Cheat Sheet.txt   constructors and init recipes
+  Each folder is numbered in docs order, so you can read them in sequence.
+
+Have fun. Bootstrap rewards copying - steal from the examples guilt free.
+`
+await writeFile(join(OUT, "00 Beginner's Guide.txt"), guide, 'utf8')
+
+// ------------------------------------------------------------- README file
+
+const totalPages = index.length
 const readme = `========================================================================
-BOOTSTRAP 6.0 - LOCAL COMPONENT SNIPPETS
+BOOTSTRAP 6.0 - COMPLETE LOCAL DOCUMENTATION
 ========================================================================
 
 What this is
 ------------
-Every component and form page from the Bootstrap 6 docs, saved offline as
-plain .txt files with copy-pasteable code. No more hunting through the site
-or opening "view source" to grab an example.
+The entire Bootstrap 6 documentation, converted to plain text with the
+explanations intact - not just the code snippets. Everything you need,
+offline: what each feature does, how to use it, every class table, and
+ready-to-paste code.
 
 Docs version : 6.0.0-alpha.1
 Source       : https://getbootstrap.com/docs/6.0/
-Files        : ${index.length} pages, ${totalExamples} code examples
-Refreshed    : ${new Date().toISOString().slice(0, 10)}
+Pages        : ${totalPages}
+Generated    : ${new Date().toISOString().slice(0, 10)}
 
 
-Folder layout
--------------
-  INDEX.txt              List of every file + example counts
-  00 Quick Start.txt     Minimal HTML page wired up to Bootstrap 6
-  00 JS Cheat Sheet.txt  Every constructor + which ones need manual init
-  Components\\            ${COMPONENTS.length} component pages (navbar, card, dialog, ...)
-  Forms\\                 ${FORMS.length} form pages (controls, checks, datepicker, ...)
+Start here
+----------
+  00 Beginner's Guide.txt    start from zero: what Bootstrap is,
+                             the grid, prefixes, breakpoints, examples
+  00 Quick Start.txt         minimal CDN page to copy
+  00 JS Cheat Sheet.txt      every constructor + init recipe
 
 
-How to read a snippet file
---------------------------
-Each file follows the same shape:
-
-  - Header: component name, docs URL, whether a JS plugin is required
-  - The official short description
-  - CONTENTS: every section in the file, with example numbers
-  - One block per example:
-
-      ------------------------------------------------------------------
-      SECTION NAME
-      Example 7  |  HTML
-      ------------------------------------------------------------------
-      Note: short explanation copied from the docs
-
-      <the actual code, indented exactly as in the docs>
-
-The language tag (HTML / JS / CSS / SCSS) tells you what kind of code the
-block is. HTML blocks are ready to paste into a page. JS blocks are
-initialisation code for that plugin (if any).
+Doc sections (in docs order)
+----------------------------
+  Getting Started\\            ${'install, approach, accessibility, browsers, css variables, javascript'}
+  Guides\\                     quickstart, npm, webpack, parcel, vite, contribute, migration
+  Customize\\                  sass, options, color, theme, color-modes, components, transitions, rtl, optimize
+  Layout\\                     breakpoints, containers, grid, columns, gutters, utilities, z-index, css-grid
+  Content\\                   reboot, typography, images, tables, prose
+  Components\\                29 components (accordion ... tooltip)
+  Forms\\                     17 form pages
+  Helpers\\                   focus-ring, hover-lift, icon-link, position, stacks, stretched-link,
+                            text-truncation, vertical-rule, visually-hidden
+  Utilities\\                 48 utility pages (api, margin, padding, flex, colors, ...)
 
 
-Using the snippets
+How to read a page
 ------------------
-1. Start from "00 Quick Start.txt" for a ready HTML shell.
-2. Copy the markup you need into the <body>.
-3. If the file header says "Requires JavaScript plugin: yes", read the
-   JAVASCRIPT SETUP block at the top of that file. The Quick Start file
-   already loads the bundle.
+  Header               What it is, and whether it needs JS
+  WHAT IT DOES         One paragraph, plain English
+  HOW TO USE IT        Category-specific recipe
+  READING GUIDE        What the backticks mean
+  ON THIS PAGE         Table of contents
+  JAVASCRIPT SETUP     If the page needs the bundle: exact init code
+  BODY                 Explanation first, then code and class tables
+
+Code blocks are complete and copy-pasteable. Class tables list
+every class and the CSS it generates.
 
 
-JavaScript components
----------------------
-Every file that needs JavaScript starts with a JAVASCRIPT SETUP block.
-It tells you which of these applies:
-
-  - Data API only: including the bundle is enough. The markup below it
-    (data-bs-toggle / data-bs-dismiss / data-bs-spy / data-bs-chips ...)
-    is picked up automatically.
-  - Manual init required: you must create an instance yourself. This is
-    the case for Tooltip, Popover, Toast and Nav Overflow.
-  - No own plugin: Nav, Navbar and Combobox have no constructor. They use
-    the Drawer/Menu plugins or the data API.
-
-Each block also shows the constructor call and how to get an existing
-instance back with getOrCreateInstance().
+Bootstrap 6 gotchas
+-------------------
+  - Breakpoint prefix goes FIRST: md:col-6, md:navbar-expand (not col-md-6).
+  - Numbered theme tokens: bg-1, bg-2, fg-2, theme-primary ...
+  - Buttons: btn-solid, btn-outline, btn-subtle, btn-icon.
+  - Modals are native <dialog>; offcanvas is now Drawer.
+  - Accordion uses native <details>/<summary>.
+  - Colors via data-bs-theme="auto|light|dark".
 
 
-Bootstrap 6 conventions used throughout the docs
-------------------------------------------------
-These are easy to trip over if you are coming from Bootstrap 5:
+Refreshing
+----------
+  node _tools/refresh-bootstrap-6-docs.mjs
 
-  - Responsive prefixes come BEFORE the class name:
-        v5: navbar-expand-md       v6: md:navbar-expand
-  - Theme colours are numbered tokens, not only colour names:
-        bg-1, bg-2, fg-2, theme-primary, theme-secondary
-  - Buttons use new style classes: btn-solid, btn-outline, btn-icon
-  - Modals are built on the native <dialog> element (Components\\12 Dialog)
-  - Offcanvas is replaced by the drawer component (Components\\13 Drawer)
-  - The mobile navbar uses a <dialog class="drawer"> internally
-  - Accordion uses native <details>/<summary> elements (no JS needed)
-  - Colour modes: <html data-bs-theme="auto|light|dark">
-
-The markup in these files is exactly what the Bootstrap docs render, so it
-is the safest reference for alpha.1.
-
-
-Refreshing this folder
-----------------------
-The scraper lives at ..\\_tools\\refresh-bootstrap-6-docs.mjs
-
-    node _tools/refresh-bootstrap-6-docs.mjs
-
-Run it from the project root. It re-downloads every page and overwrites the
-.txt files, so local edits to the snippets will be lost.
-
-
-Scope
------
-Included: all Components pages, all Forms pages.
-Not included: Layout, Content, Helpers, Utilities, Customize, Getting
-started. Ask if you want those added.
+Re-fetches every page and overwrites the .txt files.
+========================================================================
 `
-
 await writeFile(join(OUT, 'README.txt'), readme, 'utf8')
 
-const quickStart = `========================================================================
-BOOTSTRAP 6.0 - QUICK START
-========================================================================
-Minimal page wired to Bootstrap 6.0.0-alpha.1 via CDN.
-Docs: https://getbootstrap.com/docs/6.0/getting-started/install
-========================================================================
-
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 6 starter</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css"
-      rel="stylesheet">
-  </head>
-  <body>
-    <main class="container py-4">
-      <h1>Hello, Bootstrap 6</h1>
-      <button class="btn-solid theme-primary" type="button">Get started</button>
-    </main>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js">
-    </script>
-  </body>
-</html>
-
-========================================================================
-NOTES
-========================================================================
-- The bundle includes Popper/Floating UI, so menus, popovers, tooltips and
-  dropdown-like components work out of the box.
-- Only include the JS bundle if you use interactive components. Each
-  snippet file says whether its component needs JS.
-- data-bs-theme accepts "auto", "light" or "dark". "auto" follows the OS.
-- If you use npm instead of the CDN:
-
-      npm install bootstrap@6.0.0-alpha.1
-
-  then import:
-
-      import 'bootstrap/dist/css/bootstrap.min.css'
-      import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-`
-await writeFile(join(OUT, '00 Quick Start.txt'), quickStart, 'utf8')
-
-const cheat = `========================================================================
-BOOTSTRAP 6.0 - JAVASCRIPT CHEAT SHEET
-========================================================================
-Load the bundle once per page, before </body>:
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
-
-"AUTO" means the data API creates the instance for you from attributes
-like data-bs-toggle. "MANUAL" means you must create it yourself.
-========================================================================
-
-COMPONENT            AUTO?   INITIALISATION
-------------------------------------------------------------------------
-Alert                auto    new bootstrap.Alert(el)
-Carousel             auto    new bootstrap.Carousel(el)
-Collapse             auto    new bootstrap.Collapse(el)
-Dialog               auto    new bootstrap.Dialog(el)
-Drawer               auto    new bootstrap.Drawer(el)
-Menu                 auto    new bootstrap.Menu(triggerEl)
-Scrollspy            auto    new bootstrap.ScrollSpy(el, { target: '#nav' })
-Tab                  auto    new bootstrap.Tab(triggerEl)
-Toggler              auto    new bootstrap.Toggler(el)
-Range                auto    new bootstrap.Range(el, { bubble: true })
-Chips                auto    new bootstrap.Chips(el, { separator: ',' })
-Datepicker           auto    new bootstrap.Datepicker(el, options)
-OTP Input            auto    new bootstrap.OtpInput(el)
-Password Strength    auto    new bootstrap.Strength(el, { input: '#pw' })
-
-Popover              MANUAL  new bootstrap.Popover(el, options)
-Tooltip              MANUAL  new bootstrap.Tooltip(el, options)
-Toasts               MANUAL  new bootstrap.Toast(el, options)
-Nav Overflow         MANUAL  new bootstrap.NavOverflow(wrapperEl, options)
-
-Nav                  n/a     no plugin; menus use bootstrap.Menu(triggerEl)
-Navbar               n/a     no plugin; uses Drawer + Menu
-Combobox             auto    no constructor; data API only
-Button (optional)    auto    new bootstrap.Button(el)   // toggle plugin
-========================================================================
-
-PATTERNS
-------------------------------------------------------------------------
-1. Data API (most components)
-
-   <button type="button" data-bs-toggle="collapse" data-bs-target="#box">
-     Toggle
-   </button>
-
-2. Manual init (Tooltip, Popover, Toast, Nav Overflow)
-
-   const el = document.querySelector('#myThing')
-   const instance = new bootstrap.Tooltip(el, { /* options */ })
-   instance.show()
-
-3. Reuse an existing instance instead of creating a second one
-
-   const instance = bootstrap.Tooltip.getOrCreateInstance('#myThing')
-   instance.hide()
-
-4. Delegated init (Tooltip / Popover on many elements, including
-   elements added to the DOM later)
-
-   new bootstrap.Tooltip(document.body, {
-     selector: '[data-bs-toggle="tooltip"]'
-   })
-
-5. Methods that show/hide return a promise
-
-   await tooltip.show()
-   // resolves when the transition ends
-
-6. Events are namespaced: <event>.bs.<component>
-
-   el.addEventListener('shown.bs.tooltip', () => { ... })
-========================================================================
-
-Each component file repeats its own slice of this cheat sheet at the top,
-inside the JAVASCRIPT SETUP block.
-`
-await writeFile(join(OUT, '00 JS Cheat Sheet.txt'), cheat, 'utf8')
-
-console.log(`\nDone. ${index.length} files + README + Quick Start written to ${OUT}`)
+console.log(`\nDone. ${index.length} pages + 5 root files written to ${OUT}`)
+if (failed.length) {
+  console.log('FAILED pages:')
+  for (const f of failed) console.log('  ' + f)
+  process.exitCode = 1
+}

@@ -1,27 +1,50 @@
 ========================================================================
 COMBOBOX
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/combobox
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-A customizable select-like component built with markup-first HTML, powered by the Menu component for positioning and keyboard navigation.
+WHAT IT DOES
+A customizable select-like component built with markup-first HTML, powered by
+the Menu component for positioning and keyboard navigation.
 
-CONTENTS
-   1. Example  (example 1)
-   2. Example > Placeholders  (example 2)
-   3. Example > Pre-selected value  (example 3)
-   4. Example > With form field  (example 4)
-   5. Custom content > Icons  (example 5)
-   6. Custom content > Descriptions  (example 6)
-   7. Custom content > Checked icon  (example 7)
-   8. Custom content > All together  (example 8)
-   9. Search menu items  (example 9)
-  10. Groups  (example 10)
-  11. Multiple select  (example 11)
-  12. Sizing  (example 12)
-  13. Disabled  (example 13)
-  14. Form submission  (example 14)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Example
+     - Placeholders
+     - Pre-selected value
+     - With form field
+  Custom content
+     - Icons
+     - Descriptions
+     - Checked icon
+     - All together
+  Search menu items
+  Groups
+  Multiple select
+  Sizing
+  Disabled
+  Form submission
+  JavaScript
+     - Via data attributes
+     - Dependencies
+     - Options
+     - Methods
+     - Events
+  Accessibility
+  CSS custom properties
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -43,11 +66,33 @@ Automatic (data API):
   <button class="menu-item" type="button" data-bs-value="us">United States</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
+OVERVIEW
+========================================================================
+
+The combobox component provides a styled select experience using standard HTML
+markup — a toggle button paired with a `.menu` overlay. Unlike traditional
+select enhancements, the combobox is markup-first: you write the toggle and
+menu items directly in HTML. The JavaScript handles show/hide, selection
+state, form submission via a hidden input, and keyboard navigation.
+
+- Full control over menu item content (icons, descriptions, badges, images —
+  anything)
+- Live search/filtering
+- Check mark indicators for selected items
+- Single and multiple selection modes
+- Full keyboard navigation and accessibility
+- Form submission via auto-created hidden input
+
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Add `data-bs-toggle="combobox"` to a `<button>` element, followed by a `.menu` with `.menu-item` buttons. Each selectable item needs a `data-bs-value` attribute.
+========================================================================
+
+Add `data-bs-toggle="combobox"` to a `<button>` element, followed by a `.menu`
+with `.menu-item` buttons. Each selectable item needs a `data-bs-value`
+attribute.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -63,10 +108,14 @@ Note: Add `data-bs-toggle="combobox"` to a `<button>` element, followed by a `.m
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLE > PLACEHOLDERS
-Example 2  |  HTML
+PLACEHOLDERS
 ------------------------------------------------------------------------
-Note: Set placeholder text with `data-bs-placeholder` on the toggle button. The `.combobox-value` element shows this text when nothing is selected, styled with `.combobox-placeholder`.
+
+Set placeholder text with `data-bs-placeholder` on the toggle button. The
+`.combobox-value` element shows this text when nothing is selected, styled
+with `.combobox-placeholder`.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -82,10 +131,13 @@ Note: Set placeholder text with `data-bs-placeholder` on the toggle button. The 
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLE > PRE-SELECTED VALUE
-Example 3  |  HTML
+PRE-SELECTED VALUE
 ------------------------------------------------------------------------
-Note: Add the `.selected` class and `aria-selected="true"` to a menu item to pre-select it. The toggle text updates automatically on initialization.
+
+Add the `.selected` class and `aria-selected="true"` to a menu item to
+pre-select it. The toggle text updates automatically on initialization.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -101,10 +153,13 @@ Note: Add the `.selected` class and `aria-selected="true"` to a menu item to pre
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLE > WITH FORM FIELD
-Example 4  |  HTML
+WITH FORM FIELD
 ------------------------------------------------------------------------
-Note: Use the form field component to layout and wrap your combobox with a label, description, and validation feedback messages in a vertical stack.
+
+Use the form field component to layout and wrap your combobox with a label,
+description, and validation feedback messages in a vertical stack.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="exampleCombobox" class="form-label">Combobox</label>
@@ -122,11 +177,21 @@ Note: Use the form field component to layout and wrap your combobox with a label
   </div>
 </div>
 
+========================================================================
+CUSTOM CONTENT
+========================================================================
+
+Since menu items are standard HTML, you can put anything inside them — SVG
+icons, images, description text, badges, or any other markup.
+
 ------------------------------------------------------------------------
-CUSTOM CONTENT > ICONS
-Example 5  |  HTML
+ICONS
 ------------------------------------------------------------------------
-Note: Add `.menu-item-icon` directly to an `<svg>` element inside a menu item for a leading icon.
+
+Add `.menu-item-icon` directly to an `<svg>` element inside a menu item for a
+leading icon.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -151,10 +216,13 @@ Note: Add `.menu-item-icon` directly to an `<svg>` element inside a menu item fo
 </div>
 
 ------------------------------------------------------------------------
-CUSTOM CONTENT > DESCRIPTIONS
-Example 6  |  HTML
+DESCRIPTIONS
 ------------------------------------------------------------------------
-Note: Use `.menu-item-content` for a flex column layout and `.menu-item-description` for secondary text.
+
+Use `.menu-item-content` for a flex column layout and `.menu-item-description`
+for secondary text.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -185,10 +253,14 @@ Note: Use `.menu-item-content` for a flex column layout and `.menu-item-descript
 </div>
 
 ------------------------------------------------------------------------
-CUSTOM CONTENT > CHECKED ICON
-Example 7  |  HTML
+CHECKED ICON
 ------------------------------------------------------------------------
-Note: Add `.menu-item-check` directly on an `<svg>` inside each menu item to show a check mark indicator. It is hidden by default and becomes visible when the item has the `.selected` class.
+
+Add `.menu-item-check` directly on an `<svg>` inside each menu item to show a
+check mark indicator. It is hidden by default and becomes visible when the
+item has the `.selected` class.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -220,10 +292,12 @@ Note: Add `.menu-item-check` directly on an `<svg>` inside each menu item to sho
 </div>
 
 ------------------------------------------------------------------------
-CUSTOM CONTENT > ALL TOGETHER
-Example 8  |  HTML
+ALL TOGETHER
 ------------------------------------------------------------------------
-Note: Combine all three for a rich menu item layout.
+
+Combine all three for a rich menu item layout.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -259,11 +333,15 @@ Note: Combine all three for a rich menu item layout.
   </button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SEARCH MENU ITEMS
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: Enable filtering with `data-bs-search="true"` on the toggle. Add a search input and optional no-results message inside the `.menu`, before the items. Items are filtered by matching their `textContent` against the query.
+========================================================================
+
+Enable filtering with `data-bs-search="true"` on the toggle. Add a search
+input and optional no-results message inside the `.menu`, before the items.
+Items are filtered by matching their `textContent` against the query.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -290,11 +368,13 @@ Note: Enable filtering with `data-bs-search="true"` on the toggle. Add a search 
   <div class="combobox-no-results d-none">No results found</div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 GROUPS
-Example 10  |  HTML
-------------------------------------------------------------------------
-Note: Use `.menu-header` elements to create labeled groups within the menu.
+========================================================================
+
+Use `.menu-header` elements to create labeled groups within the menu.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -314,11 +394,15 @@ Note: Use `.menu-header` elements to create labeled groups within the menu.
   <button class="menu-item" type="button" data-bs-value="go">Go</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 MULTIPLE SELECT
-Example 11  |  HTML
-------------------------------------------------------------------------
-Note: Add `data-bs-multiple="true"` to the toggle for multi-select behavior. Selected items are toggled on click and the menu stays open. The toggle displays the count when more than one item is selected.
+========================================================================
+
+Add `data-bs-multiple="true"` to the toggle for multi-select behavior.
+Selected items are toggled on click and the menu stays open. The toggle
+displays the count when more than one item is selected.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -351,11 +435,14 @@ Note: Add `data-bs-multiple="true"` to the toggle for multi-select behavior. Sel
   </button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SIZING
-Example 12  |  HTML
-------------------------------------------------------------------------
-Note: Use `.form-control-sm` or `.form-control-lg` on the toggle button to change size.
+========================================================================
+
+Use `.form-control-sm` or `.form-control-lg` on the toggle button to change
+size.
+
+Example code (HTML):
 
 <button class="form-control form-control-sm combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -390,11 +477,13 @@ Note: Use `.form-control-sm` or `.form-control-lg` on the toggle button to chang
   <button class="menu-item" type="button" data-bs-value="2">Option two</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 DISABLED
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: Add `disabled` to the toggle button or individual menu items.
+========================================================================
+
+Add `disabled` to the toggle button or individual menu items.
+
+Example code (HTML):
 
 <button class="form-control combobox-toggle" type="button"
       data-bs-toggle="combobox"
@@ -420,11 +509,15 @@ Note: Add `disabled` to the toggle button or individual menu items.
   <button class="menu-item" type="button" data-bs-value="3">Available</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 FORM SUBMISSION
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: The combobox creates a hidden `<input>` for form submission when `data-bs-name` is set on the toggle. The hidden input’s `name` matches the attribute value and its `value` updates whenever the selection changes.
+========================================================================
+
+The combobox creates a hidden `<input>` for form submission when
+`data-bs-name` is set on the toggle. The hidden input’s `name` matches the
+attribute value and its `value` updates whenever the selection changes.
+
+Example code (HTML):
 
 <!-- What you write -->
 <button class="form-control combobox-toggle" type="button"
@@ -436,6 +529,142 @@ Note: The combobox creates a hidden `<input>` for form submission when `data-bs-
 
 <!-- What the JS creates (inserted before the toggle) -->
 <input type="hidden" name="country" value="us">
+
+For multiple selection, the hidden input value is a comma-separated list of
+selected values.
+
+========================================================================
+JAVASCRIPT
+========================================================================
+
+------------------------------------------------------------------------
+VIA DATA ATTRIBUTES
+------------------------------------------------------------------------
+
+Attribute                    Description
+---------------------------  ------------------------------------------------------------------------------
+`data-bs-toggle="combobox"`  Initializes the combobox on the toggle button.
+`data-bs-value`              On a `.menu-item`, the value submitted and shown when that option is selected.
+`data-bs-search`             Enables the search/filter field inside the menu.
+`data-bs-multiple`           Enables multi-select behavior.
+`data-bs-name`               `name` of the auto-created hidden input for form submission.
+`data-bs-placeholder`        Placeholder text shown in the toggle when nothing is selected.
+
+------------------------------------------------------------------------
+DEPENDENCIES
+------------------------------------------------------------------------
+
+The combobox plugin requires the following JavaScript files if you’re building
+Bootstrap’s JS from source:
+
+File                             Description
+-------------------------------  -------------------------------
+`js/src/combobox.ts`             Main combobox component
+`js/src/base-component.ts`       Base component class
+`js/src/menu.ts`                 Menu component
+`js/src/dom/data.ts`             Element data store
+`js/src/dom/event-handler.ts`    Event handling utilities
+`js/src/dom/manipulator.ts`      Data attribute manipulation
+`js/src/dom/selector-engine.ts`  DOM selector utilities
+`js/src/util/config.ts`          Configuration base class
+`js/src/util/floating-ui.ts`     Responsive placement utilities
+`js/src/util/index.ts`           Core utility functions
+`@floating-ui/dom`               Third-party positioning library
+
+------------------------------------------------------------------------
+OPTIONS
+------------------------------------------------------------------------
+
+Options can be passed via data attributes on the toggle button (e.g.,
+`data-bs-search="true"`) or as a config object when initializing via
+JavaScript.
+
+`multiple`
+  Type: boolean
+  Default: `false`
+  Description: Enable multi-select mode. Selections toggle and the menu stays open.
+
+`name`
+  Type: string | null
+  Default: `null`
+  Description: Name for the auto-created hidden input. Also settable via `data-bs-name`.
+
+`placeholder`
+  Type: string
+  Default: `''`
+  Description: Placeholder text for the toggle. Also settable via `data-bs-placeholder`.
+
+`search`
+  Type: boolean
+  Default: `false`
+  Description: Enable search input in the menu. Also settable via `data-bs-search`.
+
+`searchNormalize`
+  Type: boolean
+  Default: `false`
+  Description: Normalize accented characters for search matching.
+
+`placement`
+  Type: string
+  Default: `'bottom-start'`
+  Description: Menu placement (uses Floating UI).
+
+`offset`
+  Type: array
+  Default: `[0, 2]`
+  Description: Offset from the toggle `[skidding, distance]`.
+
+`boundary`
+  Type: string | element
+  Default: `'clippingParents'`
+  Description: Overflow boundary for the menu.
+
+------------------------------------------------------------------------
+METHODS
+------------------------------------------------------------------------
+
+Method                 Description
+---------------------  --------------------------------------------------------------
+`toggle`               Toggles the menu.
+`show`                 Shows the menu.
+`hide`                 Hides the menu.
+`dispose`              Destroys the combobox instance and removes the hidden input.
+`getInstance`          Static method to get the combobox instance from a DOM element.
+`getOrCreateInstance`  Static method to get or create a combobox instance.
+
+------------------------------------------------------------------------
+EVENTS
+------------------------------------------------------------------------
+
+Events are fired on the toggle button element.
+
+Event                 Description
+--------------------  -----------------------------------------------------------------------------
+`show.bs.combobox`    Fires immediately when the `show` method is called.
+`shown.bs.combobox`   Fires when the menu has been made visible.
+`hide.bs.combobox`    Fires immediately when the `hide` method is called.
+`hidden.bs.combobox`  Fires when the menu has been hidden.
+`change.bs.combobox`  Fires when a selection is made. The event detail includes `value` and `item`.
+
+========================================================================
+ACCESSIBILITY
+========================================================================
+
+The combobox component follows WAI-ARIA combobox patterns:
+
+- The toggle button has `aria-haspopup="listbox"` and `aria-expanded`.
+- Each selectable item should have `role="option"` and `aria-selected`.
+- Full keyboard navigation: Arrow keys, Home, End, Enter, Space, Escape, and
+  Tab.
+- Disabled items have the `disabled` attribute and `aria-disabled="true"`.
+
+========================================================================
+CSS CUSTOM PROPERTIES
+========================================================================
+
+The combobox uses CSS custom properties prefixed with `--combobox-*` for the
+toggle, and inherits `--menu-*` properties from the Menu component for the
+menu overlay. See the source SCSS for the full list of available tokens.
 
 ========================================================================
 END OF FILE

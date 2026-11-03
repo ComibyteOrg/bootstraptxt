@@ -1,0 +1,501 @@
+========================================================================
+BORDER RADIUS
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/border-radius
+========================================================================
+
+WHAT IT DOES
+Use border radius…
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Radius
+     - Sizes
+  Mixing
+  CSS
+     - Variables
+     - Sass maps
+     - Sass mixins
+     - Sass utilities API
+
+.rounded-0
+  Styles: --bs-rounded-size: 0; border-radius: var(--bs-rounded-size);
+
+.rounded-1
+  Styles: --bs-rounded-size: 0.125rem; border-radius: var(--bs-rounded-size);
+
+.rounded-2
+  Styles: --bs-rounded-size: 0.1875rem; border-radius: var(--bs-rounded-size);
+
+.rounded-3
+  Styles: --bs-rounded-size: 0.25rem; border-radius: var(--bs-rounded-size);
+
+.rounded-4
+  Styles: --bs-rounded-size: 0.375rem; border-radius: var(--bs-rounded-size);
+
+.rounded-5
+  Styles: --bs-rounded-size: 0.5rem; border-radius: var(--bs-rounded-size);
+
+.rounded-6
+  Styles: --bs-rounded-size: 0.625rem; border-radius: var(--bs-rounded-size);
+
+.rounded-7
+  Styles: --bs-rounded-size: 0.75rem; border-radius: var(--bs-rounded-size);
+
+.rounded-8
+  Styles: --bs-rounded-size: 0.875rem; border-radius: var(--bs-rounded-size);
+
+.rounded-9
+  Styles: --bs-rounded-size: 1rem; border-radius: var(--bs-rounded-size);
+
+.rounded
+  Styles: --bs-rounded-size: 0.5rem; border-radius: var(--bs-rounded-size);
+
+.rounded-circle
+  Styles: --bs-rounded-size: 50%; border-radius: var(--bs-rounded-size);
+
+.rounded-pill
+  Styles: --bs-rounded-size: var(--bs-radius-pill); border-radius: var(--bs-rounded-size);
+
+.rounded-top-0
+  Styles: border-start-start-radius: 0; border-start-end-radius: 0;
+
+.rounded-top-1
+  Styles: border-start-start-radius: 0.125rem; border-start-end-radius: 0.125rem;
+
+.rounded-top-2
+  Styles: border-start-start-radius: 0.1875rem; border-start-end-radius: 0.1875rem;
+
+.rounded-top-3
+  Styles: border-start-start-radius: 0.25rem; border-start-end-radius: 0.25rem;
+
+.rounded-top-4
+  Styles: border-start-start-radius: 0.375rem; border-start-end-radius: 0.375rem;
+
+.rounded-top-5
+  Styles: border-start-start-radius: 0.5rem; border-start-end-radius: 0.5rem;
+
+.rounded-top-6
+  Styles: border-start-start-radius: 0.625rem; border-start-end-radius: 0.625rem;
+
+.rounded-top-7
+  Styles: border-start-start-radius: 0.75rem; border-start-end-radius: 0.75rem;
+
+.rounded-top-8
+  Styles: border-start-start-radius: 0.875rem; border-start-end-radius: 0.875rem;
+
+.rounded-top-9
+  Styles: border-start-start-radius: 1rem; border-start-end-radius: 1rem;
+
+.rounded-top
+  Styles: border-start-start-radius: var(--bs-rounded-size, var(--bs-radius-5)); border-start-end-radius: var(--bs-rounded-size, var(--bs-radius-5));
+
+.rounded-top-circle
+  Styles: border-start-start-radius: 50%; border-start-end-radius: 50%;
+
+.rounded-top-pill
+  Styles: border-start-start-radius: var(--bs-radius-pill); border-start-end-radius: var(--bs-radius-pill);
+
+.rounded-end-0
+  Styles: border-start-end-radius: 0; border-end-end-radius: 0;
+
+.rounded-end-1
+  Styles: border-start-end-radius: 0.125rem; border-end-end-radius: 0.125rem;
+
+.rounded-end-2
+  Styles: border-start-end-radius: 0.1875rem; border-end-end-radius: 0.1875rem;
+
+.rounded-end-3
+  Styles: border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem;
+
+.rounded-end-4
+  Styles: border-start-end-radius: 0.375rem; border-end-end-radius: 0.375rem;
+
+.rounded-end-5
+  Styles: border-start-end-radius: 0.5rem; border-end-end-radius: 0.5rem;
+
+.rounded-end-6
+  Styles: border-start-end-radius: 0.625rem; border-end-end-radius: 0.625rem;
+
+.rounded-end-7
+  Styles: border-start-end-radius: 0.75rem; border-end-end-radius: 0.75rem;
+
+.rounded-end-8
+  Styles: border-start-end-radius: 0.875rem; border-end-end-radius: 0.875rem;
+
+.rounded-end-9
+  Styles: border-start-end-radius: 1rem; border-end-end-radius: 1rem;
+
+.rounded-end
+  Styles: border-start-end-radius: var(--bs-rounded-size, var(--bs-radius-5)); border-end-end-radius: var(--bs-rounded-size, var(--bs-radius-5));
+
+.rounded-end-circle
+  Styles: border-start-end-radius: 50%; border-end-end-radius: 50%;
+
+.rounded-end-pill
+  Styles: border-start-end-radius: var(--bs-radius-pill); border-end-end-radius: var(--bs-radius-pill);
+
+.rounded-bottom-0
+  Styles: border-end-start-radius: 0; border-end-end-radius: 0;
+
+.rounded-bottom-1
+  Styles: border-end-start-radius: 0.125rem; border-end-end-radius: 0.125rem;
+
+.rounded-bottom-2
+  Styles: border-end-start-radius: 0.1875rem; border-end-end-radius: 0.1875rem;
+
+.rounded-bottom-3
+  Styles: border-end-start-radius: 0.25rem; border-end-end-radius: 0.25rem;
+
+.rounded-bottom-4
+  Styles: border-end-start-radius: 0.375rem; border-end-end-radius: 0.375rem;
+
+.rounded-bottom-5
+  Styles: border-end-start-radius: 0.5rem; border-end-end-radius: 0.5rem;
+
+.rounded-bottom-6
+  Styles: border-end-start-radius: 0.625rem; border-end-end-radius: 0.625rem;
+
+.rounded-bottom-7
+  Styles: border-end-start-radius: 0.75rem; border-end-end-radius: 0.75rem;
+
+.rounded-bottom-8
+  Styles: border-end-start-radius: 0.875rem; border-end-end-radius: 0.875rem;
+
+.rounded-bottom-9
+  Styles: border-end-start-radius: 1rem; border-end-end-radius: 1rem;
+
+.rounded-bottom
+  Styles: border-end-start-radius: var(--bs-rounded-size, var(--bs-radius-5)); border-end-end-radius: var(--bs-rounded-size, var(--bs-radius-5));
+
+.rounded-bottom-circle
+  Styles: border-end-start-radius: 50%; border-end-end-radius: 50%;
+
+.rounded-bottom-pill
+  Styles: border-end-start-radius: var(--bs-radius-pill); border-end-end-radius: var(--bs-radius-pill);
+
+.rounded-start-0
+  Styles: border-start-start-radius: 0; border-end-start-radius: 0;
+
+.rounded-start-1
+  Styles: border-start-start-radius: 0.125rem; border-end-start-radius: 0.125rem;
+
+.rounded-start-2
+  Styles: border-start-start-radius: 0.1875rem; border-end-start-radius: 0.1875rem;
+
+.rounded-start-3
+  Styles: border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem;
+
+.rounded-start-4
+  Styles: border-start-start-radius: 0.375rem; border-end-start-radius: 0.375rem;
+
+.rounded-start-5
+  Styles: border-start-start-radius: 0.5rem; border-end-start-radius: 0.5rem;
+
+.rounded-start-6
+  Styles: border-start-start-radius: 0.625rem; border-end-start-radius: 0.625rem;
+
+.rounded-start-7
+  Styles: border-start-start-radius: 0.75rem; border-end-start-radius: 0.75rem;
+
+.rounded-start-8
+  Styles: border-start-start-radius: 0.875rem; border-end-start-radius: 0.875rem;
+
+.rounded-start-9
+  Styles: border-start-start-radius: 1rem; border-end-start-radius: 1rem;
+
+.rounded-start
+  Styles: border-start-start-radius: var(--bs-rounded-size, var(--bs-radius-5)); border-end-start-radius: var(--bs-rounded-size, var(--bs-radius-5));
+
+.rounded-start-circle
+  Styles: border-start-start-radius: 50%; border-end-start-radius: 50%;
+
+.rounded-start-pill
+  Styles: border-start-start-radius: var(--bs-radius-pill); border-end-start-radius: var(--bs-radius-pill);
+
+========================================================================
+RADIUS
+========================================================================
+
+Add classes to an element to easily round its corners.
+
+Example code (HTML):
+
+<img src="..." class="rounded" alt="...">
+<img src="..." class="rounded-top" alt="...">
+<img src="..." class="rounded-end" alt="...">
+<img src="..." class="rounded-bottom" alt="...">
+<img src="..." class="rounded-start" alt="...">
+
+------------------------------------------------------------------------
+SIZES
+------------------------------------------------------------------------
+
+Use the scaling classes for larger or smaller rounded corners. Numeric sizes
+range from `0` to `9`. The `circle` and `pill` values are also available.
+Modify the utilities API to change these values.
+
+Example code (HTML):
+
+<img src="..." class="rounded-0" alt="...">
+<img src="..." class="rounded-1" alt="...">
+<img src="..." class="rounded-2" alt="...">
+<img src="..." class="rounded-3" alt="...">
+<img src="..." class="rounded-4" alt="...">
+<img src="..." class="rounded-5" alt="...">
+<img src="..." class="rounded-6" alt="...">
+<img src="..." class="rounded-7" alt="...">
+<img src="..." class="rounded-8" alt="...">
+<img src="..." class="rounded-9" alt="...">
+<img src="..." class="rounded-circle" alt="...">
+<img src="..." class="rounded-pill" alt="...">
+
+Example code (HTML):
+
+<img src="..." class="rounded-bottom-1" alt="...">
+<img src="..." class="rounded-start-2" alt="...">
+<img src="..." class="rounded-end-circle" alt="...">
+<img src="..." class="rounded-start-pill" alt="...">
+<img src="..." class="rounded-5 rounded-top-0" alt="...">
+
+========================================================================
+MIXING
+========================================================================
+
+Use `.rounded-size-{n}` to set the radius size without rounding all corners.
+Combine it with side classes like `.rounded-top` or `.rounded-end` to round
+only specific sides at that size. Because these use CSS variables for sizing,
+you may need to apply additional classes to nested elements to prevent
+inheritance.
+
+Example code (HTML):
+
+<img src="..." class="rounded-size-6 rounded-top" alt="...">
+<img src="..." class="rounded-size-6 rounded-top rounded-end" alt="...">
+<img src="..." class="rounded-size-3 rounded-top rounded-bottom" alt="...">
+<img src="..." class="rounded-size-pill rounded-top" alt="...">
+
+When `.rounded-{n}` is used alongside a side class, the number sets the
+`--rounded-size` variable that the side class inherits.
+
+Example code (HTML):
+
+<img src="..." class="rounded-6 rounded-bottom-0" alt="...">
+<img src="..." class="rounded-3 rounded-top" alt="...">
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+VARIABLES
+------------------------------------------------------------------------
+
+Radius tokens are generated from the `$radii` map in `scss/_config.scss` and
+emitted as `--radius-*` custom properties in `scss/_root.scss`. Learn how to
+use the root tokens.
+
+Example code (SCSS):
+
+@each $key, $value in $radii {
+  $root-tokens: map.set($root-tokens, --radius-#{$key}, $value);
+}
+// stylelint-disable-next-line scss/dollar-variable-default
+$root-tokens: map.set($root-tokens, --radius-pill, 50rem);
+
+The `--rounded-size` local CSS variable is set by `.rounded-{n}` and
+`.rounded-size-{n}` and consumed by the side utilities (`.rounded-top`,
+`.rounded-end`, `.rounded-bottom`, `.rounded-start`) as their default radius.
+You can also set it directly in your own CSS or via an inline style to control
+the side utilities from a single point.
+
+------------------------------------------------------------------------
+SASS MAPS
+------------------------------------------------------------------------
+
+Example code (SCSS):
+
+$radius: .5rem;
+$radii: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$radii: defaults(
+  (
+    0: 0,
+    1: $radius * .25,
+    2: $radius * .375,
+    3: $radius * .5,
+    4: $radius * .75,
+    5: $radius,
+    6: $radius * 1.25,
+    7: $radius * 1.5,
+    8: $radius * 1.75,
+    9: $radius * 2,
+  ),
+  $radii
+);
+
+------------------------------------------------------------------------
+SASS MIXINS
+------------------------------------------------------------------------
+
+Example code (SCSS):
+
+@mixin border-radius($radius: var(--radius-5), $fallback-border-radius: false) {
+  @if $enable-rounded {
+    border-radius: valid-radius($radius);
+  }
+  @else if $fallback-border-radius != false {
+    border-radius: $fallback-border-radius;
+  }
+}
+
+@mixin border-top-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-start-start-radius: valid-radius($radius);
+    border-start-end-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-end-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-start-end-radius: valid-radius($radius);
+    border-end-end-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-bottom-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-end-start-radius: valid-radius($radius);
+    border-end-end-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-start-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-start-start-radius: valid-radius($radius);
+    border-end-start-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-top-start-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-start-start-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-top-end-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-start-end-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-bottom-end-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-end-end-radius: valid-radius($radius);
+  }
+}
+
+@mixin border-bottom-start-radius($radius: var(--radius-5)) {
+  @if $enable-rounded {
+    border-end-start-radius: valid-radius($radius);
+  }
+}
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Border utilities are declared in our utilities API in `scss/_utilities.scss`.
+Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"border-radius": (
+  property: (
+    "--rounded-size": null,
+    "border-radius": var(--rounded-size)
+  ),
+  class: rounded,
+  values: map.merge(
+    $radii,
+    (
+      null: map.get($radii, 5),
+      circle: 50%,
+      pill: var(--radius-pill)
+    )
+  )
+),
+"rounded-size": (
+  property: --rounded-size,
+  class: rounded-size,
+  values: map.merge(
+    $radii,
+    (
+      null: map.get($radii, 5),
+      circle: 50%,
+      pill: var(--radius-pill)
+    )
+  )
+),
+"rounded-top": (
+  property: border-start-start-radius border-start-end-radius,
+  class: rounded-top,
+  values: map.merge(
+    $radii,
+    (
+      null: var(--rounded-size, var(--radius-5)),
+      circle: 50%,
+      pill: var(--radius-pill)
+    )
+  )
+),
+"rounded-end": (
+  property: border-start-end-radius border-end-end-radius,
+  class: rounded-end,
+  values: map.merge(
+    $radii,
+    (
+      null: var(--rounded-size, var(--radius-5)),
+      circle: 50%,
+      pill: var(--radius-pill)
+    )
+  )
+),
+"rounded-bottom": (
+  property: border-end-start-radius border-end-end-radius,
+  class: rounded-bottom,
+  values: map.merge(
+    $radii,
+    (
+      null: var(--rounded-size, var(--radius-5)),
+      circle: 50%,
+      pill: var(--radius-pill)
+    )
+  )
+),
+"rounded-start": (
+  property: border-start-start-radius border-end-start-radius,
+  class: rounded-start,
+  values: map.merge(
+    $radii,
+    (
+      null: var(--rounded-size, var(--radius-5)),
+      circle: 50%,
+      pill: var(--radius-pill)
+    )
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

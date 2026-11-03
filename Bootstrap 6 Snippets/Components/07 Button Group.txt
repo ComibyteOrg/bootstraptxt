@@ -1,29 +1,45 @@
 ========================================================================
 BUTTON GROUP
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/button-group
 ========================================================================
 
-Group a series of buttons together on a single line or stack them in a vertical column.
+WHAT IT DOES
+Group a series of buttons together on a single line or stack them in a
+vertical column.
 
-CONTENTS
-   1. Examples  (example 1)
-   2. Examples > With links  (example 2)
-   3. Examples > Dividers  (examples 3, 4)
-   4. Theme variants  (examples 5, 6)
-   5. Style variants  (examples 7, 8, 9)
-   6. Toggle buttons > Checkbox  (example 10)
-   7. Toggle buttons > Radio  (example 11)
-   8. Button toolbar  (examples 12, 13)
-   9. Sizing  (example 14)
-  10. Nesting  (example 15)
-  11. Vertical variation  (examples 16, 17, 18)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Examples
+     - With links
+     - Dividers
+  Theme variants
+  Style variants
+  Toggle buttons
+     - Checkbox
+     - Radio
+  Button toolbar
+  Sizing
+  Nesting
+  Vertical variation
+
+========================================================================
 EXAMPLES
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Wrap a series of buttons in `.btn-group`.
+========================================================================
+
+Wrap a series of buttons in `.btn-group`.
+
+Example code (HTML):
 
 <div class="btn-group" role="group" aria-label="Basic example">
   <button type="button" class="btn-solid theme-primary">Left</button>
@@ -31,11 +47,20 @@ Note: Wrap a series of buttons in `.btn-group`.
   <button type="button" class="btn-solid theme-primary">Right</button>
 </div>
 
+NOTE:
+  Button groups require an appropriate `role` attribute and explicit label to
+  ensure assistive technologies like screen readers identify buttons as grouped
+  and announce them. Use `role="group"` for button groups or `role="toolbar"`
+  for button toolbars. Then use `aria-label` or `aria-labelledby` to label them.
+
 ------------------------------------------------------------------------
-EXAMPLES > WITH LINKS
-Example 2  |  HTML
+WITH LINKS
 ------------------------------------------------------------------------
-Note: These classes can also be added to groups of links, as an alternative to the `.nav` navigation components.
+
+These classes can also be added to groups of links, as an alternative to the
+`.nav` navigation components.
+
+Example code (HTML):
 
 <div class="btn-group">
   <a href="#" class="btn-solid theme-primary active" aria-current="page">Active link</a>
@@ -44,10 +69,14 @@ Note: These classes can also be added to groups of links, as an alternative to t
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > DIVIDERS
-Example 3  |  HTML
+DIVIDERS
 ------------------------------------------------------------------------
-Note: Add a divider between buttons by adding the `.btn-group-divider` class to the `.btn-group`. Most useful when used with buttons that have the same theme color and a solid fill.
+
+Add a divider between buttons by adding the `.btn-group-divider` class to the
+`.btn-group`. Most useful when used with buttons that have the same theme
+color and a solid fill.
+
+Example code (HTML):
 
 <div class="btn-group btn-group-divider" role="group" aria-label="Basic example">
   <button type="button" class="btn-solid theme-primary">Left</button>
@@ -60,11 +89,9 @@ Note: Add a divider between buttons by adding the `.btn-group-divider` class to 
   <button type="button" class="btn-solid theme-secondary">Right</button>
 </div>
 
-------------------------------------------------------------------------
-EXAMPLES > DIVIDERS (cont.)
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Works with vertical button groups, too.
+Works with vertical button groups, too.
+
+Example code (HTML):
 
 <div class="btn-group-vertical btn-group-divider" role="group" aria-label="Basic example">
   <button type="button" class="btn-solid theme-primary">Left</button>
@@ -77,11 +104,13 @@ Note: Works with vertical button groups, too.
   <button type="button" class="btn-solid theme-secondary">Right</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 THEME VARIANTS
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Ue the `.theme-{color}` classes to apply a theme color to a set of buttons.
+========================================================================
+
+Ue the `.theme-{color}` classes to apply a theme color to a set of buttons.
+
+Example code (HTML):
 
 <div class="btn-group" role="group" aria-label="Accent theme example">
   <button type="button" class="btn-solid theme-accent">Left</button>
@@ -89,11 +118,9 @@ Note: Ue the `.theme-{color}` classes to apply a theme color to a set of buttons
   <button type="button" class="btn-solid theme-accent">Right</button>
 </div>
 
-------------------------------------------------------------------------
-THEME VARIANTS (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: You can mix and match button variants in a button group.
+You can mix and match button variants in a button group.
+
+Example code (HTML):
 
 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
   <button type="button" class="btn-solid theme-danger">Left</button>
@@ -101,11 +128,15 @@ Note: You can mix and match button variants in a button group.
   <button type="button" class="btn-solid theme-success">Right</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 STYLE VARIANTS
-Example 7  |  HTML
-------------------------------------------------------------------------
-Note: All button styles are supported in button groups. Mix and match with the `.btn-group-divider` class to add dividers between some styles or just use the button borders in others.
+========================================================================
+
+All button styles are supported in button groups. Mix and match with the
+`.btn-group-divider` class to add dividers between some styles or just use the
+button borders in others.
+
+Example code (HTML):
 
 <div class="btn-group btn-group-divider" role="group" aria-label="Solid example">
   <button type="button" class="btn-solid theme-primary">Left</button>
@@ -113,31 +144,34 @@ Note: All button styles are supported in button groups. Mix and match with the `
   <button type="button" class="btn-solid theme-primary">Right</button>
 </div>
 
-------------------------------------------------------------------------
-STYLE VARIANTS (cont.)
-Example 8  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <div class="btn-group" role="group" aria-label="Outlined example">
   <button type="button" class="btn-outline theme-primary">Left</button>
   <button type="button" class="btn-outline theme-primary">Middle</button>
   <button type="button" class="btn-outline theme-primary">Right</button>
 </div>
 
-------------------------------------------------------------------------
-STYLE VARIANTS (cont.)
-Example 9  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <div class="btn-group btn-group-divider" role="group" aria-label="Subtle example">
   <button type="button" class="btn-subtle theme-primary">Left</button>
   <button type="button" class="btn-subtle theme-primary">Middle</button>
   <button type="button" class="btn-subtle theme-primary">Right</button>
 </div>
 
+========================================================================
+TOGGLE BUTTONS
+========================================================================
+
 ------------------------------------------------------------------------
-TOGGLE BUTTONS > CHECKBOX
-Example 10  |  HTML
+CHECKBOX
 ------------------------------------------------------------------------
-Note: Checkbox toggle buttons can be grouped together. Any or all of the buttons can be checked.
+
+Checkbox toggle buttons can be grouped together. Any or all of the buttons can
+be checked.
+
+Example code (HTML):
 
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
   <label class="btn-check btn-outline theme-primary">
@@ -155,10 +189,13 @@ Note: Checkbox toggle buttons can be grouped together. Any or all of the buttons
 </div>
 
 ------------------------------------------------------------------------
-TOGGLE BUTTONS > RADIO
-Example 11  |  HTML
+RADIO
 ------------------------------------------------------------------------
-Note: By design, radio toggle button groups can only have one button checked at a time.
+
+By design, radio toggle button groups can only have one button checked at a
+time.
+
+Example code (HTML):
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
   <label class="btn-check btn-outline theme-primary">
@@ -175,11 +212,15 @@ Note: By design, radio toggle button groups can only have one button checked at 
   </label>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 BUTTON TOOLBAR
-Example 12  |  HTML
-------------------------------------------------------------------------
-Note: Combine sets of button groups into button toolbars for more complex components. Use utility classes as needed to space out groups, buttons, and more.
+========================================================================
+
+Combine sets of button groups into button toolbars for more complex
+components. Use utility classes as needed to space out groups, buttons, and
+more.
+
+Example code (HTML):
 
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group" role="group" aria-label="First group">
@@ -198,11 +239,11 @@ Note: Combine sets of button groups into button toolbars for more complex compon
   </div>
 </div>
 
-------------------------------------------------------------------------
-BUTTON TOOLBAR (cont.)
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: Feel free to mix input groups with button groups in your toolbars. Similar to the example above, you’ll likely need some utilities though to space things properly.
+Feel free to mix input groups with button groups in your toolbars. Similar to
+the example above, you’ll likely need some utilities though to space things
+properly.
+
+Example code (HTML):
 
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group" role="group" aria-label="First group">
@@ -230,11 +271,15 @@ Note: Feel free to mix input groups with button groups in your toolbars. Similar
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SIZING
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: Instead of applying button sizing classes to every button in a group, just add `.btn-group-*` to each `.btn-group`, including each one when nesting multiple groups.
+========================================================================
+
+Instead of applying button sizing classes to every button in a group, just add
+`.btn-group-*` to each `.btn-group`, including each one when nesting multiple
+groups.
+
+Example code (HTML):
 
 <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
   <button type="button" class="btn-outline theme-primary">Left</button>
@@ -257,11 +302,14 @@ Note: Instead of applying button sizing classes to every button in a group, just
   <button type="button" class="btn-outline theme-primary">Right</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 NESTING
-Example 15  |  HTML
-------------------------------------------------------------------------
-Note: Place a `.btn-group` within another `.btn-group` when you want menus mixed with a series of buttons.
+========================================================================
+
+Place a `.btn-group` within another `.btn-group` when you want menus mixed
+with a series of buttons.
+
+Example code (HTML):
 
 <div class="btn-group" role="group" aria-label="Button group with nested menu">
   <button type="button" class="btn-solid theme-primary">1</button>
@@ -278,11 +326,14 @@ Note: Place a `.btn-group` within another `.btn-group` when you want menus mixed
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 VERTICAL VARIATION
-Example 16  |  HTML
-------------------------------------------------------------------------
-Note: Make a set of buttons appear vertically stacked rather than horizontally. Split button menus are not supported here.
+========================================================================
+
+Make a set of buttons appear vertically stacked rather than horizontally.
+Split button menus are not supported here.
+
+Example code (HTML):
 
 <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
   <button type="button" class="btn-solid theme-primary">Button</button>
@@ -291,10 +342,8 @@ Note: Make a set of buttons appear vertically stacked rather than horizontally. 
   <button type="button" class="btn-solid theme-primary">Button</button>
 </div>
 
-------------------------------------------------------------------------
-VERTICAL VARIATION (cont.)
-Example 17  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
   <div class="btn-group" role="group">
     <button type="button" class="btn-solid theme-primary" data-bs-toggle="menu" aria-expanded="false">
@@ -336,10 +385,8 @@ Example 17  |  HTML
   </div>
 </div>
 
-------------------------------------------------------------------------
-VERTICAL VARIATION (cont.)
-Example 18  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
   <label class="btn-check btn-outline theme-danger">
     <input type="radio" name="vbtn-radio" autocomplete="off" checked>

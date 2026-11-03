@@ -1,0 +1,755 @@
+========================================================================
+COLOR
+Bootstrap 6.0  |  Customize reference
+Source: https://getbootstrap.com/docs/6.0/customize/color
+========================================================================
+
+WHAT IT DOES
+Bootstrap is supported by an extensive color system that powers our revamped
+theme, components, and color modes. This enables more comprehensive
+customization and extension for any project.
+
+HOW TO USE IT
+Every page here shows how to change Bootstrap itself: Sass variables, CSS
+custom properties, and compile-time options. You only need this section if you
+are comfortable with Sass; otherwise the defaults just work.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Colors
+  How it works
+     - Default colors
+     - Color mixing
+  Customizing
+  From colors to theme
+  Generating utilities
+
+========================================================================
+COLORS
+========================================================================
+
+There are 13 shades of 16 colors in Bootstrap’s new color system, meaning we
+have 208 colors to work with when using Bootstrap.
+
+All Bootstrap colors are available as Sass variables and a Sass map in
+`scss/_config.scss` file. To avoid increased file sizes, we don’t create text
+or background color classes for each of these variables. Instead, we choose a
+subset of these colors for a theme palette.
+
+Be sure to monitor contrast ratios as you customize colors. As shown below,
+we’ve added three contrast ratios to each of the main colors—one for the
+swatch’s current colors, one for against white, and one for against black.
+
+blue
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+indigo
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+violet
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+purple
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+pink
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+red
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+orange
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+amber
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+yellow
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+lime
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+green
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+teal
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+cyan
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+brown
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+gray
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+pewter
+
+025
+
+050
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+950
+
+975
+
+Additional
+
+white
+
+black
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Bootstrap generates its colors from a series of Sass variables and a Sass map
+called `$colors` in `scss/_colors.scss`. These are our base colors—blue,
+indigo, violet, etc—and are used to generate the tints and shades of each
+color you see above. You can customize these colors by adding or removing
+colors from the `$colors` map.
+
+------------------------------------------------------------------------
+DEFAULT COLORS
+------------------------------------------------------------------------
+
+Below is our default list of colors. Colors are unique in Bootstrap in that
+they’re still Sass variables by default. In addition, they’re in `oklch()`
+format, which is a modern color space that is designed to be perceptually
+uniform.
+
+Example code (SCSS):
+
+$blue: oklch(60% 0.24 240);
+$indigo: oklch(56% 0.26 288);
+$violet: oklch(56% 0.24 300);
+$purple: oklch(56% 0.24 320);
+$pink: oklch(60% 0.22 4);
+$red: oklch(60% 0.22 20);
+$orange: oklch(70% 0.22 52);
+$amber: oklch(79% 0.2 78);
+$yellow: oklch(88% 0.24 88);
+$lime: oklch(65% 0.24 135);
+$green: oklch(64% 0.22 160);
+$teal: oklch(68% 0.22 190);
+$cyan: oklch(69% 0.22 220);
+$brown: oklch(60% 0.12 54);
+$gray: oklch(60% 0.02 245);
+$pewter: oklch(65% 0.01 290);
+
+The above colors are then turned into a Sass map called `$colors`.
+
+Example code (SCSS):
+
+$colors: ();
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: defaults(
+  (
+    "blue": $blue,
+    "indigo": $indigo,
+    "violet": $violet,
+    "purple": $purple,
+    "pink": $pink,
+    "red": $red,
+    "orange": $orange,
+    "amber": $amber,
+    "yellow": $yellow,
+    "lime": $lime,
+    "green": $green,
+    "teal": $teal,
+    "cyan": $cyan,
+    "brown": $brown,
+    "gray": $gray,
+    "pewter": $pewter,
+  ),
+  $colors
+);
+
+------------------------------------------------------------------------
+COLOR MIXING
+------------------------------------------------------------------------
+
+As mentioned already, we generate lighter (tints) and darker (shades) versions
+of each color using the `color-mix()` function. This allows us to quickly and
+easily generate a full scale of colors.
+
+The tint and shade stops, the `color-mix()` color space, and the mix colors
+are all customizable.
+
+Example code (SCSS):
+
+$color-mix-space: oklch;
+$tint-color: var(--white);
+$shade-color: var(--black);
+
+$color-tints: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$color-tints: defaults(
+  (
+    "025": 94%,
+    "050": 90%,
+    "100": 80%,
+    "200": 60%,
+    "300": 40%,
+    "400": 20%,
+  ),
+  $color-tints
+);
+
+$color-shades: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$color-shades: defaults(
+  (
+    "600": 16%,
+    "700": 32%,
+    "800": 48%,
+    "900": 64%,
+    "950": 70%,
+    "975": 76%,
+  ),
+  $color-shades
+);
+
+Those options and the `$colors` map are used to generate a `$color-tokens`
+map, which is output as CSS custom properties on `:root`.
+
+Example code (SCSS):
+
+$color-tokens: ();
+
+$-color-defaults: ();
+@each $color, $value in $colors {
+  @each $stop, $percent in $color-tints {
+    $-color-defaults: map.set($-color-defaults, --#{$color}-#{$stop}, color-mix(in #{$color-mix-space}, #{$tint-color} #{$percent}, #{$value}));
+  }
+  $-color-defaults: map.set($-color-defaults, --#{$color}-500, #{$value});
+  @each $stop, $percent in $color-shades {
+    $-color-defaults: map.set($-color-defaults, --#{$color}-#{$stop}, color-mix(in #{$color-mix-space}, #{$shade-color} #{$percent}, #{$value}));
+  }
+}
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$color-tokens: defaults($-color-defaults, $color-tokens);
+
+In practice, our CSS variables that get output from this looks like this:
+
+Example code (SCSS):
+
+// Example generated custom properties from _colors.scss
+--bs-blue-025: color-mix(in lab, var(--bs-white) 94%, oklch(60% 0.24 240));
+--bs-blue-050: color-mix(in lab, var(--bs-white) 90%, oklch(60% 0.24 240));
+--bs-blue-100: color-mix(in lab, var(--bs-white) 80%, oklch(60% 0.24 240));
+// ...
+--bs-blue-500: oklch(60% 0.24 240);
+// ...
+--bs-blue-900: color-mix(in lab, var(--bs-black) 64%, oklch(60% 0.24 240));
+--bs-blue-975: color-mix(in lab, var(--bs-black) 88%, oklch(60% 0.24 240));
+
+NOTE:
+  We use CSS variables `var(--bs-white)` and `var(--bs-black)` to prevent
+  LightningCSS from converting the real-time mixing into static `lab()` values.
+  Unfortunately, this feature cannot be disabled in LightningCSS at this time.
+
+========================================================================
+CUSTOMIZING
+========================================================================
+
+You can customize the colors by adding or removing colors from the `$colors`
+map. You can also customize the tint and shade stops, the `color-mix()` color
+space, and the mix colors. Say you want to add another blue-gray color, like
+slate.
+
+1. Create a new Sass variable for the new color, in `oklch()` format.
+2. Add the new color to the `$colors` map.
+3. Recompile source Sass to generate the new colors.
+
+Here’s how that would look:
+
+Example code (SCSS):
+
+$slate: oklch(55% 0.07 260);
+
+@use "bootstrap" as * with (
+  $colors: (
+    "slate": $slate,
+  ),
+);
+
+To remove a color, set the value to `null`.
+
+Example code (SCSS):
+
+@use "bootstrap" as * with (
+  $colors: (
+    "pewter": null,
+  ),
+);
+
+========================================================================
+FROM COLORS TO THEME
+========================================================================
+
+The `--bs-{color}-{stop}` tokens above are the raw palette. On their own they
+don’t style components—Bootstrap feeds a chosen subset of them into the theme
+layer, where they’re assigned semantic roles (background, foreground, border,
+and so on) and exposed as `.theme-*` classes that components read.
+
+The full pipeline looks like this:
+
+1. `$colors` (`scss/_colors.scss`) defines the base hues and generates the
+   `--bs-{color}-{stop}` tokens (for example `--bs-blue-500`).
+2. `$theme-colors` (`scss/_theme.scss`) maps semantic names (`primary`,
+   `success`, `danger`, and so on) onto those tokens one role at a time
+   (`base`, `fg`, `bg`, `bg-subtle`, `border`, `contrast`, …), most wrapped in
+   `light-dark()` so they adapt to the color mode.
+3. Those roles are emitted as `--bs-{name}-{role}` tokens (for example
+   `--bs-primary-bg`).
+4. The `.theme-{name}` classes remap them onto generic `--bs-theme-{role}`
+   tokens (for example `.theme-primary` sets `--bs-theme-bg:
+   var(--bs-primary-bg)`).
+5. Components read the `--bs-theme-*` tokens, so a single `.theme-primary`
+   class restyles any theme-aware component.
+
+The theme layer—semantic tokens, `.theme-*` classes, layer colors, and color
+modes—is documented in full on the Theme page. The rest of this page stays on
+the base color layer.
+
+========================================================================
+GENERATING UTILITIES
+========================================================================
+
+Bootstrap doesn’t ship `color` and `background-color` utilities for every
+palette token—that would add a lot of rarely used CSS. If you need a few
+specific shades as utilities, add a utility group through the utilities API.
+Configure the `$utilities` map when you import `utilities`, then load
+`utilities/api` to emit the CSS. Each value points at a generated color token
+(`--bs-{color}-{stop}`):
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/utilities" with (
+  $utilities: (
+    "fg-palette": (
+      property: color,
+      class: fg,
+      values: (
+        "purple-300": var(--bs-purple-300),
+        "purple-500": var(--bs-purple-500),
+        "purple-700": var(--bs-purple-700),
+      ),
+    ),
+  )
+);
+@use "../node_modules/bootstrap/scss/utilities/api";
+
+This adds `.fg-purple-300`, `.fg-purple-500`, and `.fg-purple-700`. Bootstrap
+merges your entry on top of the default `$utilities` map, so the built-in
+utilities are left untouched. List as many shades as you need, and set
+`property: background-color` with `class: bg` to generate backgrounds instead.
+(The color tokens themselves come from your main Bootstrap import; this
+snippet only emits the extra utility classes.)
+
+========================================================================
+END OF FILE
+========================================================================

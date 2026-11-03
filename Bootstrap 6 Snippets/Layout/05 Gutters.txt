@@ -1,0 +1,218 @@
+========================================================================
+GUTTERS
+Bootstrap 6.0  |  Layout reference
+Source: https://getbootstrap.com/docs/6.0/layout/gutters
+========================================================================
+
+WHAT IT DOES
+Gutters are the padding between your columns, used to responsively space and
+align content in the Bootstrap grid system.
+
+HOW TO USE IT
+Bootstrap is mobile-first. Base classes apply at every screen size; a
+breakpoint prefix applies a class from that size up. In v6 the prefix comes
+first: `md:col-6` (not `col-md-6`).
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How they work
+  Horizontal gutters
+  Vertical gutters
+  Horizontal & vertical gutters
+  Row columns gutters
+  No gutters
+  Change the gutters
+
+========================================================================
+HOW THEY WORK
+========================================================================
+
+- Gutters are the gaps between column content, created by horizontal
+  `padding`. We set `padding-right` and `padding-left` on each column, and use
+  negative `margin` to offset that at the start and end of each row to align
+  content.
+- Gutters start at `1.5rem` (`24px`) wide. This allows us to match our grid to
+  the margin and padding utilities scale.
+- Gutters can be responsively adjusted. Use breakpoint-specific gutter classes
+  to modify horizontal gutters, vertical gutters, and all gutters.
+
+========================================================================
+HORIZONTAL GUTTERS
+========================================================================
+
+`.gx-*` classes can be used to control the horizontal gutter widths. The
+`.container` or `.container-fluid` parent may need to be adjusted if larger
+gutters are used too to avoid unwanted overflow, using a matching padding
+utility. For example, in the following example we’ve increased the padding
+with `.px-4`:
+
+Example code (HTML):
+
+<div class="container px-4 text-center">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Custom column padding</div>
+    </div>
+  </div>
+</div>
+
+An alternative solution is to add a wrapper around the `.row` with the
+`.overflow-hidden` class:
+
+Example code (HTML):
+
+<div class="container overflow-hidden text-center">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Custom column padding</div>
+    </div>
+  </div>
+</div>
+
+========================================================================
+VERTICAL GUTTERS
+========================================================================
+
+`.gy-*` classes can be used to control the vertical gutter widths within a row
+when columns wrap to new lines. Like the horizontal gutters, the vertical
+gutters can cause some overflow below the `.row` at the end of a page. If this
+occurs, you add a wrapper around `.row` with the `.overflow-hidden` class:
+
+Example code (HTML):
+
+<div class="container overflow-hidden text-center">
+  <div class="row gy-5">
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+  </div>
+</div>
+
+========================================================================
+HORIZONTAL & VERTICAL GUTTERS
+========================================================================
+
+Use `.g-*` classes to control the horizontal and vertical grid gutters. In the
+example below, we use a smaller gutter width, so there isn’t a need for the
+`.overflow-hidden` wrapper class.
+
+Example code (HTML):
+
+<div class="container text-center">
+  <div class="row g-2">
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3">Custom column padding</div>
+    </div>
+  </div>
+</div>
+
+========================================================================
+ROW COLUMNS GUTTERS
+========================================================================
+
+Gutter classes can also be added to row columns. In the following example, we
+use responsive row columns and responsive gutter classes.
+
+Example code (HTML):
+
+<div class="container text-center">
+  <div class="row row-cols-2 lg:row-cols-5 g-2 lg:g-3">
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+    <div class="col">
+      <div class="p-3">Row column</div>
+    </div>
+  </div>
+</div>
+
+========================================================================
+NO GUTTERS
+========================================================================
+
+The gutters between columns in our predefined grid classes can be removed with
+`.g-0`. This removes the negative `margin`s from `.row` and the horizontal
+`padding` from all immediate children columns.
+
+Need an edge-to-edge design? Drop the parent `.container` or
+`.container-fluid` and add `.mx-0` to the `.row` to prevent overflow.
+
+In practice, here’s how it looks. Note that you can continue to use this with
+all other predefined grid classes (including column widths, responsive tiers,
+reorders, and more).
+
+Example code (HTML):
+
+<div class="row g-0 text-center">
+  <div class="sm:col-6 md:col-8">.sm:col-6 .md:col-8</div>
+  <div class="col-6 md:col-4">.col-6 .md:col-4</div>
+</div>
+
+========================================================================
+CHANGE THE GUTTERS
+========================================================================
+
+Classes are built from the `$gutters` Sass map which is inherited from the
+`$spacers` Sass map.
+
+Example code (SCSS):
+
+$grid-gutter-x: 1.5rem;
+$gutters: $spacers;
+
+========================================================================
+END OF FILE
+========================================================================

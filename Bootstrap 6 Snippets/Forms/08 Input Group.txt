@@ -1,34 +1,48 @@
 ========================================================================
 INPUT GROUP
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/input-group
 ========================================================================
 
-Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.
+WHAT IT DOES
+Easily extend form controls by adding text, buttons, or button groups on
+either side of textual inputs, custom selects, and custom file inputs.
 
-CONTENTS
-   1. Overview  (example 1)
-   2. With form field  (example 2)
-   3. With form field > Buttons  (example 3)
-   4. With form field > Textarea  (example 4)
-   5. With form field > Select  (example 5)
-   6. With form field > File input  (example 6)
-   7. With form field > Checkboxes and radios  (example 7)
-   8. With form field > Multiple inputs  (example 8)
-   9. With form field > Multiple addons  (example 9)
-  10. With form field > Button addons  (example 10)
-  11. With form field > Buttons with menus  (example 11)
-  12. With form field > Segmented buttons  (example 12)
-  13. Border radius  (example 13)
-  14. Sizing  (example 14)
-  15. CSS > Variables  (example 15)
-  16. CSS > Sass list  (example 16)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
 
-------------------------------------------------------------------------
-OVERVIEW
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Examples
+  With form field
+     - Buttons
+     - Textarea
+     - Select
+     - File input
+     - Checkboxes and radios
+     - Multiple inputs
+     - Multiple addons
+     - Button addons
+     - Buttons with menus
+     - Segmented buttons
+  Border radius
+  Sizing
+  CSS
+     - Variables
+     - Sass list
+
+Input groups attach add-on elements to a textual input field. Add-ons can be
+text, buttons, or button groups. Add labels, help text, and validation styles
+with form fields.
+
+Example code (HTML):
 
 <div class="input-group">
   <span class="input-group-text" id="basic-addon1">@</span>
@@ -40,11 +54,22 @@ Note: Easily extend form controls by adding text, buttons, or button groups on e
   <span class="input-group-text" id="basic-addon2">@example.com</span>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
+EXAMPLES
+========================================================================
+
+Place one add-on or button on either side of an input. You may also place one
+on both sides of an input. Remember to place `<label>`s outside the input
+group.
+
+========================================================================
 WITH FORM FIELD
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Wrap an `.input-group` in a `.form-field` to pair it with a label and description text.
+========================================================================
+
+Wrap an `.input-group` in a `.form-field` to pair it with a label and
+description text.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="inputGroupField" class="form-label">Your vanity URL</label>
@@ -56,10 +81,12 @@ Note: Wrap an `.input-group` in a `.form-field` to pair it with a label and desc
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > BUTTONS
-Example 3  |  HTML
+BUTTONS
 ------------------------------------------------------------------------
-Note: Use buttons instead of addons for supporting interactive options.
+
+Use buttons instead of addons for supporting interactive options.
+
+Example code (HTML):
 
 <div class="input-group">
   <button class="btn-outline theme-secondary input-group-btn" type="button" id="button-addon">Button</button>
@@ -67,10 +94,12 @@ Note: Use buttons instead of addons for supporting interactive options.
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > TEXTAREA
-Example 4  |  HTML
+TEXTAREA
 ------------------------------------------------------------------------
-Note: Input groups adapt to the height of textarea elements.
+
+Input groups adapt to the height of textarea elements.
+
+Example code (HTML):
 
 <div class="input-group">
   <span class="input-group-text">With textarea</span>
@@ -78,9 +107,11 @@ Note: Input groups adapt to the height of textarea elements.
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > SELECT
-Example 5  |  HTML
+SELECT
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Options</label>
   <select class="form-control" id="inputGroupSelect01">
@@ -122,9 +153,11 @@ Example 5  |  HTML
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > FILE INPUT
-Example 6  |  HTML
+FILE INPUT
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupFile01">Upload</label>
   <input type="file" class="form-control" id="inputGroupFile01">
@@ -146,10 +179,12 @@ Example 6  |  HTML
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > CHECKBOXES AND RADIOS
-Example 7  |  HTML
+CHECKBOXES AND RADIOS
 ------------------------------------------------------------------------
-Note: Place any checkbox or radio within an input group’s addon instead of text.
+
+Place any checkbox or radio within an input group’s addon instead of text.
+
+Example code (HTML):
 
 <div class="input-group mb-3">
   <div class="input-group-text">
@@ -166,10 +201,13 @@ Note: Place any checkbox or radio within an input group’s addon instead of tex
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > MULTIPLE INPUTS
-Example 8  |  HTML
+MULTIPLE INPUTS
 ------------------------------------------------------------------------
-Note: While multiple `<input>`s are supported visually, validation styles are only available for input groups with a single `<input>`.
+
+While multiple `<input>`s are supported visually, validation styles are only
+available for input groups with a single `<input>`.
+
+Example code (HTML):
 
 <div class="input-group">
   <input type="text" aria-label="First name" class="form-control">
@@ -190,10 +228,13 @@ Note: While multiple `<input>`s are supported visually, validation styles are on
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > MULTIPLE ADDONS
-Example 9  |  HTML
+MULTIPLE ADDONS
 ------------------------------------------------------------------------
-Note: Multiple add-ons are supported and can be mixed with checkbox and radio input versions.
+
+Multiple add-ons are supported and can be mixed with checkbox and radio input
+versions.
+
+Example code (HTML):
 
 <div class="input-group">
   <span class="input-group-text">$</span>
@@ -214,9 +255,11 @@ Note: Multiple add-ons are supported and can be mixed with checkbox and radio in
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > BUTTON ADDONS
-Example 10  |  HTML
+BUTTON ADDONS
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <div class="input-group">
   <button class="btn-outline theme-secondary input-group-btn" type="button" id="button-addon1">Button</button>
   <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
@@ -240,9 +283,11 @@ Example 10  |  HTML
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > BUTTONS WITH MENUS
-Example 11  |  HTML
+BUTTONS WITH MENUS
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <div class="input-group">
   <button class="btn-outline theme-secondary input-group-btn" type="button" data-bs-toggle="menu" aria-expanded="false">Menu</button>
   <div class="menu">
@@ -288,9 +333,11 @@ Example 11  |  HTML
 </div>
 
 ------------------------------------------------------------------------
-WITH FORM FIELD > SEGMENTED BUTTONS
-Example 12  |  HTML
+SEGMENTED BUTTONS
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <div class="input-group mb-3">
   <button type="button" class="btn-outline theme-secondary input-group-btn">Action</button>
   <button type="button" class="btn-outline theme-secondary input-group-btn menu-toggle-split" data-bs-toggle="menu" aria-expanded="false">
@@ -323,22 +370,36 @@ Example 12  |  HTML
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 BORDER RADIUS
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: Sometimes building these components gets complicated, and CSS selectors can only do so much. We’ve accounted for most of the common use cases, but in case you need to provide an extra element and skip the border-radius logic, add the `.input-group-ignore` class to the element.
+========================================================================
+
+Sometimes building these components gets complicated, and CSS selectors can
+only do so much. We’ve accounted for most of the common use cases, but in case
+you need to provide an extra element and skip the border-radius logic, add the
+`.input-group-ignore` class to the element.
+
+Consider this extra hidden input example:
+
+Example code (HTML):
 
 <div class="input-group">
   <span class="input-group-text" id="visible-addon">@</span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="visible-addon">  <input type="text" class="form-control input-group-ignore d-none" placeholder="Hidden input" aria-label="Hidden input" aria-describedby="visible-addon">
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="visible-addon">
+  <input type="text" class="form-control input-group-ignore d-none" placeholder="Hidden input" aria-label="Hidden input" aria-describedby="visible-addon">
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SIZING
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: Add the relative form sizing classes to the `.input-group` itself and contents within will automatically resize—no need for repeating the form control size classes on each element.
+========================================================================
+
+Add the relative form sizing classes to the `.input-group` itself and contents
+within will automatically resize—no need for repeating the form control size
+classes on each element.
+
+Sizing on the individual input group elements isn’t supported.
+
+Example code (HTML):
 
 <div class="input-group input-group-sm">
   <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
@@ -355,11 +416,19 @@ Note: Add the relative form sizing classes to the `.input-group` itself and cont
   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 15  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Input group addons use local CSS variables on `.input-group-text` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Input group addons use local CSS variables on `.input-group-text` for
+real-time customization. Values for the CSS variables are generated from Sass
+maps unique to each component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $input-group-addon-tokens: defaults(
@@ -376,10 +445,15 @@ $input-group-addon-tokens: defaults(
 );
 
 ------------------------------------------------------------------------
-CSS > SASS LIST
-Example 16  |  SCSS
+SASS LIST
 ------------------------------------------------------------------------
-Note: We use a Sass list to define the sizes of the input group, so you can easily add or modify sizes by fetching the associated root variables for each size. This list should generally match the sizes defined in the `$form-control-sizes` Sass map in `_form-control.scss`.
+
+We use a Sass list to define the sizes of the input group, so you can easily
+add or modify sizes by fetching the associated root variables for each size.
+This list should generally match the sizes defined in the
+`$form-control-sizes` Sass map in `_form-control.scss`.
+
+Example code (SCSS):
 
 $input-group-sizes: ();
 // stylelint-disable-next-line scss/dollar-variable-default

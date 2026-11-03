@@ -1,40 +1,60 @@
 ========================================================================
 MENU
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/menu
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-Toggle contextual menus and custom overlays for lists of buttons, links, forms, and other custom content.
+WHAT IT DOES
+Toggle contextual menus and custom overlays for lists of buttons, links,
+forms, and other custom content.
 
-CONTENTS
-   1. Overview  (example 1)
-   2. Examples  (example 2)
-   3. Examples > Dark menus  (examples 3, 4)
-   4. Examples > Translucent menus  (example 5)
-   5. Placement  (example 6)
-   6. Placement > Responsive  (example 7)
-   7. Menu items  (examples 8, 9)
-   8. Menu items > Active  (example 10)
-   9. Menu items > Disabled  (example 11)
-  10. Menu items > Variants  (example 12)
-  11. Menu items > Icons  (example 13)
-  12. Menu items > Descriptions  (example 14)
-  13. Menu items > Selected  (example 15)
-  14. Menu content > Headers  (example 16)
-  15. Menu content > Dividers  (example 17)
-  16. Menu content > Text  (example 18)
-  17. Menu content > Forms  (example 19)
-  18. Scrollable menus  (example 20)
-  19. Submenus  (example 21)
-  20. Submenus > Nested  (example 22)
-  21. Menu options  (example 23)
-  22. Menu options > Auto close behavior  (example 24)
-  23. CSS > Variables  (example 25)
-  24. Usage > Via data attributes  (example 26)
-  25. Usage > Via JavaScript  (examples 27, 28)
-  26. Usage > Options > Using function with `floatingConfig`  (example 29)
-  27. Usage > Events  (example 30)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Examples
+     - Dark menus
+     - Translucent menus
+  Placement
+     - Responsive
+  Menu items
+     - Active
+     - Disabled
+     - Variants
+     - Icons
+     - Descriptions
+     - Selected
+  Menu content
+     - Headers
+     - Dividers
+     - Text
+     - Forms
+  Scrollable menus
+  Submenus
+     - Nested
+  Menu options
+     - Auto close behavior
+  Accessibility
+     - Keyboard navigation
+  CSS
+     - Variables
+  Usage
+     - Via data attributes
+     - Via JavaScript
+     - Dependencies
+     - Options
+     - Methods
+     - Events
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -60,11 +80,14 @@ Reuse an existing instance:
 
 const menu = bootstrap.Menu.getOrCreateInstance('#myMenuToggle')
 
-------------------------------------------------------------------------
+========================================================================
 OVERVIEW
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Toggle menus with buttons whenever possible. Here’s an example using a Bootstrap button:
+========================================================================
+
+Toggle menus with buttons whenever possible. Here’s an example using a
+Bootstrap button:
+
+Example code (HTML):
 
 <button class="btn-solid theme-primary" type="button" data-bs-toggle="menu" aria-expanded="false">
   Toggle menu
@@ -75,11 +98,30 @@ Note: Toggle menus with buttons whenever possible. Here’s an example using a B
   <a class="menu-item" href="#">Menu item 3</a>
 </div>
 
-------------------------------------------------------------------------
+Menus are toggleable, contextual overlays for displaying lists of links and
+more. They’re made interactive with the included Bootstrap menu JavaScript
+plugin. They’re toggled by clicking, not by hovering; this is an intentional
+design decision.
+
+Menus are built on a third party library, Floating UI, which provides dynamic
+positioning and viewport detection. Use `bootstrap.bundle.min.js` /
+`bootstrap.bundle.js` which includes Floating UI, or include Floating UI
+separately via an import map. Floating UI isn’t used to position menus in
+navbars though as dynamic positioning isn’t required.
+
+========================================================================
 EXAMPLES
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: While `<button>` is the recommended control for a menu toggle, there might be situations where you have to use an `<a>` element. If you do, we recommend adding a `role="button"` attribute to appropriately convey control’s purpose to assistive technologies such as screen readers.
+========================================================================
+
+While `<button>` is the recommended control for a menu toggle, there might be
+situations where you have to use an `<a>` element. If you do, we recommend
+adding a `role="button"` attribute to appropriately convey control’s purpose
+to assistive technologies such as screen readers.
+
+Use button groups to create split button menus where the menu is displayed
+when a secondary button is clicked.
+
+Example code (HTML):
 
 <a class="btn-solid theme-primary" href="#" role="button" data-bs-toggle="menu" aria-expanded="false">
   Toggle menu
@@ -106,10 +148,13 @@ Note: While `<button>` is the recommended control for a menu toggle, there might
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > DARK MENUS
-Example 3  |  HTML
+DARK MENUS
 ------------------------------------------------------------------------
-Note: Opt into darker menus to match a dark navbar or custom style by adding `data-bs-theme="dark"` onto the toggle element or a parent.
+
+Opt into darker menus to match a dark navbar or custom style by adding
+`data-bs-theme="dark"` onto the toggle element or a parent.
+
+Example code (HTML):
 
 <div data-bs-theme="dark">
   <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
@@ -124,11 +169,9 @@ Note: Opt into darker menus to match a dark navbar or custom style by adding `da
   </div>
 </div>
 
-------------------------------------------------------------------------
-EXAMPLES > DARK MENUS (cont.)
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: And putting it to use in a navbar:
+And putting it to use in a navbar:
+
+Example code (HTML):
 
 <nav class="navbar" data-bs-theme="dark">
   <div class="container-fluid">
@@ -149,10 +192,13 @@ Note: And putting it to use in a navbar:
 </nav>
 
 ------------------------------------------------------------------------
-EXAMPLES > TRANSLUCENT MENUS
-Example 5  |  HTML
+TRANSLUCENT MENUS
 ------------------------------------------------------------------------
-Note: Blur and saturate the background of menus to create a translucent effect with `.menu-translucent`.
+
+Blur and saturate the background of menus to create a translucent effect with
+`.menu-translucent`.
+
+Example code (HTML):
 
 <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
   Menu button
@@ -167,11 +213,31 @@ Note: Blur and saturate the background of menus to create a translucent effect w
   <a class="menu-item theme-danger" href="#">Danger menu item</a>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 PLACEMENT
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Use `data-bs-placement` on the toggle element to control where the menu appears.
+========================================================================
+
+Use `data-bs-placement` on the toggle element to control where the menu
+appears.
+
+- Physical placements: `top`, `bottom`, `left`, `right` — fixed directions
+  regardless of text direction.
+- Logical placements: `start`, `end` — automatically flip based on RTL. In LTR
+  mode, `start` becomes `left` and `end` becomes `right`. In RTL mode, they
+  swap.
+
+All placements support `-start` and `-end` alignment modifiers (e.g.,
+`bottom-start`, `end-end`).
+
+Placement type
+
+Physical
+
+Logical
+
+Placement
+
+Example code (HTML):
 
 <button class="btn-solid theme-primary" type="button" data-bs-toggle="menu" data-bs-placement="bottom-start" aria-expanded="false">
   Toggle menu
@@ -183,10 +249,22 @@ Note: Use `data-bs-placement` on the toggle element to control where the menu ap
 </div>
 
 ------------------------------------------------------------------------
-PLACEMENT > RESPONSIVE
-Example 7  |  HTML
+RESPONSIVE
 ------------------------------------------------------------------------
-Note: Change placement at different breakpoints using responsive prefixes. The syntax is `breakpoint:placement`, where breakpoint is one of `sm`, `md`, `lg`, `xl`, or `2xl`. Multiple breakpoints can be combined in a single attribute, space-separated.
+
+Change placement at different breakpoints using responsive prefixes. The
+syntax is `breakpoint:placement`, where breakpoint is one of `sm`, `md`, `lg`,
+`xl`, or `2xl`. Multiple breakpoints can be combined in a single attribute,
+space-separated.
+
+For example, `data-bs-placement="bottom-start md:bottom-end lg:end-start"`
+will:
+
+- Show the menu at `bottom-start` on small screens (default)
+- Switch to `bottom-end` at the `md` breakpoint
+- Switch to `right-start` at the `lg` breakpoint
+
+Example code (HTML):
 
 <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-placement="bottom-start md:bottom-end" aria-expanded="false">
   Bottom start → md:bottom-end
@@ -212,11 +290,20 @@ Note: Change placement at different breakpoints using responsive prefixes. The s
   <a class="menu-item" href="#">Another action</a>
 </div>
 
-------------------------------------------------------------------------
+Resize your browser window to see the placement change at different
+breakpoints.
+
+========================================================================
 MENU ITEMS
-Example 8  |  HTML
-------------------------------------------------------------------------
-Note: You can use `<a>` or `<button>` elements as menu items.
+========================================================================
+
+You can use `<a>` or `<button>` elements as menu items.
+
+NOTE:
+  We use utility classes to display menus in our docs examples, but they’re not
+  required for your own use.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <button class="menu-item" type="button">Action</button>
@@ -224,11 +311,10 @@ Note: You can use `<a>` or `<button>` elements as menu items.
   <button class="menu-item" type="button">Something else here</button>
 </div>
 
-------------------------------------------------------------------------
-MENU ITEMS (cont.)
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: You can also create non-interactive menu items with `.menu-text`. Feel free to style further with custom CSS or text utilities.
+You can also create non-interactive menu items with `.menu-text`. Feel free to
+style further with custom CSS or text utilities.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <span class="menu-text">Menu item text</span>
@@ -238,10 +324,15 @@ Note: You can also create non-interactive menu items with `.menu-text`. Feel fre
 </div>
 
 ------------------------------------------------------------------------
-MENU ITEMS > ACTIVE
-Example 10  |  HTML
+ACTIVE
 ------------------------------------------------------------------------
-Note: Add `.active` to items in the menu to style them as the active selection. To convey the active state to assistive technologies, use the `aria-current` attribute — using the `page` value for the current page, or `true` for the current item in a set.
+
+Add `.active` to items in the menu to style them as the active selection. To
+convey the active state to assistive technologies, use the `aria-current`
+attribute — using the `page` value for the current page, or `true` for the
+current item in a set.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <a class="menu-item" href="#">Regular link</a>
@@ -250,10 +341,12 @@ Note: Add `.active` to items in the menu to style them as the active selection. 
 </div>
 
 ------------------------------------------------------------------------
-MENU ITEMS > DISABLED
-Example 11  |  HTML
+DISABLED
 ------------------------------------------------------------------------
-Note: Add `.disabled` to items in the menu to style them as disabled.
+
+Add `.disabled` to items in the menu to style them as disabled.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <a class="menu-item" href="#">Regular link</a>
@@ -262,10 +355,12 @@ Note: Add `.disabled` to items in the menu to style them as disabled.
 </div>
 
 ------------------------------------------------------------------------
-MENU ITEMS > VARIANTS
-Example 12  |  HTML
+VARIANTS
 ------------------------------------------------------------------------
-Note: You can use the `theme-` prefix to apply a theme color to a menu item.
+
+You can use the `theme-` prefix to apply a theme color to a menu item.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <a class="menu-item theme-primary" href="#">Primary link</a>
@@ -281,10 +376,13 @@ Note: You can use the `theme-` prefix to apply a theme color to a menu item.
 </div>
 
 ------------------------------------------------------------------------
-MENU ITEMS > ICONS
-Example 13  |  HTML
+ICONS
 ------------------------------------------------------------------------
-Note: Add `.menu-item-icon` directly to an `<svg>` to add an icon slot to menu items.
+
+Add `.menu-item-icon` directly to an `<svg>` to add an icon slot to menu
+items.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <button class="menu-item" type="button">
@@ -309,10 +407,13 @@ Note: Add `.menu-item-icon` directly to an `<svg>` to add an icon slot to menu i
 </div>
 
 ------------------------------------------------------------------------
-MENU ITEMS > DESCRIPTIONS
-Example 14  |  HTML
+DESCRIPTIONS
 ------------------------------------------------------------------------
-Note: Use `.menu-item-content` for a flex column layout and `.menu-item-description` for secondary text below the main label.
+
+Use `.menu-item-content` for a flex column layout and `.menu-item-description`
+for secondary text below the main label.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <button class="menu-item" type="button">
@@ -330,10 +431,12 @@ Note: Use `.menu-item-content` for a flex column layout and `.menu-item-descript
 </div>
 
 ------------------------------------------------------------------------
-MENU ITEMS > SELECTED
-Example 15  |  HTML
+SELECTED
 ------------------------------------------------------------------------
-Note: Add `.selected` to a `.menu-item` to indicate the current selection.
+
+Add `.selected` to a `.menu-item` to indicate the current selection.
+
+Example code (HTML):
 
 <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">Select status</button>
 <div class="menu">
@@ -369,11 +472,17 @@ Note: Add `.selected` to a `.menu-item` to indicate the current selection.
   </button>
 </div>
 
+========================================================================
+MENU CONTENT
+========================================================================
+
 ------------------------------------------------------------------------
-MENU CONTENT > HEADERS
-Example 16  |  HTML
+HEADERS
 ------------------------------------------------------------------------
-Note: Add a header to label sections of actions in any menu.
+
+Add a header to label sections of actions in any menu.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <a class="menu-item" href="#">Action</a>
@@ -383,10 +492,12 @@ Note: Add a header to label sections of actions in any menu.
 </div>
 
 ------------------------------------------------------------------------
-MENU CONTENT > DIVIDERS
-Example 17  |  HTML
+DIVIDERS
 ------------------------------------------------------------------------
-Note: Separate groups of related menu items with a divider.
+
+Separate groups of related menu items with a divider.
+
+Example code (HTML):
 
 <div class="menu show position-static">
   <a class="menu-item" href="#">Action</a>
@@ -397,10 +508,14 @@ Note: Separate groups of related menu items with a divider.
 </div>
 
 ------------------------------------------------------------------------
-MENU CONTENT > TEXT
-Example 18  |  HTML
+TEXT
 ------------------------------------------------------------------------
-Note: Place any freeform text within a menu with text and use margin and padding utilities. Note that you’ll likely need additional sizing styles to constrain the menu width.
+
+Place any freeform text within a menu with text and use margin and padding
+utilities. Note that you’ll likely need additional sizing styles to constrain
+the menu width.
+
+Example code (HTML):
 
 <div class="menu show position-static p-3 fg-2"
      style="--bs-menu-min-width: 240px;">
@@ -413,10 +528,13 @@ Note: Place any freeform text within a menu with text and use margin and padding
 </div>
 
 ------------------------------------------------------------------------
-MENU CONTENT > FORMS
-Example 19  |  HTML
+FORMS
 ------------------------------------------------------------------------
-Note: Put a form within a menu, or make it into a menu, and use margin and padding utilities to give it the negative space you require.
+
+Put a form within a menu, or make it into a menu, and use margin and padding
+utilities to give it the negative space you require.
+
+Example code (HTML):
 
 <div class="menu show position-static"
      style="--bs-menu-min-width: 300px;">
@@ -441,11 +559,14 @@ Note: Put a form within a menu, or make it into a menu, and use margin and paddi
   </form>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SCROLLABLE MENUS
-Example 20  |  HTML
-------------------------------------------------------------------------
-Note: Assign `--bs-menu-max-height` and `--bs-menu-overflow-y` custom properties to constrain the menu height and enable scrolling.
+========================================================================
+
+Assign `--bs-menu-max-height` and `--bs-menu-overflow-y` custom properties to
+constrain the menu height and enable scrolling.
+
+Example code (HTML):
 
 <div class="menu show position-static" style="--bs-menu-max-height: 145px; --bs-menu-overflow-y: auto;">
   <button class="menu-item" type="button">Item 1</button>
@@ -458,11 +579,22 @@ Note: Assign `--bs-menu-max-height` and `--bs-menu-overflow-y` custom properties
   <button class="menu-item" type="button">Item 8</button>
 </div>
 
-------------------------------------------------------------------------
+You can also use the `.menu-scrollable` class to make the menu scrollable.
+This assumes a generally safe maximum height of `80dvh` and sets the overflow
+for you.
+
+========================================================================
 SUBMENUS
-Example 21  |  HTML
-------------------------------------------------------------------------
-Note: Create nested menus with the `.submenu` wrapper class. Submenus support hover and click activation, keyboard navigation, and viewport-aware positioning. On small screens (below `576px`), submenus stack over the parent menu with a back button instead of flying out to the side.
+========================================================================
+
+Create nested menus with the `.submenu` wrapper class. Submenus support hover
+and click activation, keyboard navigation, and viewport-aware positioning. On
+small screens (below `576px`), submenus stack over the parent menu with a back
+button instead of flying out to the side.
+
+Wrap a `.menu-item` trigger and a nested `.menu` inside a `.submenu` element.
+
+Example code (HTML):
 
 <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
   Submenus
@@ -496,10 +628,13 @@ Note: Create nested menus with the `.submenu` wrapper class. Submenus support ho
 </div>
 
 ------------------------------------------------------------------------
-SUBMENUS > NESTED
-Example 22  |  HTML
+NESTED
 ------------------------------------------------------------------------
-Note: Submenus can be nested to multiple levels. Each level opens to the side and flips direction when there’s not enough viewport space.
+
+Submenus can be nested to multiple levels. Each level opens to the side and
+flips direction when there’s not enough viewport space.
+
+Example code (HTML):
 
 <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
   Multi-level menu
@@ -523,11 +658,15 @@ Note: Submenus can be nested to multiple levels. Each level opens to the side an
   <a class="menu-item" href="#">Another level 1</a>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 MENU OPTIONS
-Example 23  |  HTML
-------------------------------------------------------------------------
-Note: Use `data-bs-offset` or `data-bs-reference` to change the location of the menu. Offset is the distance from the trigger element in pixels. Reference is the element to reference the menu from.
+========================================================================
+
+Use `data-bs-offset` or `data-bs-reference` to change the location of the
+menu. Offset is the distance from the trigger element in pixels. Reference is
+the element to reference the menu from.
+
+Example code (HTML):
 
 <div class="d-flex">
   <div class="me-1">
@@ -557,10 +696,17 @@ Note: Use `data-bs-offset` or `data-bs-reference` to change the location of the 
 </div>
 
 ------------------------------------------------------------------------
-MENU OPTIONS > AUTO CLOSE BEHAVIOR
-Example 24  |  HTML
+AUTO CLOSE BEHAVIOR
 ------------------------------------------------------------------------
-Note: By default, the menu is closed when clicking inside or outside the menu. You can use the `autoClose` option to change this behavior of the menu.
+
+By default, the menu is closed when clicking inside or outside the menu. You
+can use the `autoClose` option to change this behavior of the menu.
+
+Regardless of the `autoClose` setting, pressing `Esc` while focus is within
+the menu (its toggle or items) closes the menu and returns focus to the
+toggle.
+
+Example code (HTML):
 
 <div class="btn-group">
   <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" data-bs-auto-close="true" aria-expanded="false">
@@ -606,11 +752,57 @@ Note: By default, the menu is closed when clicking inside or outside the menu. Y
   </div>
 </div>
 
+========================================================================
+ACCESSIBILITY
+========================================================================
+
+The WAI ARIA standard defines an actual `role="menu"` widget, but this is
+specific to application-like menus which trigger actions or functions. ARIA
+menus can only contain menu items, checkbox menu items, radio button menu
+items, radio button groups, and sub-menus.
+
+Bootstrap’s menus, on the other hand, are designed to be generic and
+applicable to a variety of situations and markup structures. For instance, it
+is possible to create menus that contain additional inputs and form controls,
+such as search fields or login forms. For this reason, Bootstrap does not
+expect (nor automatically add) any of the `role` and `aria-` attributes
+required for true ARIA menus. Authors will have to include these more specific
+attributes themselves.
+
+Submenu triggers are an exception. Bootstrap adds `aria-haspopup="true"` to
+each `.submenu > .menu-item` that wraps a nested `.menu`, and keeps
+`aria-expanded` on it in sync as the submenu opens and closes. Set
+`aria-expanded` yourself only if a submenu must start open.
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 25  |  SCSS
+KEYBOARD NAVIGATION
 ------------------------------------------------------------------------
-Note: Menu use local CSS variables on `.menu` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Menus include built-in keyboard support for navigating menu items.
+
+Key                Action
+-----------------  -------------------------------------------------
+`↓` / `↑`          Navigate to next/previous menu item
+`→`                Enter submenu (or `←` in RTL)
+`←`                Exit submenu and return to parent (or `→` in RTL)
+`Enter` / `Space`  Activate focused item or open submenu
+`Esc`              Close the menu
+`Home` / `End`     Jump to first/last menu item
+`Tab`              Move focus and close the menu
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+VARIABLES
+------------------------------------------------------------------------
+
+Menu use local CSS variables on `.menu` for real-time customization. Values
+for the CSS variables are generated from Sass maps unique to each component
+and applied to the aforementioned class.
+
+Example code (SCSS):
 
 $menu-tokens: defaults(
   (
@@ -654,11 +846,41 @@ $menu-tokens: defaults(
   $menu-tokens
 );
 
+NOTE:
+  Menu items include at least one variable that is not set on `.menu`. This
+  allows you to provide a new value while Bootstrap defaults to a fallback
+  value.
+
+  - `--bs-menu-item-border-radius`
+
+========================================================================
+USAGE
+========================================================================
+
+Via data attributes or JavaScript, the menu plugin toggles hidden content
+(menus) by toggling the `.show` class on the `.menu`. The
+`data-bs-toggle="menu"` attribute is relied on for closing menus at an
+application level, so it’s a good idea to always use it.
+
+NOTE:
+  On touch-enabled devices, opening a menu adds empty `mouseover` handlers to
+  the immediate children of the `<body>` element. This admittedly ugly hack is
+  necessary to work around a quirk in iOS' event delegation, which would
+  otherwise prevent a tap anywhere outside of the menu from triggering the code
+  that closes the menu. Once the menu is closed, these additional empty
+  `mouseover` handlers are removed.
+
 ------------------------------------------------------------------------
-USAGE > VIA DATA ATTRIBUTES
-Example 26  |  HTML
+VIA DATA ATTRIBUTES
 ------------------------------------------------------------------------
-Note: Add `data-bs-toggle="menu"` to a link or button to toggle a menu.
+
+Add `data-bs-toggle="menu"` to a link or button to toggle a menu.
+
+Attribute                Description
+-----------------------  --------------------------------------------------------------------
+`data-bs-toggle="menu"`  Initializes the menu on the trigger and wires global close behavior.
+
+Example code (HTML):
 
 <button type="button" data-bs-toggle="menu" aria-expanded="false">
   Menu trigger
@@ -668,19 +890,25 @@ Note: Add `data-bs-toggle="menu"` to a link or button to toggle a menu.
 </div>
 
 ------------------------------------------------------------------------
-USAGE > VIA JAVASCRIPT
-Example 27  |  JS
+VIA JAVASCRIPT
 ------------------------------------------------------------------------
-Note: Menus must have `data-bs-toggle="menu"` on their trigger element, regardless of whether you call your menu via JavaScript or use the data-api.
+
+WARNING:
+  Menus must have `data-bs-toggle="menu"` on their trigger element, regardless
+  of whether you call your menu via JavaScript or use the data-api.
+
+Call the menus via JavaScript:
+
+Example code (JS):
 
 const menuElementList = document.querySelectorAll('[data-bs-toggle="menu"]')
 const menuList = [...menuElementList].map(menuToggleEl => new bootstrap.Menu(menuToggleEl))
 
-------------------------------------------------------------------------
-USAGE > VIA JAVASCRIPT (cont.)
-Example 28  |  JS
-------------------------------------------------------------------------
-Note: To open, close, or toggle a menu programmatically, get its instance from the trigger element (the one with `data-bs-toggle="menu"`) and call the corresponding method:
+To open, close, or toggle a menu programmatically, get its instance from the
+trigger element (the one with `data-bs-toggle="menu"`) and call the
+corresponding method:
+
+Example code (JS):
 
 const menuToggleEl = document.querySelector('#myMenuToggle')
 const menu = bootstrap.Menu.getOrCreateInstance(menuToggleEl)
@@ -690,9 +918,107 @@ menu.hide()
 menu.toggle()
 
 ------------------------------------------------------------------------
-USAGE > OPTIONS > USING FUNCTION WITH `FLOATINGCONFIG`
-Example 29  |  JS
+DEPENDENCIES
 ------------------------------------------------------------------------
+
+The menu plugin requires the following JavaScript files if you’re building
+Bootstrap’s JS from source:
+
+File                             Description
+-------------------------------  -------------------------------
+`js/src/menu.ts`                 Main menu component
+`js/src/base-component.ts`       Base component class
+`js/src/dom/data.ts`             Element data store
+`js/src/dom/event-handler.ts`    Event handling utilities
+`js/src/dom/manipulator.ts`      Data attribute manipulation
+`js/src/dom/selector-engine.ts`  DOM selector utilities
+`js/src/util/config.ts`          Configuration base class
+`js/src/util/floating-ui.ts`     Responsive placement utilities
+`js/src/util/index.ts`           Core utility functions
+`@floating-ui/dom`               Third-party positioning library
+
+------------------------------------------------------------------------
+OPTIONS
+------------------------------------------------------------------------
+
+As options can be passed via data attributes or JavaScript, you can append an
+option name to `data-bs-`, as in `data-bs-animation="{value}"`. Make sure to
+change the case type of the option name from “camelCase” to “kebab-case” when
+passing the options via data attributes. For example, use
+`data-bs-custom-class="beautifier"` instead of
+`data-bs-customClass="beautifier"`.
+
+All components support a reserved data attribute `data-bs-config` that can
+house simple component configuration as a JSON string. When an element has
+`data-bs-config='{"delay":0, "title":123}'` and `data-bs-title="456"`
+attributes, the final `title` value will be `456` and the separate data
+attributes will override values given on `data-bs-config`. In addition,
+existing data attributes are able to house JSON values like
+`data-bs-delay='{"show":0,"hide":150}'`.
+
+The final configuration object is the merged result of `data-bs-config`,
+`data-bs-`, and `js object` where the latest given key-value overrides the
+others.
+
+`autoClose`
+  Type: boolean, string
+  Default: `true`
+  Description: Configure the auto close behavior of the menu: `true` - the menu will be closed by clicking outside or inside the menu.`false` - the menu will be closed by clicking the toggle button and manually calling `hide` or `toggle` method. (Also will not be closed by pressing `Esc` key)`'inside'` - the menu will be closed (only) by clicking inside the menu. `'outside'` - the menu will be closed (only) by clicking outside the menu. Note: the menu can always be closed with the `Esc` key.
+
+`boundary`
+  Type: string, element
+  Default: `'clippingParents'`
+  Description: Overflow constraint boundary of the menu (applies only to the shift middleware). By default it’s `clippingParents` and can accept an HTMLElement reference (via JavaScript only). For more information refer to Floating UI’s shift docs.
+
+`container`
+  Type: string, element, boolean
+  Default: `false`
+  Description: Appends the menu to a specific element when shown. Use `'body'` or `true` to append to the document body, which helps escape containers with `overflow: hidden`. The menu is moved back to its original position when hidden.
+
+`display`
+  Type: string
+  Default: `'dynamic'`
+  Description: By default, we use Floating UI for dynamic positioning. Disable this with `static`.
+
+`offset`
+  Type: array, string, function
+  Default: `[0, 2]`
+  Description: Offset of the menu relative to its target. You can pass a string in data attributes with comma separated values like: `data-bs-offset="10,20"`. When a function is used to determine the offset, it is called with an object containing the placement, the reference, and floating rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: [skidding, distance]. For more information refer to Floating UI’s offset docs.
+
+`floatingConfig`
+  Type: null, object, function
+  Default: `null`
+  Description: To change Bootstrap’s default Floating UI config, see Floating UI’s configuration. When a function is used to create the Floating UI configuration, it’s called with an object that contains the Bootstrap’s default Floating UI configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Floating UI.
+
+`placement`
+  Type: string
+  Default: `'bottom-start'`
+  Description: Placement of the menu. Physical placements: `'top'`, `'bottom'`, `'left'`, `'right'`. Logical placements (RTL-aware): `'start'`, `'end'`. All support alignment modifiers: `-start`, `-end`. Supports responsive prefixes like `'bottom-start md:end'`.
+
+`reference`
+  Type: string, element, object
+  Default: `'toggle'`
+  Description: Reference element of the menu. Accepts the values of `'toggle'`, `'parent'`, an HTMLElement reference or an object providing `getBoundingClientRect`. For more information refer to Floating UI’s virtual elements docs.
+
+`strategy`
+  Type: string
+  Default: `'absolute'`
+  Description: Positioning strategy for the menu. Use `'absolute'` for default positioning, or `'fixed'` to escape containers with `overflow: hidden`. For more information refer to Floating UI’s strategy docs.
+
+`submenuTrigger`
+  Type: string
+  Default: `'both'`
+  Description: How submenus are triggered. Use `'click'` for click only, `'hover'` for hover only, or `'both'` for both click and hover activation.
+
+`submenuDelay`
+  Type: number
+  Default: `100`
+  Description: Delay in milliseconds before closing a submenu when the mouse leaves. Provides a grace period for diagonal mouse movement toward the submenu.
+
+USING FUNCTION WITH `FLOATINGCONFIG`:
+
+Example code (JS):
+
 const menu = new bootstrap.Menu(element, {
   floatingConfig(defaultBsFloatingConfig) {
     // const newFloatingConfig = {...}
@@ -702,10 +1028,48 @@ const menu = new bootstrap.Menu(element, {
 })
 
 ------------------------------------------------------------------------
-USAGE > EVENTS
-Example 30  |  JS
+METHODS
 ------------------------------------------------------------------------
-Note: All menu events are fired at the toggling element and then bubbled up. So you can also add event listeners on the `.menu`'s parent element. `hide.bs.menu` and `hidden.bs.menu` events have a `clickEvent` property (only when the original Event type is `click`) that contains an Event Object for the click event.
+
+`dispose`
+  Description: Destroys an element’s menu. (Removes stored data on the DOM element)
+
+`getInstance`
+  Description: Static method which allows you to get the menu instance associated to a DOM element, you can use it like this: `bootstrap.Menu.getInstance(element)`.
+
+`getOrCreateInstance`
+  Description: Static method which returns a menu instance associated to a DOM element or create a new one in case it wasn’t initialized. You can use it like this: `bootstrap.Menu.getOrCreateInstance(element)`.
+
+`hide`
+  Description: Hides the menu of a given navbar or tabbed navigation.
+
+`show`
+  Description: Shows the menu of a given navbar or tabbed navigation.
+
+`toggle`
+  Description: Toggles the menu of a given navbar or tabbed navigation.
+
+`update`
+  Description: Updates the position of an element’s menu.
+
+------------------------------------------------------------------------
+EVENTS
+------------------------------------------------------------------------
+
+All menu events are fired at the toggling element and then bubbled up. So you
+can also add event listeners on the `.menu`'s parent element. `hide.bs.menu`
+and `hidden.bs.menu` events have a `clickEvent` property (only when the
+original Event type is `click`) that contains an Event Object for the click
+event.
+
+Event type        Description
+----------------  -----------------------------------------------------------------------------------------------
+`hide.bs.menu`    Fires immediately when the `hide` instance method has been called.
+`hidden.bs.menu`  Fired when the menu has finished being hidden from the user and CSS transitions have completed.
+`show.bs.menu`    Fires immediately when the `show` instance method is called.
+`shown.bs.menu`   Fired when the menu has been made visible to the user and CSS transitions have completed.
+
+Example code (JS):
 
 const myMenu = document.getElementById('myMenu')
 myMenu.addEventListener('show.bs.menu', event => {

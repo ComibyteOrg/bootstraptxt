@@ -1,30 +1,49 @@
 ========================================================================
 LIST GROUP
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/list-group
 ========================================================================
 
-List groups are a flexible and powerful component for displaying a series of content. Modify and extend them to support just about any content within.
+WHAT IT DOES
+List groups are a flexible and powerful component for displaying a series of
+content. Modify and extend them to support just about any content within.
 
-CONTENTS
-   1. Basic example  (example 1)
-   2. Active items  (example 2)
-   3. Links and buttons  (examples 3, 4)
-   4. Flush  (example 5)
-   5. Numbered  (examples 6, 7)
-   6. Horizontal  (examples 8, 9)
-   7. Variants  (example 10)
-   8. Variants > For links and buttons  (example 11)
-   9. With badges  (example 12)
-  10. Custom content  (example 13)
-  11. Checkboxes and radios  (examples 14, 15, 16)
-  12. CSS > Variables  (example 17)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Basic example
+  Active items
+  Links and buttons
+  Flush
+  Numbered
+  Horizontal
+  Variants
+     - For links and buttons
+  With badges
+  Custom content
+  Checkboxes and radios
+  CSS
+     - Variables
+  JavaScript behavior
+
+========================================================================
 BASIC EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: The most basic list group is an unordered list with list items and the proper classes. Build upon it with the options that follow, or with your own CSS as needed.
+========================================================================
+
+The most basic list group is an unordered list with list items and the proper
+classes. Build upon it with the options that follow, or with your own CSS as
+needed.
+
+Example code (HTML):
 
 <ul class="list-group">
   <li class="list-group-item">An item</li>
@@ -34,11 +53,14 @@ Note: The most basic list group is an unordered list with list items and the pro
   <li class="list-group-item">And a fifth one</li>
 </ul>
 
-------------------------------------------------------------------------
+========================================================================
 ACTIVE ITEMS
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Add `.active` to a `.list-group-item` to indicate the current active selection.
+========================================================================
+
+Add `.active` to a `.list-group-item` to indicate the current active
+selection.
+
+Example code (HTML):
 
 <ul class="list-group">
   <li class="list-group-item active" aria-current="true">An active item</li>
@@ -48,11 +70,23 @@ Note: Add `.active` to a `.list-group-item` to indicate the current active selec
   <li class="list-group-item">And a fifth one</li>
 </ul>
 
-------------------------------------------------------------------------
+========================================================================
 LINKS AND BUTTONS
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Use `<a>`s or `<button>`s to create actionable list group items with hover, disabled, and active states by adding `.list-group-item-action`. We separate these pseudo-classes to ensure list groups made of non-interactive elements (like `<li>`s or `<div>`s) don’t provide a click or tap affordance.
+========================================================================
+
+Use `<a>`s or `<button>`s to create actionable list group items with hover,
+disabled, and active states by adding `.list-group-item-action`. We separate
+these pseudo-classes to ensure list groups made of non-interactive elements
+(like `<li>`s or `<div>`s) don’t provide a click or tap affordance.
+
+Make `.list-group-item-action` instances appear disabled by adding
+`.disabled`, and `aria-disabled="true"` to inform assistive technologies that
+the element is disabled. You may require additional JavaScript to fully
+disable links and buttons.
+
+Be sure to not use the standard `.btn` classes here.
+
+Example code (HTML):
 
 <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
@@ -64,11 +98,10 @@ Note: Use `<a>`s or `<button>`s to create actionable list group items with hover
   <a href="#" class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
 </div>
 
-------------------------------------------------------------------------
-LINKS AND BUTTONS (cont.)
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: With `<button>`s, you can also make use of the `disabled` attribute instead of the `.disabled` class. Sadly, `<a>`s don’t support the disabled attribute.
+With `<button>`s, you can also make use of the `disabled` attribute instead of
+the `.disabled` class. Sadly, `<a>`s don’t support the disabled attribute.
+
+Example code (HTML):
 
 <div class="list-group">
   <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
@@ -80,11 +113,14 @@ Note: With `<button>`s, you can also make use of the `disabled` attribute instea
   <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 FLUSH
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Add `.list-group-flush` to remove some borders and rounded corners to render list group items edge-to-edge in a parent container (e.g., cards).
+========================================================================
+
+Add `.list-group-flush` to remove some borders and rounded corners to render
+list group items edge-to-edge in a parent container (e.g., cards).
+
+Example code (HTML):
 
 <ul class="list-group list-group-flush">
   <li class="list-group-item">An item</li>
@@ -94,11 +130,20 @@ Note: Add `.list-group-flush` to remove some borders and rounded corners to rend
   <li class="list-group-item">And a fifth one</li>
 </ul>
 
-------------------------------------------------------------------------
+========================================================================
 NUMBERED
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Add the `.list-group-numbered` modifier class (and optionally use an `<ol>` element) to opt into numbered list group items. Numbers are generated via CSS (as opposed to a `<ol>`s default browser styling) for better placement inside list group items and to allow for better customization.
+========================================================================
+
+Add the `.list-group-numbered` modifier class (and optionally use an `<ol>`
+element) to opt into numbered list group items. Numbers are generated via CSS
+(as opposed to a `<ol>`s default browser styling) for better placement inside
+list group items and to allow for better customization.
+
+Numbers are generated by `counter-reset` on the `<ol>`, and then styled and
+placed with a `::before` pseudo-element on the `<li>` with `counter-increment`
+and `content`.
+
+Example code (HTML):
 
 <ol class="list-group list-group-numbered">
   <li class="list-group-item">A list item</li>
@@ -106,11 +151,9 @@ Note: Add the `.list-group-numbered` modifier class (and optionally use an `<ol>
   <li class="list-group-item">A list item</li>
 </ol>
 
-------------------------------------------------------------------------
-NUMBERED (cont.)
-Example 7  |  HTML
-------------------------------------------------------------------------
-Note: These work great with custom content as well.
+These work great with custom content as well.
+
+Example code (HTML):
 
 <ol class="list-group list-group-numbered">
   <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -136,11 +179,24 @@ Note: These work great with custom content as well.
   </li>
 </ol>
 
-------------------------------------------------------------------------
+========================================================================
 HORIZONTAL
-Example 8  |  HTML
-------------------------------------------------------------------------
-Note: Add `.list-group-horizontal` to change the layout of list group items from vertical to horizontal across all container sizes. Alternatively, choose a responsive variant `.{sm|md|lg|xl|2xl}:list-group-horizontal` to make a list group horizontal starting at that breakpoint’s width.
+========================================================================
+
+Add `.list-group-horizontal` to change the layout of list group items from
+vertical to horizontal across all container sizes. Alternatively, choose a
+responsive variant `.{sm|md|lg|xl|2xl}:list-group-horizontal` to make a list
+group horizontal starting at that breakpoint’s width.
+
+The responsive variants use container queries, so wrap the list group in a
+query container—add the `.contains-inline` utility to a parent element—for
+them to take effect. Currently horizontal list groups cannot be combined with
+flush list groups.
+
+ProTip: Want equal-width list group items when horizontal? Add `.flex-fill` to
+each list group item.
+
+Example code (HTML):
 
 <div class="contains-inline">
   <ul class="list-group list-group-horizontal">
@@ -185,11 +241,11 @@ Note: Add `.list-group-horizontal` to change the layout of list group items from
   </ul>
 </div>
 
-------------------------------------------------------------------------
-HORIZONTAL (cont.)
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: Drag the handle to resize the container below and watch the list group switch between vertical and horizontal layouts as the container—not the viewport—crosses the `md` breakpoint.
+Drag the handle to resize the container below and watch the list group switch
+between vertical and horizontal layouts as the container—not the
+viewport—crosses the `md` breakpoint.
+
+Example code (HTML):
 
 <div class="contains-inline">
   <ul class="list-group md:list-group-horizontal">
@@ -199,11 +255,14 @@ Note: Drag the handle to resize the container below and watch the list group swi
   </ul>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 VARIANTS
-Example 10  |  HTML
-------------------------------------------------------------------------
-Note: Use contextual classes to style list items with a stateful background and color.
+========================================================================
+
+Use contextual classes to style list items with a stateful background and
+color.
+
+Example code (HTML):
 
 <ul class="list-group">
   <li class="list-group-item">A simple default list group item</li>
@@ -219,10 +278,15 @@ Note: Use contextual classes to style list items with a stateful background and 
 </ul>
 
 ------------------------------------------------------------------------
-VARIANTS > FOR LINKS AND BUTTONS
-Example 11  |  HTML
+FOR LINKS AND BUTTONS
 ------------------------------------------------------------------------
-Note: Contextual classes also work with `.list-group-item-action` for `<a>` and `<button>` elements. Note the addition of the hover styles here not present in the previous example. Also supported is the `.active` state; apply it to indicate an active selection on a contextual list group item.
+
+Contextual classes also work with `.list-group-item-action` for `<a>` and
+`<button>` elements. Note the addition of the hover styles here not present in
+the previous example. Also supported is the `.active` state; apply it to
+indicate an active selection on a contextual list group item.
+
+Example code (HTML):
 
 <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
@@ -237,11 +301,22 @@ Note: Contextual classes also work with `.list-group-item-action` for `<a>` and 
   <a href="#" class="list-group-item list-group-item-action theme-secondary">A simple secondary list group item</a>
 </div>
 
-------------------------------------------------------------------------
+Accessibility Tip: Using color to convey meaning
+
+Using color to add meaning only provides a visual indication, which will not
+be conveyed to users of assistive technologies like screen readers. Please
+ensure the meaning is obvious from the content itself (e.g., the visible text
+with a sufficient color contrast) or is included through alternative means,
+such as additional text hidden with the `.visually-hidden` class.
+
+========================================================================
 WITH BADGES
-Example 12  |  HTML
-------------------------------------------------------------------------
-Note: Add badges to any list group item to show unread counts, activity, and more with the help of some utilities.
+========================================================================
+
+Add badges to any list group item to show unread counts, activity, and more
+with the help of some utilities.
+
+Example code (HTML):
 
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -258,11 +333,14 @@ Note: Add badges to any list group item to show unread counts, activity, and mor
   </li>
 </ul>
 
-------------------------------------------------------------------------
+========================================================================
 CUSTOM CONTENT
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: Add nearly any HTML within, even for linked list groups like the one below, with the help of flexbox utilities.
+========================================================================
+
+Add nearly any HTML within, even for linked list groups like the one below,
+with the help of flexbox utilities.
+
+Example code (HTML):
 
 <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
@@ -291,11 +369,15 @@ Note: Add nearly any HTML within, even for linked list groups like the one below
   </a>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 CHECKBOXES AND RADIOS
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: Place Bootstrap’s checkboxes and radios within list group items and customize as needed. You can use them without `<label>`s, but please remember to include an `aria-label` attribute and value for accessibility.
+========================================================================
+
+Place Bootstrap’s checkboxes and radios within list group items and customize
+as needed. You can use them without `<label>`s, but please remember to include
+an `aria-label` attribute and value for accessibility.
+
+Example code (HTML):
 
 <ul class="list-group">
   <li class="list-group-item">
@@ -318,10 +400,8 @@ Note: Place Bootstrap’s checkboxes and radios within list group items and cust
   </li>
 </ul>
 
-------------------------------------------------------------------------
-CHECKBOXES AND RADIOS (cont.)
-Example 15  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <ul class="list-group">
   <li class="list-group-item">
     <div class="form-field">
@@ -343,11 +423,10 @@ Example 15  |  HTML
   </li>
 </ul>
 
-------------------------------------------------------------------------
-CHECKBOXES AND RADIOS (cont.)
-Example 16  |  HTML
-------------------------------------------------------------------------
-Note: You can use `.stretched-link` on `<label>`s to make the whole list group item clickable.
+You can use `.stretched-link` on `<label>`s to make the whole list group item
+clickable.
+
+Example code (HTML):
 
 <ul class="list-group">
   <li class="list-group-item">
@@ -370,11 +449,19 @@ Note: You can use `.stretched-link` on `<label>`s to make the whole list group i
   </li>
 </ul>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 17  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: List groups use local CSS variables on `.list-group` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+List groups use local CSS variables on `.list-group` for real-time
+customization. Values for the CSS variables are generated from Sass maps
+unique to each component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $list-group-tokens: defaults(
@@ -399,6 +486,12 @@ $list-group-tokens: defaults(
   ),
   $list-group-tokens
 );
+
+========================================================================
+JAVASCRIPT BEHAVIOR
+========================================================================
+
+Use the Tab plugin to create tabbable list group panes.
 
 ========================================================================
 END OF FILE

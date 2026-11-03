@@ -1,0 +1,1075 @@
+========================================================================
+SASS
+Bootstrap 6.0  |  Customize reference
+Source: https://getbootstrap.com/docs/6.0/customize/sass
+========================================================================
+
+WHAT IT DOES
+Utilize our source Sass files to take advantage of variables, maps, mixins,
+and functions to help you build faster and customize your project.
+
+HOW TO USE IT
+Every page here shows how to change Bootstrap itself: Sass variables, CSS
+custom properties, and compile-time options. You only need this section if you
+are comfortable with Sass; otherwise the defaults just work.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  About Sass
+  File structure
+  Importing
+  Compiling
+  Including
+  Token architecture
+  Token defaults
+     - Compile-time overrides
+     - Runtime overrides
+  Maps and loops
+     - Theme color map
+     - Global token maps
+     - Root tokens (`$root-tokens`)
+  Component tokens
+     - Override Sass tokens
+     - Remove tokens with `null`
+     - Override CSS tokens
+  Size maps
+  Variant maps
+  Required keys
+  Functions
+     - Defaults
+     - Color contrast
+     - Escape SVG
+     - Map helpers
+     - Theme color values
+     - Theme opacity values
+  Mixins
+     - Tokens
+     - Color schemes
+     - Theme classes
+     - Mask icons
+
+========================================================================
+ABOUT SASS
+========================================================================
+
+Sass is a CSS preprocessor that adds features like variables, nesting, mixins,
+and functions to standard CSS. You write `.scss` files, compile them, and the
+output is plain CSS that browsers understand. If you’re new to Sass, check out
+the Sass documentation to learn the basics.
+
+Bootstrap is written in Sass. Our source `.scss` files use Sass maps to define
+design tokens, mixins to generate repetitive CSS patterns, and the
+`@use`/`@forward` module system to organize everything. When compiled, these
+Sass files produce the CSS that powers every Bootstrap component and utility.
+This lets you override token values, remove unused components, or extend the
+system with your own additions. If you don’t need that level of control, you
+can skip Sass entirely and customize via CSS custom properties at runtime
+instead.
+
+NOTE:
+  New to working with Sass and Bootstrap? Start with our npm guide for a
+  step-by-step setup, or check out our examples repository for ready-to-use
+  starter projects.
+
+========================================================================
+FILE STRUCTURE
+========================================================================
+
+Whenever possible, avoid modifying Bootstrap’s core files. For Sass, that
+means creating your own stylesheet that imports Bootstrap so you can modify
+and extend it. Assuming you’re using a package manager like npm or yarn,
+you’ll have a file structure that looks like this:
+
+Example code (BASH):
+
+your-project/
+├── scss/
+│   └── custom.scss
+└── node_modules/
+│   └── bootstrap/
+│       ├── js/
+│       └── scss/
+└── index.html
+
+If you’ve downloaded our source files and aren’t using a package manager,
+you’ll want to manually create something similar to that structure, keeping
+Bootstrap’s source files separate from your own.
+
+Example code (BASH):
+
+your-project/
+├── scss/
+│   └── custom.scss
+├── bootstrap/
+│   ├── js/
+│   └── scss/
+└── index.html
+
+========================================================================
+IMPORTING
+========================================================================
+
+In your `custom.scss`, you’ll import Bootstrap’s source Sass files. You have
+two options: include all of Bootstrap, or pick the parts you need. We
+encourage the latter, though be aware there are some requirements and
+dependencies across our components. You also will need to include some
+JavaScript for our plugins.
+
+Example code (SCSS):
+
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+@use "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+Example code (SCSS):
+
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include root first (configuration, colors, tokens, and CSS layers)
+@use "../node_modules/bootstrap/scss/root";
+
+// 2. Include any other partials as needed
+@use "../node_modules/bootstrap/scss/content";
+@use "../node_modules/bootstrap/scss/layout";
+@use "../node_modules/bootstrap/scss/forms";
+@use "../node_modules/bootstrap/scss/buttons";
+
+// 3. Components
+@use "../node_modules/bootstrap/scss/alert";
+@use "../node_modules/bootstrap/scss/card";
+// ...
+
+// 4. Helpers and utilities
+@use "../node_modules/bootstrap/scss/helpers";
+@use "../node_modules/bootstrap/scss/utilities/api";
+
+// 5. Add additional custom code here
+
+With that setup in place, you can begin to modify any of the Sass token maps
+in your `custom.scss`. We suggest using the full import stack from our
+`bootstrap.scss` file as your starting point.
+
+Example code (SCSS):
+
+@forward "banner";
+
+// Configuration variables and maps, such as $utilities. Forwarding config makes
+// them configurable from this entrypoint with `@use ... with (...)`. Emits no CSS.
+@forward "config";
+
+@forward "colors";
+
+// Theme color maps ($theme-colors, $theme-bgs, etc.). Forwarding makes them
+// configurable from this entrypoint with `@use ... with (...)`. Emits no CSS.
+@forward "theme";
+
+// Global CSS variables, layer definitions, and configuration
+@forward "root";
+
+// Subdir imports
+@forward "content";
+@forward "layout";
+@forward "forms";
+@forward "buttons";
+
+// Components
+@forward "accordion";
+@forward "alert";
+@forward "avatar";
+@forward "badge";
+@forward "breadcrumb";
+@forward "chip";
+@forward "card";
+@forward "carousel";
+@forward "datepicker";
+@forward "dialog";
+@forward "menu";
+@forward "list-group";
+@forward "nav";
+@forward "nav-overflow";
+@forward "navbar";
+@forward "drawer";
+@forward "pagination";
+@forward "placeholder";
+@forward "popover";
+@forward "progress";
+@forward "spinner";
+@forward "stepper";
+@forward "toasts";
+@forward "tooltip";
+@forward "transitions";
+
+// Helpers
+@forward "helpers";
+
+// Utilities
+@forward "utilities/api";
+
+========================================================================
+COMPILING
+========================================================================
+
+In order to use your custom Sass code as CSS in the browser, you need a Sass
+compiler. Sass ships as a CLI package, but you can also compile it with other
+build tools like Gulp or Webpack, or with GUI applications. Some IDEs also
+have Sass compilers built in or as downloadable extensions.
+
+We like to use the CLI to compile our Sass, but you can use whichever method
+you prefer. From the command line, run the following:
+
+Example code (BASH):
+
+# Install Sass globally
+npm install -g sass
+
+# Watch your custom Sass for changes and compile it to CSS
+sass --watch ./scss/custom.scss ./css/custom.css
+
+Learn more about your options at sass-lang.com/install and compiling with VS
+Code.
+
+NOTE:
+  Using Bootstrap with another build tool? Consider reading our guides for
+  compiling with Webpack, Parcel, or Vite. We also have production-ready demos
+  in our examples repository on GitHub.
+
+========================================================================
+INCLUDING
+========================================================================
+
+Once your CSS is compiled, you can include it in your HTML files. Inside your
+`index.html` you’ll want to include your compiled CSS file. Be sure to update
+the path to your compiled CSS file if you’ve changed it.
+
+Example code (HTML):
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom Bootstrap</title>
+    <link href="/css/custom.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+  </body>
+</html>
+
+========================================================================
+TOKEN ARCHITECTURE
+========================================================================
+
+Bootstrap v6 uses a layered token system built on CSS custom properties. Sass
+maps define the tokens at compile time, and CSS custom properties are
+generated from those maps for runtime use.
+
+The layers, from lowest to highest level:
+
+1. Color scales (`_colors.scss`) — Base hue variables defined in `oklch()`
+   generate a full scale of color steps (025–975) as CSS custom properties
+   using `color-mix()`. For example, `--blue-500`, `--red-200`, `--gray-900`.
+2. Theme colors (`_theme.scss`) — The `$theme-colors` map defines semantic
+   color roles like `primary`, `success`, and `danger`. Each theme color is a
+   nested map with sub-keys: `base`, `text`, `text-emphasis`, `bg`,
+   `bg-subtle`, `bg-muted`, `border`, `focus-ring`, and `contrast`.
+3. Global tokens (`_theme.scss` and `_root.scss`) — Semantic tokens for
+   backgrounds (`$theme-bgs`), foregrounds (`$theme-fgs`), and borders
+   (`$theme-borders`) are defined alongside the `$root-tokens` map, which
+   aggregates everything into `:root` CSS custom properties.
+4. Component tokens (e.g., `_alert.scss`) — Each component defines its own
+   `$*-tokens` map (e.g., `$alert-tokens`) that gets output as CSS custom
+   properties scoped to the component’s class.
+
+========================================================================
+TOKEN DEFAULTS
+========================================================================
+
+Every token map in Bootstrap includes the `!default` flag, allowing you to
+override values before Bootstrap’s files are loaded. Since Bootstrap uses Sass
+modules (`@use`/`@forward`), you can override `!default` variables using the
+`with ()` syntax. For CSS custom property tokens, you have two customization
+paths:
+
+1. At compile time — Override the Sass maps that generate the CSS custom
+   properties.
+2. At runtime — Override the CSS custom properties directly in your
+   stylesheet, no Sass required.
+
+------------------------------------------------------------------------
+COMPILE-TIME OVERRIDES
+------------------------------------------------------------------------
+
+To override token values at compile time, use `@use ... with ()` when
+importing Bootstrap. You only need to include the keys you want to change —
+Bootstrap merges your overrides with its defaults using the `defaults()`
+function, so all other tokens remain intact.
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  $root-tokens: (
+    --border-radius: .25rem,
+    --spacer: 1.5rem,
+  ),
+  $alert-tokens: (
+    --alert-padding-x: 2rem,
+    --alert-border-radius: 1rem,
+  )
+);
+
+Under the hood, every token map uses a two-step pattern:
+
+Example code (SCSS):
+
+$alert-tokens: () !default;
+$alert-tokens: defaults(
+  (
+    // Default tokens here
+  ),
+  $alert-tokens
+);
+
+The `() !default` declaration receives your `with()` overrides. Then
+`defaults()` merges your entries on top of the built-in defaults, so
+unspecified keys keep their original values. Any keys set to `null` are
+removed from the map entirely, letting you drop tokens you don’t need.
+
+------------------------------------------------------------------------
+RUNTIME OVERRIDES
+------------------------------------------------------------------------
+
+Because tokens are output as CSS custom properties, you can override them
+directly in CSS without any Sass compilation:
+
+Example code (CSS):
+
+:root {
+  --border-radius: .25rem;
+  --primary-base: oklch(55% 0.25 260);
+  --bg-body: #f8f9fa;
+}
+
+You can also scope overrides to specific components:
+
+Example code (CSS):
+
+.alert {
+  --alert-padding-x: 2rem;
+  --alert-padding-y: 1.5rem;
+  --alert-border-radius: 1rem;
+}
+
+NOTE:
+  Use the Bootstrap npm starter project! Head to the Sass & JS example template
+  repository to see how to build and customize Bootstrap in your own npm
+  project. Includes Sass compiler, Autoprefixer, Stylelint, PurgeCSS, and
+  Bootstrap Icons.
+
+========================================================================
+MAPS AND LOOPS
+========================================================================
+
+Bootstrap includes several Sass maps that generate families of related CSS
+custom properties. These maps all include the `!default` flag and can be
+overridden.
+
+------------------------------------------------------------------------
+THEME COLOR MAP
+------------------------------------------------------------------------
+
+The `$theme-colors` map defines the semantic color palette. Each entry is a
+nested map with sub-keys like `base`, `text`, `bg`, `border`, and more. See
+the Theme documentation for the full map, sub-key reference, and usage
+examples.
+
+To add, modify, or remove theme colors at compile time, configure
+`$theme-colors` through the main entrypoint with `@use ... with ()`.
+`defaults()` merges your map on top of the built-ins, so the standard themes
+stay intact and you only add what you need:
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  $theme-colors: (
+    "brand": (
+      "base": var(--indigo-500),
+      "fg": light-dark(var(--indigo-600), var(--indigo-400)),
+      "fg-emphasis": light-dark(var(--indigo-800), var(--indigo-300)),
+      "bg": var(--indigo-500),
+      "bg-subtle": light-dark(var(--indigo-100), var(--indigo-900)),
+      "bg-muted": light-dark(var(--indigo-200), var(--indigo-800)),
+      "border": light-dark(var(--indigo-300), var(--indigo-600)),
+      "focus-ring": light-dark(color-mix(in oklch, var(--indigo-500) 50%, var(--bg-body)), color-mix(in oklch, var(--indigo-500) 75%, var(--bg-body))),
+      "contrast": var(--white)
+    )
+  )
+);
+
+WARNING:
+  Each theme color is a nested map, so the merge is one level deep. To change
+  one sub-key of a built-in theme, pass the whole sub-map for that theme. A
+  partial sub-map replaces the theme’s other sub-keys rather than merging with
+  them. To remove a theme, set its key to `null`.
+
+------------------------------------------------------------------------
+GLOBAL TOKEN MAPS
+------------------------------------------------------------------------
+
+Background (`$theme-bgs`), foreground (`$theme-fgs`), and border
+(`$theme-borders`) token maps define semantic layer colors. These are also
+covered in the Theme documentation.
+
+------------------------------------------------------------------------
+ROOT TOKENS (`$ROOT-TOKENS`)
+------------------------------------------------------------------------
+
+The `$root-tokens` map aggregates global design tokens like fonts, spacing,
+borders, and form variables. Theme colors, backgrounds, foregrounds, and
+border tokens are merged into it before output.
+
+Example code (SCSS):
+
+// stylelint-disable @stylistic/value-list-max-empty-lines, @stylistic/function-max-empty-lines, custom-property-no-missing-var-function
+// stylelint-disable-next-line scss/dollar-variable-default
+$root-tokens: defaults(
+  (
+    --black: #{$black},
+    --white: #{$white},
+
+    --gradient: #{$gradient},
+
+    // scss-docs-start root-body-variables
+    // The stack omits system-ui. It resolves to the user interface font of the
+    // locale, which shows non-Latin text incorrectly. See twbs/bootstrap#42703.
+    --body-font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+    --body-font-size: 1rem,
+    --body-font-weight: var(--font-weight-normal),
+    --body-line-height: 1.5,
+    // scss-docs-end root-body-variables
+
+    --heading-color: inherit,
+
+    --hr-border-color: var(--border-color),
+
+    --link-color: light-dark(var(--primary-base), var(--primary-fg)),
+    --link-decoration: underline,
+    --link-underline-offset: .2em,
+    --link-hover-color: color-mix(in oklch, var(--link-color) 90%, #000),
+
+    --font-mono: "ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Monaco, 'Cascadia Mono', Consolas, 'Liberation Mono', monospace",
+    --code-font-size: 95%,
+    --code-color: var(--fg-2),
+
+    // scss-docs-start root-border-var
+    --border-width: #{$border-width},
+    --border-width-keyline: .5px,
+    --border-style: #{$border-style},
+    --border-color: light-dark(var(--gray-200), var(--gray-700)),
+    --border-color-translucent: color-mix(in oklch, var(--fg-body) 15%, transparent),
+    // scss-docs-end root-border-var
+
+    // scss-docs-start root-box-shadow-variables
+    // --box-shadow* tokens are generated below (see root-box-shadow-loop) from
+    // the shared $shadows map in scss/_config.scss, which reads these two.
+    --shadow-color: #000,
+    --shadow-strength: 1,
+    // scss-docs-end root-box-shadow-variables
+
+    // scss-docs-start root-transition-variables
+    // Shared easing curve for overlay components (dialog, drawer, menu)
+    --transition-timing-overlay: cubic-bezier(.22, 1, .36, 1),
+    // scss-docs-end root-transition-variables
+
+    --spacer: #{$spacer},
+
+    // scss-docs-start root-focus-variables
+    --focus-ring-width: 3px,
+    --focus-ring-offset: 1px,
+    --focus-ring-color: var(--primary-focus-ring),
+    --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color),
+    // scss-docs-end root-focus-variables
+
+    // scss-docs-start root-form-variables
+    --control-checked-bg: var(--primary-base),
+    --control-checked-border-color: var(--control-checked-bg),
+    --control-active-bg: var(--primary-base),
+    --control-active-border-color: var(--control-active-bg),
+    --control-disabled-bg: var(--bg-3),
+    --control-disabled-opacity: .65,
+    // Shared motion for checkbox/radio marks; slight overshoot so the mark pops in
+    --control-transition-duration: .15s,
+    --control-transition-timing: cubic-bezier(.34, 1.56, .64, 1),
+
+    --btn-input-fg: var(--fg-body),
+    --btn-input-bg: var(--bg-body),
+
+    --btn-input-gap: .375rem,
+    --btn-input-min-height: 2.375rem,
+    --btn-input-padding-y: .375rem,
+    --btn-input-padding-x: .75rem,
+    --btn-input-font-size: var(--body-font-size),
+    --btn-input-font-weight: var(--font-weight-normal),
+    --btn-input-line-height: var(--body-line-height),
+    --btn-input-border-radius: var(--radius-5),
+
+    --btn-input-xs-gap: var(--spacer-1),
+    --btn-input-xs-min-height: 1.5rem,
+    --btn-input-xs-padding-y: .125rem,
+    --btn-input-xs-padding-x: .5rem,
+    --btn-input-xs-font-size: var(--font-size-xs),
+    --btn-input-xs-line-height: 1.125,
+    --btn-input-xs-border-radius: var(--radius-5),
+
+    --btn-input-sm-gap: .375rem,
+    --btn-input-sm-min-height: 2rem,
+    --btn-input-sm-padding-y: .25rem,
+    --btn-input-sm-padding-x: .625rem,
+    --btn-input-sm-font-size: var(--font-size-sm),
+    --btn-input-sm-line-height: var(--line-height-sm),
+    --btn-input-sm-border-radius: var(--radius-5),
+
+    --btn-input-lg-gap: .375rem,
+    --btn-input-lg-min-height: 2.75rem,
+    --btn-input-lg-padding-y: .5rem,
+    --btn-input-lg-padding-x: 1rem,
+    --btn-input-lg-font-size: var(--font-size-md),
+    --btn-input-lg-line-height: var(--line-height-md),
+    --btn-input-lg-border-radius: var(--radius-7),
+    // scss-docs-end root-form-variables
+  ),
+  $root-tokens
+);
+// stylelint-enable @stylistic/value-list-max-empty-lines, @stylistic/function-max-empty-lines, custom-property-no-missing-var-function
+
+All root tokens are output to `:root` as CSS custom properties:
+
+Example code (SCSS):
+
+// Generate semantic theme colors
+@each $color-name, $color-map in $theme-colors {
+  @each $key, $value in $color-map {
+    $root-tokens: map.set($root-tokens, --#{$color-name}-#{$key}, $value);
+  }
+}
+
+// Generate background tokens
+@each $key, $value in $theme-bgs {
+  $root-tokens: map.set($root-tokens, --bg-#{$key}, $value);
+}
+
+// Generate foreground tokens
+@each $key, $value in $theme-fgs {
+  $root-tokens: map.set($root-tokens, --fg-#{$key}, $value);
+}
+
+// Generate border tokens
+@each $key, $value in $theme-borders {
+  $root-tokens: map.set($root-tokens, --border-#{$key}, $value);
+}
+
+========================================================================
+COMPONENT TOKENS
+========================================================================
+
+Each component defines its own token map that gets output as CSS custom
+properties scoped to the component’s class. This makes components
+self-contained and easy to customize.
+
+Here’s the alert component as an example:
+
+Example code (SCSS):
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$alert-tokens: defaults(
+  (
+    --alert-gap: var(--spacer-3),
+    --alert-bg: var(--bg-1),
+    --alert-padding-x: var(--spacer),
+    --alert-padding-y: var(--spacer),
+    --alert-color: inherit,
+    --alert-border-color: var(--border-color),
+    --alert-border-radius: var(--radius-7),
+    --alert-link-color: inherit,
+    --alert-transition-property: "opacity",
+    --alert-transition-duration: .15s,
+    --alert-transition-timing: linear,
+    --hr-border-color: var(--theme-border, var(--alert-border-color)),
+  ),
+  $alert-tokens
+);
+
+The tokens are output on the `.alert` class using the `tokens()` mixin:
+
+Example code (SCSS):
+
+.alert {
+  @include tokens($alert-tokens);
+
+  padding: var(--alert-padding-y) var(--alert-padding-x);
+  color: var(--alert-color);
+  background-color: var(--alert-bg);
+  border: var(--alert-border);
+  // ...
+}
+
+------------------------------------------------------------------------
+OVERRIDE SASS TOKENS
+------------------------------------------------------------------------
+
+Use `with ()` to override specific component token values at compile time with
+Sass. Your overrides are merged with the defaults, so you only need to specify
+the keys you want to change:
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  $alert-tokens: (
+    --alert-padding-x: 2rem,
+    --alert-bg: var(--bg-2),
+    --alert-border-radius: 0,
+  )
+);
+
+This works for every component: `$card-tokens`, `$button-tokens`,
+`$menu-tokens`, `$nav-tokens`, and so on — any `$*-tokens` map supports
+partial overrides through the same merge pattern.
+
+------------------------------------------------------------------------
+REMOVE TOKENS WITH `NULL`
+------------------------------------------------------------------------
+
+Set any map key to `null` to remove it entirely. The `defaults()` function
+strips null entries before the map is used, so no CSS is generated for those
+keys:
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  $alert-tokens: (
+    --alert-margin-bottom: null,
+  )
+);
+
+------------------------------------------------------------------------
+OVERRIDE CSS TOKENS
+------------------------------------------------------------------------
+
+You can also override the CSS custom properties directly without Sass:
+
+Example code (CSS):
+
+.alert {
+  --alert-padding-x: 2rem;
+  --alert-bg: var(--bg-2);
+  --alert-border-radius: 0;
+}
+
+========================================================================
+SIZE MAPS
+========================================================================
+
+In addition to token maps, Bootstrap uses size maps to generate size variant
+classes like `.btn-sm`, `.btn-lg`, `.form-control-sm`, etc. These use the same
+`defaults()` function and support the same override and removal patterns.
+
+Size maps accept a simple list of size names:
+
+Example code (SCSS):
+
+$button-sizes: () !default;
+$button-sizes: defaults(
+  ("xs", "sm", "lg"),
+  $button-sizes
+);
+
+The loop then derives CSS custom property values from each size name:
+
+Example code (SCSS):
+
+@each $size, $_ in $button-sizes {
+  .btn-#{$size} {
+    --btn-min-height: var(--btn-input-#{$size}-min-height);
+    --btn-padding-y: var(--btn-input-#{$size}-padding-y);
+    // ...
+  }
+}
+
+To remove a size, set its key to `null` via `with()`:
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  $button-sizes: ("xs": null),
+);
+
+========================================================================
+VARIANT MAPS
+========================================================================
+
+Some components use variant maps to generate style variants. For example,
+`$button-variants` defines `solid`, `outline`, `subtle`, and `text` button
+styles. These are also processed by `defaults()` and support `null` removal:
+
+Example code (SCSS):
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  $button-variants: (
+    "text": null,
+    "subtle": null,
+  ),
+);
+
+This removes the `.btn-text` and `.btn-subtle` classes from the compiled CSS
+while keeping `.btn-solid` and `.btn-outline` intact.
+
+========================================================================
+REQUIRED KEYS
+========================================================================
+
+Bootstrap assumes the presence of some specific keys within Sass maps as we
+use and extend these ourselves. As you customize the included maps, you may
+encounter errors where a specific Sass map’s key is being used.
+
+For `$theme-colors`, the `primary`, `success`, and `danger` keys are required
+for links, buttons, and form states. Replacing the values of these keys should
+present no issues, but removing them may cause Sass compilation issues.
+
+========================================================================
+FUNCTIONS
+========================================================================
+
+------------------------------------------------------------------------
+DEFAULTS
+------------------------------------------------------------------------
+
+The `defaults()` function is the backbone of Bootstrap’s customization system.
+It merges user overrides on top of built-in default tokens and strips any
+`null` entries from the result. Every token map, size map, and variant map
+uses it:
+
+Example code (SCSS):
+
+@function defaults($defaults, $overrides) { ... }
+
+It accepts either a map or a list as the first argument. Lists are
+automatically converted to maps with `true` values, which is how size maps
+like `$button-sizes` work with a clean `("xs", "sm", "lg")` syntax.
+
+`defaults()` are generated on specific selectors with the `tokens()` mixin.
+
+------------------------------------------------------------------------
+COLOR CONTRAST
+------------------------------------------------------------------------
+
+In order to meet the Web Content Accessibility Guidelines (WCAG) contrast
+requirements, authors must provide a minimum text color contrast of 4.5:1 and
+a minimum non-text color contrast of 3:1, with very few exceptions.
+
+To help with this, we included the `color-contrast` function in Bootstrap. It
+uses the WCAG contrast ratio algorithm for calculating contrast thresholds
+based on relative luminance in an `sRGB` color space to automatically return a
+light (`#fff`), dark (`#212529`) or black (`#000`) contrast color based on the
+specified base color. This function is especially useful for mixins or loops
+where you’re generating multiple classes.
+
+For example, to generate color swatches from our `$theme-colors` map:
+
+Example code (SCSS):
+
+@each $color, $value in $theme-colors {
+  .swatch-#{$color} {
+    color: color-contrast(map.get($value, "base"));
+  }
+}
+
+------------------------------------------------------------------------
+ESCAPE SVG
+------------------------------------------------------------------------
+
+We use the `escape-svg` function to escape the `<`, `>` and `#` characters for
+SVG background images. When using the `escape-svg` function, data URIs must be
+quoted.
+
+Example code (SCSS):
+
+// Input — an inline SVG with special characters
+$icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#00000080' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+
+// After escape-svg(), the <, >, and # characters are percent-encoded
+// so the data URI works reliably in CSS (e.g. as a mask-image or background-image)
+.element {
+  mask-image: escape-svg($icon);
+}
+
+------------------------------------------------------------------------
+MAP HELPERS
+------------------------------------------------------------------------
+
+We include several Sass functions for working with maps beyond what Sass
+provides natively.
+
+Function                             Description
+-----------------------------------  -----------------------------------------------------------------------------
+`map-merge-multiple($maps...)`       Merges any number of maps into one, processing them left to right.
+`map-get-multiple($map, $values)`    Returns a subset of a map filtered to only the keys listed in `$values`.
+`map-get-nested($map, $nested-key)`  Extracts a single property from every nested map entry, returning a flat map.
+
+`MAP-MERGE-MULTIPLE($MAPS...)`:
+
+Example code (SCSS):
+
+@function map-merge-multiple($maps...) { ... }
+
+// Example: combine spacers, negative spacers, and auto into a single values map
+values: map-merge-multiple($spacers, $negative-spacers, (auto: auto))
+
+`MAP-GET-MULTIPLE($MAP, $VALUES)`:
+
+Example code (SCSS):
+
+@function map-get-multiple($map, $values) { ... }
+
+// Example: extract only the flex and order utilities
+$utilities: map-get-multiple(
+  $utilities,
+  ("flex", "flex-direction", "flex-grow", "order")
+);
+
+`MAP-GET-NESTED($MAP, $NESTED-KEY)`:
+
+Example code (SCSS):
+
+@function map-get-nested($map, $nested-key) { ... }
+
+// Example: pull just the "font-size" value from each entry in $font-sizes
+values: map-get-nested($font-sizes, "font-size")
+// Returns: ("xs": clamp(...), "sm": clamp(...), ...)
+
+`NEGATIVIFY-MAP($MAP)`:
+
+Turns a map into its negative variant by prefixing each key with `n` and
+negating the value. Keys equal to `0` are skipped. Use it when a custom
+utility needs negative values.
+
+Example code (SCSS):
+
+@function negativify-map($map) { ... }
+
+// Example: generate negative values from part of the spacer scale
+$custom-spacers: (0: 0, 1: .25rem, 2: .375rem, 3: .5rem);
+$negative-spacers: negativify-map($custom-spacers);
+// Returns: ("n1": -.25rem, "n2": -.375rem, "n3": -.5rem)
+
+------------------------------------------------------------------------
+THEME COLOR VALUES
+------------------------------------------------------------------------
+
+The `theme-color-values($key)` function in `scss/_theme.scss` extracts a
+specific sub-key from every entry in the `$theme-colors` map, returning a flat
+map of color names to values. Since each theme color is a nested map with
+sub-keys like `base`, `text`, `bg`, `border`, etc., this function lets you
+pull one of those sub-keys across all colors at once. It powers most of the
+color-related utilities in `_utilities.scss`:
+
+Example code (SCSS):
+
+// In _utilities.scss — generate .focus-ring-{color} classes
+"focus-ring": (
+  property: --focus-ring-color,
+  class: focus-ring,
+  values: theme-color-values("focus-ring"),
+),
+
+// Merge theme color backgrounds with semantic border tokens for .border-{color} classes
+"border-color": (
+  property: (
+    "--border-color": null,
+    "border-color": var(--border-color)
+  ),
+  class: border,
+  values: map.merge(theme-color-values("bg"), $theme-borders),
+),
+
+------------------------------------------------------------------------
+THEME OPACITY VALUES
+------------------------------------------------------------------------
+
+The `theme-opacity-values($color-var, $opacities)` function in
+`scss/_theme.scss` generates a map of opacity variants for a CSS custom
+property using `color-mix()`. The `$opacities` argument defaults to
+`$util-opacity` (10 through 100 in steps of 10). At `100`, it returns the
+variable directly; for all other steps, it mixes the variable against
+`transparent`:
+
+Example code (SCSS):
+
+// In _utilities.scss — generate .border-{opacity} classes
+"border-opacity": (
+  class: border,
+  property: border-color,
+  values: theme-opacity-values(--border-color)
+),
+
+// Generate .fg-{opacity} classes
+"fg-opacity": (
+  class: fg,
+  property: color,
+  values: theme-opacity-values(--fg)
+),
+
+========================================================================
+MIXINS
+========================================================================
+
+Our `scss/mixins/` directory has snippets of code that power Bootstrap and can
+also be used across your own project.
+
+------------------------------------------------------------------------
+TOKENS
+------------------------------------------------------------------------
+
+The `tokens()` mixin outputs a Sass map as CSS custom properties. Every
+component uses it to render its token map:
+
+Example code (SCSS):
+
+@mixin tokens($map) {
+  @each $prop, $value in $map {
+    #{$prop}: #{$value};
+  }
+}
+
+Example code (SCSS):
+
+.alert {
+  @include tokens($alert-tokens);
+  // Outputs: --alert-padding-x: ...; --alert-padding-y: ...; etc.
+}
+
+------------------------------------------------------------------------
+COLOR SCHEMES
+------------------------------------------------------------------------
+
+A shorthand mixin for the `prefers-color-scheme` media query is available with
+support for `light` and `dark` color schemes. See the color modes
+documentation for information on our color mode mixin.
+
+Example code (SCSS):
+
+@mixin color-scheme($name) {
+  @media (prefers-color-scheme: #{$name}) {
+    @content;
+  }
+}
+
+Example code (SCSS):
+
+.custom-element {
+  @include color-scheme(light) {
+    // Insert light mode styles here
+  }
+
+  @include color-scheme(dark) {
+    // Insert dark mode styles here
+  }
+}
+
+------------------------------------------------------------------------
+THEME CLASSES
+------------------------------------------------------------------------
+
+The `generate-theme-classes()` mixin loops over the `$theme-colors` map and
+outputs a `.theme-*` class for each color. Each class maps generic `--theme-*`
+custom properties to the color’s specific values, so components can reference
+`--theme-base`, `--theme-bg`, etc., and pick up the right palette from a
+parent `.theme-*` class. It also emits `.theme-reset`, which sets those tokens
+to `initial` so nested components use their own defaults again:
+
+Example code (SCSS):
+
+@include generate-theme-classes();
+// Outputs:
+// .theme-primary { --theme-base: var(--primary-base); --theme-bg: var(--primary-bg); ... }
+// .theme-success { --theme-base: var(--success-base); --theme-bg: var(--success-bg); ... }
+// .theme-reset { --theme-base: initial; --theme-bg: initial; ... }
+// ...
+
+Example code (SCSS):
+
+@mixin generate-theme-reset() {
+  .theme-reset {
+    $keys: ();
+
+    @each $color-map in map.values($theme-colors) {
+      @each $key in map.keys($color-map) {
+        $keys: map.merge($keys, ($key: true));
+      }
+    }
+
+    @each $key in map.keys($keys) {
+      --theme-#{$key}: initial;
+    }
+  }
+}
+
+------------------------------------------------------------------------
+MASK ICONS
+------------------------------------------------------------------------
+
+The `mask-icon()` mixin renders an SVG icon via a CSS `mask` so the shape is
+painted with the element’s `background-color`. This lets an icon inherit the
+current text color, enabling automatic dark mode without a separate SVG. We
+use this for the close button, navbar toggler, checkbox marks, breadcrumb
+dividers, datepicker arrows, and carousel controls.
+
+Some form controls can’t use `mask` because they don’t support pseudo-elements
+and masking would clip the whole field. The `<select>` chevron and inputs
+using `.form-control-caret` are two examples, which keep separate light and
+dark `background-image` SVGs instead as non-masked background images.
+
+Example code (SCSS):
+
+@mixin mask-icon($icon: null, $size: contain, $position: center) {
+  @if $icon != null {
+    mask-image: $icon;
+  }
+  mask-repeat: no-repeat;
+  @if $position != null {
+    mask-position: $position;
+  }
+  @if $size != null {
+    mask-size: $size;
+  }
+}
+
+Set `background-color` on the element yourself (the mixin only outputs the
+`mask-*` properties), then pass your icon as the mask image. Pass `null` for
+the icon when it’s applied conditionally, such as per state or direction.
+
+Example code (SCSS):
+
+.custom-icon {
+  // Declare a custom CSS variable for the icon. This could be on the same
+  // element, `:root`, or a parent element. We're using a custom × icon. Be
+  // sure to wrap in `escape-svg()` as well.
+  --custom-icon: #{escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='black' stroke-linecap='round' stroke-width='2' d='m4 4 8 8m0-8-8 8'/></svg>"))};
+
+  width: 1rem;
+  height: 1rem;
+  background-color: currentcolor;
+  @include mask-icon($icon: var(--custom-icon));
+}
+
+========================================================================
+END OF FILE
+========================================================================

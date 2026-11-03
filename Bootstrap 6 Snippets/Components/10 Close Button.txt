@@ -1,49 +1,82 @@
 ========================================================================
 CLOSE BUTTON
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/close-button
 ========================================================================
 
+WHAT IT DOES
 A generic close button for dismissing content like modals and alerts.
 
-CONTENTS
-   1. Example  (example 1)
-   2. Disabled state  (example 2)
-   3. Dark variant  (example 3)
-   4. CSS > Variables  (example 4)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Example
+  Disabled state
+  Dark variant
+  CSS
+     - Variables
+
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Provide an option to dismiss or close a component with `.btn-close`. The icon is rendered with a CSS `mask-image`, so it inherits the `color` from the `.btn-close` class—no inline SVG required. Be sure to include text for screen readers, as we’ve done with `aria-label`.
+========================================================================
+
+Provide an option to dismiss or close a component with `.btn-close`. The icon
+is rendered with a CSS `mask-image`, so it inherits the `color` from the
+`.btn-close` class—no inline SVG required. Be sure to include text for screen
+readers, as we’ve done with `aria-label`.
+
+Example code (HTML):
 
 <button type="button" class="btn-close" aria-label="Close"></button>
 
-------------------------------------------------------------------------
+========================================================================
 DISABLED STATE
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Disabled close buttons change their `opacity`. We’ve also applied `pointer-events: none` and `user-select: none` to preventing hover and active states from triggering.
+========================================================================
+
+Disabled close buttons change their `opacity`. We’ve also applied
+`pointer-events: none` and `user-select: none` to preventing hover and active
+states from triggering.
+
+Example code (HTML):
 
 <button type="button" class="btn-close" disabled aria-label="Close"></button>
 
-------------------------------------------------------------------------
+========================================================================
 DARK VARIANT
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Add `data-bs-theme="dark"` to the `.btn-close`, or to its parent element, to invert the close button. This happens automatically when in dark mode.
+========================================================================
+
+Add `data-bs-theme="dark"` to the `.btn-close`, or to its parent element, to
+invert the close button. This happens automatically when in dark mode.
+
+Example code (HTML):
 
 <div data-bs-theme="dark">
   <button type="button" class="btn-close" aria-label="Close"></button>
   <button type="button" class="btn-close" disabled aria-label="Close"></button>
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 4  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Close button use local CSS variables on `.btn-close` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Close button use local CSS variables on `.btn-close` for real-time
+customization. Values for the CSS variables are generated from Sass maps
+unique to each component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $btn-close-tokens: defaults(

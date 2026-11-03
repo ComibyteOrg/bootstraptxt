@@ -1,0 +1,77 @@
+========================================================================
+FONT FAMILY
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/font-family
+========================================================================
+
+WHAT IT DOES
+Utilities for controlling font family including monospace font stack.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Monospace
+  Body
+  CSS
+     - Sass utilities API
+
+Class            Styles
+---------------  ----------------------------------------
+.font-monospace  font-family: var(--bs-font-mono);
+.font-body       font-family: var(--bs-body-font-family);
+
+========================================================================
+MONOSPACE
+========================================================================
+
+Change a selection to our monospace font stack with `.font-monospace`.
+
+Example code (HTML):
+
+<p class="font-monospace">This is in monospace</p>
+
+========================================================================
+BODY
+========================================================================
+
+Change a selection to our body font stack with `.font-body`, which defaults to
+sans-serif.
+
+Example code (HTML):
+
+<p class="font-body">This is in body</p>
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Font family utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"font-family": (
+  property: font-family,
+  class: font,
+  values: (
+    "monospace": var(--font-mono),
+    "body": var(--body-font-family),
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

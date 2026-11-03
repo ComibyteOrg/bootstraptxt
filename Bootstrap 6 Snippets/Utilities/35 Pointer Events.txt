@@ -1,0 +1,116 @@
+========================================================================
+POINTER EVENTS
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/pointer-events
+========================================================================
+
+WHAT IT DOES
+Control how elements respond to mouse and touch interactions with
+pointer-events utilities.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Basic usage
+  Important considerations
+  Better alternatives
+  Use cases
+  CSS
+     - Sass utilities API
+
+Class     Styles
+--------  ---------------------
+.pe-none  pointer-events: none;
+.pe-auto  pointer-events: auto;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Bootstrap provides `.pe-none` and `.pe-auto` classes to prevent or add element
+interactions through the `pointer-events` CSS property.
+
+========================================================================
+BASIC USAGE
+========================================================================
+
+Example code (HTML):
+
+<p><a href="#" class="pe-none" tabindex="-1" aria-disabled="true">This link</a> can not be clicked.</p>
+<p><a href="#" class="pe-auto">This link</a> can be clicked (this is default behavior).</p>
+<p class="pe-none"><a href="#" tabindex="-1" aria-disabled="true">This link</a> can not be clicked because the <code>pointer-events</code> property is inherited from its parent. However, <a href="#" class="pe-auto">this link</a> has a <code>pe-auto</code> class and can be clicked.</p>
+
+========================================================================
+IMPORTANT CONSIDERATIONS
+========================================================================
+
+The `.pe-none` class (and the `pointer-events` CSS property it sets) only
+prevents interactions with a pointer (mouse, stylus, touch). Links and
+controls with `.pe-none` are, by default, still focusable and actionable for
+keyboard users.
+
+To ensure that they are completely neutralized even for keyboard users, you
+may need to add further attributes such as:
+
+- `tabindex="-1"` (to prevent them from receiving keyboard focus)
+- `aria-disabled="true"` (to convey the fact they are effectively disabled to
+  assistive technologies)
+- JavaScript to completely prevent them from being actionable
+
+========================================================================
+BETTER ALTERNATIVES
+========================================================================
+
+If possible, the simpler solution is:
+
+- For form controls: Add the `disabled` HTML attribute
+- For links: Remove the `href` attribute, making it a non-interactive anchor
+  or placeholder link
+
+WARNING:
+  Accessibility warning: Using `pointer-events: none` can create accessibility
+  barriers. Always ensure that disabled elements are properly marked up with
+  appropriate ARIA attributes and that keyboard users can’t accidentally focus
+  them.
+
+========================================================================
+USE CASES
+========================================================================
+
+- `.pe-none` - Disable interactions on overlays, loading states, or
+  temporarily disabled elements
+- `.pe-auto` - Re-enable interactions on child elements when parent has
+  `pe-none`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Pointer events utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"pointer-events": (
+  property: pointer-events,
+  class: pe,
+  values: none auto,
+),
+
+========================================================================
+END OF FILE
+========================================================================

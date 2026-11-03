@@ -1,0 +1,129 @@
+========================================================================
+OBJECT FIT
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/object-fit
+========================================================================
+
+WHAT IT DOES
+Use the object fit utilities to modify how the content of a replaced element,
+such as an `<img>` or `<video>`, should be resized to fit its container.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+  Examples
+  Responsive
+  Video
+  CSS
+     - Sass utilities API
+
+Class                Styles
+-------------------  -----------------------
+.object-fit-contain  object-fit: contain;
+.object-fit-cover    object-fit: cover;
+.object-fit-fill     object-fit: fill;
+.object-fit-scale    object-fit: scale-down;
+.object-fit-none     object-fit: none;
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Change the value of the `object-fit` property with our responsive `object-fit`
+utility classes. This property tells the content to fill the parent container
+in a variety of ways, such as preserving the aspect ratio or stretching to
+take up as much space as possible.
+
+Classes for the value of `object-fit` are named using the format
+`.object-fit-{value}`. Choose from the following values:
+
+- `contain`
+- `cover`
+- `fill`
+- `scale` (for scale-down)
+- `none`
+
+========================================================================
+EXAMPLES
+========================================================================
+
+Add the `object-fit-{value}` class to the replaced element:
+
+Example code (HTML):
+
+<img src="..." class="object-fit-contain border rounded" alt="...">
+<img src="..." class="object-fit-cover border rounded" alt="...">
+<img src="..." class="object-fit-fill border rounded" alt="...">
+<img src="..." class="object-fit-scale border rounded" alt="...">
+<img src="..." class="object-fit-none border rounded" alt="...">
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for each `object-fit` value using the format
+`.{breakpoint}:object-fit-{value}`, for the following breakpoint
+abbreviations: `sm`, `md`, `lg`, `xl`, and `2xl`. Classes can be combined for
+various effects as you need.
+
+Example code (HTML):
+
+<img src="..." class="sm:object-fit-contain border rounded" alt="...">
+<img src="..." class="md:object-fit-contain border rounded" alt="...">
+<img src="..." class="lg:object-fit-contain border rounded" alt="...">
+<img src="..." class="xl:object-fit-contain border rounded" alt="...">
+<img src="..." class="2xl:object-fit-contain border rounded" alt="...">
+
+========================================================================
+VIDEO
+========================================================================
+
+The `.object-fit-{value}` and responsive `.{breakpoint}:object-fit-{value}`
+utilities also work on `<video>` elements.
+
+Example code (HTML):
+
+<video src="..." class="object-fit-contain" autoplay></video>
+<video src="..." class="object-fit-cover" autoplay></video>
+<video src="..." class="object-fit-fill" autoplay></video>
+<video src="..." class="object-fit-scale" autoplay></video>
+<video src="..." class="object-fit-none" autoplay></video>
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Object fit utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"object-fit": (
+  responsive: true,
+  property: object-fit,
+  values: (
+    contain: contain,
+    cover: cover,
+    fill: fill,
+    scale: scale-down,
+    none: none,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

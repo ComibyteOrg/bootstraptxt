@@ -1,0 +1,184 @@
+========================================================================
+BOOTSTRAP 6.0 - BEGINNER'S GUIDE
+========================================================================
+How to read this library and how Bootstrap works, from zero.
+========================================================================
+
+WHAT BOOTSTRAP IS
+-----------------
+Bootstrap is a set of ready-made CSS classes and JavaScript plugins.
+Instead of writing CSS yourself, you add classes to HTML and Bootstrap
+styles things for you: buttons, navbars, grids, forms, colors, spacing.
+
+It is mobile-first: the default classes style every screen size, and
+breakpoint prefixes change styles at specific widths.
+
+
+THE FASTEST WAY TO USE IT
+-------------------------
+1. Start with "00 Quick Start.txt" in this folder.
+2. Save the HTML and open it in your browser. You have a working page.
+3. Copy snippets from this library into the <body>.
+
+That's it. No build step required.
+
+
+HOW A BOOTSTRAP PAGE IS BUILT
+-----------------------------
+Every Bootstrap page needs three things:
+
+  1. The CSS file (in <head>):
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  2. Your HTML (components, grids, utilities) inside <body>.
+
+  3. The JS bundle (before </body>), only if you use interactive
+     components (navbar drawer, dialogs, toasts, tooltips, ...):
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
+You do NOT need a build tool to follow this library.
+
+
+THE THREE BUILDING BLOCKS
+-------------------------
+1. CONTAINER - centers your content and pads it on the sides.
+   <div class="container"> ... </div>
+
+2. ROW - a horizontal grid row.
+   <div class="row"> ... </div>
+
+3. COLUMN - one of 12 columns per row.
+   <div class="row">
+     <div class="col-8">Main content</div>
+     <div class="col-4">Sidebar</div>
+   </div>
+
+The grid is the #1 thing beginners struggle with. See Layout/03 Grid System.txt
+for every option and Layout/01 Breakpoints.txt for the screen sizes.
+
+
+BREAKPOINTS (AND THE V6 PREFIX RULE)
+------------------------------------
+Bootstrap has six screen sizes:
+
+   xs  <576px     sm  ≥576px     md  ≥768px
+   lg  ≥1024px    xl  ≥1280px    2xl ≥1536px
+
+In Bootstrap 6 the prefix goes FIRST:
+
+   v5: navbar-expand-md     →     v6: md:navbar-expand
+   v5: col-md-6             →     v6: md:col-6
+
+If you write the old v5 order, nothing happens. This is the most common
+mistake when copying old snippets from the internet.
+
+
+SPACING AND SIZING SCALES
+--------------------------
+Spacing classes use these steps (spacing is in rem):
+
+   0        = 0
+   1        = 0.25rem
+   2        = 0.375rem
+   3        = 0.5rem
+   4        = 0.75rem
+   5        = 1rem
+   6        = 1.25rem
+   7        = 1.5rem
+   8        = 1.75rem
+   9        = 2rem
+   10       = 2.25rem
+   11       = 2.5rem
+   12       = 3rem
+
+   Same idea for font sizes (fs-*), gap (gap-*), width/height (w-*, h-*),
+   borders (border, border-*) and more.
+
+
+CLASS NAMES DECODED
+-------------------
+Almost every Bootstrap class follows {place}-{amount}:
+
+   m-3     margin on ALL sides
+   mt-3    margin TOP
+   mb-3    margin BOTTOM
+   ms-3    margin INLINE START (left in English)
+   me-3    margin INLINE END   (right in English)
+   mx-3    margin left and right
+   my-3    margin top and bottom
+
+   p-*     same, for padding
+   d-flex  display: flex
+   justify-content-between / -center / -start / -end
+   align-items-center / -start / -end
+   gap-3   gap between flex/grid children
+   text-center / start / end
+   fs-lg   font size large; fs-sm small; fs-3xl extra large
+
+
+THE SIX THINGS TO COPY FIRST
+----------------------------
+  1. 00 Quick Start.txt             a page skeleton
+  2. Layout/03 Grid System.txt     the 12-column grid
+  3. Layout/02 Containers.txt      page width and centering
+  4. Content/02 Typography.txt     headings, paragraphs, lists
+  5. Components/17 Navbar.txt      the navbar every site copies
+  6. Components/06 Button.txt      buttons and button variants
+
+
+INTERACTIVE COMPONENTS NEED JS
+-------------------------------
+Some components work automatically once the bundle is loaded
+(navbar drawer, menu, tabs, collapse, alerts).
+
+Others require you to initialise them yourself:
+
+   Tooltip, Popover, Toast, Nav Overflow
+
+Open the component's .txt file and read the "JAVASCRIPT SETUP" block; it
+tells you exactly which kind yours is, with working code.
+
+
+COLOURS
+-------
+Semantic theme tokens (these adapt between light/dark mode):
+
+   theme-primary    brand/action colour
+   theme-secondary  secondary actions
+   theme-success    success states
+   theme-warning    warnings
+   theme-danger     errors
+
+   bg-1, bg-2, ...  neutral surfaces (numbered)
+   fg-2, fg-3, ...  text colours (numbered)
+
+   btn-solid, btn-outline, btn-subtle, btn-icon   button styles
+   data-bs-theme="auto|light|dark"                 color modes
+
+
+HOW TO READ A .txt FILE
+-----------------------
+  1. Header: what the component is, and whether it needs JS.
+  2. WHAT IT DOES / HOW TO USE IT in plain English.
+  3. ON THIS PAGE: a table of contents for the file.
+  4. The rest: explanation first, then code, tables and examples.
+  5. Code blocks are complete and ready to paste into your page.
+
+
+COMMON MISTAKES
+---------------
+  - Forgetting the JS bundle (navbar toggle and menus won't open).
+  - Using v5 class order (col-md-6) instead of v6 (md:col-6).
+  - Copying "hidden" v5 classes that no longer exist.
+  - Using utility classes without Bootstrap CSS loaded.
+  - Closing tags incorrectly - Bootstrap components are strict HTML.
+  - Adding BOTH .container and .container-fluid (pick one).
+
+
+FINDING THINGS FAST
+-------------------
+  INDEX.txt          everything, by section
+  00 JS Cheat Sheet.txt   constructors and init recipes
+  Each folder is numbered in docs order, so you can read them in sequence.
+
+Have fun. Bootstrap rewards copying - steal from the examples guilt free.

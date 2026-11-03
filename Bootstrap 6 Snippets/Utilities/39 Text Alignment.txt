@@ -1,0 +1,110 @@
+========================================================================
+TEXT ALIGNMENT
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/text-alignment
+========================================================================
+
+WHAT IT DOES
+Easily realign text with text alignment utilities for start, end, and center
+alignment.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Alignment
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class         Styles
+------------  -------------------
+.text-start   text-align: start;
+.text-end     text-align: end;
+.text-center  text-align: center;
+
+========================================================================
+ALIGNMENT
+========================================================================
+
+Easily realign text to components with text alignment classes. For start, end,
+and center alignment, responsive classes are available that use the same
+viewport width breakpoints as the grid system.
+
+Example code (HTML):
+
+<p class="text-start">Start aligned text on all viewport sizes.</p>
+<p class="text-center">Center aligned text on all viewport sizes.</p>
+<p class="text-end">End aligned text on all viewport sizes.</p>
+
+<p class="sm:text-end">End aligned text on viewports sized SM (small) or wider.</p>
+<p class="md:text-end">End aligned text on viewports sized MD (medium) or wider.</p>
+<p class="lg:text-end">End aligned text on viewports sized LG (large) or wider.</p>
+<p class="xl:text-end">End aligned text on viewports sized XL (extra large) or wider.</p>
+<p class="2xl:text-end">End aligned text on viewports sized 2xl (extra extra large) or wider.</p>
+
+NOTE:
+  Note that we don’t provide utility classes for justified text. While,
+  aesthetically, justified text might look more appealing, it does make
+  word-spacing more random and therefore harder to read.
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for `text-align`.
+
+- `.text-start`
+- `.text-center`
+- `.text-end`
+- `.sm:text-start`
+- `.sm:text-center`
+- `.sm:text-end`
+- `.md:text-start`
+- `.md:text-center`
+- `.md:text-end`
+- `.lg:text-start`
+- `.lg:text-center`
+- `.lg:text-end`
+- `.xl:text-start`
+- `.xl:text-center`
+- `.xl:text-end`
+- `.2xl:text-start`
+- `.2xl:text-center`
+- `.2xl:text-end`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Text alignment utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"text-align": (
+  responsive: true,
+  property: text-align,
+  class: text,
+  values: (
+    start: start,
+    end: end,
+    center: center,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

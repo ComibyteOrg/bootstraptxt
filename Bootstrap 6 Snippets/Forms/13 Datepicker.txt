@@ -1,34 +1,56 @@
 ========================================================================
 DATEPICKER
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/datepicker
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-A flexible calendar and date picker popover with support for input or button toggles, range selection, multiple months, and more.
+WHAT IT DOES
+A flexible calendar and date picker popover with support for input or button
+toggles, range selection, multiple months, and more.
 
-CONTENTS
-   1. Overview  (example 1)
-   2. Examples > With form field  (example 2)
-   3. Examples > With icon  (example 3)
-   4. Examples > Min & Max dates  (example 4)
-   5. Examples > Multiple dates  (example 5)
-   6. Examples > Multiple months  (example 6)
-   7. Examples > Date range  (example 7)
-   8. Examples > Multi-month date range  (example 8)
-   9. Options > First day of week  (example 9)
-  10. Options > Placement  (example 10)
-  11. Options > Button trigger  (examples 11, 12, 13)
-  12. Options > Inline mode  (examples 14, 15, 16, 17)
-  13. Options > Custom date formatting  (example 18)
-  14. Dark mode > Inherited from parent  (example 19)
-  15. Dark mode > Datepicker-only theme  (example 20)
-  16. Shadow DOM  (example 21)
-  17. CSS > Variables  (example 22)
-  18. Usage > Via data attributes  (example 23)
-  19. Usage > Via JavaScript  (example 24)
-  20. Usage > Advanced configuration  (example 25)
-  21. Usage > Events  (example 26)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  How it works
+  Examples
+     - With form field
+     - With icon
+     - Min & Max dates
+     - Multiple dates
+     - Multiple months
+     - Date range
+     - Multi-month date range
+  Options
+     - First day of week
+     - Placement
+     - Button trigger
+     - Inline mode
+     - Custom date formatting
+  Dark mode
+     - Inherited from parent
+     - Datepicker-only theme
+  Shadow DOM
+  CSS
+     - Variables
+  Usage
+     - Via data attributes
+     - Via JavaScript
+     - Dependencies
+     - Options
+     - Advanced configuration
+     - Methods
+     - Events
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -54,20 +76,51 @@ Reuse an existing instance:
 
 const datepicker = bootstrap.Datepicker.getOrCreateInstance(datepickerEl)
 
-------------------------------------------------------------------------
+========================================================================
 OVERVIEW
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: The Bootstrap Datepicker is a wrapper around Vanilla Calendar Pro that provides a consistent, accessible date selection experience. It supports light/dark themes, input binding, and flexible configuration via data attributes or JavaScript.
+========================================================================
+
+The Bootstrap Datepicker is a wrapper around Vanilla Calendar Pro that
+provides a consistent, accessible date selection experience. It supports
+light/dark themes, input binding, and flexible configuration via data
+attributes or JavaScript.
+
+Example code (HTML):
 
 <label for="datepicker1" class="form-label">Datepicker</label>
 <input type="text" class="form-control w-12" id="datepicker1" data-bs-toggle="datepicker" autocomplete="off" placeholder="Choose date…">
 
+Note that we’re using a width utility of `.w-12` to ensure the input is wide
+enough to accommodate the date format and imply some affordance for the
+expected type of input.
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+- Add `data-bs-toggle="datepicker"` to any `<input>` element to enable the
+  datepicker
+- Use `type="text"` to avoid conflicts with native browser date pickers
+- When focused, the calendar popup appears below the input
+- Selecting a date updates the input value and closes the picker
+- The picker also closes on a click outside it, on `Escape`, or when focus
+  moves to an element outside it
+- The picker respects Bootstrap’s color modes (`data-bs-theme`)
+- Configurable with any Vanilla Calendar Pro option via `vcpOptions` when
+  initializing with JavaScript
+
+========================================================================
+EXAMPLES
+========================================================================
+
 ------------------------------------------------------------------------
-EXAMPLES > WITH FORM FIELD
-Example 2  |  HTML
+WITH FORM FIELD
 ------------------------------------------------------------------------
-Note: Use the form field component to layout and wrap your inputs with a label, description, and validation feedback messages in a vertical stack.
+
+Use the form field component to layout and wrap your inputs with a label,
+description, and validation feedback messages in a vertical stack.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="datepicker2" class="form-label">Datepicker field</label>
@@ -78,10 +131,14 @@ Note: Use the form field component to layout and wrap your inputs with a label, 
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > WITH ICON
-Example 3  |  HTML
+WITH ICON
 ------------------------------------------------------------------------
-Note: Use the form adorn component to add a calendar icon alongside the datepicker input. When the input is inside a `.form-adorn` wrapper, the calendar automatically positions relative to the wrapper instead of the input.
+
+Use the form adorn component to add a calendar icon alongside the datepicker
+input. When the input is inside a `.form-adorn` wrapper, the calendar
+automatically positions relative to the wrapper instead of the input.
+
+Example code (HTML):
 
 <label for="datepickerIconStart" class="form-label">Select date</label>
 <div class="form-control form-adorn w-12">
@@ -92,64 +149,91 @@ Note: Use the form adorn component to add a calendar icon alongside the datepick
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > MIN & MAX DATES
-Example 4  |  HTML
+MIN & MAX DATES
 ------------------------------------------------------------------------
-Note: Restrict the selectable date range using `data-bs-date-min` and `data-bs-date-max`.
+
+Restrict the selectable date range using `data-bs-date-min` and
+`data-bs-date-max`.
+
+Example code (HTML):
 
 <label for="datepickerMinMax" class="form-label">Event date (2026 only)</label>
 <input type="text" class="form-control w-12" id="datepickerMinMax" data-bs-toggle="datepicker" autocomplete="off" data-bs-date-min="2026-01-01" data-bs-date-max="2026-12-31" placeholder="Select a date in 2026">
 
 ------------------------------------------------------------------------
-EXAMPLES > MULTIPLE DATES
-Example 5  |  HTML
+MULTIPLE DATES
 ------------------------------------------------------------------------
-Note: Enable multiple date selection with `data-bs-selection-mode="multiple"`.
+
+Enable multiple date selection with `data-bs-selection-mode="multiple"`.
+
+Example code (HTML):
 
 <label for="datepicker3" class="form-label">Select multiple dates</label>
 <input type="text" class="form-control" id="datepicker3" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple" placeholder="Select date range…">
 
 ------------------------------------------------------------------------
-EXAMPLES > MULTIPLE MONTHS
-Example 6  |  HTML
+MULTIPLE MONTHS
 ------------------------------------------------------------------------
-Note: Display multiple months side-by-side with the `displayMonthsCount` option. This is useful for date range selection where users need to see more context.
+
+Display multiple months side-by-side with the `displayMonthsCount` option.
+This is useful for date range selection where users need to see more context.
+
+Example code (HTML):
 
 <label for="datepickerMultiMonth" class="form-label">Select date range</label>
 <input type="text" class="form-control" id="datepickerMultiMonth" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple-ranged" data-bs-display-months-count="2" placeholder="Select start and end dates">
 
 ------------------------------------------------------------------------
-EXAMPLES > DATE RANGE
-Example 7  |  HTML
+DATE RANGE
 ------------------------------------------------------------------------
-Note: Select a range of dates with `data-bs-selection-mode="multiple-ranged"`. Use `data-bs-selected-dates` to preselect a date range.
+
+Select a range of dates with `data-bs-selection-mode="multiple-ranged"`. Use
+`data-bs-selected-dates` to preselect a date range.
+
+Example code (HTML):
 
 <label for="datepicker4" class="form-label">Select date range</label>
 <input type="text" class="form-control" id="datepicker4" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple-ranged" data-bs-selected-dates='["2026-06-10", "2026-06-18"]' placeholder="Select start and end dates…">
 
 ------------------------------------------------------------------------
-EXAMPLES > MULTI-MONTH DATE RANGE
-Example 8  |  HTML
+MULTI-MONTH DATE RANGE
 ------------------------------------------------------------------------
-Note: For selecting date ranges that span multiple months, combine `data-bs-selection-mode="multiple-ranged"` with `data-bs-display-months-count="2"` to show two months side-by-side, making it easier for users to select across month boundaries.
+
+For selecting date ranges that span multiple months, combine
+`data-bs-selection-mode="multiple-ranged"` with
+`data-bs-display-months-count="2"` to show two months side-by-side, making it
+easier for users to select across month boundaries.
+
+Example code (HTML):
 
 <label for="datepickerRangeTwoMonths" class="form-label">Select date range</label>
 <input type="text" class="form-control" id="datepickerRangeTwoMonths" data-bs-toggle="datepicker" autocomplete="off" data-bs-selection-mode="multiple-ranged" data-bs-display-months-count="2" data-bs-selected-dates='["2026-06-25", "2026-07-08"]' placeholder="Select start and end dates…">
 
+========================================================================
+OPTIONS
+========================================================================
+
 ------------------------------------------------------------------------
-OPTIONS > FIRST DAY OF WEEK
-Example 9  |  HTML
+FIRST DAY OF WEEK
 ------------------------------------------------------------------------
-Note: Set the first day of the week (0 = Sunday, 1 = Monday, etc.) with `data-bs-first-weekday`.
+
+Set the first day of the week (0 = Sunday, 1 = Monday, etc.) with
+`data-bs-first-weekday`.
+
+Example code (HTML):
 
 <label for="datepicker6" class="form-label">Week starts on Sunday</label>
 <input type="text" class="form-control w-12" id="datepicker6" data-bs-toggle="datepicker" autocomplete="off" data-bs-first-weekday="0" placeholder="Select a date">
 
 ------------------------------------------------------------------------
-OPTIONS > PLACEMENT
-Example 10  |  HTML
+PLACEMENT
 ------------------------------------------------------------------------
-Note: Control where the calendar appears relative to the input with `data-bs-placement`. Options are `left` (default), `center`, `right`, and `auto`.
+
+Control where the calendar appears relative to the input with
+`data-bs-placement`. Options are `left` (default), `center`, `right`, and
+`auto`.
+
+Example code (HTML):
 
 <div class="d-flex gap-3">
   <div>
@@ -167,32 +251,35 @@ Note: Control where the calendar appears relative to the input with `data-bs-pla
 </div>
 
 ------------------------------------------------------------------------
-OPTIONS > BUTTON TRIGGER
-Example 11  |  HTML
+BUTTON TRIGGER
 ------------------------------------------------------------------------
-Note: Use a button instead of an input for use cases like dashboard date filters. Add `data-bs-datepicker-display` to the text element to preserve icons when the date updates.
+
+Use a button instead of an input for use cases like dashboard date filters.
+Add `data-bs-datepicker-display` to the text element to preserve icons when
+the date updates.
+
+Example code (HTML):
 
 <button type="button" class="btn-outline theme-secondary" data-bs-toggle="datepicker">
 <svg class="bi" width="16" height="16"><use href="#calendar-week" /></svg>
 <span data-bs-datepicker-display>Select date</span>
 </button>
 
-------------------------------------------------------------------------
-OPTIONS > BUTTON TRIGGER (cont.)
-Example 12  |  HTML
-------------------------------------------------------------------------
-Note: For date range selection (e.g., dashboard time filters), use `data-bs-selection-mode="multiple-ranged"`. The calendar will close after both start and end dates are selected.
+For date range selection (e.g., dashboard time filters), use
+`data-bs-selection-mode="multiple-ranged"`. The calendar will close after both
+start and end dates are selected.
+
+Example code (HTML):
 
 <button type="button" class="btn-outline theme-secondary" data-bs-toggle="datepicker" data-bs-selection-mode="multiple-ranged">
   <svg class="bi" width="16" height="16"><use href="#calendar-week" /></svg>
   <span data-bs-datepicker-display>Last 7 days</span>
 </button>
 
-------------------------------------------------------------------------
-OPTIONS > BUTTON TRIGGER (cont.)
-Example 13  |  JS
-------------------------------------------------------------------------
-Note: You can also display the selected date in a separate element using the `displayElement` option via JavaScript:
+You can also display the selected date in a separate element using the
+`displayElement` option via JavaScript:
+
+Example code (JS):
 
 const datepicker = new bootstrap.Datepicker(buttonElement, {
   selectionMode: 'multiple-ranged',
@@ -200,34 +287,33 @@ const datepicker = new bootstrap.Datepicker(buttonElement, {
 })
 
 ------------------------------------------------------------------------
-OPTIONS > INLINE MODE
-Example 14  |  HTML
+INLINE MODE
 ------------------------------------------------------------------------
-Note: Render the calendar inline (always visible, no popup) with `data-bs-inline="true"`. This is useful for embedding a calendar directly in the page.
+
+Render the calendar inline (always visible, no popup) with
+`data-bs-inline="true"`. This is useful for embedding a calendar directly in
+the page.
+
+Example code (HTML):
 
 <div data-bs-toggle="datepicker" data-bs-inline="true"></div>
 
-------------------------------------------------------------------------
-OPTIONS > INLINE MODE (cont.)
-Example 15  |  HTML
-------------------------------------------------------------------------
-Note: Inline datepickers with date range selection:
+Inline datepickers with date range selection:
+
+Example code (HTML):
 
 <div data-bs-toggle="datepicker" data-bs-inline="true" data-bs-selection-mode="multiple-ranged"></div>
 
-------------------------------------------------------------------------
-OPTIONS > INLINE MODE (cont.)
-Example 16  |  HTML
-------------------------------------------------------------------------
-Note: Multiple months inline:
+Multiple months inline:
+
+Example code (HTML):
 
 <div data-bs-toggle="datepicker" data-bs-inline="true" data-bs-display-months-count="2"></div>
 
-------------------------------------------------------------------------
-OPTIONS > INLINE MODE (cont.)
-Example 17  |  HTML
-------------------------------------------------------------------------
-Note: To bind to a form field, include a hidden input inside the container. The value will be updated with the selected date(s) in `YYYY-MM-DD` format:
+To bind to a form field, include a hidden input inside the container. The
+value will be updated with the selected date(s) in `YYYY-MM-DD` format:
+
+Example code (HTML):
 
 <form>
 <div data-bs-toggle="datepicker" data-bs-inline="true">
@@ -237,10 +323,13 @@ Note: To bind to a form field, include a hidden input inside the container. The 
 </form>
 
 ------------------------------------------------------------------------
-OPTIONS > CUSTOM DATE FORMATTING
-Example 18  |  JS
+CUSTOM DATE FORMATTING
 ------------------------------------------------------------------------
-Note: Control how dates are displayed using the `dateFormat` option. Pass an `Intl.DateTimeFormat` options object or a custom function.
+
+Control how dates are displayed using the `dateFormat` option. Pass an
+`Intl.DateTimeFormat` options object or a custom function.
+
+Example code (JS):
 
 // Using Intl.DateTimeFormat options
 const datepicker = new bootstrap.Datepicker(element, {
@@ -256,11 +345,22 @@ const datepicker = new bootstrap.Datepicker(element, {
   // Output: "Dec 23 – Dec 28"
 })
 
+========================================================================
+DARK MODE
+========================================================================
+
+The datepicker automatically adapts to Bootstrap’s color modes. When
+`data-bs-theme="dark"` is set on a parent element or the `<html>` tag, the
+calendar popup inherits that theme.
+
 ------------------------------------------------------------------------
-DARK MODE > INHERITED FROM PARENT
-Example 19  |  HTML
+INHERITED FROM PARENT
 ------------------------------------------------------------------------
-Note: When a parent element has a theme, both the input and calendar popup inherit it:
+
+When a parent element has a theme, both the input and calendar popup inherit
+it:
+
+Example code (HTML):
 
 <div data-bs-theme="dark" class="p-3 bg-body fg-body rounded">
 <label for="datepickerDark" class="form-label">Dark mode datepicker</label>
@@ -268,19 +368,32 @@ Note: When a parent element has a theme, both the input and calendar popup inher
 </div>
 
 ------------------------------------------------------------------------
-DARK MODE > DATEPICKER-ONLY THEME
-Example 20  |  HTML
+DATEPICKER-ONLY THEME
 ------------------------------------------------------------------------
-Note: Use `data-bs-datepicker-theme` to set the datepicker popup’s theme independently of the input. This is useful when you want a light input with a dark datepicker, or vice versa:
+
+Use `data-bs-datepicker-theme` to set the datepicker popup’s theme
+independently of the input. This is useful when you want a light input with a
+dark datepicker, or vice versa:
+
+Example code (HTML):
 
 <label for="datepickerTheme" class="form-label">Light input, dark datepicker</label>
 <input type="text" class="form-control w-12" id="datepickerTheme" data-bs-toggle="datepicker" autocomplete="off" data-bs-datepicker-theme="dark" placeholder="Select a date">
 
-------------------------------------------------------------------------
+========================================================================
 SHADOW DOM
-Example 21  |  JS
-------------------------------------------------------------------------
-Note: The calendar renders inside a shadow root, which is useful for encapsulated web components. Two things differ from normal use:
+========================================================================
+
+The calendar renders inside a shadow root, which is useful for encapsulated
+web components. Two things differ from normal use:
+
+- Initialize the datepicker with JavaScript. Delegated events re-target at the
+  shadow boundary, so `data-bs-toggle="datepicker"` does not reach elements
+  inside a shadow root.
+- Adopt Bootstrap’s stylesheet into the shadow root. Document styles do not
+  cross the boundary, so the calendar renders unstyled without it.
+
+Example code (JS):
 
 const sheet = new CSSStyleSheet()
 sheet.replaceSync(await (await fetch('/path/to/bootstrap.min.css')).text())
@@ -291,10 +404,16 @@ root.innerHTML = '<input type="text" id="shadowDatepicker">'
 
 new bootstrap.Datepicker(root.getElementById('shadowDatepicker'))
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 22  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
+
+Example code (SCSS):
+
 // stylelint-disable-next-line scss/dollar-variable-default
 $datepicker-tokens: defaults(
   (
@@ -320,19 +439,33 @@ $datepicker-tokens: defaults(
   $datepicker-tokens
 );
 
+========================================================================
+USAGE
+========================================================================
+
 ------------------------------------------------------------------------
-USAGE > VIA DATA ATTRIBUTES
-Example 23  |  HTML
+VIA DATA ATTRIBUTES
 ------------------------------------------------------------------------
-Note: Add `data-bs-toggle="datepicker"` to any input element to initialize it as a datepicker.
+
+Add `data-bs-toggle="datepicker"` to any input element to initialize it as a
+datepicker.
+
+Attribute                      Description
+-----------------------------  ------------------------------------------------------------
+`data-bs-toggle="datepicker"`  Initializes the datepicker on the input (or button) element.
+`data-bs-inline`               When `true`, renders the calendar inline instead of a popup.
+
+Example code (HTML):
 
 <input type="text" class="form-control" data-bs-toggle="datepicker">
 
 ------------------------------------------------------------------------
-USAGE > VIA JAVASCRIPT
-Example 24  |  JS
+VIA JAVASCRIPT
 ------------------------------------------------------------------------
-Note: Initialize datepickers programmatically:
+
+Initialize datepickers programmatically:
+
+Example code (JS):
 
 const datepickerEl = document.getElementById('myDatepicker')
 const datepicker = new bootstrap.Datepicker(datepickerEl, {
@@ -341,10 +474,105 @@ const datepicker = new bootstrap.Datepicker(datepickerEl, {
 })
 
 ------------------------------------------------------------------------
-USAGE > ADVANCED CONFIGURATION
-Example 25  |  JS
+DEPENDENCIES
 ------------------------------------------------------------------------
-Note: For features not directly exposed by Bootstrap’s options, use `vcpOptions` to pass any Vanilla Calendar Pro setting:
+
+The datepicker plugin requires the following JavaScript files if you’re
+building Bootstrap’s JS from source:
+
+File                           Description
+-----------------------------  ----------------------------
+`js/src/datepicker.ts`         Main datepicker component
+`js/src/base-component.ts`     Base component class
+`js/src/dom/data.ts`           Element data store
+`js/src/dom/event-handler.ts`  Event handling utilities
+`js/src/dom/manipulator.ts`    Data attribute manipulation
+`js/src/util/config.ts`        Configuration base class
+`js/src/util/index.ts`         Core utility functions
+`vanilla-calendar-pro`         Third-party calendar library
+
+------------------------------------------------------------------------
+OPTIONS
+------------------------------------------------------------------------
+
+`dateMin`
+  Type: string, number, Date
+  Default: `null`
+  Description: Minimum selectable date. Format: `YYYY-MM-DD`
+
+`dateMax`
+  Type: string, number, Date
+  Default: `null`
+  Description: Maximum selectable date. Format: `YYYY-MM-DD`
+
+`dateFormat`
+  Type: object, function
+  Default: `null`
+  Description: Date formatting. Pass `Intl.DateTimeFormat` options or a `function(date, locale)`.
+
+`displayElement`
+  Type: string, element, boolean
+  Default: `null`
+  Description: Element to show formatted date. For buttons, defaults to the button itself. Set to `false` to disable.
+
+`displayMonthsCount`
+  Type: number
+  Default: `1`
+  Description: Number of months to display side-by-side in the calendar.
+
+`firstWeekday`
+  Type: number
+  Default: `1`
+  Description: First day of week (0 = Sunday, 1 = Monday, etc.)
+
+`inline`
+  Type: boolean
+  Default: `false`
+  Description: Render calendar inline (always visible, no popup).
+
+`locale`
+  Type: string
+  Default: `'default'`
+  Description: Locale for date formatting (e.g., `'en-US'`, `'de-DE'`)
+
+`positionElement`
+  Type: string, element
+  Default: `null`
+  Description: Element to position calendar relative to. Auto-detects `.form-adorn` wrapper if present.
+
+`selectedDates`
+  Type: array
+  Default: `[]`
+  Description: Pre-selected dates in `YYYY-MM-DD` format
+
+`selectionMode`
+  Type: string
+  Default: `'single'`
+  Description: Selection mode: `'single'`, `'multiple'`, or `'multiple-ranged'`
+
+`placement`
+  Type: string
+  Default: `'left'`
+  Description: Calendar position relative to input: `'left'`, `'center'`, `'right'`, `'auto'`
+
+`datepickerTheme`
+  Type: string
+  Default: `null`
+  Description: Force datepicker popup theme: `'light'`, `'dark'`, `'auto'`, or `null` to inherit from ancestor `[data-bs-theme]`
+
+`vcpOptions`
+  Type: object
+  Default: `{}`
+  Description: Pass-through object for any Vanilla Calendar Pro option
+
+------------------------------------------------------------------------
+ADVANCED CONFIGURATION
+------------------------------------------------------------------------
+
+For features not directly exposed by Bootstrap’s options, use `vcpOptions` to
+pass any Vanilla Calendar Pro setting:
+
+Example code (JS):
 
 const datepicker = new bootstrap.Datepicker(element, {
   vcpOptions: {
@@ -355,10 +583,43 @@ const datepicker = new bootstrap.Datepicker(element, {
   }
 })
 
+See the Vanilla Calendar Pro documentation for all available options.
+
+Vanilla Calendar Pro ships its optional features as extensions. Bootstrap uses
+only the `months` extension, which `displayMonthsCount` needs. Options from
+other extensions are not supported, and Vanilla Calendar Pro throws an error
+when you set them. These include `animation`, `enableSwipe`,
+`selectionTimeMode`, `popups`, and the week view options.
+
 ------------------------------------------------------------------------
-USAGE > EVENTS
-Example 26  |  JS
+METHODS
 ------------------------------------------------------------------------
+
+Method                          Description
+------------------------------  -----------------------------------------------------------------
+`show()`                        Shows the datepicker calendar
+`hide()`                        Hides the datepicker calendar
+`toggle()`                      Toggles the datepicker visibility
+`getSelectedDates()`            Returns an array of selected dates in `YYYY-MM-DD` format
+`setSelectedDates(dates)`       Sets the selected dates. Expects an array of `YYYY-MM-DD` strings
+`dispose()`                     Destroys the datepicker instance
+`getInstance(element)`          Static method to get the datepicker instance from a DOM element
+`getOrCreateInstance(element)`  Static method to get or create a datepicker instance
+
+------------------------------------------------------------------------
+EVENTS
+------------------------------------------------------------------------
+
+Event                   Description
+----------------------  ------------------------------------------------------------------------------------
+`show.bs.datepicker`    Fires immediately when the `show` method is called
+`shown.bs.datepicker`   Fires when the datepicker has been made visible
+`hide.bs.datepicker`    Fires immediately when the `hide` method is called
+`hidden.bs.datepicker`  Fires when the datepicker has been hidden
+`change.bs.datepicker`  Fires when a date is selected. Event includes `dates` (array) and `event` properties
+
+Example code (JS):
+
 const datepickerEl = document.getElementById('myDatepicker')
 datepickerEl.addEventListener('change.bs.datepicker', event => {
   console.log('Selected dates:', event.dates)

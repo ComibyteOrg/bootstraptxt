@@ -1,0 +1,39 @@
+========================================================================
+TEXT TRUNCATION
+Bootstrap 6.0  |  Helpers reference
+Source: https://getbootstrap.com/docs/6.0/helpers/text-truncation
+========================================================================
+
+WHAT IT DOES
+Truncate long strings of text with an ellipsis.
+
+HOW TO USE IT
+Add the helper class to the element you want to affect. Helpers are small,
+single-purpose classes that do one job.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+For longer content, you can add a `.text-truncate` class to truncate the text
+with an ellipsis. Requires `display: inline-block` or `display: block`.
+
+Example code (HTML):
+
+<!-- Block level -->
+<div class="row">
+  <div class="col-2 text-truncate">
+    This text is quite long, and will be truncated once displayed.
+  </div>
+</div>
+
+<!-- Inline level -->
+<span class="d-inline-block text-truncate" style="max-width: 150px;">
+  This text is quite long, and will be truncated once displayed.
+</span>
+
+========================================================================
+END OF FILE
+========================================================================

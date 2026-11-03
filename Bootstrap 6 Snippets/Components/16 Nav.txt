@@ -1,24 +1,43 @@
 ========================================================================
 NAV
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/nav
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-Add lists of links to your pages with various navigation components—tabs, pills, underline—and plenty of options to customize.
+WHAT IT DOES
+Add lists of links to your pages with various navigation components—tabs,
+pills, underline—and plenty of options to customize.
 
-CONTENTS
-   1. Base nav  (examples 1, 2, 3)
-   2. Available styles > Tabs  (example 4)
-   3. Available styles > Pills  (examples 5, 6)
-   4. Available styles > Underline  (example 7)
-   5. Alignment > Horizontal  (examples 8, 9)
-   6. Alignment > Vertical  (examples 10, 11)
-   7. Alignment > Fill and justify  (examples 12, 13, 14, 15)
-   8. Working with flex utilities  (example 16)
-   9. Using menus > Tabs with menus  (example 17)
-  10. Using menus > Pills with menus  (example 18)
-  11. CSS > Variables  (examples 19, 20, 21, 22)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Base nav
+  Tab JavaScript plugin
+  Available styles
+     - Tabs
+     - Pills
+     - Underline
+  Alignment
+     - Horizontal
+     - Vertical
+     - Fill and justify
+  Working with flex utilities
+  Regarding accessibility
+  Using menus
+     - Tabs with menus
+     - Pills with menus
+  CSS
+     - Variables
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -38,11 +57,25 @@ Manual initialisation of a nav menu:
 
 const menu = new bootstrap.Menu('#myNavMenuToggle')
 
-------------------------------------------------------------------------
+========================================================================
 BASE NAV
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Navigation available in Bootstrap share general markup and styles, from the base `.nav` class to the active and disabled states. Swap modifier classes to switch between each style.
+========================================================================
+
+Navigation available in Bootstrap share general markup and styles, from the
+base `.nav` class to the active and disabled states. Swap modifier classes to
+switch between each style.
+
+The base `.nav` component is built with flexbox and provides a strong
+foundation for building all types of navigation components. It includes some
+style overrides (for working with lists), some link padding for larger hit
+areas, and basic disabled styling.
+
+NOTE:
+  To convey the active state to assistive technologies, use the `aria-current`
+  attribute — using the `page` value for current page, or `true` for the current
+  item in a set.
+
+Example code (HTML):
 
 <ul class="nav">
   <li class="nav-item">
@@ -59,11 +92,12 @@ Note: Navigation available in Bootstrap share general markup and styles, from th
   </li>
 </ul>
 
-------------------------------------------------------------------------
-BASE NAV (cont.)
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Classes are used throughout, so your markup can be super flexible. Use `<ul>`s like above, `<ol>` if the order of your items is important, or roll your own with a `<nav>` element. Because the `.nav` uses `display: flex`, the nav links behave the same as nav items would, but without the extra markup.
+Classes are used throughout, so your markup can be super flexible. Use `<ul>`s
+like above, `<ol>` if the order of your items is important, or roll your own
+with a `<nav>` element. Because the `.nav` uses `display: flex`, the nav links
+behave the same as nav items would, but without the extra markup.
+
+Example code (HTML):
 
 <nav class="nav">
   <a class="nav-link active" aria-current="page" href="#">Active</a>
@@ -72,15 +106,16 @@ Note: Classes are used throughout, so your markup can be super flexible. Use `<u
   <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 </nav>
 
-------------------------------------------------------------------------
-BASE NAV (cont.)
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Where appropriate, you can also use `<button>` elements instead of `<a>` elements for the nav links. You can even mix and match—for example, by using buttons for menus.
+Where appropriate, you can also use `<button>` elements instead of `<a>`
+elements for the nav links. You can even mix and match—for example, by using
+buttons for menus.
+
+Example code (HTML):
 
 <nav class="nav">
   <a class="nav-link active" aria-current="page" href="#">Active</a>
-  <a class="nav-link" href="#">Link</a>  <button class="nav-link" data-bs-toggle="menu" href="#" role="button" aria-expanded="false">Menu</button>
+  <a class="nav-link" href="#">Link</a>
+  <button class="nav-link" data-bs-toggle="menu" href="#" role="button" aria-expanded="false">Menu</button>
   <div class="menu">
     <a class="menu-item" href="#">Action</a>
     <a class="menu-item" href="#">Another action</a>
@@ -90,11 +125,27 @@ Note: Where appropriate, you can also use `<button>` elements instead of `<a>` e
   <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 </nav>
 
+========================================================================
+TAB JAVASCRIPT PLUGIN
+========================================================================
+
+Use the tab JavaScript plugin to create tabbable regions.
+
+========================================================================
+AVAILABLE STYLES
+========================================================================
+
+Change the style of `.nav`s component with modifiers and utilities. Mix and
+match as needed, or build your own.
+
 ------------------------------------------------------------------------
-AVAILABLE STYLES > TABS
-Example 4  |  HTML
+TABS
 ------------------------------------------------------------------------
-Note: Takes the basic nav from above and adds the `.nav-tabs` class to generate a tabbed interface.
+
+Takes the basic nav from above and adds the `.nav-tabs` class to generate a
+tabbed interface.
+
+Example code (HTML):
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
@@ -112,10 +163,13 @@ Note: Takes the basic nav from above and adds the `.nav-tabs` class to generate 
 </ul>
 
 ------------------------------------------------------------------------
-AVAILABLE STYLES > PILLS
-Example 5  |  HTML
+PILLS
 ------------------------------------------------------------------------
-Note: Take that same HTML, but use `.nav-pills` instead for a more themed appearance.
+
+Take that same HTML, but use `.nav-pills` instead for a more themed
+appearance.
+
+Example code (HTML):
 
 <ul class="nav nav-pills">
   <li class="nav-item">
@@ -132,11 +186,10 @@ Note: Take that same HTML, but use `.nav-pills` instead for a more themed appear
   </li>
 </ul>
 
-------------------------------------------------------------------------
-AVAILABLE STYLES > PILLS (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Pill navigation can also go vertical with an additional modifier class, `.nav-pills-vertical`.
+Pill navigation can also go vertical with an additional modifier class,
+`.nav-pills-vertical`.
+
+Example code (HTML):
 
 <ul class="nav nav-pills nav-pills-vertical">
   <li class="nav-item">
@@ -154,10 +207,12 @@ Note: Pill navigation can also go vertical with an additional modifier class, `.
 </ul>
 
 ------------------------------------------------------------------------
-AVAILABLE STYLES > UNDERLINE
-Example 7  |  HTML
+UNDERLINE
 ------------------------------------------------------------------------
-Note: Take that same HTML, but use `.nav-underline` instead:
+
+Take that same HTML, but use `.nav-underline` instead:
+
+Example code (HTML):
 
 <ul class="nav nav-underline">
   <li class="nav-item">
@@ -174,11 +229,21 @@ Note: Take that same HTML, but use `.nav-underline` instead:
   </li>
 </ul>
 
+========================================================================
+ALIGNMENT
+========================================================================
+
+Change the alignment of your nav with flexbox utilities. By default, navs are
+horizontal and left-aligned, but you can easily modify them to center or
+right-aligned, and even stacked vertically.
+
 ------------------------------------------------------------------------
-ALIGNMENT > HORIZONTAL
-Example 8  |  HTML
+HORIZONTAL
 ------------------------------------------------------------------------
-Note: Centered with `.justify-content-center`:
+
+Centered with `.justify-content-center`:
+
+Example code (HTML):
 
 <ul class="nav justify-content-center">
   <li class="nav-item">
@@ -195,11 +260,9 @@ Note: Centered with `.justify-content-center`:
   </li>
 </ul>
 
-------------------------------------------------------------------------
-ALIGNMENT > HORIZONTAL (cont.)
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: Right-aligned with `.justify-content-end`:
+Right-aligned with `.justify-content-end`:
+
+Example code (HTML):
 
 <ul class="nav justify-content-end">
   <li class="nav-item">
@@ -217,10 +280,14 @@ Note: Right-aligned with `.justify-content-end`:
 </ul>
 
 ------------------------------------------------------------------------
-ALIGNMENT > VERTICAL
-Example 10  |  HTML
+VERTICAL
 ------------------------------------------------------------------------
-Note: Stack your navigation by changing the flex item direction with the `.flex-column` utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., `.sm:flex-column`).
+
+Stack your navigation by changing the flex item direction with the
+`.flex-column` utility. Need to stack them on some viewports but not others?
+Use the responsive versions (e.g., `.sm:flex-column`).
+
+Example code (HTML):
 
 <ul class="nav flex-column">
   <li class="nav-item">
@@ -237,11 +304,9 @@ Note: Stack your navigation by changing the flex item direction with the `.flex-
   </li>
 </ul>
 
-------------------------------------------------------------------------
-ALIGNMENT > VERTICAL (cont.)
-Example 11  |  HTML
-------------------------------------------------------------------------
-Note: As always, vertical navigation is possible without `<ul>`s, too.
+As always, vertical navigation is possible without `<ul>`s, too.
+
+Example code (HTML):
 
 <nav class="nav flex-column">
   <a class="nav-link active" aria-current="page" href="#">Active</a>
@@ -251,10 +316,15 @@ Note: As always, vertical navigation is possible without `<ul>`s, too.
 </nav>
 
 ------------------------------------------------------------------------
-ALIGNMENT > FILL AND JUSTIFY
-Example 12  |  HTML
+FILL AND JUSTIFY
 ------------------------------------------------------------------------
-Note: Force your `.nav`’s contents to extend the full available width with one of two modifier classes. To proportionately fill all available space with your `.nav-item`s, use `.nav-fill`. Notice that all horizontal space is occupied, but not every nav item has the same width.
+
+Force your `.nav`’s contents to extend the full available width with one of
+two modifier classes. To proportionately fill all available space with your
+`.nav-item`s, use `.nav-fill`. Notice that all horizontal space is occupied,
+but not every nav item has the same width.
+
+Example code (HTML):
 
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
@@ -271,11 +341,10 @@ Note: Force your `.nav`’s contents to extend the full available width with one
   </li>
 </ul>
 
-------------------------------------------------------------------------
-ALIGNMENT > FILL AND JUSTIFY (cont.)
-Example 13  |  HTML
-------------------------------------------------------------------------
-Note: When using a `<nav>`-based navigation, you can safely omit `.nav-item` as only `.nav-link` is required for styling `<a>` elements.
+When using a `<nav>`-based navigation, you can safely omit `.nav-item` as only
+`.nav-link` is required for styling `<a>` elements.
+
+Example code (HTML):
 
 <nav class="nav nav-pills nav-fill">
   <a class="nav-link active" aria-current="page" href="#">Active</a>
@@ -284,11 +353,11 @@ Note: When using a `<nav>`-based navigation, you can safely omit `.nav-item` as 
   <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 </nav>
 
-------------------------------------------------------------------------
-ALIGNMENT > FILL AND JUSTIFY (cont.)
-Example 14  |  HTML
-------------------------------------------------------------------------
-Note: For equal-width elements, use `.nav-justified`. All horizontal space will be occupied by nav links, but unlike the `.nav-fill` above, every nav item will be the same width.
+For equal-width elements, use `.nav-justified`. All horizontal space will be
+occupied by nav links, but unlike the `.nav-fill` above, every nav item will
+be the same width.
+
+Example code (HTML):
 
 <ul class="nav nav-pills nav-justified">
   <li class="nav-item">
@@ -305,11 +374,9 @@ Note: For equal-width elements, use `.nav-justified`. All horizontal space will 
   </li>
 </ul>
 
-------------------------------------------------------------------------
-ALIGNMENT > FILL AND JUSTIFY (cont.)
-Example 15  |  HTML
-------------------------------------------------------------------------
-Note: Similar to the `.nav-fill` example using a `<nav>`-based navigation.
+Similar to the `.nav-fill` example using a `<nav>`-based navigation.
+
+Example code (HTML):
 
 <nav class="nav nav-pills nav-justified">
   <a class="nav-link active" aria-current="page" href="#">Active</a>
@@ -318,11 +385,17 @@ Note: Similar to the `.nav-fill` example using a `<nav>`-based navigation.
   <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 </nav>
 
-------------------------------------------------------------------------
+========================================================================
 WORKING WITH FLEX UTILITIES
-Example 16  |  HTML
-------------------------------------------------------------------------
-Note: If you need responsive nav variations, consider using a series of flexbox utilities. While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, our nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint.
+========================================================================
+
+If you need responsive nav variations, consider using a series of flexbox
+utilities. While more verbose, these utilities offer greater customization
+across responsive breakpoints. In the example below, our nav will be stacked
+on the lowest breakpoint, then adapt to a horizontal layout that fills the
+available width starting from the small breakpoint.
+
+Example code (HTML):
 
 <nav class="nav nav-pills flex-column sm:flex-row">
   <a class="sm:flex-fill sm:text-center nav-link active" aria-current="page" href="#">Active</a>
@@ -331,10 +404,36 @@ Note: If you need responsive nav variations, consider using a series of flexbox 
   <a class="sm:flex-fill sm:text-center nav-link disabled" aria-disabled="true">Disabled</a>
 </nav>
 
+========================================================================
+REGARDING ACCESSIBILITY
+========================================================================
+
+If you’re using navs to provide a navigation bar, be sure to add a
+`role="navigation"` to the most logical parent container of the `<ul>`, or
+wrap a `<nav>` element around the whole navigation. Do not add the role to the
+`<ul>` itself, as this would prevent it from being announced as an actual list
+by assistive technologies.
+
+Note that navigation bars, even if visually styled as tabs with the
+`.nav-tabs` class, should not be given `role="tablist"`, `role="tab"` or
+`role="tabpanel"` attributes. These are only appropriate for dynamic tabbed
+interfaces, as described in the ARIA Authoring Practices Guide tabs pattern.
+See the Tab plugin for dynamic tabbed interfaces. The `aria-current` attribute
+is not necessary on dynamic tabbed interfaces since our JavaScript handles the
+selected state by adding `aria-selected="true"` on the active tab.
+
+========================================================================
+USING MENUS
+========================================================================
+
+Add menus with a little extra HTML and the menus JavaScript plugin.
+
 ------------------------------------------------------------------------
-USING MENUS > TABS WITH MENUS
-Example 17  |  HTML
+TABS WITH MENUS
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="#">Active</a>
@@ -358,9 +457,11 @@ Example 17  |  HTML
 </ul>
 
 ------------------------------------------------------------------------
-USING MENUS > PILLS WITH MENUS
-Example 18  |  HTML
+PILLS WITH MENUS
 ------------------------------------------------------------------------
+
+Example code (HTML):
+
 <ul class="nav nav-pills">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="#">Active</a>
@@ -383,11 +484,21 @@ Example 18  |  HTML
   </li>
 </ul>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 19  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Navs use local CSS variables on `.nav` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Navs use local CSS variables on `.nav` for real-time customization. Values for
+the CSS variables are generated from Sass maps unique to each component and
+applied to the aforementioned class.
+
+On the `.nav` base class:
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $nav-tokens: defaults(
@@ -412,11 +523,9 @@ $nav-tokens: defaults(
   $nav-tokens
 );
 
-------------------------------------------------------------------------
-CSS > VARIABLES (cont.)
-Example 20  |  SCSS
-------------------------------------------------------------------------
-Note: On the `.nav-tabs` modifier class:
+On the `.nav-tabs` modifier class:
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $nav-tabs-tokens: defaults(
@@ -432,11 +541,9 @@ $nav-tabs-tokens: defaults(
   $nav-tabs-tokens
 );
 
-------------------------------------------------------------------------
-CSS > VARIABLES (cont.)
-Example 21  |  SCSS
-------------------------------------------------------------------------
-Note: On the `.nav-pills` modifier class:
+On the `.nav-pills` modifier class:
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $nav-pills-tokens: defaults(
@@ -451,11 +558,9 @@ $nav-pills-tokens: defaults(
   $nav-pills-tokens
 );
 
-------------------------------------------------------------------------
-CSS > VARIABLES (cont.)
-Example 22  |  SCSS
-------------------------------------------------------------------------
-Note: On the `.nav-underline` modifier class:
+On the `.nav-underline` modifier class:
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $nav-underline-tokens: defaults(

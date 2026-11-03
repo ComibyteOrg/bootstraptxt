@@ -1,46 +1,75 @@
 ========================================================================
 AVATAR
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/avatar
 ========================================================================
 
-Documentation and examples for avatars, including image avatars, initials, status indicators, and avatar stacks.
+WHAT IT DOES
+Documentation and examples for avatars, including image avatars, initials,
+status indicators, and avatar stacks.
 
-CONTENTS
-   1. Examples > Image  (examples 1, 2)
-   2. Examples > Initials  (examples 3, 4)
-   3. Sizes  (examples 5, 6)
-   4. Status indicator  (example 7)
-   5. Status indicator > Status with sizes  (example 8)
-   6. Avatar stack  (example 9)
-   7. Avatar stack > Stack with sizes  (example 10)
-   8. Avatar stack > Stack with count  (examples 11, 12)
-   9. CSS > Variables  (example 13)
-  10. CSS > Sass maps  (example 14)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Examples
+     - Image
+     - Initials
+  Sizes
+  Status indicator
+     - Status with sizes
+  Avatar stack
+     - Stack with sizes
+     - Stack with count
+  CSS
+     - Variables
+     - Sass maps
+
+========================================================================
+EXAMPLES
+========================================================================
+
+Avatars are used to represent users or entities. They can display an image or
+initials as a fallback.
 
 ------------------------------------------------------------------------
-EXAMPLES > IMAGE
-Example 1  |  HTML
+IMAGE
 ------------------------------------------------------------------------
-Note: Use `.avatar` with an `.avatar-img` for image-based avatars. The parent `.avatar` element provides an easy wrapper for additional avatar features like status indicators and stacks. You’re welcome to use the `.avatar-img` class on its own if you only need a single HTML element.
+
+Use `.avatar` with an `.avatar-img` for image-based avatars. The parent
+`.avatar` element provides an easy wrapper for additional avatar features like
+status indicators and stacks. You’re welcome to use the `.avatar-img` class on
+its own if you only need a single HTML element.
+
+Example code (HTML):
 
 <span class="avatar">
   <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
 </span>
 
-------------------------------------------------------------------------
-EXAMPLES > IMAGE (cont.)
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: When used inside the `.avatar` wrapper, the image fills the wrapper and its size is set with `--avatar-size`. Used on its own, `.avatar-img` honors its own `width` and `height` instead, so set them to your desired size.
+When used inside the `.avatar` wrapper, the image fills the wrapper and its
+size is set with `--avatar-size`. Used on its own, `.avatar-img` honors its
+own `width` and `height` instead, so set them to your desired size.
+
+Example code (HTML):
 
 <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo" width="50" height="50">
 
 ------------------------------------------------------------------------
-EXAMPLES > INITIALS
-Example 3  |  HTML
+INITIALS
 ------------------------------------------------------------------------
-Note: Use text content inside `.avatar` for initials-based avatars.
+
+Use text content inside `.avatar` for initials-based avatars.
+
+Example code (HTML):
 
 <span class="avatar">AB</span>
 <span class="avatar theme-primary">CD</span>
@@ -52,11 +81,9 @@ Note: Use text content inside `.avatar` for initials-based avatars.
 <span class="avatar theme-inverse">MN</span>
 <span class="avatar theme-secondary">OP</span>
 
-------------------------------------------------------------------------
-EXAMPLES > INITIALS (cont.)
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Use `.avatar-subtle` to create a subtle avatar.
+Use `.avatar-subtle` to create a subtle avatar.
+
+Example code (HTML):
 
 <span class="avatar">AB</span>
 <span class="avatar avatar-subtle theme-primary">CD</span>
@@ -68,11 +95,14 @@ Note: Use `.avatar-subtle` to create a subtle avatar.
 <span class="avatar avatar-subtle theme-inverse">MN</span>
 <span class="avatar avatar-subtle theme-secondary">OP</span>
 
-------------------------------------------------------------------------
+========================================================================
 SIZES
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Avatars come in multiple sizes: extra small, small, default, large, and extra large.
+========================================================================
+
+Avatars come in multiple sizes: extra small, small, default, large, and extra
+large.
+
+Example code (HTML):
 
 <span class="avatar avatar-xs">
   <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
@@ -90,21 +120,31 @@ Note: Avatars come in multiple sizes: extra small, small, default, large, and ex
   <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
 </span>
 
-------------------------------------------------------------------------
-SIZES (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Use a custom size by modifying the `--bs-avatar-size` variable.
+Use a custom size by modifying the `--bs-avatar-size` variable.
+
+Example code (HTML):
 
 <span class="avatar" style="--bs-avatar-size: 8rem;">
   <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
 </span>
 
-------------------------------------------------------------------------
+========================================================================
 STATUS INDICATOR
-Example 7  |  HTML
-------------------------------------------------------------------------
-Note: Add a `.avatar-status` element inside the avatar to show a status indicator. Each status has a distinct shape and color:
+========================================================================
+
+Add a `.avatar-status` element inside the avatar to show a status indicator.
+Each status has a distinct shape and color:
+
+- `.status-online` — green circle
+- `.status-offline` — gray rounded square
+- `.status-busy` — red rounded square
+- `.status-away` — yellow circle
+
+Because the status is conveyed purely through color and shape, give each
+`.avatar-status` a `role="img"` and an `aria-label` (e.g. `Online`) so
+assistive technologies can announce it.
+
+Example code (HTML):
 
 <span class="avatar">
   <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
@@ -124,10 +164,12 @@ Note: Add a `.avatar-status` element inside the avatar to show a status indicato
 </span>
 
 ------------------------------------------------------------------------
-STATUS INDICATOR > STATUS WITH SIZES
-Example 8  |  HTML
+STATUS WITH SIZES
 ------------------------------------------------------------------------
-Note: The status indicator scales with the avatar size.
+
+The status indicator scales with the avatar size.
+
+Example code (HTML):
 
 <span class="avatar avatar-xs">
   <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
@@ -150,11 +192,16 @@ Note: The status indicator scales with the avatar size.
   <span class="avatar-status status-online" role="img" aria-label="Online"></span>
 </span>
 
-------------------------------------------------------------------------
+========================================================================
 AVATAR STACK
-Example 9  |  HTML
-------------------------------------------------------------------------
-Note: Use `.avatar-stack` to group multiple avatars together with overlapping effect. Avatars are rendered in reverse order so the first avatar appears on top. Stacks use a percentage of the avatar size to determine how much to overlap stacked avatars.
+========================================================================
+
+Use `.avatar-stack` to group multiple avatars together with overlapping
+effect. Avatars are rendered in reverse order so the first avatar appears on
+top. Stacks use a percentage of the avatar size to determine how much to
+overlap stacked avatars.
+
+Example code (HTML):
 
 <div class="avatar-stack">
   <span class="avatar">
@@ -175,10 +222,12 @@ Note: Use `.avatar-stack` to group multiple avatars together with overlapping ef
 </div>
 
 ------------------------------------------------------------------------
-AVATAR STACK > STACK WITH SIZES
-Example 10  |  HTML
+STACK WITH SIZES
 ------------------------------------------------------------------------
-Note: As a shorthand, size classes are available for `.avatar-stack` and `.avatar`.
+
+As a shorthand, size classes are available for `.avatar-stack` and `.avatar`.
+
+Example code (HTML):
 
 <div class="avatar-stack avatar-stack-xs">
   <span class="avatar">
@@ -241,10 +290,12 @@ Note: As a shorthand, size classes are available for `.avatar-stack` and `.avata
 </div>
 
 ------------------------------------------------------------------------
-AVATAR STACK > STACK WITH COUNT
-Example 11  |  HTML
+STACK WITH COUNT
 ------------------------------------------------------------------------
-Note: Combine with initials to show a count of additional users.
+
+Combine with initials to show a count of additional users.
+
+Example code (HTML):
 
 <div class="avatar-stack">
   <span class="avatar">
@@ -259,10 +310,8 @@ Note: Combine with initials to show a count of additional users.
   <span class="avatar theme-secondary">+5</span>
 </div>
 
-------------------------------------------------------------------------
-AVATAR STACK > STACK WITH COUNT (cont.)
-Example 12  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <div class="avatar-stack avatar-stack-xl">
   <span class="avatar">
     <img class="avatar-img" src="https://github.com/mdo.png" alt="mdo">
@@ -276,11 +325,19 @@ Example 12  |  HTML
   <span class="avatar theme-secondary">+5</span>
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 13  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Avatar use local CSS variables on `.avatar` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Avatar use local CSS variables on `.avatar` for real-time customization.
+Values for the CSS variables are generated from Sass maps unique to each
+component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $avatar-tokens: defaults(
@@ -302,10 +359,13 @@ $avatar-tokens: defaults(
 );
 
 ------------------------------------------------------------------------
-CSS > SASS MAPS
-Example 14  |  SCSS
+SASS MAPS
 ------------------------------------------------------------------------
-Note: Avatar sizes are defined in the `$avatar-sizes` Sass map. Each size specifies the avatar size and status size.
+
+Avatar sizes are defined in the `$avatar-sizes` Sass map. Each size specifies
+the avatar size and status size.
+
+Example code (SCSS):
 
 $avatar-sizes: ();
 // stylelint-disable-next-line scss/dollar-variable-default

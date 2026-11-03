@@ -1,0 +1,146 @@
+========================================================================
+STACKS
+Bootstrap 6.0  |  Helpers reference
+Source: https://getbootstrap.com/docs/6.0/helpers/stacks
+========================================================================
+
+WHAT IT DOES
+Shorthand helpers that build on top of our flexbox utilities to make component
+layout faster and easier than ever.
+
+HOW TO USE IT
+Add the helper class to the element you want to affect. Helpers are small,
+single-purpose classes that do one job.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Vertical
+  Horizontal
+  Responsive
+  CSS
+
+Stacks offer a shortcut for applying a number of flexbox properties to quickly
+and easily create layouts in Bootstrap. All credit for the concept and
+implementation goes to the open source Pylon project.
+
+========================================================================
+VERTICAL
+========================================================================
+
+Use `.vstack` to create vertical layouts. Stacked items are full-width by
+default. Use `.gap-*` utilities to add space between items.
+
+Example code (HTML):
+
+<div class="vstack gap-3">
+  <div class="p-2">First item</div>
+  <div class="p-2">Second item</div>
+  <div class="p-2">Third item</div>
+</div>
+
+========================================================================
+HORIZONTAL
+========================================================================
+
+Use `.hstack` for horizontal layouts. Stacked items are vertically centered by
+default and only take up their necessary width. Use `.gap-*` utilities to add
+space between items.
+
+Example code (HTML):
+
+<div class="hstack gap-3">
+  <div class="p-2">First item</div>
+  <div class="p-2">Second item</div>
+  <div class="p-2">Third item</div>
+</div>
+
+Using horizontal margin utilities like `.ms-auto` as spacers:
+
+Example code (HTML):
+
+<div class="hstack gap-3">
+  <div class="p-2">First item</div>
+  <div class="p-2 ms-auto">Second item</div>
+  <div class="p-2">Third item</div>
+</div>
+
+And with vertical rules:
+
+Example code (HTML):
+
+<div class="hstack gap-3">
+  <div class="p-2">First item</div>
+  <div class="p-2 ms-auto">Second item</div>
+  <div class="vr"></div>
+  <div class="p-2">Third item</div>
+</div>
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Consider this example of stacking buttons on narrow mobile devices, and making
+them horizontal on larger devices.
+
+Example code (HTML):
+
+<div class="vstack gap-2 md:col-5 mx-auto">
+  <button type="button" class="btn-solid theme-primary">Save changes</button>
+  <button type="button" class="btn-outline theme-secondary">Cancel</button>
+</div>
+
+Here’s how you’d do it with responsive stacks, which are based on a container
+media queries. Wrap the stack in an extra element or add `.stack-container` to
+an existing parent to give the stack a "container" to adapt its layout from.
+
+Example code (HTML):
+
+<div class="stack-container">
+  <div class="vstack gap-2 sm:hstack">
+    <button type="button" class="btn-solid theme-primary">Save changes</button>
+    <button type="button" class="btn-outline theme-secondary">Cancel</button>
+  </div>
+</div>
+
+========================================================================
+CSS
+========================================================================
+
+Example code (SCSS):
+
+.stack-container {
+  @include set-container();
+}
+
+[class*="hstack"],
+[class*="vstack"] {
+  display: flex;
+  flex: var(--stack-flex, 1 1 auto);
+  flex-direction: var(--stack-direction, row);
+  align-items: var(--stack-align-items, center);
+  align-self: var(--stack-align-self, stretch);
+}
+
+@include loop-breakpoints-up() using ($breakpoint, $prefix) {
+  .#{$prefix}vstack {
+    @include container-breakpoint-up($breakpoint) {
+      --stack-direction: column;
+      --stack-align-items: stretch;
+    }
+  }
+  .#{$prefix}hstack {
+    @include container-breakpoint-up($breakpoint) {
+      --stack-direction: row;
+      --stack-align-items: flex-start;
+    }
+  }
+}
+
+========================================================================
+END OF FILE
+========================================================================

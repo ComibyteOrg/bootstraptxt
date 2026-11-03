@@ -1,0 +1,437 @@
+========================================================================
+COLOR MODES
+Bootstrap 6.0  |  Customize reference
+Source: https://getbootstrap.com/docs/6.0/customize/color-modes
+========================================================================
+
+WHAT IT DOES
+Bootstrap supports light and dark color modes. The page follows the visitor’s
+system preference by default, and you can force a mode globally or
+per-component with the `data-bs-theme` attribute.
+
+HOW TO USE IT
+Every page here shows how to change Bootstrap itself: Sass variables, CSS
+custom properties, and compile-time options. You only need this section if you
+are comfortable with Sass; otherwise the defaults just work.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Dark mode
+  Example
+  How it works
+  Usage
+     - Enable dark mode
+     - Building with Sass
+  Custom color modes
+  JavaScript
+  CSS
+     - Variables
+     - Sass variables
+     - Sass mixins
+
+NOTE:
+  Try it yourself! Download the source code and working demo for using Bootstrap
+  with Stylelint, and the color modes from the twbs/examples repository. You can
+  also open the example in StackBlitz.
+
+========================================================================
+DARK MODE
+========================================================================
+
+Bootstrap supports light and dark color modes out of the box. They’re built on
+the native CSS `light-dark()` function and the `color-scheme` property, so our
+color tokens resolve to a light or dark value automatically—no recompiling and
+no duplicate stylesheets required.
+
+This gives you the best of both worlds, with no flag to set:
+
+- System preference by default. Our `:root` is declared with `color-scheme:
+  light dark`, so the page automatically follows the visitor’s operating
+  system preference (`prefers-color-scheme`), just like a media query
+  implementation.
+- Override with a data attribute. Set `data-bs-theme="light"` or
+  `data-bs-theme="dark"` on the `<html>` element to force a mode for the whole
+  page, or on any element or component to scope a mode to just that subtree.
+
+You don’t have to choose between media queries and a data attribute—because
+color modes are driven by `color-scheme`, the system preference and any
+`data-bs-theme` override work together.
+
+========================================================================
+EXAMPLE
+========================================================================
+
+For example, to change the color mode of a menu, add `data-bs-theme="light"`
+or `data-bs-theme="dark"` to the parent element. Now, no matter the global
+color mode, these menus will display with the specified theme value.
+
+Example code (HTML):
+
+<div data-bs-theme="light">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
+    Default menu
+  </button>
+  <div class="menu">
+    <a class="menu-item active" href="#">Action</a>
+    <a class="menu-item" href="#">Action</a>
+    <a class="menu-item" href="#">Another action</a>
+    <a class="menu-item" href="#">Something else here</a>
+    <hr class="menu-divider">
+    <a class="menu-item" href="#">Separated link</a>
+  </div>
+</div>
+
+<div data-bs-theme="dark">
+  <button class="btn-solid theme-secondary" type="button" data-bs-toggle="menu" aria-expanded="false">
+    Dark menu
+  </button>
+  <div class="menu">
+    <a class="menu-item active" href="#">Action</a>
+    <a class="menu-item" href="#">Action</a>
+    <a class="menu-item" href="#">Another action</a>
+    <a class="menu-item" href="#">Something else here</a>
+    <hr class="menu-divider">
+    <a class="menu-item" href="#">Separated link</a>
+  </div>
+</div>
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+- Our color tokens are defined once in `:root` using the CSS `light-dark()`
+  function, e.g. `--bs-border-color: light-dark(var(--bs-gray-200),
+  var(--bs-gray-700))`. Each token carries both its light and dark value, and
+  the browser resolves the right one based on the element’s used color scheme.
+- The `:root` element is set to `color-scheme: light dark`, so the page honors
+  the visitor’s system preference by default. There’s nothing else to wire up
+  for automatic dark mode.
+- The `data-bs-theme` attribute overrides `color-scheme` for the element it’s
+  set on and its descendants—`[data-bs-theme="dark"]` sets `color-scheme:
+  dark` and `[data-bs-theme="light"]` sets `color-scheme: light`. That forces
+  every `light-dark()` token in that subtree to resolve to the chosen mode,
+  which is why you can flip the whole page from `<html>` or recolor just a
+  single component (as shown above).
+- For styles that can’t be expressed as a token—custom components, or
+  additional color modes of your own—use the `color-mode()` Sass mixin to
+  scope rules to a mode. See Building with Sass.
+
+========================================================================
+USAGE
+========================================================================
+
+------------------------------------------------------------------------
+ENABLE DARK MODE
+------------------------------------------------------------------------
+
+By default Bootstrap already follows the visitor’s system preference, so you
+don’t need to do anything to get automatic dark mode. To force dark mode
+regardless of their system setting, add the `data-bs-theme="dark"` attribute
+to the `<html>` element. This applies the dark color mode to all components
+and elements, other than those with their own `data-bs-theme` attribute.
+Building on the quick start template:
+
+Example code (HTML):
+
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+Bootstrap does not yet ship with a built-in color mode picker, but you can use
+the one from our own documentation if you like. Learn more in the JavaScript
+section.
+
+------------------------------------------------------------------------
+BUILDING WITH SASS
+------------------------------------------------------------------------
+
+Our built-in light and dark tokens auto-toggle via `light-dark()`, so you
+don’t need Sass to get automatic dark mode. The `color-mode()` mixin is for
+the extra cases: styles that can’t be captured by a token, or additional
+custom color modes of your own.
+
+The mixin can emit its rules two ways, controlled by the `$color-mode-type`
+Sass variable:
+
+- `media-query` (the default) wraps your styles in a `@media
+  (prefers-color-scheme: …)` block, so they follow the system preference.
+- `data` scopes your styles to a `[data-bs-theme="…"]` selector, so they can
+  be toggled per-page or per-component.
+
+For example, opting into the `data` attribute approach produces a scoped
+selector:
+
+Example code (SCSS):
+
+$color-mode-type: data;
+
+@include color-mode(dark) {
+  .element {
+    color: var(--bs-primary-fg-emphasis);
+    background-color: var(--bs-primary-bg-subtle);
+  }
+}
+
+Outputs to:
+
+Example code (CSS):
+
+[data-bs-theme=dark] .element {
+  color: var(--bs-primary-fg-emphasis);
+  background-color: var(--bs-primary-bg-subtle);
+}
+
+And with the default `media-query` type, the same mixin output is wrapped in a
+media query instead:
+
+Example code (SCSS):
+
+$color-mode-type: media-query;
+
+@include color-mode(dark) {
+  .element {
+    color: var(--bs-primary-fg-emphasis);
+    background-color: var(--bs-primary-bg-subtle);
+  }
+}
+
+Outputs to:
+
+Example code (CSS):
+
+@media (prefers-color-scheme: dark) {
+  .element {
+    color: var(--bs-primary-fg-emphasis);
+    background-color: var(--bs-primary-bg-subtle);
+  }
+}
+
+========================================================================
+CUSTOM COLOR MODES
+========================================================================
+
+While the primary use case for color modes is light and dark mode, custom
+color modes are also possible. Create your own `data-bs-theme` selector with a
+custom value as the name of your color mode, then modify our Sass and CSS
+variables as needed. Bootstrap’s built-in dark mode uses `_root.scss` and
+`_theme.scss`, but you can follow the same pattern in your own stylesheet.
+
+For example, you can create a “blue theme” with the selector
+`data-bs-theme="blue"`. In your custom Sass or CSS file, add the new selector
+and override any global or component CSS variables as needed. If you’re using
+Sass, you can also use Sass’s functions within your CSS variable overrides.
+
+Example code (SCSS):
+
+[data-bs-theme="blue"] {
+  --bs-fg-body: var(--bs-white);
+  --bs-bg-body: var(--bs-blue-500);
+  --bs-bg-3: var(--bs-blue-600);
+  --bs-hr-border-color: var(--bs-blue-400);
+
+  .menu {
+    --bs-menu-bg: color-mix(in lab, var(--bs-blue-600), var(--bs-blue-700));
+    --bs-menu-item-hover-bg: var(--bs-blue-700);
+    --bs-menu-item-active-bg: var(--bs-blue-800);
+  }
+
+  .btn-solid {
+    --bs-btn-bg: color-mix(in lab, var(--bs-gray-600), var(--bs-blue-400));
+    --bs-btn-border-color: color-mix(in lab, var(--bs-fg-body) 25%, transparent);
+    --bs-btn-hover-bg: color-mix(in lab, var(--bs-gray-600), var(--bs-blue-400));
+    --bs-btn-hover-border-color: color-mix(in lab, var(--bs-fg-body) 25%, transparent);
+    --bs-btn-active-bg: color-mix(in lab, color-mix(in lab, var(--bs-gray-600), var(--bs-blue-400)), var(--bs-black) 10%);
+    --bs-btn-active-border-color: color-mix(in lab, var(--bs-fg-body), transparent);
+    --bs-btn-focus-border-color: color-mix(in lab, var(--bs-fg-body), transparent);
+    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgb(255 255 255 / .2);
+  }
+}
+
+Example code (HTML):
+
+<div data-bs-theme="blue">
+  ...
+</div>
+
+========================================================================
+JAVASCRIPT
+========================================================================
+
+To allow visitors or users to toggle color modes, you’ll need to create a
+toggle element to control the `data-bs-theme` attribute on the root element,
+`<html>`. We’ve built a toggler in our documentation that initially defers to
+a user’s current system color mode, but provides an option to override that
+and pick a specific color mode.
+
+Here’s a look at the JavaScript that powers it. Feel free to inspect our own
+documentation navbar to see how it’s implemented using HTML and CSS from our
+own components. It is suggested to include the JavaScript at the top of your
+page to reduce potential screen flickering during reloading of your site. Note
+that if you decide to use media queries for your color modes, your JavaScript
+may need to be modified or removed if you prefer an implicit control.
+
+Example code (JS):
+
+/*!
+ * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
+ * Copyright 2011-2026 The Bootstrap Authors
+ * Licensed under the Creative Commons Attribution 3.0 Unported License.
+ */
+
+(() => {
+  'use strict'
+
+  const getStoredTheme = () => localStorage.getItem('theme')
+  const setStoredTheme = theme => localStorage.setItem('theme', theme)
+
+  const getPreferredTheme = () => {
+    const storedTheme = getStoredTheme()
+    if (storedTheme) {
+      return storedTheme
+    }
+
+    return 'auto'
+  }
+
+  const resolveTheme = theme => {
+    if (theme === 'auto') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+
+    return theme
+  }
+
+  const setTheme = theme => {
+    const resolved = resolveTheme(theme)
+
+    if (document.documentElement.getAttribute('data-bs-theme') !== resolved) {
+      document.documentElement.setAttribute('data-bs-theme', resolved)
+    }
+  }
+
+  setTheme(getPreferredTheme())
+
+  const showActiveTheme = (theme, focus = false) => {
+    const themeSwitcher = document.querySelector('#bd-theme')
+
+    if (!themeSwitcher) {
+      return
+    }
+
+    const activeThemeIcon = document.querySelector('.theme-icon-active use')
+    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+    const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
+
+    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+      element.classList.remove('active')
+      element.setAttribute('aria-pressed', 'false')
+    })
+
+    btnToActive.classList.add('active')
+    btnToActive.setAttribute('aria-pressed', 'true')
+    activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+    themeSwitcher.setAttribute('aria-label', `Toggle theme (${btnToActive.dataset.bsThemeValue})`)
+
+    if (focus) {
+      themeSwitcher.focus()
+    }
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const storedTheme = getStoredTheme()
+    if (storedTheme !== 'light' && storedTheme !== 'dark') {
+      setTheme(getPreferredTheme())
+    }
+  })
+
+  window.addEventListener('DOMContentLoaded', () => {
+    showActiveTheme(getPreferredTheme())
+
+    document.querySelectorAll('[data-bs-theme-value]')
+      .forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const theme = toggle.getAttribute('data-bs-theme-value')
+          setStoredTheme(theme)
+
+          requestAnimationFrame(() => {
+            setTheme(theme)
+            showActiveTheme(theme)
+          })
+        })
+      })
+  })
+})()
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+VARIABLES
+------------------------------------------------------------------------
+
+Dozens of root-level CSS variables carry both a light and a dark value via
+`light-dark()`, so a single `:root` declaration covers both modes—no repeated
+dark mode overrides. Use these as a guideline when defining tokens for your
+own custom color modes.
+
+------------------------------------------------------------------------
+SASS VARIABLES
+------------------------------------------------------------------------
+
+Our light and dark color tokens are generated from Sass in `_root.scss` and
+`_theme.scss`, where most are emitted as `light-dark()` values so they resolve
+automatically. Components that paint their icons via CSS masks (carousel
+controls, close buttons, and similar) inherit the current color and adapt to
+the active mode without per-mode overrides.
+
+------------------------------------------------------------------------
+SASS MIXINS
+------------------------------------------------------------------------
+
+Styles for dark mode, and any custom color modes you create, can be scoped
+appropriately to the `data-bs-theme` attribute selector or media query with
+the customizable `color-mode()` mixin. See the Sass usage section for more
+details.
+
+Example code (SCSS):
+
+@mixin color-mode($mode: light, $root: false) {
+  @if $color-mode-type == "media-query" {
+    @if $root == true {
+      @media (prefers-color-scheme: $mode) {
+        :root,
+        :host {
+          @content;
+        }
+      }
+    } @else {
+      @media (prefers-color-scheme: $mode) {
+        @content;
+      }
+    }
+  } @else {
+    [data-bs-theme="#{$mode}"] {
+      @content;
+    }
+  }
+}
+
+========================================================================
+END OF FILE
+========================================================================

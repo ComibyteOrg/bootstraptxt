@@ -1,0 +1,124 @@
+========================================================================
+ALIGN SELF
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/align-self
+========================================================================
+
+WHAT IT DOES
+Use align-self utilities to individually change the alignment of flex items on
+the cross axis.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Basic usage
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class                 Styles
+--------------------  -----------------------
+.align-self-auto      align-self: auto;
+.align-self-start     align-self: flex-start;
+.align-self-end       align-self: flex-end;
+.align-self-center    align-self: center;
+.align-self-baseline  align-self: baseline;
+.align-self-stretch   align-self: stretch;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Use `align-self` utilities on flexbox items to individually change their
+alignment on the cross axis (the y-axis to start, x-axis if `flex-direction:
+column`). Choose from the same options as `align-items`: `start`, `end`,
+`center`, `baseline`, or `stretch` (browser default).
+
+========================================================================
+BASIC USAGE
+========================================================================
+
+Example code (HTML):
+
+<div class="align-self-start">Aligned flex item</div>
+<div class="align-self-end">Aligned flex item</div>
+<div class="align-self-center">Aligned flex item</div>
+<div class="align-self-baseline">Aligned flex item</div>
+<div class="align-self-stretch">Aligned flex item</div>
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for `align-self`.
+
+- `.align-self-start`
+- `.align-self-end`
+- `.align-self-center`
+- `.align-self-baseline`
+- `.align-self-stretch`
+- `.sm:align-self-start`
+- `.sm:align-self-end`
+- `.sm:align-self-center`
+- `.sm:align-self-baseline`
+- `.sm:align-self-stretch`
+- `.md:align-self-start`
+- `.md:align-self-end`
+- `.md:align-self-center`
+- `.md:align-self-baseline`
+- `.md:align-self-stretch`
+- `.lg:align-self-start`
+- `.lg:align-self-end`
+- `.lg:align-self-center`
+- `.lg:align-self-baseline`
+- `.lg:align-self-stretch`
+- `.xl:align-self-start`
+- `.xl:align-self-end`
+- `.xl:align-self-center`
+- `.xl:align-self-baseline`
+- `.xl:align-self-stretch`
+- `.2xl:align-self-start`
+- `.2xl:align-self-end`
+- `.2xl:align-self-center`
+- `.2xl:align-self-baseline`
+- `.2xl:align-self-stretch`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Align self utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"align-self": (
+  responsive: true,
+  property: align-self,
+  values: (
+    auto: auto,
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

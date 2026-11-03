@@ -1,0 +1,111 @@
+========================================================================
+POSITION
+Bootstrap 6.0  |  Helpers reference
+Source: https://getbootstrap.com/docs/6.0/helpers/position
+========================================================================
+
+WHAT IT DOES
+Use these helpers for quickly configuring the position of an element.
+
+HOW TO USE IT
+Add the helper class to the element you want to affect. Helpers are small,
+single-purpose classes that do one job.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Fixed top
+  Fixed bottom
+  Sticky top
+  Responsive sticky top
+  Sticky bottom
+  Responsive sticky bottom
+
+Class                    Description
+-----------------------  -------------------------------------------------------------
+.fixed-top               Fix an element to the top of the viewport.
+.fixed-bottom            Fix an element to the bottom of the viewport.
+.sticky{-$infix}-top     Responsively sticky an element to the top of the viewport.
+.sticky{-$infix}-bottom  Responsively sticky an element to the bottom of the viewport.
+
+========================================================================
+FIXED TOP
+========================================================================
+
+Position an element at the top of the viewport, from edge to edge. Be sure you
+understand the ramifications of fixed position in your project; you may need
+to add additional CSS.
+
+Example code (HTML):
+
+<div class="fixed-top">...</div>
+
+========================================================================
+FIXED BOTTOM
+========================================================================
+
+Position an element at the bottom of the viewport, from edge to edge. Be sure
+you understand the ramifications of fixed position in your project; you may
+need to add additional CSS.
+
+Example code (HTML):
+
+<div class="fixed-bottom">...</div>
+
+========================================================================
+STICKY TOP
+========================================================================
+
+Position an element at the top of the viewport, from edge to edge, but only
+after you scroll past it.
+
+Example code (HTML):
+
+<div class="sticky-top">...</div>
+
+========================================================================
+RESPONSIVE STICKY TOP
+========================================================================
+
+Responsive variations also exist for `.sticky-top` utility.
+
+Example code (HTML):
+
+<div class="sm:sticky-top">Stick to the top on viewports sized SM (small) or wider</div>
+<div class="md:sticky-top">Stick to the top on viewports sized MD (medium) or wider</div>
+<div class="lg:sticky-top">Stick to the top on viewports sized LG (large) or wider</div>
+<div class="xl:sticky-top">Stick to the top on viewports sized XL (extra-large) or wider</div>
+<div class="2xl:sticky-top">Stick to the top on viewports sized 2XL (extra-extra-large) or wider</div>
+
+========================================================================
+STICKY BOTTOM
+========================================================================
+
+Position an element at the bottom of the viewport, from edge to edge, but only
+after you scroll past it.
+
+Example code (HTML):
+
+<div class="sticky-bottom">...</div>
+
+========================================================================
+RESPONSIVE STICKY BOTTOM
+========================================================================
+
+Responsive variations also exist for `.sticky-bottom` utility.
+
+Example code (HTML):
+
+<div class="sm:sticky-bottom">Stick to the bottom on viewports sized SM (small) or wider</div>
+<div class="md:sticky-bottom">Stick to the bottom on viewports sized MD (medium) or wider</div>
+<div class="lg:sticky-bottom">Stick to the bottom on viewports sized LG (large) or wider</div>
+<div class="xl:sticky-bottom">Stick to the bottom on viewports sized XL (extra-large) or wider</div>
+<div class="2xl:sticky-bottom">Stick to the bottom on viewports sized 2XL (extra-extra-large) or wider</div>
+
+========================================================================
+END OF FILE
+========================================================================

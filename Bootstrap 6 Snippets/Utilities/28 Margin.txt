@@ -1,0 +1,347 @@
+========================================================================
+MARGIN
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/margin
+========================================================================
+
+WHAT IT DOES
+Use margin utilities to responsively control the space around elements.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Notation
+  Examples
+     - Single side
+     - Horizontal margin
+     - Vertical margin
+     - Horizontal centering
+  Negative margin
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class     Styles
+--------  ------------------------------
+.m-0      margin: 0;
+.m-1      margin: 0.25rem;
+.m-2      margin: 0.375rem;
+.m-3      margin: 0.5rem;
+.m-4      margin: 0.75rem;
+.m-5      margin: 1rem;
+.m-6      margin: 1.25rem;
+.m-7      margin: 1.5rem;
+.m-8      margin: 1.75rem;
+.m-9      margin: 2rem;
+.m-10     margin: 2.25rem;
+.m-11     margin: 2.5rem;
+.m-12     margin: 3rem;
+.m-auto   margin: auto;
+.mx-0     margin-inline: 0;
+.mx-1     margin-inline: 0.25rem;
+.mx-2     margin-inline: 0.375rem;
+.mx-3     margin-inline: 0.5rem;
+.mx-4     margin-inline: 0.75rem;
+.mx-5     margin-inline: 1rem;
+.mx-6     margin-inline: 1.25rem;
+.mx-7     margin-inline: 1.5rem;
+.mx-8     margin-inline: 1.75rem;
+.mx-9     margin-inline: 2rem;
+.mx-10    margin-inline: 2.25rem;
+.mx-11    margin-inline: 2.5rem;
+.mx-12    margin-inline: 3rem;
+.mx-auto  margin-inline: auto;
+.my-0     margin-block: 0;
+.my-1     margin-block: 0.25rem;
+.my-2     margin-block: 0.375rem;
+.my-3     margin-block: 0.5rem;
+.my-4     margin-block: 0.75rem;
+.my-5     margin-block: 1rem;
+.my-6     margin-block: 1.25rem;
+.my-7     margin-block: 1.5rem;
+.my-8     margin-block: 1.75rem;
+.my-9     margin-block: 2rem;
+.my-10    margin-block: 2.25rem;
+.my-11    margin-block: 2.5rem;
+.my-12    margin-block: 3rem;
+.my-auto  margin-block: auto;
+.mt-0     margin-block-start: 0;
+.mt-1     margin-block-start: 0.25rem;
+.mt-2     margin-block-start: 0.375rem;
+.mt-3     margin-block-start: 0.5rem;
+.mt-4     margin-block-start: 0.75rem;
+.mt-5     margin-block-start: 1rem;
+.mt-6     margin-block-start: 1.25rem;
+.mt-7     margin-block-start: 1.5rem;
+.mt-8     margin-block-start: 1.75rem;
+.mt-9     margin-block-start: 2rem;
+.mt-10    margin-block-start: 2.25rem;
+.mt-11    margin-block-start: 2.5rem;
+.mt-12    margin-block-start: 3rem;
+.mt-auto  margin-block-start: auto;
+.me-0     margin-inline-end: 0;
+.me-1     margin-inline-end: 0.25rem;
+.me-2     margin-inline-end: 0.375rem;
+.me-3     margin-inline-end: 0.5rem;
+.me-4     margin-inline-end: 0.75rem;
+.me-5     margin-inline-end: 1rem;
+.me-6     margin-inline-end: 1.25rem;
+.me-7     margin-inline-end: 1.5rem;
+.me-8     margin-inline-end: 1.75rem;
+.me-9     margin-inline-end: 2rem;
+.me-10    margin-inline-end: 2.25rem;
+.me-11    margin-inline-end: 2.5rem;
+.me-12    margin-inline-end: 3rem;
+.me--1    margin-inline-end: -0.25rem;
+.me--2    margin-inline-end: -0.5rem;
+.me-auto  margin-inline-end: auto;
+.mb-0     margin-block-end: 0;
+.mb-1     margin-block-end: 0.25rem;
+.mb-2     margin-block-end: 0.375rem;
+.mb-3     margin-block-end: 0.5rem;
+.mb-4     margin-block-end: 0.75rem;
+.mb-5     margin-block-end: 1rem;
+.mb-6     margin-block-end: 1.25rem;
+.mb-7     margin-block-end: 1.5rem;
+.mb-8     margin-block-end: 1.75rem;
+.mb-9     margin-block-end: 2rem;
+.mb-10    margin-block-end: 2.25rem;
+.mb-11    margin-block-end: 2.5rem;
+.mb-12    margin-block-end: 3rem;
+.mb-auto  margin-block-end: auto;
+.ms-0     margin-inline-start: 0;
+.ms-1     margin-inline-start: 0.25rem;
+.ms-2     margin-inline-start: 0.375rem;
+.ms-3     margin-inline-start: 0.5rem;
+.ms-4     margin-inline-start: 0.75rem;
+.ms-5     margin-inline-start: 1rem;
+.ms-6     margin-inline-start: 1.25rem;
+.ms-7     margin-inline-start: 1.5rem;
+.ms-8     margin-inline-start: 1.75rem;
+.ms-9     margin-inline-start: 2rem;
+.ms-10    margin-inline-start: 2.25rem;
+.ms-11    margin-inline-start: 2.5rem;
+.ms-12    margin-inline-start: 3rem;
+.ms--1    margin-inline-start: -0.25rem;
+.ms--2    margin-inline-start: -0.5rem;
+.ms-auto  margin-inline-start: auto;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Use margin utilities to control the outer space around elements. Margin
+utilities are built from a default Sass map ranging from `0` to `3rem` (`.m-0`
+through `.m-12`). Use utilities like `.m-3` and `.m-5` to control the margin
+on all sides of an element:
+
+Example code (HTML):
+
+<div class="m-3">.m-3</div>
+<div class="m-5">.m-5</div>
+
+NOTE:
+  Using flexbox or CSS Grid? Consider using the gap utility instead.
+
+========================================================================
+NOTATION
+========================================================================
+
+Margin utilities that apply to all breakpoints, from `xs` to `2xl`, have no
+breakpoint prefix in them. This is because those classes are applied from
+`min-width: 0` and up, and thus are not bound by a media query. The remaining
+breakpoints, however, do include a breakpoint prefix.
+
+The classes are named using the format `{property}{sides}-{size}` for `xs` and
+`{breakpoint}:{property}{sides}-{size}` for `sm`, `md`, `lg`, `xl`, and `2xl`.
+
+Where property is:
+
+- `m` - for classes that set `margin`
+
+Where sides is one of:
+
+- `t` - for classes that set `margin-top`
+- `b` - for classes that set `margin-bottom`
+- `s` - (start) for classes that set `margin-left` in LTR, `margin-right` in
+  RTL
+- `e` - (end) for classes that set `margin-right` in LTR, `margin-left` in RTL
+- `x` - for classes that set both `*-left` and `*-right`
+- `y` - for classes that set both `*-top` and `*-bottom`
+- blank - for classes that set a `margin` on all 4 sides of the element
+
+Where size is one of:
+
+- `0` - for classes that eliminate the `margin` by setting it to `0`
+- `1` - (by default) for classes that set the `margin` to `$spacer * .25`
+- `2` - (by default) for classes that set the `margin` to `$spacer * .375`
+- `3` - (by default) for classes that set the `margin` to `$spacer * .5`
+- `4` - (by default) for classes that set the `margin` to `$spacer * .75`
+- `5` - (by default) for classes that set the `margin` to `$spacer * 1`
+- `6` - (by default) for classes that set the `margin` to `$spacer * 1.25`
+- `7` - (by default) for classes that set the `margin` to `$spacer * 1.5`
+- `8` - (by default) for classes that set the `margin` to `$spacer * 1.75`
+- `9` - (by default) for classes that set the `margin` to `$spacer * 2`
+- `10` - (by default) for classes that set the `margin` to `$spacer * 2.25`
+- `11` - (by default) for classes that set the `margin` to `$spacer * 2.5`
+- `12` - (by default) for classes that set the `margin` to `$spacer * 3`
+- `auto` - for classes that set the `margin` to auto
+
+(You can add more sizes by adding entries to the `$spacers` Sass map
+variable.)
+
+========================================================================
+EXAMPLES
+========================================================================
+
+------------------------------------------------------------------------
+SINGLE SIDE
+------------------------------------------------------------------------
+
+Use utilities like `.mt-3`, `.me-2`, `.mb-4`, and `.ms-1` to control the
+margin on one side of an element:
+
+Example code (HTML):
+
+<div class="mt-4">.mt-4</div>
+<div class="me-4">.me-4</div>
+<div class="mb-4">.mb-4</div>
+<div class="ms-4">.ms-4</div>
+
+------------------------------------------------------------------------
+HORIZONTAL MARGIN
+------------------------------------------------------------------------
+
+Use utilities like `.mx-3` and `.mx-5` to control the horizontal margin of an
+element:
+
+Example code (HTML):
+
+<div class="mx-3">.mx-3</div>
+<div class="mx-5">.mx-5</div>
+
+------------------------------------------------------------------------
+VERTICAL MARGIN
+------------------------------------------------------------------------
+
+Use utilities like `.my-3` and `.my-5` to control the vertical margin of an
+element:
+
+Example code (HTML):
+
+<div class="my-3">.my-3</div>
+<div class="my-5">.my-5</div>
+
+------------------------------------------------------------------------
+HORIZONTAL CENTERING
+------------------------------------------------------------------------
+
+Bootstrap includes an `.mx-auto` class for horizontally centering fixed-width
+block level content—that is, content that has `display: block` and a `width`
+set—by setting the horizontal margins to `auto`.
+
+Example code (HTML):
+
+<div class="mx-auto" style="width: 200px;">
+  Centered element
+</div>
+
+========================================================================
+NEGATIVE MARGIN
+========================================================================
+
+In CSS, `margin` properties can utilize negative values (`padding` cannot). In
+v6, negative margins are limited to `margin-inline-start` and
+`margin-inline-end` only, using spacers `-1` (`-0.25rem`) and `-2`
+(`-0.5rem`):
+
+Example code (HTML):
+
+<div class="ms--1">.ms--1</div>
+<div class="me--2">.me--2</div>
+
+The v5 full negative margin utilities across all sides (like `.mt-n1`) have
+been removed.
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+All margin utilities are responsive and include all breakpoints.
+
+- `.m-0` through `.m-12` and `.m-auto`
+- `.sm:m-0` through `.sm:m-12` and `.sm:m-auto`
+- `.md:m-0` through `.md:m-12` and `.md:m-auto`
+- `.lg:m-0` through `.lg:m-12` and `.lg:m-auto`
+- `.xl:m-0` through `.xl:m-12` and `.xl:m-auto`
+- `.2xl:m-0` through `.2xl:m-12` and `.2xl:m-auto`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Margin utilities are declared in our utilities API in `scss/_utilities.scss`.
+Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"margin": (
+  responsive: true,
+  property: margin,
+  class: m,
+  values: map.merge($spacers, (auto: auto))
+),
+"margin-x": (
+  responsive: true,
+  property: margin-inline,
+  class: mx,
+  values: map.merge($spacers, (auto: auto))
+),
+"margin-y": (
+  responsive: true,
+  property: margin-block,
+  class: my,
+  values: map.merge($spacers, (auto: auto))
+),
+"margin-top": (
+  responsive: true,
+  property: margin-block-start,
+  class: mt,
+  values: map.merge($spacers, (auto: auto))
+),
+"margin-end": (
+  responsive: true,
+  property: margin-inline-end,
+  class: me,
+  values: map-merge-multiple($spacers, $negative-spacers, (auto: auto))
+),
+"margin-bottom": (
+  responsive: true,
+  property: margin-block-end,
+  class: mb,
+  values: map.merge($spacers, (auto: auto))
+),
+"margin-start": (
+  responsive: true,
+  property: margin-inline-start,
+  class: ms,
+  values: map-merge-multiple($spacers, $negative-spacers, (auto: auto))
+),
+
+========================================================================
+END OF FILE
+========================================================================

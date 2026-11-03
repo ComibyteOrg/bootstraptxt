@@ -1,27 +1,51 @@
 ========================================================================
 CHIPS
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/chips
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-Small interactive elements representing entities like people, places, tags, or values. Combine with inputs for multi-value fields like skills, categories, or email recipients using themed chips.
+WHAT IT DOES
+Small interactive elements representing entities like people, places, tags, or
+values. Combine with inputs for multi-value fields like skills, categories, or
+email recipients using themed chips.
 
-CONTENTS
-   1. Chips  (example 1)
-   2. Chips > Themed chips  (example 2)
-   3. Chips > Active state  (example 3)
-   4. Chip input  (example 4)
-   5. Chip input > Theme variants  (examples 5, 6)
-   6. Chip input > Empty state  (example 7)
-   7. Chip input > With label  (example 8)
-   8. Chip input > Disabled  (example 9)
-   9. Usage > Via data attributes  (example 10)
-  10. Usage > Via JavaScript  (example 11)
-  11. Usage > Methods  (example 12)
-  12. Usage > Events  (example 13)
-  13. CSS > Chip variables  (example 14)
-  14. CSS > Chip input variables  (example 15)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Chips
+     - Themed chips
+     - Active state
+  Chip input
+     - Theme variants
+     - Empty state
+     - With label
+     - Disabled
+  Usage
+     - Via data attributes
+     - Via JavaScript
+     - Dependencies
+     - Options
+     - Methods
+     - Events
+  Keyboard behavior
+     - When input is focused
+     - When a chip is focused
+     - Mouse selection
+  Accessibility
+  CSS
+     - Chip variables
+     - Chip input variables
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -49,11 +73,39 @@ Reuse an existing instance:
 
 const chips = bootstrap.Chips.getOrCreateInstance(chipInputElement)
 
-------------------------------------------------------------------------
+========================================================================
+OVERVIEW
+========================================================================
+
+Chips are small interactive elements representing entities. They can be used
+to group and select values in forms or other interactive contexts. They're
+similar to the older Badges component, but have some meaningful differences.
+
+- Chips are interactive elements, not static like Badges.
+- Chips have one size—they don't scale with the parent `font-size` like
+  Badges.
+- Chips can have icons, avatars, and dismiss buttons.
+- Chips can be themed, individually or as a group on the parent container. By
+  default, chips use the `subtle` and `text` theme tokens, while active state
+  uses the `bg` and `contrast` tokens.
+- Chips can be active or disabled.
+- Chips automatically gain focus when clicked into their active state.
+- Chips support keyboard navigation and selection in their custom
+  `.chip-input` container.
+
+See examples of all of this in action below.
+
+========================================================================
 CHIPS
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Use `.chip` for standalone chips. Add `.chip-icon` for a leading icon, `.chip-img` for an image like an avatar, and `.chip-dismiss` for a remove button. Note that we use an inline SVG for the dismiss button icon—you can modify this as needed. JavaScript users can use the `dismissIcon` option for passing a custom SVG.
+========================================================================
+
+Use `.chip` for standalone chips. Add `.chip-icon` for a leading icon,
+`.chip-img` for an image like an avatar, and `.chip-dismiss` for a remove
+button. Note that we use an inline SVG for the dismiss button icon—you can
+modify this as needed. JavaScript users can use the `dismissIcon` option for
+passing a custom SVG.
+
+Example code (HTML):
 
 <span class="chip">Basic chip</span>
 
@@ -79,10 +131,13 @@ Note: Use `.chip` for standalone chips. Add `.chip-icon` for a leading icon, `.c
 </span>
 
 ------------------------------------------------------------------------
-CHIPS > THEMED CHIPS
-Example 2  |  HTML
+THEMED CHIPS
 ------------------------------------------------------------------------
-Note: Apply `.theme-*` classes to color your chips. Chips are subtle by default as this allows for a clear, themed active state.
+
+Apply `.theme-*` classes to color your chips. Chips are subtle by default as
+this allows for a clear, themed active state.
+
+Example code (HTML):
 
 <span class="chip">Default</span>
 <span class="chip theme-primary">Primary</span>
@@ -95,21 +150,33 @@ Note: Apply `.theme-*` classes to color your chips. Chips are subtle by default 
 <span class="chip theme-secondary">Secondary</span>
 
 ------------------------------------------------------------------------
-CHIPS > ACTIVE STATE
-Example 3  |  HTML
+ACTIVE STATE
 ------------------------------------------------------------------------
-Note: Add `.active` to make chips use the solid appearance (bg/contrast). This is useful for toggle-style chip selections.
+
+Add `.active` to make chips use the solid appearance (bg/contrast). This is
+useful for toggle-style chip selections.
+
+Example code (HTML):
 
 <span class="chip theme-primary">Default</span>
 <span class="chip theme-primary active">Active</span>
 <span class="chip theme-success">Default</span>
 <span class="chip theme-success active">Active</span>
 
-------------------------------------------------------------------------
+========================================================================
 CHIP INPUT
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Wrap chips and a ghost input in `.chip-input` to create a tag input field. Add `data-bs-chips` to enable JavaScript behavior. Chips are grayscale by default, with primary blue for active states, but you can apply any theme color to the container so that chips within inherit the color of your choosing.
+========================================================================
+
+Wrap chips and a ghost input in `.chip-input` to create a tag input field. Add
+`data-bs-chips` to enable JavaScript behavior. Chips are grayscale by default,
+with primary blue for active states, but you can apply any theme color to the
+container so that chips within inherit the color of your choosing.
+
+Type into the input below and press `Enter` or `,` to add new chips. Use the
+`Backspace` or `Delete` keys to remove chips. See the Keyboard behavior
+section for more details.
+
+Example code (HTML):
 
 <div class="chip-input" data-bs-chips>
   <label class="chip-input-label" for="skillsInput">Skills:</label>
@@ -123,10 +190,13 @@ Note: Wrap chips and a ghost input in `.chip-input` to create a tag input field.
 </div>
 
 ------------------------------------------------------------------------
-CHIP INPUT > THEME VARIANTS
-Example 5  |  HTML
+THEME VARIANTS
 ------------------------------------------------------------------------
-Note: Add a `.theme-*` class to the `.chip-input` container to apply a theme color to all chips within.
+
+Add a `.theme-*` class to the `.chip-input` container to apply a theme color
+to all chips within.
+
+Example code (HTML):
 
 <div class="chip-input theme-primary" data-bs-chips>
   <span class="chip">Approved</span>
@@ -140,11 +210,10 @@ Note: Add a `.theme-*` class to the `.chip-input` container to apply a theme col
   <input type="text" class="form-ghost" placeholder="Add issue">
 </div>
 
-------------------------------------------------------------------------
-CHIP INPUT > THEME VARIANTS (cont.)
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: You can also individually apply a theme color to a chip by adding a `.theme-*` class to the chip element.
+You can also individually apply a theme color to a chip by adding a `.theme-*`
+class to the chip element.
+
+Example code (HTML):
 
 <div class="chip-input theme-primary" data-bs-chips>
   <span class="chip theme-warning">Bug</span>
@@ -153,20 +222,24 @@ Note: You can also individually apply a theme color to a chip by adding a `.them
 </div>
 
 ------------------------------------------------------------------------
-CHIP INPUT > EMPTY STATE
-Example 7  |  HTML
+EMPTY STATE
 ------------------------------------------------------------------------
-Note: Start with just the ghost input—chips are created as users type.
+
+Start with just the ghost input—chips are created as users type.
+
+Example code (HTML):
 
 <div class="chip-input theme-primary" data-bs-chips>
   <input type="text" class="form-ghost" placeholder="Type and press Enter">
 </div>
 
 ------------------------------------------------------------------------
-CHIP INPUT > WITH LABEL
-Example 8  |  HTML
+WITH LABEL
 ------------------------------------------------------------------------
-Note: Use a form label for better accessibility.
+
+Use a form label for better accessibility.
+
+Example code (HTML):
 
 <div class="form-field">
   <label class="form-label" for="skillsInputLabel">Skills</label>
@@ -183,34 +256,56 @@ Note: Use a form label for better accessibility.
 </div>
 
 ------------------------------------------------------------------------
-CHIP INPUT > DISABLED
-Example 9  |  HTML
+DISABLED
 ------------------------------------------------------------------------
-Note: Disable the ghost input to prevent adding new chips, and disable the dismiss buttons on existing chips. Existing chips become non-interactive.
+
+Disable the ghost input to prevent adding new chips, and disable the dismiss
+buttons on existing chips. Existing chips become non-interactive.
+
+Example code (HTML):
 
 <div class="chip-input theme-primary" data-bs-chips>
   <span class="chip">
-    Read only    <button type="button" class="chip-dismiss" aria-label="Remove" disabled>
+    Read only
+    <button type="button" class="chip-dismiss" aria-label="Remove" disabled>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
     </button>
-  </span>  <input type="text" class="form-ghost" placeholder="Disabled..." disabled>
+  </span>
+  <input type="text" class="form-ghost" placeholder="Disabled..." disabled>
 </div>
 
+========================================================================
+USAGE
+========================================================================
+
 ------------------------------------------------------------------------
-USAGE > VIA DATA ATTRIBUTES
-Example 10  |  HTML
+VIA DATA ATTRIBUTES
 ------------------------------------------------------------------------
-Note: Add `data-bs-chips` to your container element to automatically initialize the chip input behavior. Options can be passed as data attributes.
+
+Add `data-bs-chips` to your container element to automatically initialize the
+chip input behavior. Options can be passed as data attributes.
+
+Attribute                   Description
+--------------------------  --------------------------------------------------------------------
+`data-bs-chips`             Initializes the chip input on the container element.
+`data-bs-separator`         Character that creates a new chip when typed (or `null` to disable).
+`data-bs-allow-duplicates`  Whether duplicate chip values are allowed.
+`data-bs-max-chips`         Maximum number of chips (`null` for no limit).
+`data-bs-create-on-blur`    Create a chip from the input value when focus leaves the field.
+
+Example code (HTML):
 
 <div class="chip-input theme-primary" data-bs-chips data-bs-separator="," data-bs-allow-duplicates="false">
   <input type="text" class="form-ghost" placeholder="Add tags...">
 </div>
 
 ------------------------------------------------------------------------
-USAGE > VIA JAVASCRIPT
-Example 11  |  JS
+VIA JAVASCRIPT
 ------------------------------------------------------------------------
-Note: Initialize manually with JavaScript:
+
+Initialize manually with JavaScript:
+
+Example code (JS):
 
 const chipInputElement = document.querySelector('.chip-input')
 const chips = new bootstrap.Chips(chipInputElement, {
@@ -219,9 +314,84 @@ const chips = new bootstrap.Chips(chipInputElement, {
 })
 
 ------------------------------------------------------------------------
-USAGE > METHODS
-Example 12  |  JS
+DEPENDENCIES
 ------------------------------------------------------------------------
+
+The chips plugin requires the following JavaScript files if you’re building
+Bootstrap’s JS from source:
+
+File                             Description
+-------------------------------  ---------------------------
+`js/src/chips.ts`                Main chips component
+`js/src/base-component.ts`       Base component class
+`js/src/dom/data.ts`             Element data store
+`js/src/dom/event-handler.ts`    Event handling utilities
+`js/src/dom/manipulator.ts`      Data attribute manipulation
+`js/src/dom/selector-engine.ts`  DOM selector utilities
+`js/src/util/config.ts`          Configuration base class
+`js/src/util/index.ts`           Core utility functions
+`js/src/util/sanitizer.ts`       HTML content sanitizer
+
+------------------------------------------------------------------------
+OPTIONS
+------------------------------------------------------------------------
+
+Options can be passed via data attributes or JavaScript:
+
+`separator`
+  Type: string | null
+  Default: `','`
+  Description: Character that triggers chip creation when typed. Set to `null` to disable.
+
+`allowDuplicates`
+  Type: boolean
+  Default: `false`
+  Description: Allow duplicate chip values.
+
+`maxChips`
+  Type: number | null
+  Default: `null`
+  Description: Maximum number of chips allowed. `null` for unlimited.
+
+`placeholder`
+  Type: string
+  Default: `''`
+  Description: Placeholder text for dynamically created inputs.
+
+`dismissible`
+  Type: boolean
+  Default: `true`
+  Description: Add dismiss buttons to created chips.
+
+`dismissIcon`
+  Type: string
+  Default: `'<svg>...</svg>'`
+  Description: HTML string for the dismiss button icon. Passed through the icon content sanitizer before insertion.
+
+`createOnBlur`
+  Type: boolean
+  Default: `true`
+  Description: Create chip from input value when the input loses focus.
+
+------------------------------------------------------------------------
+METHODS
+------------------------------------------------------------------------
+
+Method                       Description
+---------------------------  ---------------------------------------------------------------------------------
+`add(value)`                 Adds a chip with the given value. Returns the chip element or `null` if rejected.
+`remove(chipOrValue)`        Removes a chip by element reference or value string. Returns `true` if removed.
+`removeSelected()`           Removes all currently selected chips.
+`getValues()`                Returns an array of all chip values.
+`getSelectedValues()`        Returns an array of selected chip values.
+`clear()`                    Removes all chips.
+`clearSelection()`           Deselects all chips without removing them.
+`selectChip(chip, options)`  Selects a chip. Options: `addToSelection`, `rangeSelect`.
+`focus()`                    Focuses the ghost input.
+`dispose()`                  Destroys the component instance.
+
+Example code (JS):
+
 const chipInputElement = document.querySelector('.chip-input')
 const chips = bootstrap.Chips.getOrCreateInstance(chipInputElement)
 
@@ -239,9 +409,18 @@ chips.remove('JavaScript')
 chips.clear()
 
 ------------------------------------------------------------------------
-USAGE > EVENTS
-Example 13  |  JS
+EVENTS
 ------------------------------------------------------------------------
+
+Event              Description
+-----------------  ------------------------------------------------------------------------
+`add.bs.chips`     Fired before a chip is added. Call `event.preventDefault()` to cancel.
+`remove.bs.chips`  Fired before a chip is removed. Call `event.preventDefault()` to cancel.
+`change.bs.chips`  Fired after any chip is added or removed. Contains `values` array.
+`select.bs.chips`  Fired when chip selection changes. Contains `selected` array of values.
+
+Example code (JS):
+
 const chipInputElement = document.querySelector('.chip-input')
 
 chipInputElement.addEventListener('add.bs.chips', event => {
@@ -266,11 +445,73 @@ chipInputElement.addEventListener('select.bs.chips', event => {
   console.log('Selected:', event.selected)
 })
 
+========================================================================
+KEYBOARD BEHAVIOR
+========================================================================
+
+Chip inputs support Mail.app-style keyboard navigation with chip selection.
+
 ------------------------------------------------------------------------
-CSS > CHIP VARIABLES
-Example 14  |  SCSS
+WHEN INPUT IS FOCUSED
 ------------------------------------------------------------------------
-Note: Chip use local CSS variables on `.chip` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Key                     Action
+----------------------  ----------------------------------------------------------------------------------------
+`Enter`                 Create chip from current input value
+`,` (or separator)      Create chip from current input value
+`Backspace` / `Delete`  When input is empty, select and focus last chip (first press); pressing again deletes it
+`←`                     When cursor is at start, move focus to last chip
+`Shift+←`               Select last chip and extend selection
+`Escape`                Clear selection, clear input, and blur
+
+------------------------------------------------------------------------
+WHEN A CHIP IS FOCUSED
+------------------------------------------------------------------------
+
+Key                     Action
+----------------------  ------------------------------------------------------------------
+`Backspace` / `Delete`  Remove selected chips, then select and focus the next closest chip
+`←`                     Move to previous chip
+`→`                     Move to next chip (or input if at end)
+`Shift+←` / `Shift+→`   Extend selection in that direction
+`Home`                  Move to first chip
+`End`                   Move to input
+`Cmd/Ctrl+A`            Select all chips
+`Escape`                Clear selection and focus input
+
+------------------------------------------------------------------------
+MOUSE SELECTION
+------------------------------------------------------------------------
+
+Action            Effect
+----------------  ----------------------------------------
+Click chip        Select chip (deselects others)
+`Cmd/Ctrl+Click`  Toggle chip in selection
+`Shift+Click`     Range select from anchor to clicked chip
+
+========================================================================
+ACCESSIBILITY
+========================================================================
+
+- Use a `<label>` element associated with the chip input for screen readers
+- Chips are focusable and support full keyboard navigation
+- Each `.chip-dismiss` button has `aria-label="Remove"`
+- Selected chips have the `.active` class for visual indication
+- Chips are announced as they are added or removed
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+CHIP VARIABLES
+------------------------------------------------------------------------
+
+Chip use local CSS variables on `.chip` for real-time customization. Values
+for the CSS variables are generated from Sass maps unique to each component
+and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $chip-tokens: defaults(
@@ -295,10 +536,12 @@ $chip-tokens: defaults(
 );
 
 ------------------------------------------------------------------------
-CSS > CHIP INPUT VARIABLES
-Example 15  |  SCSS
+CHIP INPUT VARIABLES
 ------------------------------------------------------------------------
-Note: These variables are scoped to the `.chip-input` container.
+
+These variables are scoped to the `.chip-input` container.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $chip-input-tokens: defaults(

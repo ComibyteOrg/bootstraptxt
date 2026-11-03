@@ -1,0 +1,528 @@
+========================================================================
+REBOOT
+Bootstrap 6.0  |  Content reference
+Source: https://getbootstrap.com/docs/6.0/content/reboot
+========================================================================
+
+WHAT IT DOES
+Reboot, a collection of element-specific CSS changes in a single file,
+kickstart Bootstrap to provide an elegant, consistent, and simple baseline to
+build upon.
+
+HOW TO USE IT
+These classes style normal HTML elements. Add them to the matching tag
+(headings, paragraphs, tables, images). Most content styles need no
+JavaScript.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Approach
+  Root CSS variables
+  Page defaults
+  Native font stack
+  Headings
+  Paragraphs
+  Links
+  Horizontal rules
+  Lists
+  Inline code
+  Code blocks
+  Variables
+  User input
+  Sample output
+  Tables
+  Forms
+     - Pointers on buttons
+  Misc elements
+     - Address
+     - Blockquote
+     - Inline elements
+     - Summary
+  HTML5 `[hidden]` attribute
+  iframe color-scheme
+     - Third-party embeds with no dark mode
+
+========================================================================
+APPROACH
+========================================================================
+
+Reboot builds upon Normalize, providing many HTML elements with somewhat
+opinionated styles using only element selectors. Additional styling is done
+only with classes. For example, we reboot some `<table>` styles for a simpler
+baseline and later provide `.table`, `.table-bordered`, and more.
+
+Here are our guidelines and reasons for choosing what to override in Reboot:
+
+- Update some browser default values to use `rem`s instead of `em`s for
+  scalable component spacing.
+- Avoid `margin-top`. Vertical margins can collapse, yielding unexpected
+  results. More importantly though, a single direction of `margin` is a
+  simpler mental model.
+- For easier scaling across device sizes, block elements should use `rem`s for
+  `margin`s.
+- Keep declarations of `font`-related properties to a minimum, using `inherit`
+  whenever possible.
+
+========================================================================
+ROOT CSS VARIABLES
+========================================================================
+
+We add `:root` level CSS variables to all CSS bundles to provide real-time
+customization without the need to always recompile Sass. For example, consider
+these `:root` CSS variables for common `<body>` styles:
+
+Example code (SCSS):
+
+--border-width: #{$border-width},
+--border-width-keyline: .5px,
+--border-style: #{$border-style},
+--border-color: light-dark(var(--gray-200), var(--gray-700)),
+--border-color-translucent: color-mix(in oklch, var(--fg-body) 15%, transparent),
+
+In practice, those variables are then applied in Reboot like so:
+
+Example code (SCSS):
+
+body {
+  margin: 0; // 1
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--fg-body);
+  text-align: var(--body-text-align);
+  background-color: var(--bg-body); // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -webkit-tap-highlight-color: transparent; // 4
+}
+
+Which allows you to make real-time customizations however you like:
+
+Example code (HTML):
+
+<body style="--bs-body-color: #333;">
+  <!-- ... -->
+</body>
+
+========================================================================
+PAGE DEFAULTS
+========================================================================
+
+The `<html>` and `<body>` elements are updated to provide better page-wide
+defaults. More specifically:
+
+- The `box-sizing` is globally set on every element—including `*::before` and
+  `*::after`, to `border-box`. This ensures that the declared width of element
+  is never exceeded due to padding or border.
+  - No base `font-size` is declared on the `<html>`, but `16px` is assumed
+    (the browser default). `font-size: 1rem` is applied on the `<body>` for
+    easy responsive type-scaling via media queries while respecting user
+    preferences and ensuring a more accessible approach. This browser default
+    can be overridden by modifying the `$font-size-root` variable.
+- The `<body>` also sets a global `font-family`, `font-weight`, `line-height`,
+  and `color`. This is inherited later by some form elements to prevent font
+  inconsistencies.
+- For safety, the `<body>` has a declared `background-color`, defaulting to
+  `#fff`.
+
+========================================================================
+NATIVE FONT STACK
+========================================================================
+
+Bootstrap utilizes a “native font stack” or “system font stack” for optimum
+text rendering on every device and OS. These system fonts have been designed
+specifically with today’s devices in mind, with improved rendering on screens,
+variable font support, and more. Read more about native font stacks in this
+Smashing Magazine article.
+
+The stack starts with `-apple-system` and `BlinkMacSystemFont` for Apple
+devices, then `Segoe UI` for Windows, `Roboto` for Android, and `Noto Sans` or
+`Liberation Sans` for Linux. `Arial` and `sans-serif` are the web fallbacks,
+and four emoji fonts close the list.
+
+The stack omits the `system-ui` keyword. On some systems, `system-ui` resolves
+to the user interface font of the locale. That font can show non-Latin text
+with the wrong glyphs—see issue #42703.
+
+Example code (SCSS):
+
+// The stack omits system-ui. It resolves to the user interface font of the
+// locale, which shows non-Latin text incorrectly. See twbs/bootstrap#42703.
+--body-font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+--body-font-size: 1rem,
+--body-font-weight: var(--font-weight-normal),
+--body-line-height: 1.5,
+
+Note that because the font stack includes emoji fonts, many common
+symbol/dingbat Unicode characters will be rendered as multicolored
+pictographs. Their appearance will vary, depending on the style used in the
+browser/platform’s native emoji font, and they won’t be affected by any CSS
+`color` styles.
+
+This `font-family` is applied to the `<body>` and automatically inherited
+globally throughout Bootstrap. To switch the global `font-family`, update
+`--body-font-family`.
+
+========================================================================
+HEADINGS
+========================================================================
+
+All heading elements—`<h1>`—`<h6>` have their `margin-top` removed,
+`margin-bottom: .5rem` set, and `line-height` tightened. While headings
+inherit their `color` by default, you can also override it via optional CSS
+variable, `--bs-heading-color`.
+
+You can also use the `.h1`–`.h6` classes to style headings without using the
+HTML elements.
+
+Heading      Example
+-----------  ---------------------
+`<h1></h1>`  h1. Bootstrap heading
+`<h2></h2>`  h2. Bootstrap heading
+`<h3></h3>`  h3. Bootstrap heading
+`<h4></h4>`  h4. Bootstrap heading
+`<h5></h5>`  h5. Bootstrap heading
+`<h6></h6>`  h6. Bootstrap heading
+
+========================================================================
+PARAGRAPHS
+========================================================================
+
+All `<p>` elements have their `margin-top` removed and `margin-bottom: 1rem`
+set for easy spacing.
+
+Example code (HTML):
+
+<p>This is an example paragraph.</p>
+
+========================================================================
+LINKS
+========================================================================
+
+Links have a default `color` and underline applied. While links change on
+`:hover`, they don’t change based on whether someone `:visited` the link. They
+also receive no special `:focus` styles.
+
+Example code (HTML):
+
+<a href="#">This is an example link</a>
+
+Use `.link-{%}` utilities to change the link color opacity.
+
+Example code (HTML):
+
+<a href="#" class="link-50">This is an example link</a>
+
+Use the theme utility classes to change the link color.
+
+Example code (HTML):
+
+<a href="#" class="theme-primary">Primary link</a>
+<a href="#" class="theme-accent">Accent link</a>
+<a href="#" class="theme-success">Success link</a>
+<a href="#" class="theme-danger">Danger link</a>
+<a href="#" class="theme-warning">Warning link</a>
+<a href="#" class="theme-info">Info link</a>
+<a href="#" class="theme-inverse">Inverse link</a>
+<a href="#" class="theme-secondary">Secondary link</a>
+
+Placeholder links—those without an `href`—are targeted with a more specific
+selector and have their `color` and `text-decoration` reset to their default
+values.
+
+Example code (HTML):
+
+<a>This is a placeholder link</a>
+
+========================================================================
+HORIZONTAL RULES
+========================================================================
+
+The `<hr>` element has been simplified. Similar to browser defaults, `<hr>`s
+are styled via `border-top`, have a default `opacity: .25`, and automatically
+inherit their `border-color` via `color`, including when `color` is set via
+the parent. They can be modified with text, border, and opacity utilities.
+
+Example code (HTML):
+
+<hr>
+
+<div class="fg-success">
+  <hr>
+</div>
+
+<hr class="border border-danger border-2 opacity-50">
+<hr class="border border-primary border-3 opacity-75">
+
+========================================================================
+LISTS
+========================================================================
+
+All lists—`<ul>`, `<ol>`, and `<dl>`—have their `margin-top` removed and a
+`margin-bottom: 1rem`. Nested lists have no `margin-bottom`. We’ve also reset
+the `padding-left` on `<ul>` and `<ol>` elements.
+
+For simpler styling, clear hierarchy, and better spacing, description lists
+have updated `margin`s. `<dd>`s reset `margin-left` to `0` and add
+`margin-bottom: .5rem`. `<dt>`s are bolded.
+
+========================================================================
+INLINE CODE
+========================================================================
+
+Wrap inline snippets of code with `<code>`. Be sure to escape HTML angle
+brackets.
+
+Example code (HTML):
+
+For example, <code><section></code> should be wrapped as inline.
+
+========================================================================
+CODE BLOCKS
+========================================================================
+
+Use `<pre>`s for multiple lines of code. Once again, be sure to escape any
+angle brackets in the code for proper rendering. The `<pre>` element is reset
+to remove its `margin-top` and use `rem` units for its `margin-bottom`.
+
+Example code (HTML):
+
+<p>Sample text here...</p>
+<p>And another line of sample text here...</p>
+
+Example code (HTML):
+
+<pre><code><p>Sample text here...</p>
+<p>And another line of sample text here...</p>
+</code></pre>
+
+========================================================================
+VARIABLES
+========================================================================
+
+For indicating variables use the `<var>` tag.
+
+Example code (HTML):
+
+<var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+
+========================================================================
+USER INPUT
+========================================================================
+
+Use the `<kbd>` to indicate input that is typically entered via keyboard.
+
+Example code (HTML):
+
+To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+To edit settings, press <kbd>Ctrl</kbd> + <kbd>,</kbd>
+
+========================================================================
+SAMPLE OUTPUT
+========================================================================
+
+For indicating sample output from a program use the `<samp>` tag.
+
+Example code (HTML):
+
+<samp>This text is meant to be treated as sample output from a computer program.</samp>
+
+========================================================================
+TABLES
+========================================================================
+
+Tables are slightly adjusted to style `<caption>`s, collapse borders, and
+ensure consistent `text-align` throughout. Additional changes for borders,
+padding, and more come with the `.table` class.
+
+Example code (HTML):
+
+<table>
+  <caption>
+    This is an example table, and this is its caption to describe the contents.
+  </caption>
+  <thead>
+    <tr>
+      <th>Table heading</th>
+      <th>Table heading</th>
+      <th>Table heading</th>
+      <th>Table heading</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Table cell</td>
+      <td>Table cell</td>
+      <td>Table cell</td>
+      <td>Table cell</td>
+    </tr>
+    <tr>
+      <td>Table cell</td>
+      <td>Table cell</td>
+      <td>Table cell</td>
+      <td>Table cell</td>
+    </tr>
+    <tr>
+      <td>Table cell</td>
+      <td>Table cell</td>
+      <td>Table cell</td>
+      <td>Table cell</td>
+    </tr>
+  </tbody>
+</table>
+
+========================================================================
+FORMS
+========================================================================
+
+Various form elements have been rebooted for simpler base styles. Here are
+some of the most notable changes:
+
+- `<fieldset>`s have no borders, padding, or margin so they can be easily used
+  as wrappers for individual inputs or groups of inputs.
+- `<legend>`s, like fieldsets, have also been restyled to be displayed as a
+  heading of sorts.
+- `<label>`s are set to `display: inline-block` to allow `margin` to be
+  applied.
+- `<input>`s, `<select>`s, `<textarea>`s, and `<button>`s are mostly addressed
+  by Normalize, but Reboot removes their `margin` and sets `line-height:
+  inherit`, too.
+- `<textarea>`s are modified to only be resizable vertically as horizontal
+  resizing often “breaks” page layout.
+- `<button>`s and `<input>` button elements have `cursor: pointer` when
+  `:not(:disabled)`.
+
+These changes, and more, are demonstrated below.
+
+WARNING:
+  Some date inputs types are not fully supported by the latest versions of
+  Safari and Firefox.
+
+------------------------------------------------------------------------
+POINTERS ON BUTTONS
+------------------------------------------------------------------------
+
+Reboot includes an enhancement for `role="button"` to change the default
+cursor to `pointer`. Add this attribute to elements to help indicate elements
+are interactive. This role isn’t necessary for `<button>` elements, which get
+their own `cursor` change.
+
+Example code (HTML):
+
+<span role="button" tabindex="0">Non-button element button</span>
+
+========================================================================
+MISC ELEMENTS
+========================================================================
+
+------------------------------------------------------------------------
+ADDRESS
+------------------------------------------------------------------------
+
+The `<address>` element is updated to reset the browser default `font-style`
+from `italic` to `normal`. `line-height` is also now inherited, and
+`margin-bottom: 1rem` has been added. `<address>`s are for presenting contact
+information for the nearest ancestor (or an entire body of work). Preserve
+formatting by ending lines with `<br>`.
+
+------------------------------------------------------------------------
+BLOCKQUOTE
+------------------------------------------------------------------------
+
+The default `margin` on blockquotes is `1em 40px`, so we reset that to `0 0
+1rem` for something more consistent with other elements.
+
+------------------------------------------------------------------------
+INLINE ELEMENTS
+------------------------------------------------------------------------
+
+The `<abbr>` element receives basic styling to make it stand out amongst
+paragraph text.
+
+------------------------------------------------------------------------
+SUMMARY
+------------------------------------------------------------------------
+
+The default `cursor` on summary is `text`, so we reset that to `pointer` to
+convey that the element can be interacted with by clicking on it.
+
+========================================================================
+HTML5 `[HIDDEN]` ATTRIBUTE
+========================================================================
+
+HTML5 adds a new global attribute named `[hidden]`, which is styled as
+`display: none` by default. Borrowing an idea from PureCSS, we improve upon
+this default by making `[hidden] { display: none !important; }` to help
+prevent its `display` from getting accidentally overridden.
+
+Example code (HTML):
+
+<input type="text" hidden>
+
+NOTE:
+  Since `[hidden]` is not compatible with jQuery’s `$(...).hide()` and
+  `$(...).show()` methods, we don’t specifically endorse `[hidden]` over other
+  techniques for managing the `display` of elements.
+
+To merely toggle the visibility of an element, meaning its `display` is not
+modified and the element can still affect the flow of the document, use the
+`.invisible` class instead.
+
+========================================================================
+IFRAME COLOR-SCHEME
+========================================================================
+
+The `<iframe>` element is updated to set `color-scheme: light dark`. A browser
+paints an opaque `background: canvas` behind an iframe when the embedded
+document uses a different color scheme than the iframe element. On a dark page
+that shows as a white box.
+
+An embedded document follows the system preference. It cannot see your
+`data-bs-theme` attribute. We therefore pin every iframe to the system
+preference too. This keeps an embed transparent, also when you force a theme
+with `data-bs-theme`.
+
+Example code (HTML):
+
+<div class="bg-body fg-body p-3" data-bs-theme="dark">
+  <iframe class="w-100" style="color-scheme: unset" src="data:text/html,<!DOCTYPE html><html><meta name='color-scheme' content='light dark'><body style='background-color:transparent;color:gray;'><h4>Default iframe</h4></body></html>"></iframe>
+  <iframe class="w-100" src="data:text/html,<!DOCTYPE html><html><meta name='color-scheme' content='light dark'><body style='background-color:transparent;color:gray;'><h4>iframe with color-scheme: light-dark</h4></body></html>"></iframe>
+  <iframe class="w-100" src="data:text/html,<!DOCTYPE html><html><body style='background-color:transparent;color:gray;'><h4>Embed that declares no color scheme</h4></body></html>"></iframe>
+</div>
+
+The first two embeds declare `<meta name="color-scheme" content="light
+dark">`, so they follow the system preference and stay transparent. The third
+declares nothing, like most third-party embeds. Set your system to dark mode
+to see the browser paint a white box behind it. Our rule cannot prevent that —
+read the next section.
+
+------------------------------------------------------------------------
+THIRD-PARTY EMBEDS WITH NO DARK MODE
+------------------------------------------------------------------------
+
+Some third-party embeds have no dark mode. Payment buttons, comment widgets,
+and review widgets are common examples. The browser paints a white background
+behind such an embed when the system is in dark mode. This is a browser
+safeguard. It keeps the light content of the embed readable. Bootstrap cannot
+remove it for you.
+
+Add the `.color-scheme-light` color scheme utility to that one iframe. The
+background becomes transparent again.
+
+Example code (HTML):
+
+<iframe class="color-scheme-light" src="..."></iframe>
+
+WARNING:
+  Use this only for an embed that has no dark mode. Safari and Firefox apply the
+  value to the embedded document. An embed that has a dark mode then shows in
+  light mode.
+
+========================================================================
+END OF FILE
+========================================================================

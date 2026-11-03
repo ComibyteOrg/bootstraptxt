@@ -1,32 +1,48 @@
 ========================================================================
 FIELD
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/field
 ========================================================================
 
-A universal layout wrapper for form controls that handles label, description, and validation feedback placement with CSS grid.
+WHAT IT DOES
+A universal layout wrapper for form controls that handles label, description,
+and validation feedback placement with CSS grid.
 
-CONTENTS
-   1. Overview  (example 1)
-   2. Examples > Select  (example 2)
-   3. Examples > Textarea  (example 3)
-   4. Examples > Checkbox  (example 4)
-   5. Examples > Radio  (example 5)
-   6. Examples > Grouped  (example 6)
-   7. Examples > Group cards  (example 7)
-   8. Examples > Switch  (example 8)
-   9. Examples > Combobox  (example 9)
-  10. Overhead label  (example 10)
-  11. Descriptions  (example 11)
-  12. Validation > Client-side  (example 12)
-  13. Validation > Server-side  (example 13)
-  14. CSS > Sass  (example 14)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
 
-------------------------------------------------------------------------
-OVERVIEW
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: A universal layout wrapper for form controls that handles label, description, and validation feedback placement with CSS grid.
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+  Examples
+     - Select
+     - Textarea
+     - Checkbox
+     - Radio
+     - Grouped
+     - Group cards
+     - Switch
+     - Combobox
+  Overhead label
+  Descriptions
+  Validation
+     - Client-side
+     - Server-side
+  CSS
+     - Sass
+
+The Field component provides essential layout, spacing, and functionality for
+your form input or component of choice. They even scale to support laying out
+checkboxes, radios, and switches in a two-column layout.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="fieldText" class="form-label">Email address</label>
@@ -36,11 +52,36 @@ Note: A universal layout wrapper for form controls that handles label, descripti
   </div>
 </div>
 
+========================================================================
+HOW IT WORKS
+========================================================================
+
+The `.form-field` wrapper uses CSS grid to manage the layout of a form control
+alongside its label, description, and validation feedback.
+
+- Default layout is a single-column grid where everything stacks vertically.
+  Use this for text inputs, selects, textareas, ranges, input groups, and
+  adorned inputs.
+- Two-column layout activates automatically via `:has()` when a `.check`,
+  `.radio`, or `.switch` is a direct child. The control pins to column 1 while
+  the label, description, and feedback stack in column 2.
+- Overhead label — when a `.form-label` is present alongside a check, radio,
+  or switch, it spans both columns and sits above the control row.
+- Grouped controls — nest multiple `.form-field`s inside an outer
+  `.form-field` to group radios, checkboxes, or switches under a shared label
+  with shared description and validation feedback.
+
+========================================================================
+EXAMPLES
+========================================================================
+
 ------------------------------------------------------------------------
-EXAMPLES > SELECT
-Example 2  |  HTML
+SELECT
 ------------------------------------------------------------------------
-Note: Works the same way with `<select>` elements.
+
+Works the same way with `<select>` elements.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="fieldSelect" class="form-label">Country</label>
@@ -53,10 +94,12 @@ Note: Works the same way with `<select>` elements.
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > TEXTAREA
-Example 3  |  HTML
+TEXTAREA
 ------------------------------------------------------------------------
-Note: Works the same way with `<textarea>` elements. Descriptions are optional.
+
+Works the same way with `<textarea>` elements. Descriptions are optional.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="fieldTextarea" class="form-label">Message</label>
@@ -67,10 +110,13 @@ Note: Works the same way with `<textarea>` elements. Descriptions are optional.
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > CHECKBOX
-Example 4  |  HTML
+CHECKBOX
 ------------------------------------------------------------------------
-Note: When a `.check` is a direct child, the grid switches to a two-column layout with the checkbox in column 1 and the label in column 2.
+
+When a `.check` is a direct child, the grid switches to a two-column layout
+with the checkbox in column 1 and the label in column 2.
+
+Example code (HTML):
 
 <div class="form-field">
   <input type="checkbox" id="fieldCheck" class="check" />
@@ -78,10 +124,13 @@ Note: When a `.check` is a direct child, the grid switches to a two-column layou
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > RADIO
-Example 5  |  HTML
+RADIO
 ------------------------------------------------------------------------
-Note: Radios use the same two-column layout. Wrap each radio + label pair in its own `.form-field`.
+
+Radios use the same two-column layout. Wrap each radio + label pair in its own
+`.form-field`.
+
+Example code (HTML):
 
 <div class="form-field">
   <input type="radio" id="fieldRadio1" class="radio" name="fieldRadioGroup" />
@@ -93,10 +142,14 @@ Note: Radios use the same two-column layout. Wrap each radio + label pair in its
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > GROUPED
-Example 6  |  HTML
+GROUPED
 ------------------------------------------------------------------------
-Note: Wrap multiple `.form-field`s in a `.form-group` to group related controls under a shared label. The group provides consistent spacing while each inner `.form-field` keeps its own layout.
+
+Wrap multiple `.form-field`s in a `.form-group` to group related controls
+under a shared label. The group provides consistent spacing while each inner
+`.form-field` keeps its own layout.
+
+Example code (HTML):
 
 <div class="form-group">
   <label class="form-label">Shipping method</label>
@@ -112,10 +165,14 @@ Note: Wrap multiple `.form-field`s in a `.form-group` to group related controls 
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > GROUP CARDS
-Example 7  |  HTML
+GROUP CARDS
 ------------------------------------------------------------------------
-Note: Add `.form-field-card` to each inner `.form-field` for a card-style treatment that highlights the selected option. Wrap the inner fields in a `.form-group` with tighter spacing for a more compact look.
+
+Add `.form-field-card` to each inner `.form-field` for a card-style treatment
+that highlights the selected option. Wrap the inner fields in a `.form-group`
+with tighter spacing for a more compact look.
+
+Example code (HTML):
 
 <div class="form-group">
   <label class="form-label">Select a plan</label>
@@ -138,10 +195,12 @@ Note: Add `.form-field-card` to each inner `.form-field` for a card-style treatm
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > SWITCH
-Example 8  |  HTML
+SWITCH
 ------------------------------------------------------------------------
-Note: Switches also trigger the two-column grid.
+
+Switches also trigger the two-column grid.
+
+Example code (HTML):
 
 <div class="form-field">
   <div class="switch">
@@ -151,10 +210,13 @@ Note: Switches also trigger the two-column grid.
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > COMBOBOX
-Example 9  |  HTML
+COMBOBOX
 ------------------------------------------------------------------------
-Note: Comboboxes—as well as datepickers, OTPs, and any other form component—are support as well.
+
+Comboboxes—as well as datepickers, OTPs, and any other form component—are
+support as well.
+
+Example code (HTML):
 
 <div class="form-field">
   <label>Combobox</label>
@@ -173,11 +235,15 @@ Note: Comboboxes—as well as datepickers, OTPs, and any other form component—
   <div class="form-text">Choose an item from the menu above.</div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 OVERHEAD LABEL
-Example 10  |  HTML
-------------------------------------------------------------------------
-Note: When a check, radio, or switch needs a field title above it, add a `.form-label`. It automatically spans both columns and sits on its own row above the control.
+========================================================================
+
+When a check, radio, or switch needs a field title above it, add a
+`.form-label`. It automatically spans both columns and sits on its own row
+above the control.
+
+Example code (HTML):
 
 <div class="form-field">
   <label class="form-label">Terms and conditions</label>
@@ -188,11 +254,14 @@ Note: When a check, radio, or switch needs a field title above it, add a `.form-
   </div>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 DESCRIPTIONS
-Example 11  |  HTML
-------------------------------------------------------------------------
-Note: Add a `<small class="form-text">` after the label and wrap it in a `.form-field-content` to ensure appropriate spacing and alignment.
+========================================================================
+
+Add a `<small class="form-text">` after the label and wrap it in a
+`.form-field-content` to ensure appropriate spacing and alignment.
+
+Example code (HTML):
 
 <div class="form-field">
   <input type="checkbox" id="fieldCheckDesc" class="check" />
@@ -214,11 +283,24 @@ Note: Add a `<small class="form-text">` after the label and wrap it in a `.form-
   <small class="form-text">Must be 3-20 characters, letters and numbers only.</small>
 </div>
 
+========================================================================
+VALIDATION
+========================================================================
+
+Validation feedback (`.invalid-feedback`, `.valid-feedback`) stacks correctly
+inside `.form-field` for all control types.
+
 ------------------------------------------------------------------------
-VALIDATION > CLIENT-SIDE
-Example 12  |  HTML
+CLIENT-SIDE
 ------------------------------------------------------------------------
-Note: Add `data-bs-validate` to your `<form>` to opt in to `:user-invalid` styling. These pseudo-classes activate after the user interacts with a control. To also show success styling on valid fields, use `data-bs-validate="valid"`. Add `novalidate` to suppress native browser validation tooltips while keeping the constraint validation API available.
+
+Add `data-bs-validate` to your `<form>` to opt in to `:user-invalid` styling.
+These pseudo-classes activate after the user interacts with a control. To also
+show success styling on valid fields, use `data-bs-validate="valid"`. Add
+`novalidate` to suppress native browser validation tooltips while keeping the
+constraint validation API available.
+
+Example code (HTML):
 
 <form class="vstack gap-3" data-bs-validate novalidate>
   <div class="form-field flex-1">
@@ -238,10 +320,13 @@ Note: Add `data-bs-validate` to your `<form>` to opt in to `:user-invalid` styli
 </form>
 
 ------------------------------------------------------------------------
-VALIDATION > SERVER-SIDE
-Example 13  |  HTML
+SERVER-SIDE
 ------------------------------------------------------------------------
-Note: Apply `.is-invalid` or `.is-valid` directly to the control for server-side validation. Feedback is visible immediately on page load.
+
+Apply `.is-invalid` or `.is-valid` directly to the control for server-side
+validation. Feedback is visible immediately on page load.
+
+Example code (HTML):
 
 <div class="form-field mb-3">
   <label for="fieldServerEmail" class="form-label">Email address</label>
@@ -266,10 +351,16 @@ Note: Apply `.is-invalid` or `.is-valid` directly to the control for server-side
   <div class="invalid-feedback">This field is required.</div>
 </div>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > SASS
-Example 14  |  SCSS
+SASS
 ------------------------------------------------------------------------
+
+Example code (SCSS):
+
 @layer forms {
   .form-field {
     position: relative;

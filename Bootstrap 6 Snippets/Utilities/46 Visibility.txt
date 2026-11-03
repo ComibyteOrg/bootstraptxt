@@ -1,0 +1,80 @@
+========================================================================
+VISIBILITY
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/visibility
+========================================================================
+
+WHAT IT DOES
+Control the visibility of elements, without modifying their display, with
+visibility utilities.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  CSS
+     - Sass utilities API
+
+Class        Styles
+-----------  ---------
+.-visible    Not found
+.-invisible  Not found
+
+Set the `visibility` of elements with our visibility utilities. These utility
+classes do not modify the `display` value at all and do not affect layout –
+`.invisible` elements still take up space in the page.
+
+WARNING:
+  Elements with the `.invisible` class will be hidden both visually and for
+  assistive technology/screen reader users.
+
+Apply `.visible` or `.invisible` as needed.
+
+Example code (HTML):
+
+<div class="visible">...</div>
+<div class="invisible">...</div>
+
+Example code (SCSS):
+
+// Class
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Visibility utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"visibility": (
+  property: visibility,
+  class: null,
+  values: (
+    visible: visible,
+    invisible: hidden,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

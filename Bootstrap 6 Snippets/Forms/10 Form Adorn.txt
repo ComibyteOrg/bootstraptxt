@@ -1,24 +1,73 @@
 ========================================================================
 FORM ADORN
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/form-adorn
 ========================================================================
 
-Decorate inputs with icons, text, and more using a custom wrapper that easily handles styling and positioning.
+WHAT IT DOES
+Decorate inputs with icons, text, and more using a custom wrapper that easily
+handles styling and positioning.
 
-CONTENTS
-   1. Example  (examples 1, 2)
-   2. With labels  (example 3)
-   3. With form field  (example 4)
-   4. Text adornments  (example 5)
-   5. Sizing  (example 6)
-   6. CSS > Variables  (example 7)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+  Example
+  With labels
+  With form field
+  Text adornments
+  Sizing
+  CSS
+     - Variables
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Apply both `.form-control` and `.form-adorn` to a wrapper element.
+`.form-control` provides the border, background, padding, and focus states;
+`.form-adorn` uses flexbox to position adornments alongside a "ghost input," a
+form control that has virtually no visual styling. The `.form-ghost` input
+inside is transparent and inherits styles from the wrapper.
+
+Use a `<label>` for the wrapper. The wrapper looks like an input, so people
+click the icon, the text, or the padding around them and expect the field to
+take focus. A `<label>` gives you that for free, because clicking a label
+focuses the control it labels. No JavaScript is involved.
+
+Mark the adornments with `aria-hidden="true"`. A wrapping `<label>` labels the
+input, so without it an adornment such as `$` joins the accessible name and a
+screen reader announces "Amount $" instead of "Amount". An adornment is
+decorative, so keep it out of the accessibility tree and put anything
+meaningful in the visible label or in a `.form-text` description.
+
+NOTE:
+  An element can have more than one label, so the wrapping `<label>` and a
+  separate `<label for="…">` work together. Do not put a button or another
+  interactive control inside the wrapper — a `<label>` must not contain
+  interactive content.
+
+See the form control documentation for more information on the `.form-control`
+and `.form-ghost` classes.
+
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Wrap an icon and a `.form-ghost` input inside a `<label>` with `.form-control` and `.form-adorn`. Place the adornment before the input in the DOM for start position (left in LTR).
+========================================================================
+
+Wrap an icon and a `.form-ghost` input inside a `<label>` with `.form-control`
+and `.form-adorn`. Place the adornment before the input in the DOM for start
+position (left in LTR).
+
+Example code (HTML):
 
 <label class="form-control form-adorn">
   <div class="form-adorn-icon" aria-hidden="true">
@@ -27,11 +76,10 @@ Note: Wrap an icon and a `.form-ghost` input inside a `<label>` with `.form-cont
   <input type="search" class="form-ghost" placeholder="Search...">
 </label>
 
-------------------------------------------------------------------------
-EXAMPLE (cont.)
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Use `.form-adorn-end` to position the adornment on the trailing side (keeps DOM order, uses CSS to flip visually):
+Use `.form-adorn-end` to position the adornment on the trailing side (keeps
+DOM order, uses CSS to flip visually):
+
+Example code (HTML):
 
 <label class="form-control form-adorn form-adorn-end">
   <div class="form-adorn-icon" aria-hidden="true">
@@ -40,11 +88,15 @@ Note: Use `.form-adorn-end` to position the adornment on the trailing side (keep
   <input type="email" class="form-ghost" placeholder="you@example.com">
 </label>
 
-------------------------------------------------------------------------
+========================================================================
 WITH LABELS
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Add a second label outside the `.form-adorn` wrapper to name the field. Point it at the input with `for`, so the input keeps its name even if you change the wrapper:
+========================================================================
+
+Add a second label outside the `.form-adorn` wrapper to name the field. Point
+it at the input with `for`, so the input keeps its name even if you change the
+wrapper:
+
+Example code (HTML):
 
 <div>
   <label for="searchInput" class="form-label">Search</label>
@@ -65,11 +117,14 @@ Note: Add a second label outside the `.form-adorn` wrapper to name the field. Po
   </label>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 WITH FORM FIELD
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Wrap a `.form-adorn` in a `.form-field` to pair it with a label and description text.
+========================================================================
+
+Wrap a `.form-adorn` in a `.form-field` to pair it with a label and
+description text.
+
+Example code (HTML):
 
 <div class="form-field">
   <label for="adornField" class="form-label">Search</label>
@@ -82,11 +137,14 @@ Note: Wrap a `.form-adorn` in a `.form-field` to pair it with a label and descri
   <small class="form-text">Search across all pages and posts.</small>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 TEXT ADORNMENTS
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Use `.form-adorn-text` for currency symbols, units, domain suffixes, and other text-based adornments. Text adornments auto-size to their content.
+========================================================================
+
+Use `.form-adorn-text` for currency symbols, units, domain suffixes, and other
+text-based adornments. Text adornments auto-size to their content.
+
+Example code (HTML):
 
 <label class="form-control form-adorn">
   <span class="form-adorn-text" aria-hidden="true">$</span>
@@ -105,11 +163,13 @@ Note: Use `.form-adorn-text` for currency symbols, units, domain suffixes, and o
   <input type="text" class="form-ghost" placeholder="username">
 </label>
 
-------------------------------------------------------------------------
+========================================================================
 SIZING
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Use `.form-adorn-sm` or `.form-adorn-lg` on the wrapper to adjust sizing.
+========================================================================
+
+Use `.form-adorn-sm` or `.form-adorn-lg` on the wrapper to adjust sizing.
+
+Example code (HTML):
 
 <label class="form-control form-control-sm form-adorn">
   <div class="form-adorn-icon" aria-hidden="true">
@@ -130,10 +190,16 @@ Note: Use `.form-adorn-sm` or `.form-adorn-lg` on the wrapper to adjust sizing.
   <input type="text" class="form-ghost" placeholder="Large input">
 </label>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 7  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
+
+Example code (SCSS):
+
 // stylelint-disable-next-line scss/dollar-variable-default
 $form-adorn-tokens: defaults(
   (

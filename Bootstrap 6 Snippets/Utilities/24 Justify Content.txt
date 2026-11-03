@@ -1,0 +1,131 @@
+========================================================================
+JUSTIFY CONTENT
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/justify-content
+========================================================================
+
+WHAT IT DOES
+Use justify-content utilities to change the alignment of flex items on the
+main axis.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Basic usage
+  Responsive
+  CSS
+     - Sass utilities API
+
+Class                     Styles
+------------------------  -------------------------------
+.justify-content-start    justify-content: flex-start;
+.justify-content-end      justify-content: flex-end;
+.justify-content-center   justify-content: center;
+.justify-content-between  justify-content: space-between;
+.justify-content-around   justify-content: space-around;
+.justify-content-evenly   justify-content: space-evenly;
+
+========================================================================
+OVERVIEW
+========================================================================
+
+Use `justify-content` utilities on flexbox containers to change the alignment
+of flex items on the main axis (the x-axis to start, y-axis if
+`flex-direction: column`). Choose from `start` (browser default), `end`,
+`center`, `between`, `around`, or `evenly`.
+
+========================================================================
+BASIC USAGE
+========================================================================
+
+Example code (HTML):
+
+<div class="d-flex justify-content-start">...</div>
+<div class="d-flex justify-content-end">...</div>
+<div class="d-flex justify-content-center">...</div>
+<div class="d-flex justify-content-between">...</div>
+<div class="d-flex justify-content-around">...</div>
+<div class="d-flex justify-content-evenly">...</div>
+
+========================================================================
+RESPONSIVE
+========================================================================
+
+Responsive variations also exist for `justify-content`.
+
+- `.justify-content-start`
+- `.justify-content-end`
+- `.justify-content-center`
+- `.justify-content-between`
+- `.justify-content-around`
+- `.justify-content-evenly`
+- `.sm:justify-content-start`
+- `.sm:justify-content-end`
+- `.sm:justify-content-center`
+- `.sm:justify-content-between`
+- `.sm:justify-content-around`
+- `.sm:justify-content-evenly`
+- `.md:justify-content-start`
+- `.md:justify-content-end`
+- `.md:justify-content-center`
+- `.md:justify-content-between`
+- `.md:justify-content-around`
+- `.md:justify-content-evenly`
+- `.lg:justify-content-start`
+- `.lg:justify-content-end`
+- `.lg:justify-content-center`
+- `.lg:justify-content-between`
+- `.lg:justify-content-around`
+- `.lg:justify-content-evenly`
+- `.xl:justify-content-start`
+- `.xl:justify-content-end`
+- `.xl:justify-content-center`
+- `.xl:justify-content-between`
+- `.xl:justify-content-around`
+- `.xl:justify-content-evenly`
+- `.2xl:justify-content-start`
+- `.2xl:justify-content-end`
+- `.2xl:justify-content-center`
+- `.2xl:justify-content-between`
+- `.2xl:justify-content-around`
+- `.2xl:justify-content-evenly`
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Justify content utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"justify-content": (
+  responsive: true,
+  property: justify-content,
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    evenly: space-evenly,
+  )
+),
+
+========================================================================
+END OF FILE
+========================================================================

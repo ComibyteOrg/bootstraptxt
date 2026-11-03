@@ -1,0 +1,102 @@
+========================================================================
+HOVER LIFT
+Bootstrap 6.0  |  Helpers reference
+Source: https://getbootstrap.com/docs/6.0/helpers/hover-lift
+========================================================================
+
+WHAT IT DOES
+Raise an element with a subtle transform and shadow on hover and keyboard
+focus.
+
+HOW TO USE IT
+Add the helper class to the element you want to affect. Helpers are small,
+single-purpose classes that do one job.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+  Example
+  CSS
+     - Variables
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Add `.hover-lift` to any element to gently raise it—translating it upward and
+deepening its shadow—when the user hovers over it or focuses it with the
+keyboard. It’s a lightweight way to signal that cards, tiles, or other
+surfaces are interactive.
+
+The effect is driven by CSS custom properties and applied with our
+`transition()` mixin, so it’s fully customizable and automatically honors the
+`prefers-reduced-motion` media feature—users who prefer reduced motion get the
+raised shadow and offset without the animation.
+
+========================================================================
+EXAMPLE
+========================================================================
+
+Hover or tab to the card below to see it lift.
+
+Example code (HTML):
+
+<a href="#" class="card hover-lift text-decoration-none" style="max-width: 20rem;">
+  <div class="card-body">
+    <h5 class="card-title">Hover me</h5>
+    <p class="card-text mb-0">This card lifts on hover and keyboard focus.</p>
+  </div>
+</a>
+
+Because it only sets `transform` and `box-shadow`, `.hover-lift` composes with
+any element—buttons, list items, or plain containers.
+
+Example code (HTML):
+
+<button type="button" class="btn-solid theme-primary hover-lift">Lift on hover</button>
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+VARIABLES
+------------------------------------------------------------------------
+
+Hover lift helpers use local CSS variables on `.hover-lift` for real-time
+customization. Values for the CSS variables are generated from Sass maps
+unique to each component and applied to the aforementioned class.
+
+Example code (SCSS):
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$hover-lift-tokens: defaults(
+  (
+    --hover-lift-transition-duration: .2s,
+    --hover-lift-transition-timing: ease,
+    --hover-lift-transform: translateY(-.25rem),
+    --hover-lift-box-shadow: var(--box-shadow-lg),
+  ),
+  $hover-lift-tokens
+);
+
+Override the tokens to tune the lift distance, shadow, or timing. For example,
+a larger rise with a snappier transition:
+
+Example code (HTML):
+
+<a href="#" class="card hover-lift text-decoration-none" style="--bs-hover-lift-transform: translateY(-.5rem); --bs-hover-lift-transition-duration: .1s; max-width: 20rem;">
+  <div class="card-body">
+    <h5 class="card-title">Bigger lift</h5>
+    <p class="card-text mb-0">Customized transform and duration.</p>
+  </div>
+</a>
+
+========================================================================
+END OF FILE
+========================================================================

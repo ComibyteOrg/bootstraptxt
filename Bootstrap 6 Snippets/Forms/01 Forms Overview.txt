@@ -1,21 +1,79 @@
 ========================================================================
 FORMS
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Forms reference
 Source: https://getbootstrap.com/docs/6.0/forms/overview
 ========================================================================
 
-Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
+WHAT IT DOES
+Examples and usage guidelines for form control styles, layout options, and
+custom components for creating a wide variety of forms.
 
-CONTENTS
-   1. Overview  (example 1)
-   2. Disabled forms  (examples 2, 3)
-   3. CSS > Variables  (example 4)
+HOW TO USE IT
+Form controls, inputs, and the form layout system. Most are plain HTML + CSS;
+the interactive ones (datepicker, combobox, ...) come with a JAVASCRIPT SETUP
+block.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Overview
+  Disabled forms
+  Accessibility
+  CSS
+     - Variables
+
+Form control
+
+Style textual inputs and textareas with support for multiple states.
+
+Checkbox
+
+Use our custom checkboxes in forms for selecting input options.
+
+Radio
+
+Use our custom radio buttons in forms for selecting input options.
+
+Range
+
+Replace browser default range inputs with our custom version.
+
+Input group
+
+Attach labels and buttons to your inputs for increased semantic value.
+
+Floating labels
+
+Create beautifully simple form labels that float over your input fields.
+
+Layout
+
+Create inline, horizontal, or complex grid-based layouts with your forms.
+
+Validation
+
+Validate your forms with custom or native validation behaviors and styles.
+
+========================================================================
 OVERVIEW
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Bootstrap’s form controls expand on our Rebooted form styles with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.
+========================================================================
+
+Bootstrap’s form controls expand on our Rebooted form styles with classes. Use
+these classes to opt into their customized displays for a more consistent
+rendering across browsers and devices.
+
+Be sure to use an appropriate `type` attribute on all inputs (e.g., `email`
+for email address or `number` for numerical information) to take advantage of
+newer input controls like email verification, number selection, and more.
+
+Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading
+for documentation on required classes, form layout, and more.
+
+Example code (HTML):
 
 <form>
   <div class="mb-3">
@@ -34,19 +92,30 @@ Note: Bootstrap’s form controls expand on our Rebooted form styles with classe
   <button type="submit" class="btn-solid theme-primary">Submit</button>
 </form>
 
-------------------------------------------------------------------------
+========================================================================
 DISABLED FORMS
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: Add the `disabled` boolean attribute on an input to prevent user interactions and make it appear lighter.
+========================================================================
+
+Add the `disabled` boolean attribute on an input to prevent user interactions
+and make it appear lighter.
+
+Example code (HTML):
 
 <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
 
-------------------------------------------------------------------------
-DISABLED FORMS (cont.)
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Add the `disabled` attribute to a `<fieldset>` to disable all the controls within. Browsers treat all native form controls (`<input>`, `<select>`, and `<button>` elements) inside a `<fieldset disabled>` as disabled, preventing both keyboard and mouse interactions on them.
+Add the `disabled` attribute to a `<fieldset>` to disable all the controls
+within. Browsers treat all native form controls (`<input>`, `<select>`, and
+`<button>` elements) inside a `<fieldset disabled>` as disabled, preventing
+both keyboard and mouse interactions on them.
+
+However, if your form also includes custom button-like elements such as `<a
+class="btn-*">...</a>`, these will only be given a style of `pointer-events:
+none`, meaning they are still focusable and operable using the keyboard. In
+this case, you must manually modify these controls by adding `tabindex="-1"`
+to prevent them from receiving focus and `aria-disabled="disabled"` to signal
+their state to assistive technologies.
+
+Example code (HTML):
 
 <form>
   <fieldset disabled>
@@ -71,11 +140,51 @@ Note: Add the `disabled` attribute to a `<fieldset>` to disable all the controls
   </fieldset>
 </form>
 
+========================================================================
+ACCESSIBILITY
+========================================================================
+
+Ensure that all form controls have an appropriate accessible name so that
+their purpose can be conveyed to users of assistive technologies. The simplest
+way to achieve this is to use a `<label>` element, or—in the case of
+buttons—to include sufficiently descriptive text as part of the
+`<button>...</button>` content.
+
+For situations where it’s not possible to include a visible `<label>` or
+appropriate text content, there are alternative ways of still providing an
+accessible name, such as:
+
+- `<label>` elements hidden using the `.visually-hidden` class
+- Pointing to an existing element that can act as a label using
+  `aria-labelledby`
+- Providing a `title` attribute
+- Explicitly setting the accessible name on an element using `aria-label`
+
+If none of these are present, assistive technologies may resort to using the
+`placeholder` attribute as a fallback for the accessible name on `<input>` and
+`<textarea>` elements. The examples in this section provide a few suggested,
+case-specific approaches.
+
+While using visually hidden content (`.visually-hidden`, `aria-label`, and
+even `placeholder` content, which disappears once a form field has content)
+will benefit assistive technology users, a lack of visible label text may
+still be problematic for certain users. Some form of visible label is
+generally the best approach, both for accessibility and usability.
+
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 4  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Some form variables are set at the root level to be re-used and extended by individual form components, but you’ll most often see variables set at the form control level. Root variables are often `--btn-input-*`, which are shared with buttons, and `--input-*` variables.
+
+Some form variables are set at the root level to be re-used and extended by
+individual form components, but you’ll most often see variables set at the
+form control level. Root variables are often `--btn-input-*`, which are shared
+with buttons, and `--input-*` variables.
+
+Example code (SCSS):
 
 --control-checked-bg: var(--primary-base),
 --control-checked-border-color: var(--control-checked-bg),

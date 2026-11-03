@@ -1,33 +1,59 @@
 ========================================================================
 BADGES
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/badge
 ========================================================================
 
+WHAT IT DOES
 Small components for indicating status and counts, or labelling items.
 
-CONTENTS
-   1. Examples  (example 1)
-   2. Example heading New > Example heading New > Example heading New  (example 2)
-   3. Example heading New > Buttons  (example 3)
-   4. Example heading New > Positioned  (examples 4, 5)
-   5. Variants  (examples 6, 7, 8)
-   6. CSS > Variables  (example 9)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Examples
+     - Headings
+  Example heading New
+     - Example heading New
+     - Buttons
+     - Positioned
+  Variants
+  CSS
+     - Variables
+
+========================================================================
 EXAMPLES
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Badges are tiny, static display components used for adding context to other elements. They can be used as part of navigation, buttons, and more to provide a counter or label. Badges scale to match the size of the immediate parent element by using relative font sizing and `em` units.
+========================================================================
+
+Badges are tiny, static display components used for adding context to other
+elements. They can be used as part of navigation, buttons, and more to provide
+a counter or label. Badges scale to match the size of the immediate parent
+element by using relative font sizing and `em` units.
+
+Badges come in three variants: solid (default), subtle, and outline.
+
+Example code (HTML):
 
 <span class="badge theme-primary">New</span>
 <span class="badge badge-subtle theme-primary">New</span>
 <span class="badge badge-outline theme-primary">New</span>
 
 ------------------------------------------------------------------------
-EXAMPLE HEADING NEW > EXAMPLE HEADING NEW > EXAMPLE HEADING NEW
-Example 2  |  HTML
+HEADINGS
 ------------------------------------------------------------------------
+
+Badges adapt to the `font-size` of the parent element.
+
+Example code (HTML):
+
 <h1>Example heading <span class="badge">New</span></h1>
 <h2>Example heading <span class="badge">New</span></h2>
 <h3>Example heading <span class="badge">New</span></h3>
@@ -36,20 +62,36 @@ Example 2  |  HTML
 <h6>Example heading <span class="badge">New</span></h6>
 
 ------------------------------------------------------------------------
-EXAMPLE HEADING NEW > BUTTONS
-Example 3  |  HTML
+BUTTONS
 ------------------------------------------------------------------------
-Note: Badges can be used as part of links or buttons to provide a counter.
+
+Badges can be used as part of links or buttons to provide a counter.
+
+Example code (HTML):
 
 <button type="button" class="btn-solid theme-primary">
   Notifications <span class="badge theme-danger">4</span>
 </button>
 
+Note that depending on how they are used, badges may be confusing for users of
+screen readers and similar assistive technologies. While the styling of badges
+provides a visual cue as to their purpose, these users will simply be
+presented with the content of the badge. Depending on the specific situation,
+these badges may seem like random additional words or numbers at the end of a
+sentence, link, or button.
+
+Unless the context is clear (as with the “Notifications” example, where it is
+understood that the “4” is the number of notifications), consider including
+additional context with a visually hidden piece of additional text.
+
 ------------------------------------------------------------------------
-EXAMPLE HEADING NEW > POSITIONED
-Example 4  |  HTML
+POSITIONED
 ------------------------------------------------------------------------
-Note: Use utilities to modify a `.badge` and position it in the corner of a link or button.
+
+Use utilities to modify a `.badge` and position it in the corner of a link or
+button.
+
+Example code (HTML):
 
 <button type="button" class="btn-solid theme-primary position-relative">
   Inbox
@@ -59,11 +101,10 @@ Note: Use utilities to modify a `.badge` and position it in the corner of a link
   </span>
 </button>
 
-------------------------------------------------------------------------
-EXAMPLE HEADING NEW > POSITIONED (cont.)
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: You can also replace the `.badge` class with a few more utilities without a count for a more generic indicator.
+You can also replace the `.badge` class with a few more utilities without a
+count for a more generic indicator.
+
+Example code (HTML):
 
 <button type="button" class="btn-solid theme-primary position-relative">
   Profile
@@ -72,11 +113,14 @@ Note: You can also replace the `.badge` class with a few more utilities without 
   </span>
 </button>
 
-------------------------------------------------------------------------
+========================================================================
 VARIANTS
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: Use the contextual `.theme-{color}` classes to apply a semantic theme color to badges.
+========================================================================
+
+Use the contextual `.theme-{color}` classes to apply a semantic theme color to
+badges.
+
+Example code (HTML):
 
 <span class="badge theme-primary">Primary</span>
 <span class="badge theme-accent">Accent</span>
@@ -87,10 +131,8 @@ Note: Use the contextual `.theme-{color}` classes to apply a semantic theme colo
 <span class="badge theme-inverse">Inverse</span>
 <span class="badge theme-secondary">Secondary</span>
 
-------------------------------------------------------------------------
-VARIANTS (cont.)
-Example 7  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <span class="badge badge-subtle theme-primary">Primary</span>
 <span class="badge badge-subtle theme-accent">Accent</span>
 <span class="badge badge-subtle theme-success">Success</span>
@@ -100,10 +142,8 @@ Example 7  |  HTML
 <span class="badge badge-subtle theme-inverse">Inverse</span>
 <span class="badge badge-subtle theme-secondary">Secondary</span>
 
-------------------------------------------------------------------------
-VARIANTS (cont.)
-Example 8  |  HTML
-------------------------------------------------------------------------
+Example code (HTML):
+
 <span class="badge badge-outline theme-primary">Primary</span>
 <span class="badge badge-outline theme-accent">Accent</span>
 <span class="badge badge-outline theme-success">Success</span>
@@ -113,11 +153,27 @@ Example 8  |  HTML
 <span class="badge badge-outline theme-inverse">Inverse</span>
 <span class="badge badge-outline theme-secondary">Secondary</span>
 
+Accessibility Tip: Using color to convey meaning
+
+Using color to add meaning only provides a visual indication, which will not
+be conveyed to users of assistive technologies like screen readers. Please
+ensure the meaning is obvious from the content itself (e.g., the visible text
+with a sufficient color contrast) or is included through alternative means,
+such as additional text hidden with the `.visually-hidden` class.
+
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 9  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Badges use local CSS variables on `.badge` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Badges use local CSS variables on `.badge` for real-time customization. Values
+for the CSS variables are generated from Sass maps unique to each component
+and applied to the aforementioned class.
+
+Example code (SCSS):
 
 $badge-tokens: defaults(
   (

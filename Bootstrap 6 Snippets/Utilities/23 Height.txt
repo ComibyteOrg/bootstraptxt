@@ -1,0 +1,268 @@
+========================================================================
+HEIGHT
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/height
+========================================================================
+
+WHAT IT DOES
+Use height utilities to control the height of elements with responsive height
+classes.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Relative height
+  Intrinsic sizing
+  Max height
+  Min height
+  Viewport height
+  Dynamic viewport height
+     - Small and large viewport units
+  CSS
+     - Sass utilities API
+
+Class         Styles
+------------  --------------------
+.h-25         height: 25%;
+.h-50         height: 50%;
+.h-75         height: 75%;
+.h-100        height: 100%;
+.h-auto       height: auto;
+.h-min        height: min-content;
+.h-max        height: max-content;
+.h-fit        height: fit-content;
+.max-h-100    max-height: 100%;
+.min-h-0      min-height: 0;
+.min-h-100    min-height: 100%;
+.vh-100       height: 100vh;
+.min-vh-100   min-height: 100vh;
+.dvh-100      height: 100dvh;
+.min-dvh-100  min-height: 100dvh;
+
+Use height utilities to set the height of elements. Height utilities are
+generated from the utility API and include support for percentage values,
+intrinsic sizing keywords, and viewport units.
+
+========================================================================
+RELATIVE HEIGHT
+========================================================================
+
+Set height relative to the parent element using percentage-based utilities.
+Includes support for `25%`, `50%`, `75%`, `100%`, and `auto` by default.
+
+Example code (HTML):
+
+<div style="height: 100px;">
+  <div class="h-25 d-inline-block" style="width: 120px;">Height 25%</div>
+  <div class="h-50 d-inline-block" style="width: 120px;">Height 50%</div>
+  <div class="h-75 d-inline-block" style="width: 120px;">Height 75%</div>
+  <div class="h-100 d-inline-block" style="width: 120px;">Height 100%</div>
+  <div class="h-auto d-inline-block" style="width: 120px;">Height auto</div>
+</div>
+
+========================================================================
+INTRINSIC SIZING
+========================================================================
+
+Use intrinsic sizing keywords to set height based on content.
+
+Example code (HTML):
+
+<div style="height: 200px;">
+  <div class="h-min d-inline-block p-3" style="width: 120px;">Height min-content</div>
+  <div class="h-max d-inline-block p-3" style="width: 120px;">Height max-content</div>
+  <div class="h-fit d-inline-block p-3" style="width: 120px;">Height fit-content</div>
+</div>
+
+========================================================================
+MAX HEIGHT
+========================================================================
+
+Set maximum height using `max-height` utilities.
+
+Example code (HTML):
+
+<div style="height: 100px;">
+  <div class="max-h-100" style="width: 100px; height: 200px;">Max-height 100%</div>
+</div>
+
+========================================================================
+MIN HEIGHT
+========================================================================
+
+Set minimum height using `min-height` utilities.
+
+Example code (HTML):
+
+<div class="min-h-0 p-3" style="width: 200px;">
+  Min-height 0 (allows content to determine height)
+</div>
+<div class="min-h-100 p-3" style="width: 200px;">Min-height 100%</div>
+
+========================================================================
+VIEWPORT HEIGHT
+========================================================================
+
+Set height relative to the viewport using viewport units.
+
+Example code (HTML):
+
+<div class="vh-100">Height 100vh</div>
+<div class="min-vh-100">Min-height 100vh</div>
+
+NOTE:
+  Full viewport height sections! Using `vh-100` makes an element take up the
+  entire viewport height, which is useful for hero sections and full-screen
+  layouts. On mobile browsers, `vh-100` can be taller than the visible area. See
+  dynamic viewport height.
+
+========================================================================
+DYNAMIC VIEWPORT HEIGHT
+========================================================================
+
+On mobile browsers, the URL bar and the toolbars hide and show while the user
+scrolls. The `vh` unit does not change when this happens. It always measures
+the viewport with the browser UI hidden. An element with `vh-100` is therefore
+taller than the visible area while the URL bar shows. The bottom of the
+element stays off screen.
+
+The `dvh` unit measures the area that the user sees now. The browser updates
+the value when it hides or shows the browser UI. Use `dvh-100` and
+`min-dvh-100` to fill the visible area on every device.
+
+Example code (HTML):
+
+<div class="dvh-100">Height 100dvh</div>
+<div class="min-dvh-100">Min-height 100dvh</div>
+
+NOTE:
+  Which unit do I use? Use `dvh` for full-screen mobile layouts, such as hero
+  sections and full-height panels. Use `vh` when you need a height that does not
+  change. The browser recalculates `dvh` while the browser UI animates, so the
+  content can move. The browser never recalculates `vh`, but the element can
+  overflow the visible area.
+
+------------------------------------------------------------------------
+SMALL AND LARGE VIEWPORT UNITS
+------------------------------------------------------------------------
+
+CSS gives you two more viewport units:
+
+- `svh` is the small viewport height. It measures the viewport with the
+  browser UI shown.
+- `lvh` is the large viewport height. It measures the viewport with the
+  browser UI hidden. Current browsers give `vh` the same value.
+
+We do not ship utilities for `svh` and `lvh`, because most layouts need `dvh`.
+Add them with the utilities API:
+
+Example code (SCSS):
+
+// my-bootstrap.scss
+@use "bootstrap/scss/bootstrap" with (
+  $utilities: (
+    "small-viewport-height": (
+      property: height,
+      class: svh,
+      values: (100: 100svh)
+    ),
+    "min-small-viewport-height": (
+      property: min-height,
+      class: min-svh,
+      values: (100: 100svh)
+    ),
+    "large-viewport-height": (
+      property: height,
+      class: lvh,
+      values: (100: 100lvh)
+    ),
+    "min-large-viewport-height": (
+      property: min-height,
+      class: min-lvh,
+      values: (100: 100lvh)
+    )
+  )
+);
+
+This adds `.svh-100`, `.min-svh-100`, `.lvh-100`, and `.min-lvh-100`.
+
+NOTE:
+  Every browser that Bootstrap 6 supports has `dvh`, `svh`, and `lvh`. Read
+  Browsers & devices for the full support policy.
+
+We ship the same utilities for the width axis, `dvw-100` and `min-dvw-100`.
+Read dynamic viewport width to see how the width units differ.
+
+========================================================================
+CSS
+========================================================================
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Height utilities are declared in our utilities API in `scss/_utilities.scss`.
+Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"height": (
+  property: height,
+  class: h,
+  values: (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto,
+    min: min-content,
+    max: max-content,
+    fit: fit-content,
+  )
+),
+"max-height": (
+  property: max-height,
+  class: max-h,
+  values: (100: 100%)
+),
+"min-height": (
+  property: min-height,
+  class: min-h,
+  values: (
+    0: 0,
+    100: 100%,
+  ),
+),
+"viewport-height": (
+  property: height,
+  class: vh,
+  values: (100: 100vh)
+),
+"min-viewport-height": (
+  property: min-height,
+  class: min-vh,
+  values: (100: 100vh)
+),
+"dynamic-viewport-height": (
+  property: height,
+  class: dvh,
+  values: (100: 100dvh)
+),
+"min-dynamic-viewport-height": (
+  property: min-height,
+  class: min-dvh,
+  values: (100: 100dvh)
+),
+
+========================================================================
+END OF FILE
+========================================================================

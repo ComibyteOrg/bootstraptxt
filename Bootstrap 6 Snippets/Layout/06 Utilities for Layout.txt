@@ -1,0 +1,71 @@
+========================================================================
+UTILITIES FOR LAYOUT
+Bootstrap 6.0  |  Layout reference
+Source: https://getbootstrap.com/docs/6.0/layout/utilities
+========================================================================
+
+WHAT IT DOES
+For faster mobile-friendly and responsive development, Bootstrap includes
+dozens of utility classes for showing, hiding, aligning, and spacing content.
+
+HOW TO USE IT
+Bootstrap is mobile-first. Base classes apply at every screen size; a
+breakpoint prefix applies a class from that size up. In v6 the prefix comes
+first: `md:col-6` (not `col-md-6`).
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Changing `display`
+  Flexbox options
+  Margin and padding
+  Toggle `visibility`
+
+========================================================================
+CHANGING `DISPLAY`
+========================================================================
+
+Use our display utilities for responsively toggling common values of the
+`display` property. Mix it with our grid system, content, or components to
+show or hide them across specific viewports.
+
+========================================================================
+FLEXBOX OPTIONS
+========================================================================
+
+Bootstrap is built with flexbox, but not every element’s `display` has been
+changed to `display: flex` as this would add many unnecessary overrides and
+unexpectedly change key browser behaviors. Most of our components are built
+with flexbox enabled.
+
+Should you need to add `display: flex` to an element, do so with `.d-flex` or
+one of the responsive variants (e.g., `.sm:d-flex`). You’ll need this class or
+`display` value to allow the use of our extra flexbox utilities for sizing,
+alignment, spacing, and more.
+
+========================================================================
+MARGIN AND PADDING
+========================================================================
+
+Use the margin and padding utilities to control how elements and components
+are spaced and sized. Bootstrap includes a 13-step scale for spacing
+utilities, based on a default `$spacer` value of `1rem`. Choose values for all
+viewports (e.g., `.me-5` for `margin-inline-end: 1rem`), or use responsive
+variants to target specific viewports (e.g., `.md:me-5` starting at the `md`
+breakpoint).
+
+========================================================================
+TOGGLE `VISIBILITY`
+========================================================================
+
+When toggling `display` isn’t needed, you can toggle the `visibility` of an
+element with our visibility utilities. Invisible elements will still affect
+the layout of the page, but are visually hidden from visitors.
+
+========================================================================
+END OF FILE
+========================================================================

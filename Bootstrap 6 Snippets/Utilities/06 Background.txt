@@ -1,0 +1,321 @@
+========================================================================
+BACKGROUND
+Bootstrap 6.0  |  Utilities reference
+Source: https://getbootstrap.com/docs/6.0/utilities/background
+========================================================================
+
+WHAT IT DOES
+Convey meaning through `background-color` and add decoration with gradients.
+
+HOW TO USE IT
+Utility classes follow `{property}-{value}` and can be added to any element.
+Add a breakpoint prefix to apply one only from that size up: `md:m-3`. Values
+in `{braces}` are placeholders.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Colors
+  Background gradient
+  Opacity
+  CSS
+     - Sass variables
+     - Sass maps
+     - Sass mixins
+     - Sass utilities API
+
+Class                 Styles
+--------------------  -----------------------------------------------------------------------
+.bg-primary           --bs-bg: var(--bs-primary-bg); background-color: var(--bs-bg);
+.bg-accent            --bs-bg: var(--bs-accent-bg); background-color: var(--bs-bg);
+.bg-success           --bs-bg: var(--bs-success-bg); background-color: var(--bs-bg);
+.bg-danger            --bs-bg: var(--bs-danger-bg); background-color: var(--bs-bg);
+.bg-warning           --bs-bg: var(--bs-warning-bg); background-color: var(--bs-bg);
+.bg-info              --bs-bg: var(--bs-info-bg); background-color: var(--bs-bg);
+.bg-inverse           --bs-bg: var(--bs-inverse-bg); background-color: var(--bs-bg);
+.bg-secondary         --bs-bg: var(--bs-secondary-bg); background-color: var(--bs-bg);
+.bg-body              --bs-bg: var(--bs-bg-body); background-color: var(--bs-bg);
+.bg-1                 --bs-bg: var(--bs-bg-1); background-color: var(--bs-bg);
+.bg-2                 --bs-bg: var(--bs-bg-2); background-color: var(--bs-bg);
+.bg-3                 --bs-bg: var(--bs-bg-3); background-color: var(--bs-bg);
+.bg-4                 --bs-bg: var(--bs-bg-4); background-color: var(--bs-bg);
+.bg-fg                --bs-bg: var(--bs-bg-fg); background-color: var(--bs-bg);
+.bg-white             --bs-bg: var(--bs-bg-white); background-color: var(--bs-bg);
+.bg-black             --bs-bg: var(--bs-bg-black); background-color: var(--bs-bg);
+.bg-transparent       --bs-bg: var(--bs-bg-transparent); background-color: var(--bs-bg);
+.bg-muted-primary     --bs-bg: var(--bs-primary-bg-muted); background-color: var(--bs-bg);
+.bg-muted-accent      --bs-bg: var(--bs-accent-bg-muted); background-color: var(--bs-bg);
+.bg-muted-success     --bs-bg: var(--bs-success-bg-muted); background-color: var(--bs-bg);
+.bg-muted-danger      --bs-bg: var(--bs-danger-bg-muted); background-color: var(--bs-bg);
+.bg-muted-warning     --bs-bg: var(--bs-warning-bg-muted); background-color: var(--bs-bg);
+.bg-muted-info        --bs-bg: var(--bs-info-bg-muted); background-color: var(--bs-bg);
+.bg-muted-inverse     --bs-bg: var(--bs-inverse-bg-muted); background-color: var(--bs-bg);
+.bg-muted-secondary   --bs-bg: var(--bs-secondary-bg-muted); background-color: var(--bs-bg);
+.bg-subtle-primary    --bs-bg: var(--bs-primary-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-accent     --bs-bg: var(--bs-accent-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-success    --bs-bg: var(--bs-success-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-danger     --bs-bg: var(--bs-danger-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-warning    --bs-bg: var(--bs-warning-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-info       --bs-bg: var(--bs-info-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-inverse    --bs-bg: var(--bs-inverse-bg-subtle); background-color: var(--bs-bg);
+.bg-subtle-secondary  --bs-bg: var(--bs-secondary-bg-subtle); background-color: var(--bs-bg);
+.bg-10                background-color: color-mix(in oklch, var(--bs-bg) 10%, transparent);
+.bg-20                background-color: color-mix(in oklch, var(--bs-bg) 20%, transparent);
+.bg-30                background-color: color-mix(in oklch, var(--bs-bg) 30%, transparent);
+.bg-40                background-color: color-mix(in oklch, var(--bs-bg) 40%, transparent);
+.bg-50                background-color: color-mix(in oklch, var(--bs-bg) 50%, transparent);
+.bg-60                background-color: color-mix(in oklch, var(--bs-bg) 60%, transparent);
+.bg-70                background-color: color-mix(in oklch, var(--bs-bg) 70%, transparent);
+.bg-80                background-color: color-mix(in oklch, var(--bs-bg) 80%, transparent);
+.bg-90                background-color: color-mix(in oklch, var(--bs-bg) 90%, transparent);
+.bg-100               background-color: var(--bs-bg);
+.bg-gradient          background-image: var(--bs-gradient);
+
+Accessibility Tip: Using color to convey meaning
+
+Using color to add meaning only provides a visual indication, which will not
+be conveyed to users of assistive technologies like screen readers. Please
+ensure the meaning is obvious from the content itself (e.g., the visible text
+with a sufficient color contrast) or is included through alternative means,
+such as additional text hidden with the `.visually-hidden` class.
+
+========================================================================
+COLORS
+========================================================================
+
+Change the `background-color` using utilities built on our theme colors using
+`.bg-{color}`, `.bg-muted-{color}`, and `.bg-subtle-{color}`. All these
+background color utilities set the `background-color` property to a local CSS
+variable, `--bs-bg`, which has the value of the theme color. The root color
+tokens also use `light-dark()` to ensure sufficient contrast in both light and
+dark color modes.
+
+For example, `.bg-primary` sets the `--bs-bg` variable to
+`var(--bs-primary-bg)`:
+
+Example code (CSS):
+
+.bg-primary {
+  --bs-bg: var(--bs-primary-bg);
+  background-color: var(--bs-bg);
+}
+
+This approach allows us to also easily support translucency with our
+`.bg-{opacity}` utilities as we can use `color-mix()` with the CSS variable to
+generate the appropriate color. See the opacity section for more details.
+
+Example code (HTML):
+
+<div class="p-3 mb-2 bg-primary fg-contrast-primary">.bg-primary</div>
+<div class="p-3 mb-2 bg-muted-primary fg-primary">.bg-muted-primary</div>
+<div class="p-3 mb-2 bg-subtle-primary fg-primary">.bg-subtle-primary</div>
+<div class="p-3 mb-2 bg-accent fg-contrast-accent">.bg-accent</div>
+<div class="p-3 mb-2 bg-muted-accent fg-accent">.bg-muted-accent</div>
+<div class="p-3 mb-2 bg-subtle-accent fg-accent">.bg-subtle-accent</div>
+<div class="p-3 mb-2 bg-success fg-contrast-success">.bg-success</div>
+<div class="p-3 mb-2 bg-muted-success fg-success">.bg-muted-success</div>
+<div class="p-3 mb-2 bg-subtle-success fg-success">.bg-subtle-success</div>
+<div class="p-3 mb-2 bg-danger fg-contrast-danger">.bg-danger</div>
+<div class="p-3 mb-2 bg-muted-danger fg-danger">.bg-muted-danger</div>
+<div class="p-3 mb-2 bg-subtle-danger fg-danger">.bg-subtle-danger</div>
+<div class="p-3 mb-2 bg-warning fg-contrast-warning">.bg-warning</div>
+<div class="p-3 mb-2 bg-muted-warning fg-warning">.bg-muted-warning</div>
+<div class="p-3 mb-2 bg-subtle-warning fg-warning">.bg-subtle-warning</div>
+<div class="p-3 mb-2 bg-info fg-contrast-info">.bg-info</div>
+<div class="p-3 mb-2 bg-muted-info fg-info">.bg-muted-info</div>
+<div class="p-3 mb-2 bg-subtle-info fg-info">.bg-subtle-info</div>
+<div class="p-3 mb-2 bg-inverse fg-contrast-inverse">.bg-inverse</div>
+<div class="p-3 mb-2 bg-muted-inverse fg-inverse">.bg-muted-inverse</div>
+<div class="p-3 mb-2 bg-subtle-inverse fg-inverse">.bg-subtle-inverse</div>
+<div class="p-3 mb-2 bg-secondary fg-contrast-secondary">.bg-secondary</div>
+<div class="p-3 mb-2 bg-muted-secondary fg-secondary">.bg-muted-secondary</div>
+<div class="p-3 mb-2 bg-subtle-secondary fg-secondary">.bg-subtle-secondary</div>
+<div class="p-3 mb-2 bg-body fg-body">.bg-body</div>
+<div class="p-3 mb-2 bg-1">.bg-1</div>
+<div class="p-3 mb-2 bg-2">.bg-2</div>
+<div class="p-3 mb-2 bg-3">.bg-3</div>
+<div class="p-3 mb-2 bg-4">.bg-4</div>
+<div class="p-3 mb-2 bg-black fg-white">.bg-black</div>
+<div class="p-3 mb-2 bg-white fg-black">.bg-white</div>
+<div class="p-3 mb-2 bg-transparent fg-body">.bg-transparent</div>
+
+========================================================================
+BACKGROUND GRADIENT
+========================================================================
+
+By adding a `.bg-gradient` class, a linear gradient is added as background
+image to the backgrounds. This gradient starts with a semi-transparent white
+which fades out to the bottom.
+
+Do you need a gradient in your custom CSS? Just add `background-image:
+var(--bs-gradient);`.
+
+Example code (HTML):
+
+<div class="p-3 bg-primary bg-gradient fg-contrast-primary">.bg-primary.bg-gradient</div>
+<div class="p-3 bg-accent bg-gradient fg-contrast-accent">.bg-accent.bg-gradient</div>
+<div class="p-3 bg-success bg-gradient fg-contrast-success">.bg-success.bg-gradient</div>
+<div class="p-3 bg-danger bg-gradient fg-contrast-danger">.bg-danger.bg-gradient</div>
+<div class="p-3 bg-warning bg-gradient fg-contrast-warning">.bg-warning.bg-gradient</div>
+<div class="p-3 bg-info bg-gradient fg-contrast-info">.bg-info.bg-gradient</div>
+<div class="p-3 bg-inverse bg-gradient fg-contrast-inverse">.bg-inverse.bg-gradient</div>
+<div class="p-3 bg-secondary bg-gradient fg-contrast-secondary">.bg-secondary.bg-gradient</div>
+<div class="p-3 bg-black bg-gradient fg-white">.bg-black.bg-gradient</div>
+
+========================================================================
+OPACITY
+========================================================================
+
+Change the opacity of a background color by using any of the
+`.bg-<percentage>` utilities which use `color-mix()` to mix the background
+color with `transparent`.
+
+Example code (HTML):
+
+<div class="bg-success p-2">This is default success background</div>
+<div class="bg-success p-2 bg-90">This is 90% opacity success background</div>
+<div class="bg-success p-2 bg-80">This is 80% opacity success background</div>
+<div class="bg-success p-2 bg-70">This is 70% opacity success background</div>
+<div class="bg-success p-2 bg-60">This is 60% opacity success background</div>
+<div class="bg-success p-2 bg-50">This is 50% opacity success background</div>
+<div class="bg-success p-2 bg-40">This is 40% opacity success background</div>
+<div class="bg-success p-2 bg-30">This is 30% opacity success background</div>
+<div class="bg-success p-2 bg-20">This is 20% opacity success background</div>
+<div class="bg-success p-2 bg-10">This is 10% opacity success background</div>
+
+The same can be applied to subtle and muted background colors.
+
+Example code (HTML):
+
+<div class="bg-subtle-success p-2">This is subtle success background</div>
+<div class="bg-muted-success bg-40 p-2">This is 40% success background</div>
+<div class="bg-muted-success bg-20 p-2">This is 20% success background</div>
+
+========================================================================
+CSS
+========================================================================
+
+In addition to the following Sass functionality, consider reading about our
+included CSS custom properties (aka CSS variables) for colors and more.
+
+------------------------------------------------------------------------
+SASS VARIABLES
+------------------------------------------------------------------------
+
+Most `background-color` utilities are generated by our theme colors,
+reassigned from our generic color palette variables. Grayscale colors are also
+available, but only a subset are used to generate any utilities. See the Color
+documentation for our base color variables and map.
+
+Example code (SCSS):
+
+$gradient: linear-gradient(180deg, color-mix(var(--white) 15%, transparent), color-mix(var(--white) 0%, transparent));
+
+------------------------------------------------------------------------
+SASS MAPS
+------------------------------------------------------------------------
+
+Theme colors are then put into a Sass map so we can loop over them to generate
+our utilities, component modifiers, and more. See the Theme documentation for
+the full `$theme-colors` Sass map.
+
+------------------------------------------------------------------------
+SASS MIXINS
+------------------------------------------------------------------------
+
+No mixins are used to generate our background utilities, but we do have some
+additional mixins for other situations where you’d like to create your own
+gradients.
+
+Example code (SCSS):
+
+@mixin gradient-bg($color: null) {
+  background-color: $color;
+
+  @if $enable-gradients {
+    background-image: var(--gradient);
+  }
+}
+
+Example code (SCSS):
+
+// Horizontal gradient, from left to right
+//
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+@mixin gradient-x($start-color: var(--gray-700), $end-color: var(--gray-800), $start-percent: 0%, $end-percent: 100%) {
+  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent);
+}
+
+// Vertical gradient, from top to bottom
+//
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+@mixin gradient-y($start-color: var(--gray-700), $end-color: var(--gray-800), $start-percent: null, $end-percent: null) {
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
+}
+
+@mixin gradient-directional($start-color: var(--gray-700), $end-color: var(--gray-800), $deg: 45deg) {
+  background-image: linear-gradient($deg, $start-color, $end-color);
+}
+
+@mixin gradient-x-three-colors($start-color: $blue, $mid-color: $purple, $color-stop: 50%, $end-color: $red) {
+  background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+}
+
+@mixin gradient-y-three-colors($start-color: $blue, $mid-color: $purple, $color-stop: 50%, $end-color: $red) {
+  background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+}
+
+@mixin gradient-radial($inner-color: var(--gray-700), $outer-color: var(--gray-800)) {
+  background-image: radial-gradient(circle, $inner-color, $outer-color);
+}
+
+@mixin gradient-striped($color: rgb(255 255 255 / .15), $angle: 45deg) {
+  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+}
+
+------------------------------------------------------------------------
+SASS UTILITIES API
+------------------------------------------------------------------------
+
+Background utilities are declared in our utilities API in
+`scss/_utilities.scss`. Learn how to use the utilities API.
+
+Example code (SCSS):
+
+"bg-color": (
+  property: (
+    "--bg": null,
+    "background-color": var(--bg)
+  ),
+  class: bg,
+  values: map.merge(theme-color-refs("bg"), theme-token-refs($theme-bgs, "bg")),
+),
+"bg-color-subtle": (
+  property: (
+    "--bg": null,
+    "background-color": var(--bg)
+  ),
+  class: bg-subtle,
+  values: theme-color-refs("bg-subtle"),
+),
+"bg-color-muted": (
+  property: (
+    "--bg": null,
+    "background-color": var(--bg)
+  ),
+  class: bg-muted,
+  values: theme-color-refs("bg-muted"),
+),
+"bg-opacity": (
+  class: bg,
+  property: background-color,
+  values: theme-opacity-values(--bg)
+),
+
+========================================================================
+END OF FILE
+========================================================================

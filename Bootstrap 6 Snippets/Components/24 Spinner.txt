@@ -1,25 +1,55 @@
 ========================================================================
 SPINNERS
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/spinner
 ========================================================================
 
-Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript.
+WHAT IT DOES
+Indicate the loading state of a component or page with Bootstrap spinners,
+built entirely with HTML, CSS, and no JavaScript.
 
-CONTENTS
-   1. Border spinner  (example 1)
-   2. Growing spinner  (example 2)
-   3. Variants  (example 3)
-   4. Size  (examples 4, 5)
-   5. Custom spinners  (example 6)
-   6. CSS > Variables  (examples 7, 8)
-   7. CSS > Keyframes  (examples 9, 10)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Border spinner
+  Growing spinner
+  Variants
+  Size
+  Custom spinners
+  CSS
+     - Variables
+     - Keyframes
+
+Bootstrap “spinners” can be used to show the loading state in your projects.
+They’re built only with HTML and CSS, meaning you don’t need any JavaScript to
+create them. You may, however, need some custom JavaScript to toggle their
+visibility. Their appearance, alignment, and sizing can be easily customized
+with our utility classes.
+
+For accessibility purposes, each loader here includes `role="status"` and a
+nested `<span class="visually-hidden">Loading…</span>`.
+
+NOTE:
+  The animation effect of this component is dependent on the
+  `prefers-reduced-motion` media query. See the reduced motion section of our
+  accessibility documentation.
+
+========================================================================
 BORDER SPINNER
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Use the border spinners for a lightweight loading indicator.
+========================================================================
+
+Use the border spinners for a lightweight loading indicator.
+
+Example code (HTML):
 
 <div class="spinner-border" role="status">
   <span class="visually-hidden">Loading…</span>
@@ -35,34 +65,45 @@ Note: Use the border spinners for a lightweight loading indicator.
   <span role="status">Loading…</span>
 </button>
 
-------------------------------------------------------------------------
+========================================================================
 GROWING SPINNER
-Example 2  |  HTML
-------------------------------------------------------------------------
-Note: If you don’t fancy a border spinner, switch to the grow spinner. While it doesn’t technically spin, it does repeatedly grow!
+========================================================================
+
+If you don’t fancy a border spinner, switch to the grow spinner. While it
+doesn’t technically spin, it does repeatedly grow!
+
+Example code (HTML):
 
 <div class="spinner-grow" role="status">
   <span class="visually-hidden">Loading…</span>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 VARIANTS
-Example 3  |  HTML
-------------------------------------------------------------------------
-Note: Spinners use `currentColor` for their appearance, meaning you can customize the color with text color utilities. You can use any of our text color utilities on the standard spinner.
+========================================================================
+
+Spinners use `currentColor` for their appearance, meaning you can customize
+the color with text color utilities. You can use any of our text color
+utilities on the standard spinner.
+
+Example code (HTML):
 
 <div class="spinner-border fg-primary" role="status">
   <span class="visually-hidden">Loading…</span>
 </div>
+
 <div class="spinner-grow fg-accent" role="status">
   <span class="visually-hidden">Loading…</span>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 SIZE
-Example 4  |  HTML
-------------------------------------------------------------------------
-Note: Spinner are `1em` by `1em` by default, all Add `.spinner-sm` to make a smaller spinner that can quickly be used within other components.
+========================================================================
+
+Spinner are `1em` by `1em` by default, all Add `.spinner-sm` to make a smaller
+spinner that can quickly be used within other components.
+
+Example code (HTML):
 
 <div class="spinner-border spinner-sm" role="status">
   <span class="visually-hidden">Loading…</span>
@@ -71,11 +112,9 @@ Note: Spinner are `1em` by `1em` by default, all Add `.spinner-sm` to make a sma
   <span class="visually-hidden">Loading…</span>
 </div>
 
-------------------------------------------------------------------------
-SIZE (cont.)
-Example 5  |  HTML
-------------------------------------------------------------------------
-Note: Or, use custom CSS or inline styles to change the dimensions as needed.
+Or, use custom CSS or inline styles to change the dimensions as needed.
+
+Example code (HTML):
 
 <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
   <span class="visually-hidden">Loading…</span>
@@ -84,11 +123,13 @@ Note: Or, use custom CSS or inline styles to change the dimensions as needed.
   <span class="visually-hidden">Loading…</span>
 </div>
 
-------------------------------------------------------------------------
+========================================================================
 CUSTOM SPINNERS
-Example 6  |  HTML
-------------------------------------------------------------------------
-Note: You can use the `.spinner-rotate` class to rotate a custom SVG spinner.
+========================================================================
+
+You can use the `.spinner-rotate` class to rotate a custom SVG spinner.
+
+Example code (HTML):
 
 <svg class="bi spinner-rotate" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentcolor" stroke-width="2" stroke-linecap="round">
   <path d="M8 1V4"/>
@@ -101,11 +142,21 @@ Note: You can use the `.spinner-rotate` class to rotate a custom SVG spinner.
   <path opacity="0.1" d="M12.95 3.05L10.83 5.17"/>
 </svg>
 
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 7  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Spinners use local CSS variables on `.spinner-{border|grow}` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Spinners use local CSS variables on `.spinner-{border|grow}` for real-time
+customization. Values for the CSS variables are generated from Sass maps
+unique to each component and applied to the aforementioned class.
+
+Border spinner tokens:
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $spinner-border-tokens: defaults(
@@ -120,11 +171,9 @@ $spinner-border-tokens: defaults(
   $spinner-border-tokens
 );
 
-------------------------------------------------------------------------
-CSS > VARIABLES (cont.)
-Example 8  |  SCSS
-------------------------------------------------------------------------
-Note: Growing spinner tokens:
+Growing spinner tokens:
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $spinner-grow-tokens: defaults(
@@ -139,19 +188,20 @@ $spinner-grow-tokens: defaults(
 );
 
 ------------------------------------------------------------------------
-CSS > KEYFRAMES
-Example 9  |  SCSS
+KEYFRAMES
 ------------------------------------------------------------------------
-Note: Used for creating the CSS animations for our spinners. Included in `scss/_spinner.scss`.
+
+Used for creating the CSS animations for our spinners. Included in
+`scss/_spinner.scss`.
+
+Example code (SCSS):
 
 @keyframes spinner-border {
   to { transform: rotate(360deg); }
 }
 
-------------------------------------------------------------------------
-CSS > KEYFRAMES (cont.)
-Example 10  |  SCSS
-------------------------------------------------------------------------
+Example code (SCSS):
+
 @keyframes spinner-grow {
   0% {
     transform: scale(0);

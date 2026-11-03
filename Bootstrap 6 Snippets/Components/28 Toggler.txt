@@ -1,21 +1,39 @@
 ========================================================================
 TOGGLER
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/toggler
 Requires JavaScript plugin: yes  (see JAVASCRIPT SETUP below)
 ========================================================================
 
-Toggle attributes or classes on click using only data attributes and our JavaScript plugin. Works with any attribute except `id`.
+WHAT IT DOES
+Toggle attributes or classes on click using only data attributes and our
+JavaScript plugin. Works with any attribute except `id`.
 
-CONTENTS
-   1. Examples > Toggle class  (example 1)
-   2. Examples > Remove existing  (example 2)
-   3. Examples > Target element  (example 3)
-   4. Examples > Multiple elements  (example 4)
-   5. Examples > Toggle attribute  (example 5)
-   6. Usage > Via JavaScript  (example 6)
-   7. Usage > Methods  (example 7)
-   8. Usage > Events  (example 8)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Examples
+     - Toggle class
+     - Remove existing
+     - Target element
+     - Multiple elements
+     - Toggle attribute
+  Usage
+     - Via data attributes
+     - Via JavaScript
+     - Dependencies
+     - Options
+     - Methods
+     - Events
 
 ------------------------------------------------------------------------
 JAVASCRIPT SETUP  (read this first)
@@ -43,11 +61,24 @@ Reuse an existing instance:
 
 const toggler = bootstrap.Toggler.getOrCreateInstance('#myToggler')
 
+Toggler is a pure JavaScript component that can be used to avoid writing small
+or one-off JavaScript snippets to create interactive elements. Instead of
+writing custom JavaScript, use data attributes to toggle attribute values,
+changes classes, and more on `click` events.
+
+========================================================================
+EXAMPLES
+========================================================================
+
 ------------------------------------------------------------------------
-EXAMPLES > TOGGLE CLASS
-Example 1  |  HTML
+TOGGLE CLASS
 ------------------------------------------------------------------------
-Note: Toggle the class of an element by adding the `data-bs-toggle="toggler"` attribute to the element and the `data-bs-value` attribute to the value you want to toggle.
+
+Toggle the class of an element by adding the `data-bs-toggle="toggler"`
+attribute to the element and the `data-bs-value` attribute to the value you
+want to toggle.
+
+Example code (HTML):
 
 <div class="w-100 p-3 rounded border"
      data-bs-toggle="toggler"
@@ -57,10 +88,13 @@ Note: Toggle the class of an element by adding the `data-bs-toggle="toggler"` at
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > REMOVE EXISTING
-Example 2  |  HTML
+REMOVE EXISTING
 ------------------------------------------------------------------------
-Note: If the element already has the class specified in `data-bs-value`, toggling will remove it. Clicking again adds it back.
+
+If the element already has the class specified in `data-bs-value`, toggling
+will remove it. Clicking again adds it back.
+
+Example code (HTML):
 
 <div class="w-100 p-3 rounded border bg-subtle-info"
      data-bs-toggle="toggler"
@@ -70,10 +104,13 @@ Note: If the element already has the class specified in `data-bs-value`, togglin
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > TARGET ELEMENT
-Example 3  |  HTML
+TARGET ELEMENT
 ------------------------------------------------------------------------
-Note: Use `data-bs-toggle` with `data-bs-target` to toggle the class of another element.
+
+Use `data-bs-toggle` with `data-bs-target` to toggle the class of another
+element.
+
+Example code (HTML):
 
 <button class="btn-solid theme-primary" data-bs-toggle="toggler" data-bs-target="#togglerExample1">Toggle</button>
 
@@ -82,10 +119,13 @@ Note: Use `data-bs-toggle` with `data-bs-target` to toggle the class of another 
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > MULTIPLE ELEMENTS
-Example 4  |  HTML
+MULTIPLE ELEMENTS
 ------------------------------------------------------------------------
-Note: Use `data-bs-toggle` with a class name selector in `data-bs-target` to toggle the class of multiple elements.
+
+Use `data-bs-toggle` with a class name selector in `data-bs-target` to toggle
+the class of multiple elements.
+
+Example code (HTML):
 
 <button class="btn-solid theme-primary align-self-start"
         data-bs-toggle="toggler" data-bs-target=".togglerExampleClass1">Toggle</button>
@@ -103,10 +143,14 @@ Note: Use `data-bs-toggle` with a class name selector in `data-bs-target` to tog
 </div>
 
 ------------------------------------------------------------------------
-EXAMPLES > TOGGLE ATTRIBUTE
-Example 5  |  HTML
+TOGGLE ATTRIBUTE
 ------------------------------------------------------------------------
-Note: Toggle attributes by using the `data-bs-toggle` attribute with the `data-bs-attribute` and `data-bs-value` attributes. For example, toggling the `hidden` attribute:
+
+Toggle attributes by using the `data-bs-toggle` attribute with the
+`data-bs-attribute` and `data-bs-value` attributes. For example, toggling the
+`hidden` attribute:
+
+Example code (HTML):
 
 <div class="w-100 p-3 rounded border"
      data-bs-toggle="toggler"
@@ -115,11 +159,39 @@ Note: Toggle attributes by using the `data-bs-toggle` attribute with the `data-b
   Click to toggle `hidden` attribute
 </div>
 
+You could also use this to toggle the `disabled` attribute on a `fieldset`
+element to disable all the controls within. Or any other ideas you can think
+of with attributes.
+
+========================================================================
+USAGE
+========================================================================
+
 ------------------------------------------------------------------------
-USAGE > VIA JAVASCRIPT
-Example 6  |  JS
+VIA DATA ATTRIBUTES
 ------------------------------------------------------------------------
-Note: We don’t recommend using this component programmatically, as the initial purpose of it is to avoid using JavaScript. However, you can enable manually with:
+
+Add `data-bs-toggle="toggler"` to the element to automatically. The
+`data-bs-target` is optional, and attribute accepts a CSS selector to apply
+the toggler functionality to. Be sure to add the `data-bs-attribute` and
+`data-bs-value` attributes to the toggled element’s markup.
+
+Attribute                   Description
+--------------------------  -------------------------------------------------------------------------------
+`data-bs-toggle="toggler"`  Initializes the toggler on the trigger element.
+`data-bs-target`            Optional CSS selector for the element whose attribute is toggled.
+`data-bs-attribute`         Name of the HTML attribute to toggle (e.g. `hidden`, `disabled`).
+`data-bs-value`             Value to set when the attribute is “on” (often paired with removal when “off”).
+
+------------------------------------------------------------------------
+VIA JAVASCRIPT
+------------------------------------------------------------------------
+
+We don’t recommend using this component programmatically, as the initial
+purpose of it is to avoid using JavaScript. However, you can enable manually
+with:
+
+Example code (JS):
 
 var togglerElementList = Array.prototype.slice.call(document.querySelectorAll('[data-bs-toggle="toggler"]'))
 var togglerList = togglerElementList.map(function (togglerEl) {
@@ -127,19 +199,74 @@ var togglerList = togglerElementList.map(function (togglerEl) {
 })
 
 ------------------------------------------------------------------------
-USAGE > METHODS
-Example 7  |  JS
+DEPENDENCIES
 ------------------------------------------------------------------------
-Note: You can create a toggler instance using the constructor, for example:
+
+The toggler plugin requires the following JavaScript files if you’re building
+Bootstrap’s JS from source:
+
+File                                  Description
+------------------------------------  ---------------------------
+`js/src/toggler.ts`                   Main toggler component
+`js/src/base-component.ts`            Base component class
+`js/src/dom/data.ts`                  Element data store
+`js/src/dom/event-handler.ts`         Event handling utilities
+`js/src/dom/manipulator.ts`           Data attribute manipulation
+`js/src/dom/selector-engine.ts`       DOM selector utilities
+`js/src/util/component-functions.ts`  Shared component helpers
+`js/src/util/config.ts`               Configuration base class
+`js/src/util/index.ts`                Core utility functions
+
+------------------------------------------------------------------------
+OPTIONS
+------------------------------------------------------------------------
+
+Options can be passed via data attributes or JavaScript. For data attributes,
+append the option name to `data-bs-`, as in `data-bs-value="foo"`.
+
+`attribute`
+  Type: string
+  Default: `class`
+  Description: The attribute which will be toggled on each click
+
+`value`
+  Type: string, number, boolean, null
+  Default: null
+  Description: The value to toggle for the given attribute, such as a class name. Toggling is a no-op when no value is set.
+
+------------------------------------------------------------------------
+METHODS
+------------------------------------------------------------------------
+
+You can create a toggler instance using the constructor, for example:
+
+Example code (JS):
 
 var myToggler = document.getElementById('myToggler')
 var bsToggler = new bootstrap.Toggler(myToggler)
 
+`toggle`
+  Description: Toggles a toggler element chosen attribute
+
+`getInstance`
+  Description: Static method which allows you to get the toggler instance associated with a DOM element
+
+`getOrCreateInstance`
+  Description: Static method which allows you to get the toggler instance associated with a DOM element, or create a new one in case it wasn’t initialized
+
 ------------------------------------------------------------------------
-USAGE > EVENTS
-Example 8  |  JS
+EVENTS
 ------------------------------------------------------------------------
-Note: Bootstrap’s toggler class exposes a few events for hooking into toggler functionality.
+
+Bootstrap’s toggler class exposes a few events for hooking into toggler
+functionality.
+
+Event type            Description
+--------------------  ---------------------------------------------------------------------------
+`toggle.bs.toggler`   This event fires immediately when the `toggle` instance method is called.
+`toggled.bs.toggler`  This event is fired when the instance’s element attribute has been changed.
+
+Example code (JS):
 
 var myToggler = document.getElementById('myToggler')
 myToggler.addEventListener('toggle.bs.toggler', function () {

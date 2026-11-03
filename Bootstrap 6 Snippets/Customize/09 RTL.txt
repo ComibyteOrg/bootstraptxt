@@ -1,0 +1,114 @@
+========================================================================
+RTL
+Bootstrap 6.0  |  Customize reference
+Source: https://getbootstrap.com/docs/6.0/customize/rtl
+========================================================================
+
+WHAT IT DOES
+Learn how to enable support for right-to-left text in Bootstrap across our
+layout, components, and utilities.
+
+HOW TO USE IT
+Every page here shows how to change Bootstrap itself: Sass variables, CSS
+custom properties, and compile-time options. You only need this section if you
+are comfortable with Sass; otherwise the defaults just work.
+
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  How it works
+     - Required HTML
+     - Live demo
+  Switching directions
+  Additional resources
+
+NOTE:
+  ProTip: Get familiar with Bootstrap first with our getting started guide
+  before working with RTL.
+
+========================================================================
+HOW IT WORKS
+========================================================================
+
+Bootstrap uses CSS logical properties throughout the framework to make RTL
+support native and automatic. Set `dir="rtl"` and add a `lang` attribute, like
+`lang="ar"`, on your HTML element and the browser will handle the directional
+layout changes for you. No separate stylesheets are needed.
+
+Logical properties are CSS properties that adapt to the writing mode and
+direction of content. Instead of using physical directions like `left` and
+`right`, they use logical concepts like `start` and `end`:
+
+- `margin-left` → `margin-inline-start`
+- `margin-right` → `margin-inline-end`
+- `padding-left` → `padding-inline-start`
+- `border-right` → `border-inline-end`
+
+When you set `dir="rtl"`, these logical properties automatically flip to match
+the right-to-left layout without requiring any additional CSS transformations.
+Only HTML changes are required.
+
+------------------------------------------------------------------------
+REQUIRED HTML
+------------------------------------------------------------------------
+
+One line of changes to your HTML is all it takes to enable RTL. Bootstrap will
+then automatically adapt to the RTL direction using logical properties.
+
+Example code (HTML):
+
+<html lang="en">
+<html lang="ar" dir="rtl">
+
+------------------------------------------------------------------------
+LIVE DEMO
+------------------------------------------------------------------------
+
+Toggle between LTR and RTL on this page to see Bootstrap’s logical properties
+in action:
+
+========================================================================
+SWITCHING DIRECTIONS
+========================================================================
+
+Need both LTR and RTL on the same page? Wrap your content in containers with
+different `dir` attributes:
+
+Example code (HTML):
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <title>LTR and RTL</title>
+  </head>
+  <body>
+    <!-- LTR content -->
+    <div dir="ltr" lang="en">
+      <!-- … -->
+    </div>
+
+    <!-- RTL content -->
+    <div dir="rtl" lang="ar">
+      <!-- … -->
+    </div>
+  </body>
+</html>
+
+========================================================================
+ADDITIONAL RESOURCES
+========================================================================
+
+- MDN: CSS Logical Properties and Values
+- CSS Logical Properties - web.dev
+- RTL Styling 101
+
+========================================================================
+END OF FILE
+========================================================================

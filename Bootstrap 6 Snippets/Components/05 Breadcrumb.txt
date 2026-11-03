@@ -1,24 +1,45 @@
 ========================================================================
 BREADCRUMB
-Bootstrap 6.0  |  Local component reference
+Bootstrap 6.0  |  Components reference
 Source: https://getbootstrap.com/docs/6.0/components/breadcrumb
 ========================================================================
 
-Indicate the current page's location within a navigational hierarchy using explicit divider elements.
+WHAT IT DOES
+Indicate the current page's location within a navigational hierarchy using
+explicit divider elements.
 
-CONTENTS
-   1. Example  (example 1)
-   2. Dividers > Default divider  (example 2)
-   3. Dividers > SVG dividers  (example 3)
-   4. Dividers > Text dividers  (example 4)
-   5. Dividers > Custom dividers  (example 5)
-   6. CSS > Variables  (example 6)
+HOW TO USE IT
+Components are the ready-made pieces of a page (navbar, card, dialog, ...).
+Most are CSS-driven; the ones that need JavaScript carry a JAVASCRIPT SETUP
+block near the top.
 
-------------------------------------------------------------------------
+READING GUIDE
+`code` marks a class name, attribute, or value you type into your HTML. Code
+blocks are complete and ready to paste into a page that loads Bootstrap 6.
+Indentation inside code is meaningful. New to Bootstrap? Read "00 Beginner's
+Guide.txt" first.
+
+ON THIS PAGE
+  Example
+  Dividers
+     - Default divider
+     - SVG dividers
+     - Text dividers
+     - Custom dividers
+  Accessibility
+  CSS
+     - Variables
+
+========================================================================
 EXAMPLE
-Example 1  |  HTML
-------------------------------------------------------------------------
-Note: Use an ordered list with `.breadcrumb-item` for each page and `.breadcrumb-divider` elements between them. Leave a divider empty to use the default chevron icon, or add your own separator content. Add `.active` to the `.breadcrumb-link` of the current page.
+========================================================================
+
+Use an ordered list with `.breadcrumb-item` for each page and
+`.breadcrumb-divider` elements between them. Leave a divider empty to use the
+default chevron icon, or add your own separator content. Add `.active` to the
+`.breadcrumb-link` of the current page.
+
+Example code (HTML):
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -58,11 +79,26 @@ Note: Use an ordered list with `.breadcrumb-item` for each page and `.breadcrumb
   </ol>
 </nav>
 
+========================================================================
+DIVIDERS
+========================================================================
+
+Dividers are added explicitly using `.breadcrumb-divider` elements. An empty
+divider renders a default chevron, drawn with a CSS `mask` so it inherits the
+divider color (including in dark mode). To use a different separator, add your
+own content—any SVG icon, text character, or custom markup—which overrides the
+default.
+
 ------------------------------------------------------------------------
-DIVIDERS > DEFAULT DIVIDER
-Example 2  |  HTML
+DEFAULT DIVIDER
 ------------------------------------------------------------------------
-Note: Leave the `.breadcrumb-divider` empty to get the built-in chevron. Customize it globally by overriding the `--bs-breadcrumb-divider-icon`, `--bs-breadcrumb-divider-width`, and `--bs-breadcrumb-divider-height` variables.
+
+Leave the `.breadcrumb-divider` empty to get the built-in chevron. Customize
+it globally by overriding the `--bs-breadcrumb-divider-icon`,
+`--bs-breadcrumb-divider-width`, and `--bs-breadcrumb-divider-height`
+variables.
+
+Example code (HTML):
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -77,10 +113,14 @@ Note: Leave the `.breadcrumb-divider` empty to get the built-in chevron. Customi
 </nav>
 
 ------------------------------------------------------------------------
-DIVIDERS > SVG DIVIDERS
-Example 3  |  HTML
+SVG DIVIDERS
 ------------------------------------------------------------------------
-Note: Add an inline SVG inside the divider to override the default with your own crisp, scalable icon. Use `currentColor` for the stroke or fill so it inherits the divider color for easy theming.
+
+Add an inline SVG inside the divider to override the default with your own
+crisp, scalable icon. Use `currentColor` for the stroke or fill so it inherits
+the divider color for easy theming.
+
+Example code (HTML):
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -100,10 +140,12 @@ Note: Add an inline SVG inside the divider to override the default with your own
 </nav>
 
 ------------------------------------------------------------------------
-DIVIDERS > TEXT DIVIDERS
-Example 4  |  HTML
+TEXT DIVIDERS
 ------------------------------------------------------------------------
-Note: For simple text-based dividers, just add the character directly.
+
+For simple text-based dividers, just add the character directly.
+
+Example code (HTML):
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -122,10 +164,13 @@ Note: For simple text-based dividers, just add the character directly.
 </nav>
 
 ------------------------------------------------------------------------
-DIVIDERS > CUSTOM DIVIDERS
-Example 5  |  HTML
+CUSTOM DIVIDERS
 ------------------------------------------------------------------------
-Note: Use any content you like—different icons, decorative elements, or themed separators.
+
+Use any content you like—different icons, decorative elements, or themed
+separators.
+
+Example code (HTML):
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -143,11 +188,35 @@ Note: Use any content you like—different icons, decorative elements, or themed
   </ol>
 </nav>
 
+========================================================================
+ACCESSIBILITY
+========================================================================
+
+Since breadcrumbs provide navigation, it’s important to follow these
+practices:
+
+- Add `aria-label="breadcrumb"` to the `<nav>` element to describe the
+  navigation type
+- Add `aria-current="page"` to the `.breadcrumb-item` containing the current
+  page
+- Divider elements are automatically hidden from assistive technology via CSS
+
+For more information, see the ARIA Authoring Practices Guide breadcrumb
+pattern.
+
+========================================================================
+CSS
+========================================================================
+
 ------------------------------------------------------------------------
-CSS > VARIABLES
-Example 6  |  SCSS
+VARIABLES
 ------------------------------------------------------------------------
-Note: Breadcrumbs use local CSS variables on `.breadcrumb` for real-time customization. Values for the CSS variables are generated from Sass maps unique to each component and applied to the aforementioned class.
+
+Breadcrumbs use local CSS variables on `.breadcrumb` for real-time
+customization. Values for the CSS variables are generated from Sass maps
+unique to each component and applied to the aforementioned class.
+
+Example code (SCSS):
 
 // stylelint-disable-next-line scss/dollar-variable-default
 $breadcrumb-tokens: defaults(
